@@ -1,0 +1,755 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact SkillNest | Get Help and Share Feedback</title>
+
+    <meta name="description" content="Contact SkillNest for questions, feedback, suggestions, or technical support. We welcome your ideas to improve our student, career, and productivity tools.">
+
+    <meta name="keywords" content="contact SkillNest, SkillNest support, feedback, student tools support">
+
+    <meta name="author" content="SkillNest">
+
+    <link rel="canonical" href="https://your-domain.netlify.app/contact.html">
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/tools.css">
+<link rel="stylesheet" href="css/themes.css">
+    <style>
+        .contact-hero {
+            padding: 70px 20px;
+            text-align: center;
+            background: var(--bg-secondary);
+        }
+
+        .contact-label {
+            display: inline-block;
+            padding: 8px 15px;
+            margin-bottom: 18px;
+            border-radius: 30px;
+            background: rgba(118, 87, 246, 0.12);
+            color: var(--primary-color);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .contact-hero h1 {
+            margin-bottom: 17px;
+            font-size: clamp(34px, 5vw, 48px);
+        }
+
+        .contact-hero p {
+            max-width: 650px;
+            margin: auto;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .contact-section {
+            padding: 65px 0 80px;
+        }
+
+        .contact-layout {
+            display: grid;
+            grid-template-columns: minmax(0, 1.4fr) minmax(270px, 0.8fr);
+            gap: 30px;
+            align-items: start;
+        }
+
+        .contact-form-card,
+        .contact-info-card {
+            padding: 28px;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            background: var(--bg-secondary);
+        }
+
+        .contact-form-card h2,
+        .contact-info-card h2 {
+            margin-bottom: 10px;
+            font-size: 23px;
+        }
+
+        .contact-intro {
+            margin-bottom: 25px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .contact-field {
+            margin-bottom: 18px;
+        }
+
+        .contact-field label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .contact-field input,
+        .contact-field select,
+        .contact-field textarea {
+            width: 100%;
+            padding: 13px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 9px;
+            outline: none;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font: inherit;
+            font-size: 14px;
+        }
+
+        .contact-field input:focus,
+        .contact-field select:focus,
+        .contact-field textarea:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(118, 87, 246, 0.12);
+        }
+
+        .contact-field textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .contact-field input::placeholder,
+        .contact-field textarea::placeholder {
+            color: var(--text-secondary);
+            opacity: 0.7;
+        }
+
+        .contact-submit {
+            width: 100%;
+            border: none;
+            cursor: pointer;
+        }
+
+        .contact-message {
+            display: none;
+            margin-top: 17px;
+            padding: 13px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .contact-message.error {
+            display: block;
+            color: #c0392b;
+            background: rgba(231, 76, 60, 0.1);
+        }
+
+        .contact-message.success {
+            display: block;
+            color: #16834a;
+            background: rgba(39, 174, 96, 0.1);
+        }
+
+        .contact-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .contact-info-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-info-icon {
+            width: 42px;
+            height: 42px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 10px;
+            background: rgba(118, 87, 246, 0.12);
+            font-size: 20px;
+        }
+
+        .contact-info-item h3 {
+            margin-bottom: 5px;
+            font-size: 15px;
+        }
+
+        .contact-info-item p {
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.7;
+            overflow-wrap: anywhere;
+        }
+
+        .contact-info-item a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .contact-note {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 10px;
+            background: rgba(118, 87, 246, 0.1);
+        }
+
+        .contact-note p {
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        .contact-faq {
+            max-width: 850px;
+            margin: 65px auto 0;
+        }
+
+        .contact-faq h2 {
+            margin-bottom: 25px;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .contact-faq-item {
+            padding: 19px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .contact-faq-item h3 {
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .contact-faq-item p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        @media(max-width: 800px) {
+            .contact-layout {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media(max-width: 500px) {
+            .contact-form-card,
+            .contact-info-card {
+                padding: 20px;
+            }
+
+            .contact-section {
+                padding: 45px 0;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+<body>
+<!-- HEADER -->
+<header class="header">
+    <div class="container navbar">
+
+        <a href="index.html" class="logo">
+            Skill<span>Nest</span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="student-tools/index.html">Student Tools</a>
+            <a href="career-tools/index.html">Career Tools</a>
+            <a href="productivity-tools/index.html">Productivity</a>
+            <a href="resources/index.html">Resources</a>
+            <a href="about.html">About</a>
+        </nav>
+
+        <div class="nav-actions">
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch theme"
+            >
+                â—
+            </button>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-controls="navLinks"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+        </div>
+
+    </div>
+</header>
+    <main>
+
+        <!-- HERO -->
+        <section class="contact-hero">
+
+            <div class="container">
+
+                <span class="contact-label">GET IN TOUCH</span>
+
+                <h1>
+                    We'd Love to
+                    <span style="color:var(--primary-color);">
+                        Hear From You
+                    </span>
+                </h1>
+
+                <p>
+                    Have a question, suggestion, or found an issue
+                    with one of our tools? Send us a message.
+                    Your feedback helps us improve SkillNest.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- CONTACT SECTION -->
+        <section class="contact-section">
+
+            <div class="container">
+
+                <div class="contact-layout">
+
+
+                    <!-- CONTACT FORM -->
+                    <div class="contact-form-card">
+
+                        <h2>Send Us a Message</h2>
+
+                        <p class="contact-intro">
+                            Complete the form below. Your email
+                            application will open with your message
+                            ready to send.
+                        </p>
+
+                        <form id="contactForm" novalidate>
+
+                            <div class="contact-field">
+
+                                <label for="contactName">
+                                    Full Name *
+                                </label>
+
+                                <input
+                                    type="text"
+                                    id="contactName"
+                                    name="name"
+                                    placeholder="Enter your full name"
+                                    maxlength="80"
+                                    required
+                                >
+                            </div>
+
+                            <div class="contact-field">
+
+                                <label for="contactEmail">
+                                    Email Address *
+                                </label>
+
+                                <input
+                                    type="email"
+                                    id="contactEmail"
+                                    name="email"
+                                    placeholder="you@example.com"
+                                    maxlength="150"
+                                    required
+                                >
+
+                            </div>
+
+
+                            <div class="contact-field">
+
+                                <label for="contactSubject">
+                                    Subject *
+                                </label>
+
+                                <select
+                                    id="contactSubject"
+                                    name="subject"
+                                    required
+                                >
+                                    <option value="">
+                                        Select a subject
+                                    </option>
+
+                                    <option value="General Question">
+                                        General Question
+                                    </option>
+
+                                    <option value="Technical Issue">
+                                        Technical Issue
+                                    </option>
+
+                                    <option value="Feedback">
+                                        Feedback
+                                    </option>
+
+                                    <option value="Suggestion">
+                                        Suggestion
+                                    </option>
+
+                                    <option value="Business Inquiry">
+                                        Business Inquiry
+                                    </option>
+
+                                    <option value="Other">
+                                        Other
+                                    </option>
+
+                                </select>
+
+                            </div>
+
+
+                            <div class="contact-field">
+
+                                <label for="contactMessage">
+                                    Your Message *
+                                </label>
+
+                                <textarea
+                                    id="contactMessage"
+                                    name="message"
+                                    placeholder="Write your message here..."
+                                    maxlength="3000"
+                                    required
+                                ></textarea>
+
+                                <small style="color:var(--text-secondary);">
+                                    Maximum 3000 characters.
+                                </small>
+
+                            </div>
+
+
+                            <button
+                                type="submit"
+                                class="btn btn-primary contact-submit"
+                            >
+                                Prepare Email Message â†’
+                            </button>
+
+                            <div
+                                id="formMessage"
+                                class="contact-message"
+                                role="status"
+                                aria-live="polite"
+                            ></div>
+
+                        </form>
+
+                    </div>
+
+
+                    <!-- CONTACT INFORMATION -->
+                    <aside class="contact-info-card">
+
+                        <h2>Contact Information</h2>
+
+                        <p class="contact-intro">
+                            Choose the best way to get in touch
+                            with the SkillNest team.
+                        </p>
+
+
+                        <div class="contact-info-item">
+
+                            <div class="contact-info-icon">✉️</div>
+
+                            <div>
+                                <h3>Email Us</h3>
+
+                                <p>
+                                    <a href="mailto:mursaleenrazzaq101@gmail.com">
+                                             mursaleenrazzaq101@gmail.com
+                                         </a>
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-info-item">
+
+                            <div class="contact-info-icon">💬</div>
+
+                            <div>
+                                <h3>Feedback</h3>
+
+                                <p>
+                                    Share your ideas and suggestions
+                                    to help improve our tools.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-info-item">
+
+                            <div class="contact-info-icon">ðŸ› ï¸</div>
+
+                            <div>
+                                <h3>Technical Support</h3>
+
+                                <p>
+                                    Report broken links, calculation
+                                    problems, or other website issues.
+                                </p>
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-info-item">
+
+                            <div class="contact-info-icon">🌍</div>
+
+                            <div>
+                                <h3>Our Platform</h3>
+
+                                <p>
+                                    SkillNest provides online tools
+                                    and learning resources for users
+                                    around the world.
+                                </p>
+                            </div>
+
+                        </div>
+
+<div class="contact-note">
+
+    <div class="contact-note-icon" aria-hidden="true">
+        ✉
+    </div>
+
+    <div class="contact-note-content">
+        <h3>We're here to help!</h3>
+
+        <p>
+            Have a question, suggestion, or need technical
+            support? We'd love to hear from you.
+        </p>
+
+        <a
+            href="mailto:mursaleenrazzaq101@gmail.com"
+            class="contact-email"
+        >
+            <span>mursaleenrazzaq101@gmail.com</span>
+            <span aria-hidden="true">â†—</span>
+        </a>
+
+        <p class="contact-note-small">
+            We welcome your feedback and suggestions
+            to help make SkillNest better.
+        </p>
+    </div>
+
+</div>
+                    </aside>
+
+                </div>
+
+
+                <!-- FAQ -->
+                <section class="contact-faq">
+
+                    <h2>Frequently Asked Questions</h2>
+
+
+                    <div class="contact-faq-item">
+
+                        <h3>How can I report a problem with a tool?</h3>
+
+                        <p>
+                            Select Technical Issue in the contact
+                            form and explain the problem, including
+                            which tool you were using.
+                        </p>
+
+                    </div>
+
+
+                    <div class="contact-faq-item">
+
+                        <h3>Are SkillNest tools free to use?</h3>
+
+                        <p>
+                            SkillNest is being developed around
+                            accessible online tools. Check the
+                            individual tool pages for any applicable
+                            usage conditions.
+                        </p>
+
+                    </div>
+
+
+                    <div class="contact-faq-item">
+
+                        <h3>Does SkillNest provide career services?</h3>
+
+                        <p>
+                            SkillNest provides self-service career
+                            tools and educational resources. It does
+                            not guarantee employment or job placement.
+                        </p>
+
+                    </div>
+
+
+                    <div class="contact-faq-item">
+
+                        <h3>Does the contact form store my message?</h3>
+
+                        <p>
+                            No. This version prepares an email using
+                            your device's email application. It does
+                            not send or store messages on a SkillNest
+                            server.
+                        </p>
+
+                    </div>
+
+                </section>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-and-conditions.html">Terms</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SHARED JAVASCRIPT -->
+    <script src="js/storage.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/main.js"></script>
+
+
+    <!-- CONTACT FORM JAVASCRIPT -->
+    <script>
+        const contactForm = document.getElementById("contactForm");
+        const formMessage = document.getElementById("formMessage");
+
+        // Replace this with your real contact email before publishing.
+        const contactEmailAddress = "mursaleenrazzaq101@gmail.com";
+
+        contactForm.addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById("contactName").value.trim();
+            const email = document.getElementById("contactEmail").value.trim();
+            const subject = document.getElementById("contactSubject").value;
+            const message = document.getElementById("contactMessage").value.trim();
+
+            formMessage.className = "contact-message";
+            formMessage.textContent = "";
+
+            if (!name || !email || !subject || !message) {
+                showMessage("Please complete all required fields.", "error");
+                return;
+            }
+
+            if (name.length < 2) {
+                showMessage("Please enter a valid name.", "error");
+                return;
+            }
+
+            const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (!emailPattern.test(email)) {
+                showMessage("Please enter a valid email address.", "error");
+                return;
+            }
+
+            if (message.length < 10) {
+                showMessage("Please write a message with at least 10 characters.", "error");
+                return;
+            }
+
+            const emailSubject = encodeURIComponent(
+                "SkillNest Contact: " + subject
+            );
+
+            const emailBody = encodeURIComponent(
+                "Name: " + name +
+                "\nEmail: " + email +
+                "\nSubject: " + subject +
+                "\n\nMessage:\n" + message
+            );
+
+            const mailtoLink =
+                "mailto:" + contactEmailAddress +
+                "?subject=" + emailSubject +
+                "&body=" + emailBody;
+
+            showMessage(
+                "Your email application is opening. Review the message and send it from your email account.",
+                "success"
+            );
+
+            window.location.href = mailtoLink;
+        });
+
+
+        function showMessage(message, type) {
+            formMessage.textContent = message;
+            formMessage.className = "contact-message " + type;
+        }
+    </script>
+
+
+<script src="js/sidebar.js" defer></script>
+</body>
+</html>
+
+

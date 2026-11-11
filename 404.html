@@ -1,0 +1,277 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Page Not Found | SkillNest</title>
+
+    <meta name="description" content="The page you are looking for could not be found. Return to SkillNest and explore free student, career, and productivity tools.">
+
+    <meta name="robots" content="noindex, follow">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/themes.css">
+
+    <style>
+        .error-page {
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .error-content {
+            max-width: 650px;
+            margin: auto;
+        }
+
+        .error-number {
+            font-size: clamp(100px, 20vw, 190px);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -8px;
+            color: var(--primary-color);
+            text-shadow: 0 12px 40px rgba(118, 87, 246, 0.2);
+        }
+
+        .error-content h1 {
+            margin: 20px 0 12px;
+            font-size: clamp(26px, 5vw, 38px);
+        }
+
+        .error-content p {
+            max-width: 480px;
+            margin: 0 auto 28px;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .error-actions {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 14px;
+        }
+
+        .error-actions a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: 0.25s ease;
+        }
+
+        .error-home {
+            background: var(--primary-color);
+            color: #fff;
+        }
+
+        .error-home:hover {
+            transform: translateY(-3px);
+            opacity: 0.9;
+        }
+
+        .error-tools {
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+        }
+
+        .error-tools:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .error-icon {
+            width: 85px;
+            height: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 25px;
+            border-radius: 24px;
+            background: rgba(118, 87, 246, 0.12);
+            color: var(--primary-color);
+            font-size: 42px;
+        }
+
+        .error-suggestions {
+            margin-top: 45px;
+            padding-top: 25px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .error-suggestions p {
+            margin-bottom: 15px;
+            font-size: 13px;
+        }
+
+        .error-suggestions a {
+            margin: 0 8px;
+            color: var(--primary-color);
+            font-size: 13px;
+            text-decoration: none;
+        }
+
+        .error-suggestions a:hover {
+            text-decoration: underline;
+        }
+    </style>
+
+<link rel="stylesheet" href="css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="index.html" class="logo">
+                Skill<span>Nest</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+
+                <a href="index.html">Home</a>
+                <a href="student-tools/index.html">Student Tools</a>
+                <a href="career-tools/index.html">Career Tools</a>
+                <a href="productivity-tools/index.html">Productivity</a>
+                <a href="resources/index.html">Resources</a>
+                <a href="about.html">About</a>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch to light mode"
+                >
+                    â—
+                </button>
+
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- ERROR CONTENT -->
+    <main>
+
+        <section class="error-page">
+
+            <div class="error-content">
+
+                <div class="error-icon">
+                    ✦
+                </div>
+
+                <div class="error-number">
+                    404
+                </div>
+
+                <h1>Oops! Page Not Found</h1>
+
+                <p>
+                    The page you are looking for may have been
+                    moved, deleted, or the link may be incorrect.
+                    Don't worry — there is plenty more to explore
+                    on SkillNest.
+                </p>
+
+                <div class="error-actions">
+
+                    <a href="index.html" class="error-home">
+                        â† Back to Home
+                    </a>
+
+                    <a href="student-tools/index.html" class="error-tools">
+                        Explore Free Tools
+                    </a>
+
+                </div>
+
+                <div class="error-suggestions">
+
+                    <p>You might be looking for:</p>
+
+                    <a href="student-tools/gpa-calculator.html">
+                        GPA Calculator
+                    </a>
+
+                    <a href="career-tools/resume-builder.html">
+                        Resume Builder
+                    </a>
+
+                    <a href="resources/index.html">
+                        Learning Resources
+                    </a>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+                    <a href="about.html">About</a>
+                    <a href="contact.html">Contact</a>
+                    <a href="privacy-policy.html">Privacy Policy</a>
+                    <a href="terms-and-conditions.html">Terms</a>
+                    <a href="disclaimer.html">Disclaimer</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SHARED JAVASCRIPT -->
+    <script src="js/storage.js"></script>
+    <script src="js/navigation.js"></script>
+    <script src="js/theme.js"></script>
+    <script src="js/main.js"></script>
+
+
+<script src="js/sidebar.js" defer></script>
+</body>
+</html>
+
+

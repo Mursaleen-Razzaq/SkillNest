@@ -1,0 +1,591 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free GPA Calculator | SkillNest</title>
+
+    <meta name="description" content="Calculate your semester GPA easily with the free SkillNest GPA calculator. Add subjects, credit hours and grades to get your GPA instantly.">
+
+    <meta name="keywords" content="GPA calculator, semester GPA calculator, grade point average, free GPA calculator">
+
+    <meta name="author" content="SkillNest">
+
+    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/tools.css">
+<link rel="stylesheet" href="../css/themes.css">
+<link rel="stylesheet" href="../css/sidebar.css">
+    <style>
+        .subject-row {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1.2fr auto;
+            gap: 12px;
+            align-items: end;
+            margin-bottom: 15px;
+            padding: 15px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-secondary);
+        }
+
+        .subject-row .form-group {
+            min-width: 0;
+        }
+
+        .remove-subject {
+            height: 48px;
+            width: 48px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(239, 68, 68, 0.12);
+            color: var(--danger);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .remove-subject:hover {
+            background: rgba(239, 68, 68, 0.22);
+        }
+
+        .gpa-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 22px;
+        }
+
+        .summary-item {
+            padding: 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-card);
+            text-align: center;
+        }
+
+        .summary-item span {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .summary-item strong {
+            color: var(--primary-light);
+            font-size: 25px;
+        }
+
+        .grade-note {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        @media (max-width: 650px) {
+            .subject-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .subject-row .subject-name {
+                grid-column: 1 / -1;
+            }
+
+            .remove-subject {
+                width: 100%;
+            }
+
+            .gpa-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="../index.html" class="logo">
+                Skill<span>Nest</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="index.html">Student Tools</a>
+                <a href="../career-tools/index.html">Career Tools</a>
+                <a href="../productivity-tools/index.html">Productivity</a>
+                <a href="../resources/index.html">Resources</a>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch to light mode"
+                >
+                     ☀
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <section class="tool-page">
+
+            <div class="tool-header">
+
+                <div class="tool-breadcrumb">
+                    <a href="../index.html">Home</a> /
+                    <a href="index.html">Student Tools</a> /
+                    GPA Calculator
+                </div>
+
+                <h1>GPA Calculator</h1>
+
+                <p>
+                    Calculate your semester Grade Point Average (GPA)
+                    using subject grades and credit hours.
+                    Add your subjects and get your result instantly.
+                </p>
+
+            </div>
+
+
+            <!-- GPA CALCULATOR -->
+            <div class="tool-container">
+
+                <h2>Enter Your Subjects</h2>
+
+                <p class="result-description">
+                    Enter the name, credit hours and grade for each subject.
+                </p>
+
+                <div id="subjectsContainer">
+
+                    <!-- Subject rows are added through JavaScript -->
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="tool-btn tool-btn-secondary"
+                    id="addSubjectBtn"
+                >
+                    + Add Subject
+                </button>
+
+
+                <div class="tool-alert error" id="errorMessage" role="alert">
+                </div>
+
+
+                <button
+                    type="button"
+                    class="tool-btn"
+                    id="calculateGpaBtn"
+                    style="width: 100%; margin-top: 22px;"
+                >
+                    Calculate GPA
+                </button>
+
+
+                <!-- RESULT -->
+                <div class="result-box" id="resultBox" aria-live="polite">
+
+                    <h3>Your GPA Result</h3>
+
+                    <div class="gpa-summary">
+
+                        <div class="summary-item">
+                            <span>Semester GPA</span>
+                            <strong id="gpaResult">0.00</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Total Credit Hours</span>
+                            <strong id="totalCredits">0</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Total Grade Points</span>
+                            <strong id="totalGradePoints">0.00</strong>
+                        </div>
+
+                    </div>
+
+                    <p class="result-description" id="resultDescription">
+                    </p>
+
+                    <button
+                        type="button"
+                        class="tool-btn tool-btn-secondary"
+                        id="saveResultBtn"
+                        style="margin-top: 18px;"
+                    >
+                        Save Result
+                    </button>
+
+                </div>
+
+
+                <div class="grade-note">
+                    <strong>Grading scale:</strong>
+                    A = 4.00, A- = 3.70, B+ = 3.30,
+                    B = 3.00, B- = 2.70, C+ = 2.30,
+                    C = 2.00, D = 1.00, F = 0.00.
+
+                    <br><br>
+
+                    This is a common example of a 4.0 grading scale.
+                    Actual grade points can differ between universities.
+                    Always check your university's official grading policy.
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+                    <a href="../privacy-policy.html">Privacy Policy</a>
+                    <a href="../terms-and-conditions.html">Terms</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="../js/storage.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/main.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const subjectsContainer =
+                document.getElementById("subjectsContainer");
+
+            const addSubjectBtn =
+                document.getElementById("addSubjectBtn");
+
+            const calculateBtn =
+                document.getElementById("calculateGpaBtn");
+
+            const errorMessage =
+                document.getElementById("errorMessage");
+
+            const resultBox =
+                document.getElementById("resultBox");
+
+            const gradePoints = {
+                "A": 4.00,
+                "A-": 3.70,
+                "B+": 3.30,
+                "B": 3.00,
+                "B-": 2.70,
+                "C+": 2.30,
+                "C": 2.00,
+                "D": 1.00,
+                "F": 0.00
+            };
+
+            let lastResult = null;
+
+            // Create a subject row
+            function createSubjectRow(name = "", credits = "3", grade = "A") {
+
+                const row = document.createElement("div");
+
+                row.className = "subject-row";
+
+                const nameGroup = document.createElement("div");
+                nameGroup.className = "form-group subject-name";
+
+                const nameLabel = document.createElement("label");
+                nameLabel.textContent = "Subject Name";
+
+                const nameInput = document.createElement("input");
+                nameInput.type = "text";
+                nameInput.className = "subject-name-input";
+                nameInput.placeholder = "e.g. Mathematics";
+                nameInput.value = name;
+
+                nameGroup.append(nameLabel, nameInput);
+
+
+                const creditGroup = document.createElement("div");
+                creditGroup.className = "form-group";
+
+                const creditLabel = document.createElement("label");
+                creditLabel.textContent = "Credit Hours";
+
+                const creditInput = document.createElement("input");
+                creditInput.type = "number";
+                creditInput.className = "credit-input";
+                creditInput.min = "0.5";
+                creditInput.max = "10";
+                creditInput.step = "0.5";
+                creditInput.value = credits;
+                creditInput.placeholder = "3";
+
+                creditGroup.append(creditLabel, creditInput);
+
+
+                const gradeGroup = document.createElement("div");
+                gradeGroup.className = "form-group";
+
+                const gradeLabel = document.createElement("label");
+                gradeLabel.textContent = "Grade";
+
+                const gradeSelect = document.createElement("select");
+                gradeSelect.className = "grade-select";
+
+                Object.keys(gradePoints).forEach(function (gradeName) {
+
+                    const option = document.createElement("option");
+
+                    option.value = gradeName;
+                    option.textContent =
+                        gradeName + " (" +
+                        gradePoints[gradeName].toFixed(2) + ")";
+
+                    if (gradeName === grade) {
+                        option.selected = true;
+                    }
+
+                    gradeSelect.appendChild(option);
+
+                });
+
+                gradeGroup.append(gradeLabel, gradeSelect);
+
+
+                const removeBtn = document.createElement("button");
+
+                removeBtn.type = "button";
+                removeBtn.className = "remove-subject";
+                removeBtn.textContent = "Ã—";
+                removeBtn.setAttribute("aria-label", "Remove subject");
+
+                removeBtn.addEventListener("click", function () {
+                    row.remove();
+                    hideResult();
+                });
+
+                row.append(
+                    nameGroup,
+                    creditGroup,
+                    gradeGroup,
+                    removeBtn
+                );
+
+                subjectsContainer.appendChild(row);
+
+            }
+
+
+            // Add a new subject
+            addSubjectBtn.addEventListener("click", function () {
+
+                createSubjectRow("", "3", "A");
+                hideResult();
+
+            });
+
+
+            // Hide old result when inputs change
+            function hideResult() {
+
+                resultBox.classList.remove("show");
+                errorMessage.classList.remove("show");
+                lastResult = null;
+
+            }
+
+
+            subjectsContainer.addEventListener("input", hideResult);
+            subjectsContainer.addEventListener("change", hideResult);
+
+
+            // Calculate GPA
+            calculateBtn.addEventListener("click", function () {
+
+                const rows = subjectsContainer.querySelectorAll(".subject-row");
+
+                let totalCredits = 0;
+                let totalPoints = 0;
+                let valid = true;
+
+                errorMessage.classList.remove("show");
+
+                if (rows.length === 0) {
+                    showError("Please add at least one subject.");
+                    return;
+                }
+
+                rows.forEach(function (row) {
+
+                    const subjectName =
+                        row.querySelector(".subject-name-input").value.trim();
+
+                    const creditHours =
+                        Number(row.querySelector(".credit-input").value);
+
+                    const selectedGrade =
+                        row.querySelector(".grade-select").value;
+
+                    if (!subjectName) {
+                        valid = false;
+                        showError("Please enter a name for every subject.");
+                        return;
+                    }
+
+                    if (
+                        !Number.isFinite(creditHours) ||
+                        creditHours < 0.5 ||
+                        creditHours > 10
+                    ) {
+                        valid = false;
+                        showError("Credit hours must be between 0.5 and 10.");
+                        return;
+                    }
+
+                    const points = gradePoints[selectedGrade];
+
+                    totalCredits += creditHours;
+                    totalPoints += creditHours * points;
+
+                });
+
+                if (!valid || totalCredits <= 0) {
+                    return;
+                }
+
+                const gpa = totalPoints / totalCredits;
+
+                lastResult = {
+                    gpa: Number(gpa.toFixed(2)),
+                    totalCredits: Number(totalCredits.toFixed(2)),
+                    totalPoints: Number(totalPoints.toFixed(2)),
+                    calculatedAt: new Date().toISOString()
+                };
+
+                document.getElementById("gpaResult").textContent =
+                    lastResult.gpa.toFixed(2);
+
+                document.getElementById("totalCredits").textContent =
+                    lastResult.totalCredits;
+
+                document.getElementById("totalGradePoints").textContent =
+                    lastResult.totalPoints.toFixed(2);
+
+                document.getElementById("resultDescription").textContent =
+                    "Your semester GPA is " +
+                    lastResult.gpa.toFixed(2) +
+                    " out of 4.00.";
+
+                resultBox.classList.add("show");
+
+            });
+
+
+            // Display validation errors
+            function showError(message) {
+
+                errorMessage.textContent = message;
+                errorMessage.classList.add("show");
+
+            }
+
+
+            // Save calculation
+            document.getElementById("saveResultBtn")
+                .addEventListener("click", function () {
+
+                    if (!lastResult) {
+                        showError("Calculate your GPA before saving.");
+                        return;
+                    }
+
+                    const saved = SkillNestStorage.save(
+                        "last_gpa_result",
+                        lastResult
+                    );
+
+                    if (saved) {
+                        alert("Your GPA result has been saved in this browser.");
+                    } else {
+                        alert("Unable to save your result. Please try again.");
+                    }
+
+                });
+
+
+            // Restore the previous calculation
+            const savedResult = SkillNestStorage.get(
+                "last_gpa_result",
+                null
+            );
+
+            if (savedResult) {
+                console.log("Previous GPA result:", savedResult);
+            }
+
+
+            // Start with three subject rows
+            createSubjectRow("Mathematics", "3", "A");
+            createSubjectRow("Programming", "3", "B+");
+            createSubjectRow("Database Systems", "3", "A-");
+
+        });
+    </script>
+
+
+<script src="../js/sidebar.js" defer></script>
+</body>
+</html>
+
+

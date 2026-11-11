@@ -1,0 +1,1071 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free Cover Letter Generator | SkillNest</title>
+
+    <meta name="description" content="Create a professional cover letter for jobs and internships with SkillNest. Customize your letter, copy it, and print or save it as PDF.">
+
+    <meta name="keywords" content="free cover letter generator, job application letter, internship cover letter, professional cover letter">
+
+    <meta name="author" content="SkillNest">
+
+    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/tools.css">
+<link rel="stylesheet" href="../css/themes.css">
+<link rel="stylesheet" href="../css/sidebar.css">
+    <style>
+        .letter-hero {
+            padding: 45px 20px;
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .letter-hero h1 {
+            font-size: clamp(30px, 5vw, 42px);
+            margin-bottom: 12px;
+        }
+
+        .letter-hero p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .letter-workspace {
+            display: grid;
+            grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+            gap: 25px;
+            align-items: start;
+            padding-top: 40px;
+            padding-bottom: 70px;
+        }
+
+        .letter-editor {
+            padding: 25px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+        }
+
+        .letter-editor h2 {
+            font-size: 19px;
+            margin-bottom: 18px;
+        }
+
+        .letter-section {
+            padding-bottom: 22px;
+            margin-bottom: 22px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .letter-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+
+        .letter-editor label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .letter-editor input,
+        .letter-editor textarea {
+            width: 100%;
+            padding: 11px 12px;
+            margin-bottom: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font: inherit;
+        }
+
+        .letter-editor textarea {
+            min-height: 105px;
+            resize: vertical;
+        }
+
+        .letter-preview-panel {
+            position: sticky;
+            top: 20px;
+            min-width: 0;
+        }
+
+        .letter-preview-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .letter-preview-heading h2 {
+            font-size: 20px;
+        }
+
+        .letter-paper {
+            min-height: 850px;
+            padding: 45px;
+            background: #ffffff;
+            color: #252b3b;
+            border-radius: 5px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.12);
+            font-family: Arial, sans-serif;
+            line-height: 1.8;
+            overflow-wrap: anywhere;
+        }
+
+        .letter-paper h1 {
+            color: #192344;
+            font-size: 24px;
+            margin-bottom: 5px;
+        }
+
+        .letter-paper .applicant-title {
+            color: #7657f6;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 12px;
+        }
+
+        .letter-contact {
+            padding-bottom: 18px;
+            margin-bottom: 25px;
+            border-bottom: 2px solid #7657f6;
+            color: #555b6e;
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        .letter-recipient {
+            margin-bottom: 25px;
+            font-size: 12px;
+            line-height: 1.7;
+        }
+
+        .letter-body {
+            font-size: 12px;
+            color: #41485a;
+            white-space: pre-wrap;
+            min-height: 390px;
+        }
+
+        .letter-body p {
+            margin-bottom: 16px;
+        }
+
+        .letter-signature {
+            margin-top: 30px;
+            font-size: 12px;
+            color: #41485a;
+            line-height: 1.8;
+        }
+
+        .letter-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .letter-notice {
+            padding: 13px;
+            margin-top: 15px;
+            border-radius: 8px;
+            background: rgba(118, 87, 246, 0.1);
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .letter-status {
+            margin-top: 12px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        @media(max-width: 1000px) {
+            .letter-workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .letter-preview-panel {
+                position: static;
+            }
+        }
+
+        @media(max-width: 550px) {
+            .letter-editor {
+                padding: 16px;
+            }
+
+            .letter-paper {
+                min-height: 650px;
+                padding: 24px;
+            }
+
+            .letter-paper h1 {
+                font-size: 21px;
+            }
+        }
+
+        @media print {
+            @page {
+                size: A4;
+                margin: 18mm;
+            }
+
+            body {
+                background: #ffffff !important;
+            }
+
+            body * {
+                visibility: hidden !important;
+            }
+
+            #letterPreview,
+            #letterPreview * {
+                visibility: visible !important;
+            }
+
+            #letterPreview {
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                min-height: 0;
+                padding: 0;
+                border-radius: 0;
+                box-shadow: none;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="../index.html" class="logo">
+                Skill<span>Nest</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../student-tools/index.html">Student Tools</a>
+                <a href="index.html">Career Tools</a>
+                <a href="../productivity-tools/index.html">Productivity</a>
+                <a href="../resources/index.html">Resources</a>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch to light mode"
+                >
+                    â—
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="letter-hero">
+
+            <div class="container">
+
+                <div class="tool-breadcrumb">
+                    <a href="../index.html">Home</a> /
+                    <a href="index.html">Career Tools</a> /
+                    Cover Letter Generator
+                </div>
+
+                <h1>Professional Cover Letter Generator</h1>
+
+                <p>
+                    Create a customized cover letter for your next
+                    job or internship application.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- GENERATOR WORKSPACE -->
+        <section class="container letter-workspace">
+
+
+            <!-- EDITOR -->
+            <div class="letter-editor">
+
+                <h2>Cover Letter Details</h2>
+
+                <p style="color:var(--text-secondary);margin-bottom:25px;">
+                    Enter your details and customize your letter.
+                </p>
+
+
+                <!-- APPLICANT -->
+                <div class="letter-section">
+
+                    <h2>Applicant Information</h2>
+
+                    <label for="applicantName">Full Name</label>
+                    <input
+                        type="text"
+                        id="applicantName"
+                        placeholder="Your full name"
+                        maxlength="80"
+                    >
+
+                    <label for="applicantTitle">Professional Title</label>
+                    <input
+                        type="text"
+                        id="applicantTitle"
+                        placeholder="e.g. Computer Science Student"
+                        maxlength="100"
+                    >
+
+                    <label for="applicantEmail">Email Address</label>
+                    <input
+                        type="email"
+                        id="applicantEmail"
+                        placeholder="yourname@example.com"
+                        maxlength="120"
+                    >
+
+                    <label for="applicantPhone">Phone Number</label>
+                    <input
+                        type="tel"
+                        id="applicantPhone"
+                        placeholder="+1 234 567 890"
+                        maxlength="30"
+                    >
+
+                    <label for="applicantLocation">Location</label>
+                    <input
+                        type="text"
+                        id="applicantLocation"
+                        placeholder="City, Country"
+                        maxlength="100"
+                    >
+
+                </div>
+
+
+                <!-- COMPANY -->
+                <div class="letter-section">
+
+                    <h2>Company Information</h2>
+
+                    <label for="companyName">Company Name</label>
+                    <input
+                        type="text"
+                        id="companyName"
+                        placeholder="Company name"
+                        maxlength="120"
+                    >
+
+                    <label for="managerName">Hiring Manager Name</label>
+                    <input
+                        type="text"
+                        id="managerName"
+                        placeholder="e.g. Mr. John Smith"
+                        maxlength="100"
+                    >
+
+                    <label for="jobTitle">Job Title</label>
+                    <input
+                        type="text"
+                        id="jobTitle"
+                        placeholder="e.g. Frontend Developer Intern"
+                        maxlength="120"
+                    >
+
+                    <label for="applicationDate">Application Date</label>
+                    <input
+                        type="date"
+                        id="applicationDate"
+                    >
+
+                </div>
+
+
+                <!-- LETTER CONTENT -->
+                <div class="letter-section">
+
+                    <h2>Letter Content</h2>
+
+                    <label for="opening">
+                        Opening Paragraph
+                    </label>
+
+                    <textarea
+                        id="opening"
+                        maxlength="1000"
+                        placeholder="Explain which position you are applying for and why you are interested..."
+                    ></textarea>
+
+
+                    <label for="experience">
+                        Skills and Experience
+                    </label>
+
+                    <textarea
+                        id="experience"
+                        maxlength="1500"
+                        placeholder="Describe your relevant skills, projects, education, or experience..."
+                    ></textarea>
+
+
+                    <label for="motivation">
+                        Why This Company?
+                    </label>
+
+                    <textarea
+                        id="motivation"
+                        maxlength="1000"
+                        placeholder="Explain why you want to work with this company..."
+                    ></textarea>
+
+
+                    <label for="closing">
+                        Closing Paragraph
+                    </label>
+
+                    <textarea
+                        id="closing"
+                        maxlength="1000"
+                        placeholder="Thank the employer and express interest in an interview..."
+                    ></textarea>
+
+                </div>
+
+
+                <!-- BUTTONS -->
+                <div class="letter-section">
+
+                    <h2>Actions</h2>
+
+                    <button
+                        type="button"
+                        class="tool-btn"
+                        id="generateLetter"
+                    >
+                        Generate Cover Letter
+                    </button>
+
+                    <button
+                        type="button"
+                        class="tool-btn tool-btn-secondary"
+                        id="saveLetter"
+                        style="margin-top:10px;"
+                    >
+                        Save My Details
+                    </button>
+
+                    <button
+                        type="button"
+                        class="tool-btn tool-btn-secondary"
+                        id="clearLetter"
+                        style="margin-top:10px;"
+                    >
+                        Clear All Fields
+                    </button>
+
+                    <div
+                        class="tool-alert error"
+                        id="errorMessage"
+                        role="alert"
+                    ></div>
+
+                </div>
+
+
+                <div class="letter-notice">
+                    Your information is saved only in this browser
+                    when you choose Save My Details. It is not uploaded
+                    to a SkillNest server.
+                </div>
+
+            </div>
+
+
+            <!-- PREVIEW -->
+            <div class="letter-preview-panel">
+
+                <div class="letter-preview-heading">
+
+                    <h2>Cover Letter Preview</h2>
+
+                    <div class="letter-actions">
+
+                        <button
+                            type="button"
+                            class="tool-btn"
+                            id="copyLetter"
+                        >
+                            Copy Letter
+                        </button>
+
+                        <button
+                            type="button"
+                            class="tool-btn"
+                            id="printLetter"
+                        >
+                            Print / Save PDF
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <article class="letter-paper" id="letterPreview">
+
+                    <header>
+
+                        <h1 id="previewApplicantName">
+                            Your Name
+                        </h1>
+
+                        <div
+                            class="applicant-title"
+                            id="previewApplicantTitle"
+                        >
+                            Your Professional Title
+                        </div>
+
+                        <div
+                            class="letter-contact"
+                            id="previewContact"
+                        >
+                            Email | Phone | Location
+                        </div>
+
+                    </header>
+
+
+                    <div
+                        class="letter-recipient"
+                        id="previewRecipient"
+                    >
+                        <div id="previewDate"></div>
+                        <div id="previewManager">Hiring Manager</div>
+                        <div id="previewCompany">Company Name</div>
+                    </div>
+
+
+                    <div class="letter-body" id="previewBody">
+
+                        <p>Dear Hiring Manager,</p>
+
+                        <p>
+                            Your opening paragraph will appear here.
+                        </p>
+
+                        <p>
+                            Your skills and experience will appear here.
+                        </p>
+
+                        <p>
+                            Your motivation will appear here.
+                        </p>
+
+                        <p>
+                            Your closing paragraph will appear here.
+                        </p>
+
+                    </div>
+
+
+                    <div class="letter-signature">
+
+                        <p>Sincerely,</p>
+
+                        <p id="previewSignature">
+                            Your Name
+                        </p>
+
+                    </div>
+
+                </article>
+
+
+                <div
+                    class="letter-status"
+                    id="letterStatus"
+                    aria-live="polite"
+                ></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+                    <a href="../about.html">About</a>
+                    <a href="../contact.html">Contact</a>
+                    <a href="../privacy-policy.html">Privacy Policy</a>
+                    <a href="../terms-and-conditions.html">Terms</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SHARED JAVASCRIPT -->
+    <script src="../js/storage.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/main.js"></script>
+
+
+    <!-- COVER LETTER LOGIC -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const STORAGE_KEY = "cover_letter_data";
+
+            const errorMessage =
+                document.getElementById("errorMessage");
+
+            const letterStatus =
+                document.getElementById("letterStatus");
+
+
+            const fieldIds = [
+                "applicantName",
+                "applicantTitle",
+                "applicantEmail",
+                "applicantPhone",
+                "applicantLocation",
+                "companyName",
+                "managerName",
+                "jobTitle",
+                "applicationDate",
+                "opening",
+                "experience",
+                "motivation",
+                "closing"
+            ];
+
+
+            function getValue(id) {
+
+                return document.getElementById(id).value.trim();
+
+            }
+
+
+            function collectData() {
+
+                const data = {};
+
+                fieldIds.forEach(function (id) {
+
+                    data[id] = getValue(id);
+
+                });
+
+                return data;
+
+            }
+
+
+            function showError(message) {
+
+                errorMessage.textContent = message;
+
+                errorMessage.classList.add("show");
+
+            }
+
+
+            function clearError() {
+
+                errorMessage.textContent = "";
+
+                errorMessage.classList.remove("show");
+
+            }
+
+
+            function formatDate(value) {
+
+                if (!value) return "";
+
+                const date = new Date(value + "T00:00:00");
+
+                if (Number.isNaN(date.getTime())) {
+                    return "";
+                }
+
+                return date.toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric"
+                });
+
+            }
+
+
+            function createParagraph(text) {
+
+                const paragraph = document.createElement("p");
+
+                paragraph.textContent = text;
+
+                return paragraph;
+
+            }
+
+
+            function updatePreview() {
+
+                const data = collectData();
+
+
+                document.getElementById(
+                    "previewApplicantName"
+                ).textContent = data.applicantName || "Your Name";
+
+
+                document.getElementById(
+                    "previewApplicantTitle"
+                ).textContent =
+                    data.applicantTitle || "Your Professional Title";
+
+
+                // Contact information
+                const contactItems = [
+                    data.applicantEmail,
+                    data.applicantPhone,
+                    data.applicantLocation
+                ].filter(Boolean);
+
+
+                document.getElementById(
+                    "previewContact"
+                ).textContent = contactItems.length
+                    ? contactItems.join(" | ")
+                    : "Email | Phone | Location";
+
+
+                // Recipient
+                document.getElementById(
+                    "previewDate"
+                ).textContent = formatDate(data.applicationDate);
+
+
+                document.getElementById(
+                    "previewManager"
+                ).textContent = data.managerName || "Hiring Manager";
+
+
+                document.getElementById(
+                    "previewCompany"
+                ).textContent = data.companyName || "Company Name";
+
+
+                // Letter body
+                const body = document.getElementById("previewBody");
+
+                body.replaceChildren();
+
+                const greetingName = data.managerName || "Hiring Manager";
+
+                body.appendChild(
+                    createParagraph("Dear " + greetingName + ",")
+                );
+
+
+                const paragraphs = [
+                    data.opening || "Your opening paragraph will appear here.",
+                    data.experience || "Your skills and experience will appear here.",
+                    data.motivation || "Your motivation will appear here.",
+                    data.closing || "Your closing paragraph will appear here."
+                ];
+
+
+                paragraphs.forEach(function (paragraph) {
+
+                    body.appendChild(createParagraph(paragraph));
+
+                });
+
+
+                document.getElementById(
+                    "previewSignature"
+                ).textContent = data.applicantName || "Your Name";
+
+            }
+
+
+            // Generate cover letter
+            document.getElementById("generateLetter")
+                .addEventListener("click", function () {
+
+                    clearError();
+
+                    const data = collectData();
+
+                    if (!data.applicantName) {
+
+                        showError("Please enter your full name.");
+
+                        document.getElementById("applicantName").focus();
+
+                        return;
+
+                    }
+
+                    if (!data.jobTitle) {
+
+                        showError("Please enter the job title.");
+
+                        document.getElementById("jobTitle").focus();
+
+                        return;
+
+                    }
+
+                    if (!data.opening && !data.experience &&
+                        !data.motivation && !data.closing) {
+
+                        showError(
+                            "Please enter at least one paragraph of your cover letter."
+                        );
+
+                        return;
+
+                    }
+
+                    updatePreview();
+
+                    letterStatus.textContent =
+                        "Your cover letter preview has been updated.";
+
+                });
+
+
+            // Update preview when typing
+            fieldIds.forEach(function (id) {
+
+                document.getElementById(id)
+                    .addEventListener("input", function () {
+
+                        clearError();
+
+                        updatePreview();
+
+                    });
+
+            });
+
+
+            // Save details
+            document.getElementById("saveLetter")
+                .addEventListener("click", function () {
+
+                    const data = collectData();
+
+                    const saved = SkillNestStorage.save(
+                        STORAGE_KEY,
+                        data
+                    );
+
+                    if (saved) {
+
+                        clearError();
+
+                        letterStatus.textContent =
+                            "Your details have been saved in this browser.";
+
+                    } else {
+
+                        showError("Unable to save your details.");
+
+                    }
+
+                });
+
+
+            // Copy cover letter
+            document.getElementById("copyLetter")
+                .addEventListener("click", async function () {
+
+                    const data = collectData();
+
+                    if (!data.applicantName) {
+
+                        showError(
+                            "Please enter your name before copying the letter."
+                        );
+
+                        return;
+
+                    }
+
+                    updatePreview();
+
+                    const text = document.getElementById(
+                        "letterPreview"
+                    ).innerText;
+
+                    try {
+
+                        await navigator.clipboard.writeText(text);
+
+                        letterStatus.textContent =
+                            "Cover letter copied successfully.";
+
+                    } catch (error) {
+
+                        showError(
+                            "Clipboard access was unavailable. Please select and copy the letter manually."
+                        );
+
+                    }
+
+                });
+
+
+            // Print / Save PDF
+            document.getElementById("printLetter")
+                .addEventListener("click", function () {
+
+                    const data = collectData();
+
+                    if (!data.applicantName) {
+
+                        showError("Please enter your name first.");
+
+                        return;
+
+                    }
+
+                    clearError();
+
+                    updatePreview();
+
+                    window.print();
+
+                });
+
+
+            // Clear form
+            document.getElementById("clearLetter")
+                .addEventListener("click", function () {
+
+                    const confirmed = confirm(
+                        "Are you sure you want to clear all cover letter details?"
+                    );
+
+                    if (!confirmed) return;
+
+                    fieldIds.forEach(function (id) {
+
+                        document.getElementById(id).value = "";
+
+                    });
+
+                    SkillNestStorage.remove(STORAGE_KEY);
+
+                    clearError();
+
+                    letterStatus.textContent =
+                        "All fields have been cleared.";
+
+                    updatePreview();
+
+                });
+
+
+            // Restore saved information
+            function restoreData() {
+
+                const saved = SkillNestStorage.get(
+                    STORAGE_KEY,
+                    null
+                );
+
+                if (saved && typeof saved === "object") {
+
+                    fieldIds.forEach(function (id) {
+
+                        const element = document.getElementById(id);
+
+                        if (typeof saved[id] === "string") {
+
+                            element.value = saved[id];
+
+                        }
+
+                    });
+
+                }
+
+                updatePreview();
+
+            }
+
+
+            // Initial setup
+            restoreData();
+
+        });
+
+    </script>
+
+
+<script src="../js/sidebar.js" defer></script>
+</body>
+</html>
+
+

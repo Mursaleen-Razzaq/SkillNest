@@ -1,0 +1,1164 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free Pomodoro Timer | SkillNest</title>
+
+    <meta name="description" content="Use the free SkillNest Pomodoro Timer to improve focus, manage study sessions, take breaks, and track completed work sessions.">
+
+    <meta name="author" content="SkillNest">
+
+    <link rel="canonical" href="https://your-domain.netlify.app/productivity-tools/pomodoro-timer.html">
+
+    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/tools.css">
+<link rel="stylesheet" href="../css/themes.css">
+
+    <style>
+        .pomodoro-hero {
+            padding: 45px 20px;
+            text-align: center;
+            background: var(--bg-secondary);
+        }
+
+        .pomodoro-hero h1 {
+            margin-bottom: 12px;
+            font-size: clamp(30px, 5vw, 42px);
+        }
+
+        .pomodoro-hero p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .breadcrumb {
+            margin-bottom: 18px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .pomodoro-container {
+            max-width: 850px;
+            margin: 45px auto 75px;
+            padding: 0 20px;
+        }
+
+        .timer-card {
+            padding: 35px 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            background: var(--card-bg);
+            text-align: center;
+        }
+
+        .timer-modes {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 35px;
+        }
+
+        .mode-button {
+            padding: 11px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 9px;
+            background: transparent;
+            color: var(--text-primary);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .mode-button.active {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .timer-circle {
+            width: 280px;
+            height: 280px;
+            max-width: 100%;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            border: 9px solid rgba(118, 87, 246, 0.15);
+            outline: 5px solid rgba(118, 87, 246, 0.05);
+            background: var(--bg-secondary);
+        }
+
+        .timer-label {
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .timer-display {
+            font-size: clamp(55px, 12vw, 75px);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -3px;
+            font-variant-numeric: tabular-nums;
+        }
+
+        .timer-status {
+            min-height: 24px;
+            margin: 15px 0 25px;
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .timer-controls {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .timer-controls button {
+            min-width: 110px;
+            padding: 13px 22px;
+            border: none;
+            border-radius: 9px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .timer-controls button:hover {
+            transform: translateY(-2px);
+        }
+
+        .start-button {
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .reset-button {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color) !important;
+        }
+
+        .timer-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .stat-box {
+            padding: 20px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--card-bg);
+            text-align: center;
+        }
+
+        .stat-box strong {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 25px;
+            color: var(--primary-color);
+        }
+
+        .stat-box span {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .settings-card {
+            margin-top: 25px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            background: var(--card-bg);
+        }
+
+        .settings-card h2 {
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        .settings-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+        }
+
+        .setting-group label {
+            display: block;
+            margin-bottom: 9px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .setting-group input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-size: 15px;
+        }
+
+        .setting-save {
+            margin-top: 18px;
+            padding: 11px 20px;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .settings-message {
+            min-height: 20px;
+            margin-top: 12px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .pomodoro-info {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 14px;
+            background: var(--bg-secondary);
+        }
+
+        .pomodoro-info h2 {
+            margin-bottom: 12px;
+            font-size: 21px;
+        }
+
+        .pomodoro-info p,
+        .pomodoro-info li {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .pomodoro-info ul {
+            padding-left: 22px;
+            margin-top: 10px;
+        }
+
+        @media(max-width: 600px) {
+            .timer-card {
+                padding: 25px 15px;
+            }
+
+            .timer-circle {
+                width: 235px;
+                height: 235px;
+            }
+
+            .settings-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .timer-stats {
+                gap: 8px;
+            }
+
+            .stat-box {
+                padding: 15px 5px;
+            }
+
+            .stat-box strong {
+                font-size: 21px;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="container navbar">
+
+            <a href="../index.html" class="logo">
+                Skill<span>Nest</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+
+                <a href="../index.html">Home</a>
+
+                <a href="../student-tools/index.html">
+                    Student Tools
+                </a>
+
+                <a href="../career-tools/index.html">
+                    Career Tools
+                </a>
+
+                <a href="index.html" class="active">
+                    Productivity
+                </a>
+
+                <a href="../resources/index.html">
+                    Resources
+                </a>
+
+                <a href="../about.html">About</a>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch to light mode"
+                >
+                    â—
+                </button>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="pomodoro-hero">
+
+            <div class="container">
+
+                <div class="breadcrumb">
+                    <a href="../index.html">Home</a>
+                    /
+                    <a href="index.html">Productivity</a>
+                    /
+                    Pomodoro Timer
+                </div>
+
+                <h1>Pomodoro Timer</h1>
+
+                <p>
+                    Focus on one task at a time.
+                    Work in focused sessions and take
+                    regular breaks to stay organized.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- TIMER -->
+        <div class="pomodoro-container">
+
+            <section class="timer-card">
+
+                <!-- TIMER MODES -->
+                <div class="timer-modes">
+
+                    <button
+                        type="button"
+                        class="mode-button active"
+                        data-mode="work"
+                    >
+                        Focus
+                    </button>
+
+                    <button
+                        type="button"
+                        class="mode-button"
+                        data-mode="short"
+                    >
+                        Short Break
+                    </button>
+
+                    <button
+                        type="button"
+                        class="mode-button"
+                        data-mode="long"
+                    >
+                        Long Break
+                    </button>
+
+                </div>
+
+
+                <!-- TIMER DISPLAY -->
+                <div class="timer-circle">
+
+                    <span class="timer-label" id="timerLabel">
+                        Focus Time
+                    </span>
+
+                    <div
+                        class="timer-display"
+                        id="timerDisplay"
+                        aria-live="off"
+                        role="timer"
+                    >
+                        25:00
+                    </div>
+
+                </div>
+
+
+                <p class="timer-status" id="timerStatus" aria-live="polite">
+                    Ready to focus? Press Start.
+                </p>
+
+
+                <!-- CONTROLS -->
+                <div class="timer-controls">
+
+                    <button
+                        type="button"
+                        class="start-button"
+                        id="startButton"
+                    >
+                        Start
+                    </button>
+
+                    <button
+                        type="button"
+                        class="reset-button"
+                        id="resetButton"
+                    >
+                        Reset
+                    </button>
+
+                </div>
+
+
+                <!-- STATS -->
+                <div class="timer-stats">
+
+                    <div class="stat-box">
+
+                        <strong id="completedSessions">
+                            0
+                        </strong>
+
+                        <span>Completed Sessions</span>
+
+                    </div>
+
+                    <div class="stat-box">
+
+                        <strong id="totalFocusTime">
+                            0
+                        </strong>
+
+                        <span>Focus Minutes</span>
+
+                    </div>
+
+                    <div class="stat-box">
+
+                        <strong id="currentCycle">
+                            1 / 4
+                        </strong>
+
+                        <span>Current Cycle</span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- SETTINGS -->
+            <section class="settings-card">
+
+                <h2>Timer Settings</h2>
+
+                <div class="settings-grid">
+
+                    <div class="setting-group">
+
+                        <label for="workMinutes">
+                            Focus Duration (minutes)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="workMinutes"
+                            min="1"
+                            max="180"
+                            value="25"
+                        >
+
+                    </div>
+
+
+                    <div class="setting-group">
+
+                        <label for="shortMinutes">
+                            Short Break (minutes)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="shortMinutes"
+                            min="1"
+                            max="60"
+                            value="5"
+                        >
+
+                    </div>
+
+
+                    <div class="setting-group">
+
+                        <label for="longMinutes">
+                            Long Break (minutes)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="longMinutes"
+                            min="1"
+                            max="90"
+                            value="15"
+                        >
+
+                    </div>
+
+                </div>
+
+                <button
+                    type="button"
+                    class="setting-save"
+                    id="saveSettings"
+                >
+                    Save Settings
+                </button>
+
+                <p
+                    class="settings-message"
+                    id="settingsMessage"
+                    aria-live="polite"
+                ></p>
+
+            </section>
+
+
+            <!-- INFORMATION -->
+            <section class="pomodoro-info">
+
+                <h2>How Does the Pomodoro Technique Work?</h2>
+
+                <p>
+                    The Pomodoro Technique is a time-management
+                    method that divides work into focused
+                    sessions separated by short breaks.
+                </p>
+
+                <ul>
+
+                    <li>
+                        Choose one task you want to complete.
+                    </li>
+
+                    <li>
+                        Start a 25-minute focus session.
+                    </li>
+
+                    <li>
+                        Work on your selected task without
+                        unnecessary distractions.
+                    </li>
+
+                    <li>
+                        Take a 5-minute short break after
+                        a focus session.
+                    </li>
+
+                    <li>
+                        After four completed focus sessions,
+                        take a longer break.
+                    </li>
+
+                </ul>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+
+                    <a href="../about.html">About</a>
+
+                    <a href="../contact.html">Contact</a>
+
+                    <a href="../privacy-policy.html">
+                        Privacy Policy
+                    </a>
+
+                    <a href="../terms-and-conditions.html">
+                        Terms
+                    </a>
+
+                    <a href="../disclaimer.html">
+                        Disclaimer
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SHARED JAVASCRIPT -->
+    <script src="../js/storage.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/main.js"></script>
+
+
+    <!-- POMODORO TIMER JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const STORAGE_KEY = "pomodoro_timer_data";
+
+            const timerDisplay =
+                document.getElementById("timerDisplay");
+
+            const timerLabel =
+                document.getElementById("timerLabel");
+
+            const timerStatus =
+                document.getElementById("timerStatus");
+
+            const startButton =
+                document.getElementById("startButton");
+
+            const resetButton =
+                document.getElementById("resetButton");
+
+            const modeButtons =
+                document.querySelectorAll(".mode-button");
+
+            const completedSessions =
+                document.getElementById("completedSessions");
+
+            const totalFocusTime =
+                document.getElementById("totalFocusTime");
+
+            const currentCycle =
+                document.getElementById("currentCycle");
+
+            const workInput =
+                document.getElementById("workMinutes");
+
+            const shortInput =
+                document.getElementById("shortMinutes");
+
+            const longInput =
+                document.getElementById("longMinutes");
+
+            const saveSettingsButton =
+                document.getElementById("saveSettings");
+
+            const settingsMessage =
+                document.getElementById("settingsMessage");
+
+
+            const defaultSettings = {
+                work: 25,
+                short: 5,
+                long: 15
+            };
+
+
+            let savedData = {};
+
+            try {
+                savedData = JSON.parse(
+                    localStorage.getItem(STORAGE_KEY) || "{}"
+                );
+            } catch (error) {
+                savedData = {};
+            }
+
+
+            let settings = {
+                ...defaultSettings,
+                ...(savedData.settings || {})
+            };
+
+            let completed = Number(savedData.completed) || 0;
+            let focusMinutes = Number(savedData.focusMinutes) || 0;
+
+            let currentMode = "work";
+
+            let remainingSeconds = settings.work * 60;
+
+            let timerInterval = null;
+
+            let isRunning = false;
+
+            let cyclePosition = 0;
+
+            let endTime = null;
+
+
+            function saveData() {
+
+                try {
+
+                    localStorage.setItem(
+                        STORAGE_KEY,
+                        JSON.stringify({
+                            settings: settings,
+                            completed: completed,
+                            focusMinutes: focusMinutes
+                        })
+                    );
+
+                } catch (error) {
+
+                    console.warn(
+                        "Could not save Pomodoro data.",
+                        error
+                    );
+
+                }
+
+            }
+
+
+            function formatTime(seconds) {
+
+                const minutes = Math.floor(seconds / 60);
+
+                const remaining = seconds % 60;
+
+                return (
+                    String(minutes).padStart(2, "0") +
+                    ":" +
+                    String(remaining).padStart(2, "0")
+                );
+
+            }
+
+
+            function updateDisplay() {
+
+                timerDisplay.textContent =
+                    formatTime(remainingSeconds);
+
+                const modeNames = {
+                    work: "Focus Time",
+                    short: "Short Break",
+                    long: "Long Break"
+                };
+
+                timerLabel.textContent =
+                    modeNames[currentMode];
+
+                completedSessions.textContent =
+                    completed;
+
+                totalFocusTime.textContent =
+                    focusMinutes;
+
+                currentCycle.textContent =
+                    (cyclePosition + 1) + " / 4";
+
+                document.title =
+                    formatTime(remainingSeconds) +
+                    " - Pomodoro Timer | SkillNest";
+
+            }
+
+
+            function getDuration(mode) {
+
+                return settings[mode] * 60;
+
+            }
+
+
+            function stopTimer() {
+
+                if (timerInterval !== null) {
+
+                    clearInterval(timerInterval);
+
+                    timerInterval = null;
+
+                }
+
+                isRunning = false;
+
+                endTime = null;
+
+                startButton.textContent = "Start";
+
+            }
+
+
+            function selectMode(mode) {
+
+                stopTimer();
+
+                currentMode = mode;
+
+                remainingSeconds = getDuration(mode);
+
+                modeButtons.forEach(function (button) {
+
+                    const active =
+                        button.dataset.mode === mode;
+
+                    button.classList.toggle("active", active);
+
+                    button.setAttribute(
+                        "aria-pressed",
+                        String(active)
+                    );
+
+                });
+
+                const messages = {
+                    work: "Ready to focus? Press Start.",
+                    short: "Take a short break and relax.",
+                    long: "Enjoy your longer break."
+                };
+
+                timerStatus.textContent = messages[mode];
+
+                updateDisplay();
+
+            }
+
+
+            function requestNotificationPermission() {
+
+                if (!("Notification" in window)) {
+                    return;
+                }
+
+                if (Notification.permission === "default") {
+
+                    Notification.requestPermission().catch(
+                        function () {}
+                    );
+
+                }
+
+            }
+
+
+            function notifySessionComplete(title, message) {
+
+                if (
+                    "Notification" in window &&
+                    Notification.permission === "granted"
+                ) {
+
+                    try {
+
+                        new Notification(title, {
+                            body: message
+                        });
+
+                    } catch (error) {
+
+                        console.warn(
+                            "Browser notification unavailable."
+                        );
+
+                    }
+
+                }
+
+            }
+
+
+            function completeSession() {
+
+                stopTimer();
+
+                if (currentMode === "work") {
+
+                    completed++;
+
+                    focusMinutes += settings.work;
+
+                    cyclePosition = (cyclePosition + 1) % 4;
+
+                    saveData();
+
+                    if (cyclePosition === 0) {
+
+                        timerStatus.textContent =
+                            "Four focus sessions completed! Time for a long break.";
+
+                        notifySessionComplete(
+                            "Focus session complete!",
+                            "Great work! Time for a long break."
+                        );
+
+                        selectMode("long");
+
+                    } else {
+
+                        timerStatus.textContent =
+                            "Focus session complete! Take a short break.";
+
+                        notifySessionComplete(
+                            "Focus session complete!",
+                            "Great work! Take a short break."
+                        );
+
+                        selectMode("short");
+
+                    }
+
+                } else {
+
+                    timerStatus.textContent =
+                        "Break finished! Ready for another focus session?";
+
+                    notifySessionComplete(
+                        "Break finished!",
+                        "You can start another focus session."
+                    );
+
+                    selectMode("work");
+
+                }
+
+                saveData();
+
+                updateDisplay();
+
+            }
+
+
+            function tick() {
+
+                if (!isRunning || !endTime) {
+                    return;
+                }
+
+                remainingSeconds = Math.max(
+                    0,
+                    Math.ceil((endTime - Date.now()) / 1000)
+                );
+
+                updateDisplay();
+
+                if (remainingSeconds <= 0) {
+
+                    completeSession();
+
+                }
+
+            }
+
+
+            function startTimer() {
+
+                if (isRunning) {
+
+                    stopTimer();
+
+                    timerStatus.textContent = "Timer paused.";
+
+                    return;
+
+                }
+
+                requestNotificationPermission();
+
+                isRunning = true;
+
+                endTime = Date.now() +
+                    remainingSeconds * 1000;
+
+                startButton.textContent = "Pause";
+
+                timerStatus.textContent =
+                    currentMode === "work"
+                        ? "Stay focused. You've got this!"
+                        : "Enjoy your break!";
+
+                timerInterval = setInterval(tick, 250);
+
+            }
+
+
+            function resetTimer() {
+
+                stopTimer();
+
+                remainingSeconds = getDuration(currentMode);
+
+                timerStatus.textContent =
+                    "Timer reset. Ready when you are.";
+
+                updateDisplay();
+
+            }
+
+
+            modeButtons.forEach(function (button) {
+
+                button.addEventListener("click", function () {
+
+                    selectMode(button.dataset.mode);
+
+                });
+
+            });
+
+
+            startButton.addEventListener(
+                "click",
+                startTimer
+            );
+
+
+            resetButton.addEventListener(
+                "click",
+                resetTimer
+            );
+
+
+            function loadSettings() {
+
+                workInput.value = settings.work;
+
+                shortInput.value = settings.short;
+
+                longInput.value = settings.long;
+
+            }
+
+
+            saveSettingsButton.addEventListener(
+                "click",
+                function () {
+
+                    const work = Number(workInput.value);
+
+                    const short = Number(shortInput.value);
+
+                    const long = Number(longInput.value);
+
+                    if (
+                        !Number.isInteger(work) ||
+                        !Number.isInteger(short) ||
+                        !Number.isInteger(long) ||
+                        work < 1 ||
+                        work > 180 ||
+                        short < 1 ||
+                        short > 60 ||
+                        long < 1 ||
+                        long > 90
+                    ) {
+
+                        settingsMessage.textContent =
+                            "Enter valid whole numbers within the allowed ranges.";
+
+                        return;
+
+                    }
+
+                    settings = {
+                        work: work,
+                        short: short,
+                        long: long
+                    };
+
+                    stopTimer();
+
+                    remainingSeconds =
+                        getDuration(currentMode);
+
+                    saveData();
+
+                    settingsMessage.textContent =
+                        "Settings saved successfully!";
+
+                    updateDisplay();
+
+                }
+            );
+
+
+            loadSettings();
+
+            updateDisplay();
+
+            saveData();
+
+        });
+
+    </script>
+
+
+<script src="../js/sidebar.js" defer></script>
+</body>
+</html>
+
+

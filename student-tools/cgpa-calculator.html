@@ -1,0 +1,612 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free CGPA Calculator | SkillNest</title>
+
+    <meta name="description" content="Calculate your cumulative GPA across multiple semesters with the free SkillNest CGPA calculator.">
+
+    <meta name="keywords" content="CGPA calculator, cumulative GPA calculator, semester GPA, free CGPA calculator">
+
+    <meta name="author" content="SkillNest">
+
+    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/tools.css">
+<link rel="stylesheet" href="../css/themes.css">
+<link rel="stylesheet" href="../css/sidebar.css">
+    <style>
+        .semester-row {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr auto;
+            gap: 12px;
+            align-items: end;
+            margin-bottom: 15px;
+            padding: 17px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-secondary);
+        }
+
+        .remove-semester {
+            height: 48px;
+            width: 48px;
+            border: none;
+            border-radius: 10px;
+            background: rgba(239, 68, 68, 0.12);
+            color: var(--danger);
+            font-size: 20px;
+            cursor: pointer;
+        }
+
+        .remove-semester:hover {
+            background: rgba(239, 68, 68, 0.22);
+        }
+
+        .cgpa-summary {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 22px;
+        }
+
+        .summary-item {
+            padding: 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-card);
+            text-align: center;
+        }
+
+        .summary-item span {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .summary-item strong {
+            color: var(--primary-light);
+            font-size: 25px;
+        }
+
+        .formula-note {
+            margin-top: 20px;
+            padding: 16px;
+            border-radius: 10px;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        @media (max-width: 650px) {
+            .semester-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .remove-semester {
+                width: 100%;
+            }
+
+            .cgpa-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="../index.html" class="logo">
+                Skill<span>Nest</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="index.html">Student Tools</a>
+                <a href="../career-tools/index.html">Career Tools</a>
+                <a href="../productivity-tools/index.html">Productivity</a>
+                <a href="../resources/index.html">Resources</a>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch to light mode"
+                >
+                    â—
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <section class="tool-page">
+
+            <div class="tool-header">
+
+                <div class="tool-breadcrumb">
+                    <a href="../index.html">Home</a> /
+                    <a href="index.html">Student Tools</a> /
+                    CGPA Calculator
+                </div>
+
+                <h1>CGPA Calculator</h1>
+
+                <p>
+                    Calculate your cumulative Grade Point Average
+                    across multiple semesters using your semester
+                    GPAs and completed credit hours.
+                </p>
+
+            </div>
+
+
+            <!-- CGPA CALCULATOR -->
+            <div class="tool-container">
+
+                <h2>Enter Your Semester Details</h2>
+
+                <p class="result-description">
+                    Enter each semester's GPA and total completed
+                    credit hours.
+                </p>
+
+                <div id="semestersContainer"></div>
+
+                <button
+                    type="button"
+                    class="tool-btn tool-btn-secondary"
+                    id="addSemesterBtn"
+                >
+                    + Add Semester
+                </button>
+
+                <div
+                    class="tool-alert error"
+                    id="errorMessage"
+                    role="alert"
+                ></div>
+
+                <button
+                    type="button"
+                    class="tool-btn"
+                    id="calculateCgpaBtn"
+                    style="width: 100%; margin-top: 22px;"
+                >
+                    Calculate CGPA
+                </button>
+
+
+                <!-- RESULT -->
+                <div
+                    class="result-box"
+                    id="resultBox"
+                    aria-live="polite"
+                >
+
+                    <h3>Your CGPA Result</h3>
+
+                    <div class="cgpa-summary">
+
+                        <div class="summary-item">
+                            <span>Cumulative CGPA</span>
+                            <strong id="cgpaResult">0.00</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Total Credit Hours</span>
+                            <strong id="totalCredits">0</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Completed Semesters</span>
+                            <strong id="totalSemesters">0</strong>
+                        </div>
+
+                    </div>
+
+                    <p
+                        class="result-description"
+                        id="resultDescription"
+                    ></p>
+
+                    <button
+                        type="button"
+                        class="tool-btn tool-btn-secondary"
+                        id="saveResultBtn"
+                        style="margin-top: 18px;"
+                    >
+                        Save Result
+                    </button>
+
+                </div>
+
+
+                <div class="formula-note">
+                    <strong>CGPA Formula:</strong>
+
+                    <p>
+                        CGPA = Total Grade Points Earned Ã·
+                        Total Credit Hours
+                    </p>
+
+                    <p>
+                        Each semester's GPA is multiplied by its
+                        credit hours. The resulting values are added
+                        and divided by total credit hours.
+                    </p>
+
+                    <strong>Example:</strong>
+                    Semester 1: GPA 3.50, Credits 15.
+                    Semester 2: GPA 3.80, Credits 18.
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+                    <a href="../privacy-policy.html">Privacy Policy</a>
+                    <a href="../terms-and-conditions.html">Terms</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- SHARED JAVASCRIPT -->
+    <script src="../js/storage.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/main.js"></script>
+
+
+    <!-- CGPA CALCULATOR LOGIC -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const semestersContainer =
+                document.getElementById("semestersContainer");
+
+            const addSemesterBtn =
+                document.getElementById("addSemesterBtn");
+
+            const calculateBtn =
+                document.getElementById("calculateCgpaBtn");
+
+            const errorMessage =
+                document.getElementById("errorMessage");
+
+            const resultBox =
+                document.getElementById("resultBox");
+
+            let lastResult = null;
+
+
+            // Create semester row
+            function createSemesterRow(
+                semesterName = "",
+                gpa = "3.50",
+                credits = "15"
+            ) {
+
+                const row = document.createElement("div");
+                row.className = "semester-row";
+
+                // Semester name
+                const nameGroup = document.createElement("div");
+                nameGroup.className = "form-group";
+
+                const nameLabel = document.createElement("label");
+                nameLabel.textContent = "Semester";
+
+                const nameInput = document.createElement("input");
+                nameInput.type = "text";
+                nameInput.className = "semester-name";
+                nameInput.placeholder = "e.g. Semester 1";
+                nameInput.value = semesterName;
+
+                nameGroup.append(nameLabel, nameInput);
+
+
+                // GPA
+                const gpaGroup = document.createElement("div");
+                gpaGroup.className = "form-group";
+
+                const gpaLabel = document.createElement("label");
+                gpaLabel.textContent = "Semester GPA";
+
+                const gpaInput = document.createElement("input");
+                gpaInput.type = "number";
+                gpaInput.className = "semester-gpa";
+                gpaInput.min = "0";
+                gpaInput.max = "4";
+                gpaInput.step = "0.01";
+                gpaInput.placeholder = "3.50";
+                gpaInput.value = gpa;
+
+                gpaGroup.append(gpaLabel, gpaInput);
+
+
+                // Credit hours
+                const creditGroup = document.createElement("div");
+                creditGroup.className = "form-group";
+
+                const creditLabel = document.createElement("label");
+                creditLabel.textContent = "Credit Hours";
+
+                const creditInput = document.createElement("input");
+                creditInput.type = "number";
+                creditInput.className = "semester-credits";
+                creditInput.min = "0.5";
+                creditInput.max = "40";
+                creditInput.step = "0.5";
+                creditInput.placeholder = "15";
+                creditInput.value = credits;
+
+                creditGroup.append(creditLabel, creditInput);
+
+
+                // Remove button
+                const removeBtn = document.createElement("button");
+
+                removeBtn.type = "button";
+                removeBtn.className = "remove-semester";
+                removeBtn.textContent = "Ã—";
+                removeBtn.setAttribute(
+                    "aria-label",
+                    "Remove semester"
+                );
+
+                removeBtn.addEventListener("click", function () {
+                    row.remove();
+                    hideResult();
+                });
+
+
+                row.append(
+                    nameGroup,
+                    gpaGroup,
+                    creditGroup,
+                    removeBtn
+                );
+
+                semestersContainer.appendChild(row);
+
+            }
+
+
+            // Add semester
+            addSemesterBtn.addEventListener("click", function () {
+
+                const semesterNumber =
+                    semestersContainer.querySelectorAll(
+                        ".semester-row"
+                    ).length + 1;
+
+                createSemesterRow(
+                    "Semester " + semesterNumber,
+                    "",
+                    ""
+                );
+
+                hideResult();
+
+            });
+
+
+            // Hide previous result
+            function hideResult() {
+
+                resultBox.classList.remove("show");
+                errorMessage.classList.remove("show");
+                lastResult = null;
+
+            }
+
+
+            semestersContainer.addEventListener(
+                "input",
+                hideResult
+            );
+
+            semestersContainer.addEventListener(
+                "change",
+                hideResult
+            );
+
+
+            // Show validation error
+            function showError(message) {
+
+                errorMessage.textContent = message;
+                errorMessage.classList.add("show");
+
+            }
+
+
+            // Calculate CGPA
+            calculateBtn.addEventListener("click", function () {
+
+                const rows = semestersContainer.querySelectorAll(
+                    ".semester-row"
+                );
+
+                let totalCredits = 0;
+                let totalGradePoints = 0;
+                let valid = true;
+
+                errorMessage.classList.remove("show");
+
+                if (rows.length === 0) {
+                    showError("Please add at least one semester.");
+                    return;
+                }
+
+                rows.forEach(function (row) {
+
+                    const name = row.querySelector(
+                        ".semester-name"
+                    ).value.trim();
+
+                    const gpa = Number(
+                        row.querySelector(".semester-gpa").value
+                    );
+
+                    const credits = Number(
+                        row.querySelector(".semester-credits").value
+                    );
+
+                    if (!name) {
+                        valid = false;
+                        showError("Please enter a name for every semester.");
+                        return;
+                    }
+
+                    if (
+                        !Number.isFinite(gpa) ||
+                        gpa < 0 ||
+                        gpa > 4
+                    ) {
+                        valid = false;
+                        showError("GPA must be between 0.00 and 4.00.");
+                        return;
+                    }
+
+                    if (
+                        !Number.isFinite(credits) ||
+                        credits < 0.5 ||
+                        credits > 40
+                    ) {
+                        valid = false;
+                        showError("Credit hours must be between 0.5 and 40.");
+                        return;
+                    }
+
+                    totalCredits += credits;
+                    totalGradePoints += gpa * credits;
+
+                });
+
+
+                if (!valid || totalCredits <= 0) {
+                    return;
+                }
+
+                const cgpa = totalGradePoints / totalCredits;
+
+                lastResult = {
+                    cgpa: Number(cgpa.toFixed(2)),
+                    totalCredits: Number(totalCredits.toFixed(2)),
+                    totalGradePoints: Number(
+                        totalGradePoints.toFixed(2)
+                    ),
+                    totalSemesters: rows.length,
+                    calculatedAt: new Date().toISOString()
+                };
+
+
+                // Display results
+                document.getElementById(
+                    "cgpaResult"
+                ).textContent = lastResult.cgpa.toFixed(2);
+
+                document.getElementById(
+                    "totalCredits"
+                ).textContent = lastResult.totalCredits;
+
+                document.getElementById(
+                    "totalSemesters"
+                ).textContent = lastResult.totalSemesters;
+
+                document.getElementById(
+                    "resultDescription"
+                ).textContent =
+                    "Your cumulative GPA is " +
+                    lastResult.cgpa.toFixed(2) +
+                    " out of 4.00.";
+
+                resultBox.classList.add("show");
+
+            });
+
+
+            // Save result
+            document.getElementById("saveResultBtn")
+                .addEventListener("click", function () {
+
+                    if (!lastResult) {
+                        showError("Calculate your CGPA before saving.");
+                        return;
+                    }
+
+                    const saved = SkillNestStorage.save(
+                        "last_cgpa_result",
+                        lastResult
+                    );
+
+                    if (saved) {
+                        alert("Your CGPA result has been saved successfully.");
+                    } else {
+                        alert("Unable to save your result.");
+                    }
+
+                });
+
+
+            // Add two sample semesters
+            createSemesterRow("Semester 1", "3.50", "15");
+            createSemesterRow("Semester 2", "3.80", "18");
+
+        });
+    </script>
+
+
+<script src="../js/sidebar.js" defer></script>
+</body>
+</html>
+
+

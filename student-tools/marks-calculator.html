@@ -1,0 +1,807 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free Marks Calculator | SkillNest</title>
+
+    <meta name="description" content="Calculate total marks, average marks, and overall percentage across multiple subjects with the free SkillNest Marks Calculator.">
+
+    <meta name="keywords" content="marks calculator, total marks calculator, average marks calculator, student marks calculator">
+
+    <meta name="author" content="SkillNest">
+
+    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/tools.css">
+<link rel="stylesheet" href="../css/themes.css">
+<link rel="stylesheet" href="../css/sidebar.css">
+
+    <style>
+        .marks-icon {
+            width: 75px;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border-radius: 20px;
+            background: rgba(118, 87, 246, 0.12);
+            color: var(--primary-light);
+            font-size: 35px;
+        }
+
+        .subject-list {
+            display: grid;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .subject-row {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr 1fr auto;
+            gap: 12px;
+            align-items: end;
+            padding: 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-secondary);
+        }
+
+        .subject-row .form-group {
+            margin: 0;
+        }
+
+        .subject-row label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .subject-row input {
+            width: 100%;
+            min-width: 0;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .remove-subject {
+            height: 43px;
+            padding: 0 13px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+            cursor: pointer;
+            font-weight: 700;
+        }
+
+        .marks-summary {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .marks-summary-item {
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-secondary);
+        }
+
+        .marks-summary-item span {
+            display: block;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .marks-summary-item strong {
+            display: block;
+            margin-top: 8px;
+            color: var(--primary-light);
+            font-size: 25px;
+        }
+
+        .overall-result {
+            margin-top: 20px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .overall-result strong {
+            display: block;
+            margin: 10px 0;
+            color: var(--primary-light);
+            font-size: 45px;
+        }
+
+        .performance-label {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(118, 87, 246, 0.12);
+            color: var(--primary-light);
+            font-weight: 700;
+        }
+
+        .marks-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .marks-note {
+            margin-top: 25px;
+            padding: 18px;
+            border-radius: 12px;
+            background: var(--bg-secondary);
+            line-height: 1.8;
+        }
+
+        @media (max-width: 650px) {
+            .subject-row {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .subject-name {
+                grid-column: 1 / -1;
+            }
+
+            .marks-summary {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 400px) {
+            .subject-row {
+                grid-template-columns: 1fr;
+            }
+
+            .subject-name {
+                grid-column: auto;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="../index.html" class="logo">
+                Skill<span>Nest</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="index.html">Student Tools</a>
+                <a href="../career-tools/index.html">Career Tools</a>
+                <a href="../productivity-tools/index.html">Productivity</a>
+                <a href="../resources/index.html">Resources</a>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch to light mode"
+                >
+                    â—
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <section class="tool-page">
+
+            <div class="tool-header">
+
+                <div class="tool-breadcrumb">
+                    <a href="../index.html">Home</a> /
+                    <a href="index.html">Student Tools</a> /
+                    Marks Calculator
+                </div>
+
+                <div class="marks-icon">📊</div>
+
+                <h1>Marks Calculator</h1>
+
+                <p>
+                    Calculate your total marks, average, and
+                    overall percentage across multiple subjects.
+                </p>
+
+            </div>
+
+
+            <!-- CALCULATOR -->
+            <div class="tool-container">
+
+                <h2>Enter Your Subject Marks</h2>
+
+                <p>
+                    Add each subject and enter your obtained
+                    marks and maximum marks.
+                </p>
+
+                <div class="subject-list" id="subjectList">
+
+                    <!-- SUBJECT ROWS WILL BE ADDED HERE -->
+
+                </div>
+
+                <button
+                    type="button"
+                    class="tool-btn tool-btn-secondary"
+                    id="addSubjectBtn"
+                >
+                    + Add Subject
+                </button>
+
+                <div
+                    class="tool-alert error"
+                    id="errorMessage"
+                    role="alert"
+                ></div>
+
+                <div class="marks-actions">
+
+                    <button
+                        type="button"
+                        class="tool-btn"
+                        id="calculateBtn"
+                    >
+                        Calculate Marks
+                    </button>
+
+                    <button
+                        type="button"
+                        class="tool-btn tool-btn-secondary"
+                        id="resetBtn"
+                    >
+                        Reset Calculator
+                    </button>
+
+                </div>
+
+
+                <!-- RESULT -->
+                <div
+                    class="result-box"
+                    id="resultBox"
+                    aria-live="polite"
+                >
+
+                    <h2>Your Overall Result</h2>
+
+                    <div class="overall-result">
+
+                        <span>Overall Percentage</span>
+
+                        <strong id="percentageResult">0%</strong>
+
+                        <span
+                            class="performance-label"
+                            id="performanceResult"
+                        >
+                            Result
+                        </span>
+
+                    </div>
+
+
+                    <div class="marks-summary">
+
+                        <div class="marks-summary-item">
+                            <span>Total Obtained Marks</span>
+                            <strong id="obtainedResult">0</strong>
+                        </div>
+
+                        <div class="marks-summary-item">
+                            <span>Total Maximum Marks</span>
+                            <strong id="maximumResult">0</strong>
+                        </div>
+
+                        <div class="marks-summary-item">
+                            <span>Average Obtained Marks</span>
+                            <strong id="averageResult">0</strong>
+                        </div>
+
+                        <div class="marks-summary-item">
+                            <span>Number of Subjects</span>
+                            <strong id="subjectCountResult">0</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="marks-actions">
+
+                        <button
+                            type="button"
+                            class="tool-btn tool-btn-secondary"
+                            id="saveResultBtn"
+                        >
+                            Save Result
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- INFORMATION -->
+                <div class="marks-note">
+
+                    <h3>How to Calculate Overall Percentage?</h3>
+
+                    <p>
+                        First, add the obtained marks of all subjects.
+                        Then add the maximum marks of all subjects.
+                        Divide the total obtained marks by the total
+                        maximum marks and multiply by 100.
+                    </p>
+
+                    <p>
+                        <strong>Formula:</strong>
+                        (Total Obtained Marks Ã· Total Maximum Marks) Ã— 100
+                    </p>
+
+                    <p>
+                        <strong>Example:</strong>
+                        If you obtain 420 marks out of 500,
+                        your overall percentage is 84%.
+                    </p>
+
+                    <p>
+                        Performance labels are general examples.
+                        Your institution may use different grading criteria.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+                    <a href="../privacy-policy.html">Privacy Policy</a>
+                    <a href="../terms-and-conditions.html">Terms</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SHARED JAVASCRIPT -->
+    <script src="../js/storage.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/main.js"></script>
+
+
+    <!-- MARKS CALCULATOR LOGIC -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const subjectList =
+                document.getElementById("subjectList");
+
+            const addSubjectBtn =
+                document.getElementById("addSubjectBtn");
+
+            const calculateBtn =
+                document.getElementById("calculateBtn");
+
+            const resetBtn =
+                document.getElementById("resetBtn");
+
+            const errorMessage =
+                document.getElementById("errorMessage");
+
+            const resultBox =
+                document.getElementById("resultBox");
+
+            let subjectCounter = 0;
+            let lastResult = null;
+
+
+            // Create a subject row
+            function addSubject(name = "", obtained = "", maximum = "") {
+
+                subjectCounter++;
+
+                const row = document.createElement("div");
+
+                row.className = "subject-row";
+
+                row.innerHTML = `
+                    <div class="form-group subject-name">
+                        <label>Subject Name</label>
+                        <input
+                            type="text"
+                            class="subject-name-input"
+                            placeholder="e.g. Mathematics"
+                            value="${escapeHTML(name)}"
+                            maxlength="80"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Obtained Marks</label>
+                        <input
+                            type="number"
+                            class="obtained-input"
+                            placeholder="e.g. 85"
+                            min="0"
+                            step="any"
+                            value="${obtained}"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label>Total Marks</label>
+                        <input
+                            type="number"
+                            class="maximum-input"
+                            placeholder="e.g. 100"
+                            min="0"
+                            step="any"
+                            value="${maximum}"
+                        >
+                    </div>
+
+                    <button
+                        type="button"
+                        class="remove-subject"
+                        aria-label="Remove subject"
+                    >
+                        Remove
+                    </button>
+                `;
+
+                row.querySelector(".remove-subject")
+                    .addEventListener("click", function () {
+
+                        row.remove();
+                        clearResults();
+
+                    });
+
+                subjectList.appendChild(row);
+
+            }
+
+
+            // Escape text before inserting it into HTML
+            function escapeHTML(value) {
+
+                return String(value).replace(/[&<>"']/g, function (char) {
+
+                    const entities = {
+                        "&": "&amp;",
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        '"': "&quot;",
+                        "'": "&#39;"
+                    };
+
+                    return entities[char];
+
+                });
+
+            }
+
+
+            // Add initial subjects
+            addSubject("Mathematics", 85, 100);
+            addSubject("Programming", 90, 100);
+            addSubject("Database Systems", 80, 100);
+
+
+            // Add another subject
+            addSubjectBtn.addEventListener("click", function () {
+
+                addSubject();
+
+                clearResults();
+
+            });
+
+
+            // Show an error message
+            function showError(message) {
+
+                errorMessage.textContent = message;
+                errorMessage.classList.add("show");
+
+            }
+
+
+            // Clear old results
+            function clearResults() {
+
+                resultBox.classList.remove("show");
+                errorMessage.classList.remove("show");
+
+                lastResult = null;
+
+            }
+
+
+            // Performance classification
+            function getPerformance(percentage) {
+
+                if (percentage >= 90) return "Excellent";
+                if (percentage >= 80) return "Very Good";
+                if (percentage >= 70) return "Good";
+                if (percentage >= 60) return "Above Average";
+                if (percentage >= 50) return "Average";
+
+                return "Needs Improvement";
+
+            }
+
+
+            // Calculate overall marks
+            calculateBtn.addEventListener("click", function () {
+
+                clearResults();
+
+                const rows =
+                    subjectList.querySelectorAll(".subject-row");
+
+                if (rows.length === 0) {
+
+                    showError("Please add at least one subject.");
+                    return;
+
+                }
+
+                let totalObtained = 0;
+                let totalMaximum = 0;
+                let totalSubjectAverage = 0;
+
+                const subjects = [];
+
+                for (let i = 0; i < rows.length; i++) {
+
+                    const row = rows[i];
+
+                    const name = row.querySelector(
+                        ".subject-name-input"
+                    ).value.trim();
+
+                    const obtainedField = row.querySelector(
+                        ".obtained-input"
+                    );
+
+                    const maximumField = row.querySelector(
+                        ".maximum-input"
+                    );
+
+                    const obtained = Number(obtainedField.value);
+                    const maximum = Number(maximumField.value);
+
+                    if (
+                        !name ||
+                        obtainedField.value.trim() === "" ||
+                        maximumField.value.trim() === ""
+                    ) {
+
+                        showError(
+                            "Please complete all fields for subject " +
+                            (i + 1) + "."
+                        );
+
+                        return;
+
+                    }
+
+                    if (
+                        !Number.isFinite(obtained) ||
+                        !Number.isFinite(maximum)
+                    ) {
+
+                        showError("Please enter valid marks.");
+                        return;
+
+                    }
+
+                    if (obtained < 0 || maximum <= 0) {
+
+                        showError(
+                            "Marks cannot be negative and total marks must be greater than zero."
+                        );
+
+                        return;
+
+                    }
+
+                    if (obtained > maximum) {
+
+                        showError(
+                            "Obtained marks cannot exceed total marks in " +
+                            name + "."
+                        );
+
+                        return;
+
+                    }
+
+                    totalObtained += obtained;
+                    totalMaximum += maximum;
+
+                    totalSubjectAverage += obtained;
+
+                    subjects.push({
+                        name: name,
+                        obtained: obtained,
+                        maximum: maximum
+                    });
+
+                }
+
+
+                // Overall calculations
+                const percentage =
+                    (totalObtained / totalMaximum) * 100;
+
+                const average =
+                    totalSubjectAverage / subjects.length;
+
+                const performance =
+                    getPerformance(percentage);
+
+
+                lastResult = {
+                    subjects: subjects,
+                    totalObtained: totalObtained,
+                    totalMaximum: totalMaximum,
+                    average: Number(average.toFixed(2)),
+                    percentage: Number(percentage.toFixed(2)),
+                    performance: performance,
+                    calculatedAt: new Date().toISOString()
+                };
+
+
+                // Display results
+                document.getElementById(
+                    "percentageResult"
+                ).textContent = percentage.toFixed(2) + "%";
+
+                document.getElementById(
+                    "obtainedResult"
+                ).textContent = totalObtained;
+
+                document.getElementById(
+                    "maximumResult"
+                ).textContent = totalMaximum;
+
+                document.getElementById(
+                    "averageResult"
+                ).textContent = average.toFixed(2);
+
+                document.getElementById(
+                    "subjectCountResult"
+                ).textContent = subjects.length;
+
+                document.getElementById(
+                    "performanceResult"
+                ).textContent = performance;
+
+                resultBox.classList.add("show");
+
+            });
+
+
+            // Save result
+            document.getElementById("saveResultBtn")
+                .addEventListener("click", function () {
+
+                    if (!lastResult) {
+
+                        showError("Calculate your marks before saving.");
+                        return;
+
+                    }
+
+                    const saved = SkillNestStorage.save(
+                        "last_marks_result",
+                        lastResult
+                    );
+
+                    if (saved) {
+
+                        alert("Your marks result has been saved.");
+
+                    } else {
+
+                        alert("Unable to save your result.");
+
+                    }
+
+                });
+
+
+            // Reset calculator
+            resetBtn.addEventListener("click", function () {
+
+                subjectList.innerHTML = "";
+
+                subjectCounter = 0;
+
+                addSubject("Mathematics", "", "");
+                addSubject("Programming", "", "");
+                addSubject("Database Systems", "", "");
+
+                clearResults();
+
+            });
+
+
+            // Clear previous results when editing fields
+            subjectList.addEventListener("input", function () {
+
+                clearResults();
+
+            });
+
+        });
+    </script>
+
+
+<script src="../js/sidebar.js" defer></script>
+</body>
+</html>
+
+

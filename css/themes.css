@@ -1,0 +1,697 @@
+
+/* =========================================
+   SKILLNEST - GLOBAL THEME SYSTEM
+   File: css/themes.css
+========================================= */
+
+/* =========================================
+   1. DARK THEME (DEFAULT)
+========================================= */
+
+:root,
+[data-theme="dark"] {
+    color-scheme: dark;
+
+    /* Brand */
+    --primary: #7657F6;
+    --primary-light: #A18DFF;
+    --primary-dark: #6040E8;
+
+    /* Backgrounds */
+    --bg-main: #0B1020;
+    --bg-secondary: #10172B;
+    --bg-card: #151D33;
+    --bg-card-hover: #1D2945;
+
+    /* Text */
+    --text-primary: #F5F6FF;
+    --text-secondary: #B0B8D0;
+    --text-muted: #8993AE;
+
+    /* Borders */
+    --border-color: #29334D;
+
+    /* Shadows */
+    --shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+
+    /* Status */
+    --success: #22C55E;
+    --danger: #EF4444;
+    --warning: #F59E0B;
+
+    /* Legacy variable compatibility */
+    --navy: #F5F6FF;
+    --navy-light: #10172B;
+    --navy-card: #151D33;
+    --white: #151D33;
+    --light-bg: #10172B;
+    --text-dark: #F5F6FF;
+    --text-light: #B0B8D0;
+    --border: #29334D;
+}
+
+
+/* =========================================
+   2. LIGHT THEME
+========================================= */
+
+[data-theme="light"] {
+    color-scheme: light;
+
+    /* Brand */
+    --primary: #6947E8;
+    --primary-light: #7959EF;
+    --primary-dark: #5433D0;
+
+    /* Backgrounds */
+    --bg-main: #F7F8FC;
+    --bg-secondary: #EEF0F8;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F3F0FF;
+
+    /* Text */
+    --text-primary: #171B2E;
+    --text-secondary: #505A70;
+    --text-muted: #687187;
+
+    /* Borders */
+    --border-color: #DFE3EE;
+
+    /* Shadows */
+    --shadow: 0 12px 35px rgba(30, 35, 70, 0.08);
+
+    /* Status */
+    --success: #15803D;
+    --danger: #DC2626;
+    --warning: #B45309;
+
+    /* Legacy variable compatibility */
+    --navy: #171B2E;
+    --navy-light: #EEF0F8;
+    --navy-card: #FFFFFF;
+    --white: #FFFFFF;
+    --light-bg: #EEF0F8;
+    --text-dark: #171B2E;
+    --text-light: #505A70;
+    --border: #DFE3EE;
+}
+
+
+/* =========================================
+   3. GLOBAL PAGE COLORS
+========================================= */
+
+html {
+    background: var(--bg-main);
+    scroll-behavior: smooth;
+}
+
+body {
+    background: var(--bg-main);
+    color: var(--text-primary);
+
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
+}
+
+main {
+    background: var(--bg-main);
+}
+
+p {
+    color: inherit;
+}
+
+
+/* =========================================
+   4. HEADER AND NAVIGATION
+========================================= */
+
+.header {
+    background: var(--bg-main);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.logo {
+    color: var(--text-primary);
+}
+
+.logo span {
+    color: var(--primary-light);
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary-light);
+}
+
+.theme-toggle,
+.menu-toggle {
+    color: var(--text-primary);
+}
+
+.theme-toggle {
+    min-width: 42px;
+    min-height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-card);
+    cursor: pointer;
+}
+
+.theme-toggle:hover {
+    border-color: var(--primary);
+    color: var(--primary-light);
+}
+
+.menu-toggle {
+    background: transparent;
+}
+
+
+/* =========================================
+   5. BUTTONS
+========================================= */
+
+.btn-primary,
+.tool-btn {
+    background: var(--primary);
+    color: #FFFFFF;
+}
+
+.btn-primary:hover,
+.tool-btn:hover {
+    background: var(--primary-dark);
+}
+
+.btn-secondary {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.btn-secondary:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--primary);
+    color: var(--primary-light);
+}
+
+.btn-light {
+    background: #FFFFFF;
+    color: #6040E8;
+}
+
+
+/* =========================================
+   6. HERO SECTION
+   Intentionally dark in both themes.
+========================================= */
+
+.hero {
+    background:
+        radial-gradient(
+            circle at 85% 25%,
+            rgba(118, 87, 246, 0.19),
+            transparent 32%
+        ),
+        linear-gradient(
+            120deg,
+            #10152B,
+            #171E3B
+        );
+
+    color: #FFFFFF;
+}
+
+.hero h1,
+.hero h2,
+.hero h3 {
+    color: #FFFFFF;
+}
+
+.hero-text > p,
+.hero-features {
+    color: #C3C7D8;
+}
+
+.hero h1 span {
+    color: #A18DFF;
+}
+
+.hero-badge {
+    color: #D2C8FF;
+}
+
+
+/* =========================================
+   7. HERO DASHBOARD
+========================================= */
+
+.hero .dashboard-card {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    color: #FFFFFF;
+}
+
+.dashboard-header h3,
+.stat-box strong {
+    color: #FFFFFF;
+}
+
+.dashboard-header small,
+.progress-heading strong {
+    color: #C6B9FF;
+}
+
+.stat-box {
+    background: rgba(255, 255, 255, 0.09);
+}
+
+.stat-box span {
+    color: #D3D7E7;
+}
+
+.progress-heading {
+    color: #D3D5E3;
+}
+
+.progress-bar {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.dashboard-message {
+    background: rgba(118, 87, 246, 0.18);
+    color: #E2DCFF;
+}
+
+
+/* =========================================
+   8. SECTIONS AND HEADINGS
+========================================= */
+
+.search-section,
+.tools-section,
+.resources-section {
+    background: var(--bg-main);
+}
+
+.alternate-section,
+.how-section,
+.why-section,
+.section-alt {
+    background: var(--bg-secondary);
+}
+
+.section-heading h2,
+.section-title {
+    color: var(--text-primary);
+}
+
+.section-heading p,
+.section-description {
+    color: var(--text-secondary);
+}
+
+.section-label {
+    color: var(--primary-light);
+}
+
+
+/* =========================================
+   9. CARDS
+========================================= */
+
+.tool-card,
+.resource-card,
+.step-card,
+.how-card,
+.why-card,
+.why-grid div,
+.tool-category-card {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+    box-shadow: var(--shadow);
+}
+
+.tool-card:hover,
+.resource-card:hover,
+.tool-category-card:hover {
+    background: var(--bg-card-hover);
+    border-color: var(--primary);
+}
+
+.tool-card h3,
+.resource-card h3,
+.step-card h3,
+.tool-category-card h3 {
+    color: var(--text-primary);
+}
+
+.tool-card p,
+.resource-card p,
+.step-card p,
+.tool-category-card p {
+    color: var(--text-secondary);
+}
+
+.tool-card a,
+.resource-card a {
+    color: var(--primary-light);
+}
+
+.tool-card a:hover,
+.resource-card a:hover {
+    color: var(--primary);
+}
+
+.tool-icon,
+.step-card > span {
+    background: rgba(118, 87, 246, 0.16);
+    color: var(--primary-light);
+}
+
+
+/* =========================================
+   10. SEARCH BOXES AND FILTERS
+========================================= */
+
+.search-box,
+.search-container,
+.resource-search,
+.filter-container {
+    background: var(--bg-card);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.search-box input,
+.search-container input,
+.resource-search input {
+    background: transparent;
+    color: var(--text-primary);
+}
+
+.search-box input::placeholder,
+.search-container input::placeholder,
+.resource-search input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-box button,
+.resource-search button {
+    background: var(--primary);
+    color: #FFFFFF;
+}
+
+.search-box button:hover,
+.resource-search button:hover {
+    background: var(--primary-dark);
+}
+
+.search-message {
+    color: var(--text-secondary);
+}
+
+
+/* =========================================
+   11. FORMS AND INPUTS
+========================================= */
+
+input,
+textarea,
+select {
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: var(--text-muted);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--primary);
+    outline-color: var(--primary-light);
+}
+
+input:disabled,
+textarea:disabled,
+select:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+option {
+    background: var(--bg-card);
+    color: var(--text-primary);
+}
+
+
+/* =========================================
+   12. TOOL PAGES
+========================================= */
+
+.tool-container,
+.tool-content,
+.tool-panel,
+.form-card,
+.result-card,
+.info-card,
+.category-card,
+.tool-info-section {
+    background: var(--bg-card);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.tool-container h1,
+.tool-container h2,
+.tool-container h3,
+.tool-content h1,
+.tool-content h2,
+.tool-content h3,
+.tool-info-section h2 {
+    color: var(--text-primary);
+}
+
+.tool-container p,
+.tool-content p,
+.tool-info-section p,
+.tool-info-section li {
+    color: var(--text-secondary);
+}
+
+.result-box,
+.flashcard,
+.task-item {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.result-value {
+    color: var(--primary-light);
+}
+
+.tool-btn-secondary {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+    border: 1px solid var(--border-color);
+}
+
+
+/* =========================================
+   13. TABLES
+========================================= */
+
+table {
+    color: var(--text-primary);
+}
+
+th {
+    background: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+td {
+    color: var(--text-secondary);
+}
+
+th,
+td {
+    border-color: var(--border-color);
+}
+
+tr:hover td {
+    background: var(--bg-card-hover);
+}
+
+
+/* =========================================
+   14. FOOTER
+   Intentionally dark in both themes.
+========================================= */
+
+.footer {
+    background: #10152B;
+    color: #FFFFFF;
+    border-top: 1px solid rgba(255, 255, 255, 0.10);
+}
+
+.footer .logo,
+.footer h3 {
+    color: #FFFFFF;
+}
+
+.footer-about p,
+.footer-links a {
+    color: #B8BED1;
+}
+
+.footer-links a:hover {
+    color: #B09FFF;
+}
+
+.footer-bottom {
+    color: #A7AEC3;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================================
+   15. CTA SECTION
+   Intentionally purple in both themes.
+========================================= */
+
+.cta-section {
+    background:
+        radial-gradient(
+            circle at 80% 20%,
+            rgba(255, 255, 255, 0.13),
+            transparent 30%
+        ),
+        linear-gradient(
+            120deg,
+            #6040E8,
+            #927CFF
+        );
+
+    color: #FFFFFF;
+}
+
+.cta-section h2,
+.cta-section p {
+    color: #FFFFFF;
+}
+
+
+/* =========================================
+   16. SCROLL TO TOP
+========================================= */
+
+.scroll-top-button {
+    background: var(--primary);
+    color: #FFFFFF;
+}
+
+.scroll-top-button:hover {
+    background: var(--primary-dark);
+}
+
+
+/* =========================================
+   17. ACCESSIBILITY
+========================================= */
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+    outline: 3px solid var(--primary-light);
+    outline-offset: 3px;
+}
+
+::selection {
+    background: var(--primary);
+    color: #FFFFFF;
+}
+
+
+/* =========================================
+   18. THEME TRANSITIONS
+========================================= */
+
+body,
+.header,
+.nav-links,
+.nav-links a,
+.tool-card,
+.resource-card,
+.step-card,
+.tool-category-card,
+.search-box,
+input,
+textarea,
+select,
+.footer,
+.theme-toggle {
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+
+/* =========================================
+   19. REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+    }
+}
+
+
+/* ========================================
+   FIX: HERO SECONDARY BUTTON VISIBILITY
+======================================== */
+
+.hero .btn-secondary,
+.hero .btn-outline,
+.hero a.btn-secondary,
+.hero a.btn-outline {
+    background: rgba(255, 255, 255, 0.06);
+    color: #FFFFFF !important;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    opacity: 1;
+    text-decoration: none;
+}
+
+.hero .btn-secondary:hover,
+.hero .btn-outline:hover,
+.hero a.btn-secondary:hover,
+.hero a.btn-outline:hover {
+    background: rgba(118, 87, 246, 0.25);
+    color: #FFFFFF !important;
+    border-color: #A18DFF;
+}

@@ -1,0 +1,573 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free Percentage Calculator | SkillNest</title>
+
+    <meta name="description" content="Calculate your exam marks percentage instantly with the free SkillNest percentage calculator.">
+
+    <meta name="keywords" content="percentage calculator, marks percentage calculator, student percentage calculator">
+
+    <meta name="author" content="SkillNest">
+
+    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/tools.css">
+<link rel="stylesheet" href="../css/themes.css">
+<link rel="stylesheet" href="../css/sidebar.css">
+
+    <style>
+        .percentage-icon {
+            width: 75px;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border-radius: 20px;
+            background: rgba(118, 87, 246, 0.12);
+            color: var(--primary-light);
+            font-size: 36px;
+        }
+
+        .percentage-result {
+            margin: 20px 0;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .percentage-result strong {
+            display: block;
+            margin: 10px 0;
+            color: var(--primary-light);
+            font-size: clamp(40px, 8vw, 60px);
+            font-weight: 800;
+        }
+
+        .progress-track {
+            width: 100%;
+            height: 12px;
+            margin-top: 18px;
+            overflow: hidden;
+            border-radius: 20px;
+            background: var(--border-color);
+        }
+
+        .progress-fill {
+            width: 0;
+            height: 100%;
+            border-radius: 20px;
+            background: var(--primary);
+            transition: width 0.5s ease;
+        }
+
+        .performance-label {
+            display: inline-block;
+            margin-top: 12px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(118, 87, 246, 0.12);
+            color: var(--primary-light);
+            font-weight: 700;
+        }
+
+        .percentage-actions {
+            display: flex;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        @media (max-width: 560px) {
+            .percentage-actions {
+                flex-direction: column;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="../index.html" class="logo">
+                Skill<span>Nest</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="index.html">Student Tools</a>
+                <a href="../career-tools/index.html">Career Tools</a>
+                <a href="../productivity-tools/index.html">Productivity</a>
+                <a href="../resources/index.html">Resources</a>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch to light mode"
+                >
+                    â—
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <section class="tool-page">
+
+            <div class="tool-header">
+
+                <div class="tool-breadcrumb">
+                    <a href="../index.html">Home</a> /
+                    <a href="index.html">Student Tools</a> /
+                    Percentage Calculator
+                </div>
+
+                <div class="percentage-icon">%</div>
+
+                <h1>Percentage Calculator</h1>
+
+                <p>
+                    Calculate your exam percentage quickly.
+                    Enter your obtained marks and total marks
+                    to see your result instantly.
+                </p>
+
+            </div>
+
+
+            <!-- CALCULATOR -->
+            <div class="tool-container">
+
+                <h2>Calculate Your Percentage</h2>
+
+                <form id="percentageForm" class="tool-form">
+
+                    <div class="form-group">
+
+                        <label for="obtainedMarks">
+                            Obtained Marks
+                        </label>
+
+                        <input
+                            type="number"
+                            id="obtainedMarks"
+                            placeholder="e.g. 850"
+                            min="0"
+                            step="any"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label for="totalMarks">
+                            Total Marks
+                        </label>
+
+                        <input
+                            type="number"
+                            id="totalMarks"
+                            placeholder="e.g. 1100"
+                            min="0"
+                            step="any"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div
+                        class="tool-alert error"
+                        id="errorMessage"
+                        role="alert"
+                    ></div>
+
+
+                    <button
+                        type="submit"
+                        class="tool-btn"
+                    >
+                        Calculate Percentage
+                    </button>
+
+                </form>
+
+
+                <!-- RESULT -->
+                <div
+                    class="result-box"
+                    id="resultBox"
+                    aria-live="polite"
+                >
+
+                    <div class="percentage-result">
+
+                        <span>Your Percentage</span>
+
+                        <strong id="percentageValue">0%</strong>
+
+                        <div class="progress-track">
+                            <div
+                                class="progress-fill"
+                                id="progressFill"
+                            ></div>
+                        </div>
+
+                        <span
+                            class="performance-label"
+                            id="performanceLabel"
+                        >
+                            Result
+                        </span>
+
+                    </div>
+
+
+                    <div class="gpa-summary">
+
+                        <div class="summary-item">
+                            <span>Obtained Marks</span>
+                            <strong id="resultObtained">0</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Total Marks</span>
+                            <strong id="resultTotal">0</strong>
+                        </div>
+
+                        <div class="summary-item">
+                            <span>Remaining Marks</span>
+                            <strong id="remainingMarks">0</strong>
+                        </div>
+
+                    </div>
+
+
+                    <div class="percentage-actions">
+
+                        <button
+                            type="button"
+                            class="tool-btn tool-btn-secondary"
+                            id="saveResultBtn"
+                        >
+                            Save Result
+                        </button>
+
+                        <button
+                            type="button"
+                            class="tool-btn tool-btn-secondary"
+                            id="resetBtn"
+                        >
+                            Reset Calculator
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <div class="grade-note">
+
+                    <strong>How to calculate percentage?</strong>
+
+                    <p>
+                        Divide your obtained marks by total marks
+                        and multiply the answer by 100.
+                    </p>
+
+                    <strong>Example:</strong>
+
+                    <p>
+                        Obtained Marks = 850
+                        <br>
+                        Total Marks = 1100
+                        <br>
+                        Percentage = (850 Ã· 1100) Ã— 100
+                        <br>
+                        Result = 77.27%
+                    </p>
+
+                    <p>
+                        Performance labels are general examples.
+                        Your institution may use different grading criteria.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+                    <a href="../privacy-policy.html">Privacy Policy</a>
+                    <a href="../terms-and-conditions.html">Terms</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SHARED JAVASCRIPT -->
+    <script src="../js/storage.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/main.js"></script>
+
+
+    <!-- PERCENTAGE CALCULATOR LOGIC -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const form = document.getElementById("percentageForm");
+
+            const obtainedInput =
+                document.getElementById("obtainedMarks");
+
+            const totalInput =
+                document.getElementById("totalMarks");
+
+            const resultBox =
+                document.getElementById("resultBox");
+
+            const errorMessage =
+                document.getElementById("errorMessage");
+
+            const resetBtn =
+                document.getElementById("resetBtn");
+
+            let lastResult = null;
+
+
+            // Get performance classification
+            function getPerformance(percentage) {
+
+                if (percentage >= 90) {
+                    return "Excellent";
+                }
+
+                if (percentage >= 80) {
+                    return "Very Good";
+                }
+
+                if (percentage >= 70) {
+                    return "Good";
+                }
+
+                if (percentage >= 60) {
+                    return "Above Average";
+                }
+
+                if (percentage >= 50) {
+                    return "Average";
+                }
+
+                return "Needs Improvement";
+
+            }
+
+
+            // Display error
+            function showError(message) {
+
+                errorMessage.textContent = message;
+                errorMessage.classList.add("show");
+
+            }
+
+
+            // Calculate percentage
+            form.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                errorMessage.classList.remove("show");
+                resultBox.classList.remove("show");
+
+                const obtained = Number(obtainedInput.value);
+                const total = Number(totalInput.value);
+
+                // Validate values
+                if (
+                    obtainedInput.value.trim() === "" ||
+                    totalInput.value.trim() === ""
+                ) {
+                    showError("Please enter both marks values.");
+                    return;
+                }
+
+                if (
+                    !Number.isFinite(obtained) ||
+                    !Number.isFinite(total)
+                ) {
+                    showError("Please enter valid numbers.");
+                    return;
+                }
+
+                if (obtained < 0 || total <= 0) {
+                    showError("Marks cannot be negative and total marks must be greater than zero.");
+                    return;
+                }
+
+                if (obtained > total) {
+                    showError("Obtained marks cannot be greater than total marks.");
+                    return;
+                }
+
+
+                // Percentage calculation
+                const percentage = (obtained / total) * 100;
+
+                const remaining = total - obtained;
+
+                const performance = getPerformance(percentage);
+
+
+                lastResult = {
+                    obtainedMarks: obtained,
+                    totalMarks: total,
+                    percentage: Number(percentage.toFixed(2)),
+                    remainingMarks: Number(remaining.toFixed(2)),
+                    performance: performance,
+                    calculatedAt: new Date().toISOString()
+                };
+
+
+                // Display results
+                document.getElementById(
+                    "percentageValue"
+                ).textContent = percentage.toFixed(2) + "%";
+
+                document.getElementById(
+                    "resultObtained"
+                ).textContent = obtained;
+
+                document.getElementById(
+                    "resultTotal"
+                ).textContent = total;
+
+                document.getElementById(
+                    "remainingMarks"
+                ).textContent = remaining;
+
+                document.getElementById(
+                    "performanceLabel"
+                ).textContent = performance;
+
+                document.getElementById(
+                    "progressFill"
+                ).style.width = percentage + "%";
+
+                resultBox.classList.add("show");
+
+            });
+
+
+            // Save result
+            document.getElementById("saveResultBtn")
+                .addEventListener("click", function () {
+
+                    if (!lastResult) {
+                        showError("Calculate your percentage before saving.");
+                        return;
+                    }
+
+                    const saved = SkillNestStorage.save(
+                        "last_percentage_result",
+                        lastResult
+                    );
+
+                    if (saved) {
+                        alert("Your percentage result has been saved.");
+                    } else {
+                        alert("Unable to save your result.");
+                    }
+
+                });
+
+
+            // Reset calculator
+            resetBtn.addEventListener("click", function () {
+
+                form.reset();
+
+                resultBox.classList.remove("show");
+                errorMessage.classList.remove("show");
+
+                document.getElementById(
+                    "progressFill"
+                ).style.width = "0%";
+
+                lastResult = null;
+
+            });
+
+
+            // Clear previous results when values change
+            [obtainedInput, totalInput].forEach(function (input) {
+
+                input.addEventListener("input", function () {
+
+                    resultBox.classList.remove("show");
+                    errorMessage.classList.remove("show");
+                    lastResult = null;
+
+                });
+
+            });
+
+        });
+    </script>
+
+
+<script src="../js/sidebar.js" defer></script>
+</body>
+</html>
+
+

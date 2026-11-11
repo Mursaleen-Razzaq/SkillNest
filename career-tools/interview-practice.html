@@ -1,0 +1,973 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free Interview Practice Tool | SkillNest</title>
+    <meta name="description" content="Practice common technical, HR, behavioral, and general interview questions. Write answers and track your interview preparation with SkillNest.">
+    <meta name="keywords" content="interview practice, interview questions, technical interview preparation, HR interview questions, job interview preparation">
+    <meta name="author" content="SkillNest">
+
+    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/tools.css">
+<link rel="stylesheet" href="../css/themes.css">
+<link rel="stylesheet" href="../css/sidebar.css">
+    <style>
+        .practice-hero {
+            background: var(--bg-secondary);
+            padding: 45px 20px;
+            text-align: center;
+        }
+
+        .practice-hero h1 {
+            font-size: clamp(30px, 5vw, 42px);
+            margin-bottom: 12px;
+        }
+
+        .practice-hero p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .practice-container {
+            max-width: 950px;
+            margin: auto;
+            padding: 40px 20px 70px;
+        }
+
+        .practice-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .stat-card {
+            padding: 18px;
+            text-align: center;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+        }
+
+        .stat-card strong {
+            display: block;
+            font-size: 26px;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-card span {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .practice-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .practice-card h2 {
+            font-size: 20px;
+            margin-bottom: 18px;
+        }
+
+        .practice-card label {
+            display: block;
+            margin: 15px 0 7px;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .practice-card select,
+        .practice-card textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 9px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font: inherit;
+        }
+
+        .practice-card textarea {
+            min-height: 180px;
+            resize: vertical;
+            line-height: 1.6;
+        }
+
+        .question-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 18px;
+        }
+
+        .question-category {
+            display: inline-block;
+            background: rgba(118, 87, 246, 0.12);
+            color: var(--primary-color);
+            padding: 7px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .question-number {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .question-text {
+            font-size: clamp(20px, 3vw, 25px);
+            font-weight: 700;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .question-tip {
+            display: none;
+            background: rgba(118, 87, 246, 0.09);
+            border-left: 3px solid var(--primary-color);
+            padding: 15px;
+            margin-top: 18px;
+            border-radius: 7px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .question-tip.show {
+            display: block;
+        }
+
+        .practice-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .practice-progress {
+            height: 9px;
+            background: var(--border-color);
+            border-radius: 20px;
+            overflow: hidden;
+            margin-top: 12px;
+        }
+
+        .practice-progress-fill {
+            height: 100%;
+            width: 0;
+            background: var(--primary-color);
+            border-radius: 20px;
+            transition: width 0.3s ease;
+        }
+
+        .practice-note {
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.7;
+            margin-top: 12px;
+        }
+
+        .practice-message {
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin-top: 12px;
+            min-height: 20px;
+        }
+
+        @media(max-width: 600px) {
+            .practice-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .practice-card {
+                padding: 18px;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="../index.html" class="logo">
+                Skill<span>Nest</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../student-tools/index.html">Student Tools</a>
+                <a href="index.html">Career Tools</a>
+                <a href="../productivity-tools/index.html">Productivity</a>
+                <a href="../resources/index.html">Resources</a>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch to light mode"
+                >
+                    â—
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="practice-hero">
+            <div class="container">
+
+                <div class="tool-breadcrumb">
+                    <a href="../index.html">Home</a> /
+                    <a href="index.html">Career Tools</a> /
+                    Interview Practice
+                </div>
+
+                <h1>Interview Practice Tool</h1>
+
+                <p>
+                    Prepare for your next interview with useful questions,
+                    answer tips, and personal practice.
+                </p>
+
+            </div>
+        </section>
+
+
+        <section class="practice-container">
+
+            <!-- STATISTICS -->
+            <div class="practice-stats">
+
+                <div class="stat-card">
+                    <strong id="totalQuestions">0</strong>
+                    <span>Total Questions</span>
+                </div>
+
+                <div class="stat-card">
+                    <strong id="answeredQuestions">0</strong>
+                    <span>Questions Answered</span>
+                </div>
+
+                <div class="stat-card">
+                    <strong id="progressPercentage">0%</strong>
+                    <span>Practice Progress</span>
+                </div>
+
+            </div>
+
+
+            <!-- CATEGORY -->
+            <div class="practice-card">
+
+                <h2>Choose Your Interview Category</h2>
+
+                <label for="categorySelect">Interview Category</label>
+
+                <select id="categorySelect">
+                    <option value="all">All Categories</option>
+                    <option value="General">General Interview</option>
+                    <option value="Technical">Technical Interview</option>
+                    <option value="HR">HR Interview</option>
+                    <option value="Behavioral">Behavioral Interview</option>
+                </select>
+
+                <p class="practice-note">
+                    Select a category to practice questions related
+                    to your target interview.
+                </p>
+
+            </div>
+
+
+            <!-- QUESTION -->
+            <div class="practice-card">
+
+                <div class="question-top">
+
+                    <span class="question-category" id="questionCategory">
+                        General
+                    </span>
+
+                    <span class="question-number" id="questionNumber">
+                        Question 1
+                    </span>
+
+                </div>
+
+                <div class="question-text" id="questionText">
+                    Loading question...
+                </div>
+
+                <button
+                    type="button"
+                    class="tool-btn tool-btn-secondary"
+                    id="showTip"
+                >
+                    Show Answer Tips
+                </button>
+
+                <div class="question-tip" id="questionTip"></div>
+
+                <div class="practice-actions">
+
+                    <button
+                        type="button"
+                        class="tool-btn tool-btn-secondary"
+                        id="previousQuestion"
+                    >
+                        Previous
+                    </button>
+
+                    <button
+                        type="button"
+                        class="tool-btn"
+                        id="nextQuestion"
+                    >
+                        Next Question
+                    </button>
+
+                    <button
+                        type="button"
+                        class="tool-btn tool-btn-secondary"
+                        id="randomQuestion"
+                    >
+                        Random Question
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- ANSWER -->
+            <div class="practice-card">
+
+                <h2>Write Your Answer</h2>
+
+                <label for="answerInput">
+                    Your Interview Answer
+                </label>
+
+                <textarea
+                    id="answerInput"
+                    placeholder="Write your answer here. Explain your ideas clearly and use real examples where possible..."
+                    maxlength="5000"
+                ></textarea>
+
+                <div class="practice-actions">
+
+                    <button
+                        type="button"
+                        class="tool-btn"
+                        id="saveAnswer"
+                    >
+                        Save Answer
+                    </button>
+
+                    <button
+                        type="button"
+                        class="tool-btn tool-btn-secondary"
+                        id="clearAnswer"
+                    >
+                        Clear Answer
+                    </button>
+
+                </div>
+
+                <p class="practice-note">
+                    Your answers are saved locally in your browser.
+                    You can return later and continue practicing.
+                </p>
+
+                <p
+                    class="practice-message"
+                    id="practiceMessage"
+                    aria-live="polite"
+                ></p>
+
+            </div>
+
+
+            <!-- PROGRESS -->
+            <div class="practice-card">
+
+                <h2>Your Preparation Progress</h2>
+
+                <p id="progressText">
+                    You have answered 0 questions.
+                </p>
+
+                <div class="practice-progress">
+                    <div
+                        class="practice-progress-fill"
+                        id="progressBar"
+                    ></div>
+                </div>
+
+                <div class="practice-actions">
+
+                    <button
+                        type="button"
+                        class="tool-btn tool-btn-secondary"
+                        id="resetProgress"
+                    >
+                        Reset All Progress
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+                    <a href="../about.html">About</a>
+                    <a href="../contact.html">Contact</a>
+                    <a href="../privacy-policy.html">Privacy Policy</a>
+                    <a href="../terms-and-conditions.html">Terms</a>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- SHARED JAVASCRIPT -->
+    <script src="../js/storage.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/main.js"></script>
+
+
+    <!-- INTERVIEW PRACTICE LOGIC -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const STORAGE_KEY = "interview_practice_data";
+
+
+            // Interview question database
+            const questions = [
+
+                {
+                    category: "General",
+                    question: "Tell me about yourself.",
+                    tip: "Give a short introduction covering your education, relevant skills, projects, and career goals. Keep your answer focused on the position."
+                },
+                {
+                    category: "General",
+                    question: "What are your biggest strengths?",
+                    tip: "Choose two or three strengths relevant to the role. Support each one with a real example."
+                },
+                {
+                    category: "General",
+                    question: "Where do you see yourself in five years?",
+                    tip: "Discuss realistic career goals, professional growth, and how the role fits your development."
+                },
+                {
+                    category: "General",
+                    question: "Why should we hire you?",
+                    tip: "Connect your skills, learning ability, experience, and interest to the requirements of the job."
+                },
+                {
+                    category: "Technical",
+                    question: "What is the difference between HTML, CSS, and JavaScript?",
+                    tip: "Explain that HTML structures a webpage, CSS styles it, and JavaScript adds functionality and interactivity."
+                },
+                {
+                    category: "Technical",
+                    question: "What is the difference between let, const, and var in JavaScript?",
+                    tip: "Explain scope, reassignment, redeclaration, and why let and const are generally preferred in modern JavaScript."
+                },
+                {
+                    category: "Technical",
+                    question: "What is object-oriented programming?",
+                    tip: "Describe programming using objects and classes. Mention encapsulation, inheritance, polymorphism, and abstraction."
+                },
+                {
+                    category: "Technical",
+                    question: "What is the difference between frontend and backend development?",
+                    tip: "Explain that frontend handles the user interface while backend handles server-side logic, data, and APIs."
+                },
+                {
+                    category: "Technical",
+                    question: "What is an API?",
+                    tip: "Explain how an API allows different software systems to communicate. Give a simple example such as a frontend requesting data from a server."
+                },
+                {
+                    category: "Technical",
+                    question: "What is the purpose of version control?",
+                    tip: "Discuss tracking code changes, collaboration, branches, and tools such as Git."
+                },
+                {
+                    category: "HR",
+                    question: "Why do you want to work for our company?",
+                    tip: "Research the company's work, products, culture, or goals. Explain what genuinely interests you."
+                },
+                {
+                    category: "HR",
+                    question: "What are your salary expectations?",
+                    tip: "Research the market range for the role. Give a reasonable range or explain that you are open to discussing a fair offer."
+                },
+                {
+                    category: "HR",
+                    question: "How do you handle pressure and deadlines?",
+                    tip: "Describe how you prioritize tasks, organize your work, communicate early, and stay focused."
+                },
+                {
+                    category: "Behavioral",
+                    question: "Tell me about a time you solved a difficult problem.",
+                    tip: "Use the STAR method: Situation, Task, Action, and Result. Explain your own contribution clearly."
+                },
+                {
+                    category: "Behavioral",
+                    question: "Describe a time you worked in a team.",
+                    tip: "Explain the team goal, your responsibilities, how you communicated, and the result."
+                },
+                {
+                    category: "Behavioral",
+                    question: "Tell me about a mistake you made and what you learned.",
+                    tip: "Choose a genuine professional or academic example. Focus on responsibility, improvement, and what changed afterward."
+                }
+
+            ];
+
+
+            const categorySelect =
+                document.getElementById("categorySelect");
+
+            const questionText =
+                document.getElementById("questionText");
+
+            const questionCategory =
+                document.getElementById("questionCategory");
+
+            const questionNumber =
+                document.getElementById("questionNumber");
+
+            const questionTip =
+                document.getElementById("questionTip");
+
+            const answerInput =
+                document.getElementById("answerInput");
+
+            const practiceMessage =
+                document.getElementById("practiceMessage");
+
+
+            let filteredQuestions = questions;
+
+            let currentIndex = 0;
+
+            let answers = {};
+
+
+            // Restore saved data
+            function loadProgress() {
+
+                const saved = SkillNestStorage.get(
+                    STORAGE_KEY,
+                    null
+                );
+
+                if (saved && typeof saved === "object") {
+
+                    if (
+                        saved.answers &&
+                        typeof saved.answers === "object" &&
+                        !Array.isArray(saved.answers)
+                    ) {
+                        answers = saved.answers;
+                    }
+
+                    if (
+                        typeof saved.category === "string" &&
+                        ["all", "General", "Technical", "HR", "Behavioral"]
+                            .includes(saved.category)
+                    ) {
+                        categorySelect.value = saved.category;
+                    }
+
+                    if (
+                        Number.isInteger(saved.currentIndex) &&
+                        saved.currentIndex >= 0
+                    ) {
+                        currentIndex = saved.currentIndex;
+                    }
+
+                }
+
+            }
+
+
+            // Save progress
+            function saveProgress() {
+
+                const data = {
+                    answers: answers,
+                    category: categorySelect.value,
+                    currentIndex: currentIndex
+                };
+
+                SkillNestStorage.save(STORAGE_KEY, data);
+
+            }
+
+
+            // Filter questions
+            function filterQuestions() {
+
+                const selected = categorySelect.value;
+
+                if (selected === "all") {
+
+                    filteredQuestions = questions;
+
+                } else {
+
+                    filteredQuestions = questions.filter(function (item) {
+
+                        return item.category === selected;
+
+                    });
+
+                }
+
+                if (currentIndex >= filteredQuestions.length) {
+
+                    currentIndex = 0;
+
+                }
+
+                renderQuestion();
+
+            }
+
+
+            // Display current question
+            function renderQuestion() {
+
+                if (!filteredQuestions.length) return;
+
+                const question = filteredQuestions[currentIndex];
+
+                questionText.textContent = question.question;
+
+                questionCategory.textContent = question.category;
+
+                questionNumber.textContent =
+                    "Question " + (currentIndex + 1) +
+                    " of " + filteredQuestions.length;
+
+                questionTip.textContent = question.tip;
+
+                questionTip.classList.remove("show");
+
+                document.getElementById("showTip").textContent =
+                    "Show Answer Tips";
+
+                answerInput.value = answers[question.question] || "";
+
+                updateStats();
+
+                saveProgress();
+
+            }
+
+
+            // Update statistics
+            function updateStats() {
+
+                const total = filteredQuestions.length;
+
+                const answered = filteredQuestions.filter(function (item) {
+
+                    return typeof answers[item.question] === "string" &&
+                        answers[item.question].trim().length > 0;
+
+                }).length;
+
+                const percentage = total
+                    ? Math.round((answered / total) * 100)
+                    : 0;
+
+                document.getElementById(
+                    "totalQuestions"
+                ).textContent = total;
+
+                document.getElementById(
+                    "answeredQuestions"
+                ).textContent = answered;
+
+                document.getElementById(
+                    "progressPercentage"
+                ).textContent = percentage + "%";
+
+                document.getElementById(
+                    "progressText"
+                ).textContent =
+                    "You have answered " + answered +
+                    " out of " + total + " questions in this category.";
+
+                document.getElementById(
+                    "progressBar"
+                ).style.width = percentage + "%";
+
+            }
+
+
+            // Category selection
+            categorySelect.addEventListener("change", function () {
+
+                currentIndex = 0;
+
+                practiceMessage.textContent = "";
+
+                filterQuestions();
+
+            });
+
+
+            // Save current answer automatically in memory
+            answerInput.addEventListener("input", function () {
+
+                const question = filteredQuestions[currentIndex];
+
+                if (!question) return;
+
+                answers[question.question] = answerInput.value;
+
+                saveProgress();
+
+                updateStats();
+
+                practiceMessage.textContent = "Answer updated.";
+
+            });
+
+
+            // Save answer button
+            document.getElementById("saveAnswer")
+                .addEventListener("click", function () {
+
+                    const question = filteredQuestions[currentIndex];
+
+                    if (!question) return;
+
+                    answers[question.question] = answerInput.value;
+
+                    saveProgress();
+
+                    updateStats();
+
+                    practiceMessage.textContent =
+                        "Your answer has been saved successfully.";
+
+                });
+
+
+            // Previous question
+            document.getElementById("previousQuestion")
+                .addEventListener("click", function () {
+
+                    if (currentIndex > 0) {
+
+                        currentIndex--;
+
+                        renderQuestion();
+
+                        practiceMessage.textContent = "";
+
+                    } else {
+
+                        practiceMessage.textContent =
+                            "You are already on the first question.";
+
+                    }
+
+                });
+
+
+            // Next question
+            document.getElementById("nextQuestion")
+                .addEventListener("click", function () {
+
+                    if (currentIndex < filteredQuestions.length - 1) {
+
+                        currentIndex++;
+
+                        renderQuestion();
+
+                        practiceMessage.textContent = "";
+
+                    } else {
+
+                        practiceMessage.textContent =
+                            "You have reached the last question.";
+
+                    }
+
+                });
+
+
+            // Random question
+            document.getElementById("randomQuestion")
+                .addEventListener("click", function () {
+
+                    if (filteredQuestions.length <= 1) {
+
+                        practiceMessage.textContent =
+                            "There are no other questions in this category.";
+
+                        return;
+
+                    }
+
+                    let randomIndex;
+
+                    do {
+
+                        randomIndex = Math.floor(
+                            Math.random() * filteredQuestions.length
+                        );
+
+                    } while (randomIndex === currentIndex);
+
+                    currentIndex = randomIndex;
+
+                    renderQuestion();
+
+                    practiceMessage.textContent =
+                        "A random question has been selected.";
+
+                });
+
+
+            // Show answer tips
+            document.getElementById("showTip")
+                .addEventListener("click", function () {
+
+                    questionTip.classList.toggle("show");
+
+                    const visible = questionTip.classList.contains("show");
+
+                    this.textContent = visible
+                        ? "Hide Answer Tips"
+                        : "Show Answer Tips";
+
+                });
+
+
+            // Clear current answer
+            document.getElementById("clearAnswer")
+                .addEventListener("click", function () {
+
+                    const question = filteredQuestions[currentIndex];
+
+                    if (!question) return;
+
+                    if (!confirm("Clear your answer to this question?")) {
+                        return;
+                    }
+
+                    delete answers[question.question];
+
+                    answerInput.value = "";
+
+                    saveProgress();
+
+                    updateStats();
+
+                    practiceMessage.textContent =
+                        "Your answer has been cleared.";
+
+                });
+
+
+            // Reset all progress
+            document.getElementById("resetProgress")
+                .addEventListener("click", function () {
+
+                    if (!confirm(
+                        "Are you sure you want to delete all your interview practice answers?"
+                    )) {
+                        return;
+                    }
+
+                    answers = {};
+
+                    currentIndex = 0;
+
+                    SkillNestStorage.remove(STORAGE_KEY);
+
+                    filterQuestions();
+
+                    practiceMessage.textContent =
+                        "All interview practice progress has been reset.";
+
+                });
+
+
+            // Initial setup
+            loadProgress();
+
+            filterQuestions();
+
+        });
+
+    </script>
+
+
+<script src="../js/sidebar.js" defer></script>
+</body>
+</html>
+
+

@@ -1,0 +1,1220 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Study Tips and Productivity Guide for Students | SkillNest</title>
+
+    <meta name="description" content="Improve your study habits with practical tips for time management, active recall, spaced repetition, Pomodoro sessions, exam preparation, and student productivity.">
+
+    <meta name="keywords" content="study tips, study techniques, student productivity, time management, active recall, spaced repetition, Pomodoro technique, exam preparation">
+
+    <meta name="author" content="SkillNest">
+
+    <link rel="canonical" href="https://your-domain.netlify.app/resources/study-tips.html">
+
+    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/tools.css">
+<link rel="stylesheet" href="../css/themes.css">
+
+    <style>
+        .guide-hero {
+            padding: 65px 20px;
+            text-align: center;
+            background: var(--bg-secondary);
+        }
+
+        .guide-hero h1 {
+            max-width: 850px;
+            margin: 0 auto 18px;
+            font-size: clamp(32px, 5vw, 48px);
+            line-height: 1.2;
+        }
+
+        .guide-hero p {
+            max-width: 700px;
+            margin: auto;
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .guide-label {
+            display: inline-block;
+            margin-bottom: 18px;
+            padding: 8px 15px;
+            border-radius: 30px;
+            background: rgba(118, 87, 246, 0.13);
+            color: var(--primary-color);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .guide-breadcrumb {
+            padding-top: 20px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .guide-breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .guide-layout {
+            display: grid;
+            grid-template-columns: 250px minmax(0, 1fr);
+            gap: 35px;
+            padding-top: 55px;
+            padding-bottom: 80px;
+            align-items: start;
+        }
+
+        .guide-sidebar {
+            position: sticky;
+            top: 100px;
+            padding: 22px;
+            border: 1px solid var(--border-color);
+            border-radius: 13px;
+            background: var(--bg-secondary);
+        }
+
+        .guide-sidebar h3 {
+            margin-bottom: 15px;
+            font-size: 17px;
+        }
+
+        .guide-sidebar a {
+            display: block;
+            padding: 9px 0;
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 13px;
+        }
+
+        .guide-sidebar a:hover {
+            color: var(--primary-color);
+        }
+
+        .guide-content {
+            min-width: 0;
+        }
+
+        .guide-content section {
+            margin-bottom: 42px;
+            scroll-margin-top: 100px;
+        }
+
+        .guide-content h2 {
+            font-size: 27px;
+            margin-bottom: 17px;
+            line-height: 1.4;
+        }
+
+        .guide-content h3 {
+            font-size: 19px;
+            margin: 23px 0 10px;
+        }
+
+        .guide-content p {
+            color: var(--text-secondary);
+            font-size: 15px;
+            line-height: 1.9;
+            margin-bottom: 14px;
+        }
+
+        .guide-content ul,
+        .guide-content ol {
+            padding-left: 24px;
+            margin: 15px 0;
+        }
+
+        .guide-content li {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.9;
+            margin-bottom: 7px;
+        }
+
+        .guide-note {
+            padding: 20px;
+            margin: 22px 0;
+            border-left: 4px solid var(--primary-color);
+            border-radius: 8px;
+            background: rgba(118, 87, 246, 0.09);
+        }
+
+        .guide-note p {
+            margin: 0;
+        }
+
+        .example-card {
+            padding: 22px;
+            margin: 20px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-secondary);
+        }
+
+        .example-card h3 {
+            margin-top: 0;
+        }
+
+        .method-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+            margin: 20px 0;
+        }
+
+        .method-card {
+            padding: 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 11px;
+            background: var(--bg-primary);
+        }
+
+        .method-card strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+        }
+
+        .method-card p {
+            margin: 0;
+            font-size: 13px;
+        }
+
+        .routine-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .routine-table th,
+        .routine-table td {
+            padding: 13px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+            font-size: 13px;
+        }
+
+        .routine-table th {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        .routine-table td {
+            color: var(--text-secondary);
+        }
+
+        .faq-item {
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .faq-item h3 {
+            margin: 0 0 9px;
+            font-size: 17px;
+        }
+
+        .faq-item p {
+            margin: 0;
+        }
+
+        .guide-cta {
+            padding: 32px 25px;
+            margin-top: 35px;
+            text-align: center;
+            border-radius: 15px;
+            background: rgba(118, 87, 246, 0.1);
+        }
+
+        .guide-cta h2 {
+            margin-bottom: 12px;
+        }
+
+        .guide-cta p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        @media(max-width: 850px) {
+            .guide-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .guide-sidebar {
+                position: static;
+            }
+
+            .guide-sidebar nav {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 0 15px;
+            }
+        }
+
+        @media(max-width: 600px) {
+            .method-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .routine-table th,
+            .routine-table td {
+                padding: 9px;
+                font-size: 12px;
+            }
+        }
+
+        @media(max-width: 500px) {
+            .guide-sidebar nav {
+                grid-template-columns: 1fr;
+            }
+
+            .guide-content h2 {
+                font-size: 23px;
+            }
+        }
+
+        @media print {
+            .header,
+            .guide-sidebar,
+            .guide-cta,
+            .footer,
+            .guide-breadcrumb {
+                display: none !important;
+            }
+
+            .guide-layout {
+                display: block;
+            }
+
+            .guide-content p,
+            .guide-content li {
+                color: #222;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="../index.html" class="logo">
+                Skill<span>Nest</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../student-tools/index.html">Student Tools</a>
+                <a href="../career-tools/index.html">Career Tools</a>
+                <a href="../productivity-tools/index.html">Productivity</a>
+                <a href="index.html">Resources</a>
+                <a href="../about.html">About</a>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch to light mode"
+                >
+                    â—
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="guide-hero">
+            <div class="container">
+
+                <span class="guide-label">STUDENT SUCCESS GUIDE</span>
+
+                <h1>
+                    Smart Study Tips for
+                    <span style="color:var(--primary-color);">
+                        Better Productivity
+                    </span>
+                </h1>
+
+                <p>
+                    Build better study habits, manage your time,
+                    improve your learning techniques, and prepare
+                    for exams with practical strategies.
+                </p>
+
+            </div>
+        </section>
+
+
+        <div class="container">
+
+            <div class="guide-breadcrumb">
+                <a href="../index.html">Home</a>
+                /
+                <a href="index.html">Resources</a>
+                /
+                Study Tips
+            </div>
+
+
+            <div class="guide-layout">
+
+                <!-- SIDEBAR -->
+                <aside class="guide-sidebar">
+
+                    <h3>In This Guide</h3>
+
+                    <nav>
+                        <a href="#introduction">Introduction</a>
+                        <a href="#goals">Set Study Goals</a>
+                        <a href="#planning">Time Management</a>
+                        <a href="#active-recall">Active Recall</a>
+                        <a href="#spaced">Spaced Repetition</a>
+                        <a href="#pomodoro">Pomodoro Technique</a>
+                        <a href="#environment">Study Environment</a>
+                        <a href="#distractions">Avoid Distractions</a>
+                        <a href="#exams">Exam Preparation</a>
+                        <a href="#routine">Daily Routine</a>
+                        <a href="#wellbeing">Healthy Study Habits</a>
+                        <a href="#mistakes">Study Mistakes</a>
+                        <a href="#checklist">Study Checklist</a>
+                        <a href="#faqs">FAQs</a>
+                    </nav>
+
+                </aside>
+
+
+                <!-- MAIN CONTENT -->
+                <article class="guide-content">
+
+
+                    <!-- INTRODUCTION -->
+                    <section id="introduction">
+
+                        <h2>1. Introduction to Effective Studying</h2>
+
+                        <p>
+                            Studying effectively is not only about spending
+                            long hours with books. It is also about how
+                            you organize information, practice concepts,
+                            review what you have learned, and manage
+                            your available time.
+                        </p>
+
+                        <p>
+                            A good study routine should be realistic,
+                            consistent, and flexible enough to fit
+                            your university or school schedule.
+                        </p>
+
+                        <div class="guide-note">
+                            <p>
+                                <strong>Important:</strong>
+                                Everyone learns differently. Try different
+                                study methods and keep the techniques
+                                that help you understand and remember
+                                information.
+                            </p>
+                        </div>
+
+                    </section>
+
+
+                    <!-- GOALS -->
+                    <section id="goals">
+
+                        <h2>2. Set Clear and Achievable Study Goals</h2>
+
+                        <p>
+                            Studying becomes easier to organize when
+                            you know exactly what you want to complete.
+                        </p>
+
+                        <p>Instead of writing:</p>
+
+                        <div class="example-card">
+                            <p>
+                                "Study Computer Science."
+                            </p>
+                        </div>
+
+                        <p>Write a more specific goal:</p>
+
+                        <div class="example-card">
+                            <p>
+                                "Complete the lecture on database
+                                normalization and solve five practice
+                                questions."
+                            </p>
+                        </div>
+
+                        <h3>Use Small Daily Goals</h3>
+
+                        <ul>
+                            <li>Read one lecture or chapter.</li>
+                            <li>Review important definitions.</li>
+                            <li>Solve a few practice questions.</li>
+                            <li>Revise yesterday's topics.</li>
+                            <li>Complete one pending assignment task.</li>
+                        </ul>
+
+                        <p>
+                            Small goals help you measure progress
+                            and make large tasks feel more manageable.
+                        </p>
+
+                    </section>
+
+
+                    <!-- PLANNING -->
+                    <section id="planning">
+
+                        <h2>3. Improve Your Time Management</h2>
+
+                        <p>
+                            Time management helps you balance lectures,
+                            assignments, exam preparation, personal
+                            responsibilities, and rest.
+                        </p>
+
+                        <h3>Plan Your Week</h3>
+
+                        <ol>
+                            <li>Write down your classes and fixed commitments.</li>
+                            <li>List upcoming assignments and exams.</li>
+                            <li>Choose your most important tasks.</li>
+                            <li>Divide large tasks into smaller activities.</li>
+                            <li>Reserve time for revision and breaks.</li>
+                        </ol>
+
+                        <h3>Prioritize Important Tasks</h3>
+
+                        <div class="method-grid">
+
+                            <div class="method-card">
+                                <strong>High Priority</strong>
+                                <p>
+                                    Upcoming exams, urgent assignments,
+                                    and important deadlines.
+                                </p>
+                            </div>
+
+                            <div class="method-card">
+                                <strong>Medium Priority</strong>
+                                <p>
+                                    Regular revision, practice exercises,
+                                    and ongoing projects.
+                                </p>
+                            </div>
+
+                            <div class="method-card">
+                                <strong>Low Priority</strong>
+                                <p>
+                                    Optional reading and tasks
+                                    without an immediate deadline.
+                                </p>
+                            </div>
+
+                            <div class="method-card">
+                                <strong>Personal Time</strong>
+                                <p>
+                                    Meals, exercise, rest, and
+                                    time with family and friends.
+                                </p>
+                            </div>
+
+                        </div>
+
+                        <a
+                            href="../student-tools/study-planner.html"
+                            class="btn btn-primary"
+                        >
+                            Open Study Planner
+                        </a>
+
+                    </section>
+
+
+                    <!-- ACTIVE RECALL -->
+                    <section id="active-recall">
+
+                        <h2>4. Use Active Recall</h2>
+
+                        <p>
+                            Active recall means trying to remember
+                            information without immediately looking
+                            at your notes or textbook.
+                        </p>
+
+                        <h3>How to Practice Active Recall</h3>
+
+                        <ol>
+                            <li>Read a short topic carefully.</li>
+                            <li>Close your book or notes.</li>
+                            <li>Ask yourself questions about the topic.</li>
+                            <li>Write or explain what you remember.</li>
+                            <li>Check your notes to identify missing details.</li>
+                        </ol>
+
+                        <div class="example-card">
+
+                            <h3>Example: Computer Science</h3>
+
+                            <p>
+                                After studying Object-Oriented Programming,
+                                close your notes and answer:
+                            </p>
+
+                            <ul>
+                                <li>What is a class?</li>
+                                <li>What is an object?</li>
+                                <li>What is inheritance?</li>
+                                <li>What is encapsulation?</li>
+                            </ul>
+
+                        </div>
+
+                        <p>
+                            This approach encourages you to retrieve
+                            information instead of only rereading it.
+                        </p>
+
+                        <a
+                            href="../productivity-tools/flashcards.html"
+                            class="btn btn-primary"
+                        >
+                            Practice with Flashcards
+                        </a>
+
+                    </section>
+
+
+                    <!-- SPACED REPETITION -->
+                    <section id="spaced">
+
+                        <h2>5. Try Spaced Repetition</h2>
+
+                        <p>
+                            Spaced repetition means reviewing information
+                            at intervals instead of trying to learn
+                            everything in one long session.
+                        </p>
+
+                        <p>
+                            A simple review schedule might look like this:
+                        </p>
+
+                        <div class="example-card">
+
+                            <h3>Example Revision Schedule</h3>
+
+                            <ul>
+                                <li><strong>Day 1:</strong> Learn the topic.</li>
+                                <li><strong>Day 2:</strong> Review key concepts.</li>
+                                <li><strong>Day 4:</strong> Test your memory.</li>
+                                <li><strong>Day 7:</strong> Revise difficult areas.</li>
+                                <li><strong>Day 14:</strong> Review again.</li>
+                            </ul>
+
+                        </div>
+
+                        <p>
+                            These are example intervals, not a fixed
+                            rule. Adjust the schedule based on topic
+                            difficulty and how well you remember it.
+                        </p>
+
+                        <div class="guide-note">
+                            <p>
+                                Combine spaced repetition with active
+                                recall for a useful revision routine.
+                            </p>
+                        </div>
+
+                    </section>
+
+
+                    <!-- POMODORO -->
+                    <section id="pomodoro">
+
+                        <h2>6. Use the Pomodoro Technique</h2>
+
+                        <p>
+                            The Pomodoro Technique is a time-management
+                            approach that divides work into focused
+                            sessions separated by short breaks.
+                        </p>
+
+                        <h3>Basic 25-Minute Method</h3>
+
+                        <ol>
+                            <li>Choose one task.</li>
+                            <li>Work with focus for 25 minutes.</li>
+                            <li>Take a 5-minute break.</li>
+                            <li>Repeat the cycle.</li>
+                            <li>After four sessions, take a longer break.</li>
+                        </ol>
+
+                        <div class="example-card">
+
+                            <h3>Example Study Session</h3>
+
+                            <table class="routine-table">
+
+                                <thead>
+                                    <tr>
+                                        <th>Activity</th>
+                                        <th>Duration</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>Study session 1</td>
+                                        <td>25 minutes</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Short break</td>
+                                        <td>5 minutes</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Study session 2</td>
+                                        <td>25 minutes</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Short break</td>
+                                        <td>5 minutes</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Study session 3</td>
+                                        <td>25 minutes</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Short break</td>
+                                        <td>5 minutes</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Study session 4</td>
+                                        <td>25 minutes</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>Long break</td>
+                                        <td>15–30 minutes</td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                        <p>
+                            If 25 minutes does not suit your work,
+                            adjust the session length to match your
+                            attention and task requirements.
+                        </p>
+
+                        <a
+                            href="../productivity-tools/pomodoro-timer.html"
+                            class="btn btn-primary"
+                        >
+                            Start Pomodoro Timer
+                        </a>
+
+                    </section>
+
+
+                    <!-- ENVIRONMENT -->
+                    <section id="environment">
+
+                        <h2>7. Create a Better Study Environment</h2>
+
+                        <p>
+                            Your study environment can affect your ability
+                            to concentrate and organize your work.
+                        </p>
+
+                        <ul>
+                            <li>Choose a comfortable and suitable study area.</li>
+                            <li>Keep your books and materials organized.</li>
+                            <li>Use enough lighting.</li>
+                            <li>Keep drinking water nearby.</li>
+                            <li>Prepare the materials you need before starting.</li>
+                            <li>Keep unnecessary distractions away.</li>
+                        </ul>
+
+                        <p>
+                            You do not need an expensive desk or equipment.
+                            A simple, organized place can be enough.
+                        </p>
+
+                    </section>
+
+
+                    <!-- DISTRACTIONS -->
+                    <section id="distractions">
+
+                        <h2>8. How to Avoid Distractions</h2>
+
+                        <p>
+                            Frequent interruptions can make it harder
+                            to stay focused on a task.
+                        </p>
+
+                        <h3>Practical Tips</h3>
+
+                        <ul>
+                            <li>Silence unnecessary phone notifications.</li>
+                            <li>Keep social media closed during study sessions.</li>
+                            <li>Study one main task at a time.</li>
+                            <li>Use a timer to create a clear work period.</li>
+                            <li>Keep your study area organized.</li>
+                            <li>Write unrelated thoughts or tasks down for later.</li>
+                        </ul>
+
+                        <div class="guide-note">
+                            <p>
+                                If you lose focus, do not waste time
+                                criticizing yourself. Return to your
+                                task and continue with a manageable step.
+                            </p>
+                        </div>
+
+                    </section>
+
+
+                    <!-- EXAMS -->
+                    <section id="exams">
+
+                        <h2>9. Prepare Effectively for Exams</h2>
+
+                        <p>
+                            Exam preparation becomes easier when
+                            you begin early and revise consistently.
+                        </p>
+
+                        <h3>Before Exam Preparation</h3>
+
+                        <ul>
+                            <li>Collect the syllabus and lecture notes.</li>
+                            <li>Identify the topics included in the exam.</li>
+                            <li>Organize topics by difficulty and importance.</li>
+                            <li>Prepare a revision timetable.</li>
+                        </ul>
+
+                        <h3>During Exam Preparation</h3>
+
+                        <ul>
+                            <li>Understand concepts instead of memorizing blindly.</li>
+                            <li>Practice questions and past papers when available.</li>
+                            <li>Make short revision notes.</li>
+                            <li>Test yourself without looking at answers.</li>
+                            <li>Review topics you find difficult.</li>
+                        </ul>
+
+                        <h3>Before Exam Day</h3>
+
+                        <ul>
+                            <li>Review important concepts.</li>
+                            <li>Prepare required stationery and documents.</li>
+                            <li>Confirm the exam time and location.</li>
+                            <li>Get adequate rest.</li>
+                        </ul>
+
+                        <a
+                            href="../student-tools/exam-countdown.html"
+                            class="btn btn-primary"
+                        >
+                            Set Your Exam Countdown
+                        </a>
+
+                    </section>
+
+
+                    <!-- ROUTINE -->
+                    <section id="routine">
+
+                        <h2>10. Build a Simple Daily Study Routine</h2>
+
+                        <p>
+                            A routine helps you decide what to study
+                            and when to study it. Use this example
+                            as a starting point and adjust it to
+                            your own schedule.
+                        </p>
+
+                        <div class="example-card">
+
+                            <h3>Example Daily Study Schedule</h3>
+
+                            <table class="routine-table">
+
+                                <thead>
+                                    <tr>
+                                        <th>Time</th>
+                                        <th>Activity</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td>8:00 AM</td>
+                                        <td>Review previous topics</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>9:00 AM</td>
+                                        <td>University classes or learning</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>1:00 PM</td>
+                                        <td>Lunch and rest</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>3:00 PM</td>
+                                        <td>Assignment or project work</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>5:00 PM</td>
+                                        <td>Short revision session</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>7:00 PM</td>
+                                        <td>Practice questions</td>
+                                    </tr>
+
+                                    <tr>
+                                        <td>9:00 PM</td>
+                                        <td>Plan the next day</td>
+                                    </tr>
+                                </tbody>
+
+                            </table>
+
+                        </div>
+
+                        <p>
+                            This is only an example, not a schedule
+                            everyone must follow. Your classes,
+                            responsibilities, and energy levels
+                            should guide your routine.
+                        </p>
+
+                    </section>
+
+
+                    <!-- WELLBEING -->
+                    <section id="wellbeing">
+
+                        <h2>11. Maintain Healthy Study Habits</h2>
+
+                        <p>
+                            Productivity should not come at the cost
+                            of your wellbeing. A balanced routine
+                            includes rest and personal time.
+                        </p>
+
+                        <ul>
+                            <li>Get enough sleep according to your needs.</li>
+                            <li>Take regular breaks during long study sessions.</li>
+                            <li>Stay hydrated.</li>
+                            <li>Include movement or physical activity in your day.</li>
+                            <li>Make time for family, friends, and hobbies.</li>
+                            <li>Avoid comparing your daily progress with others.</li>
+                        </ul>
+
+                        <div class="guide-note">
+                            <p>
+                                Consistency is more useful than trying
+                                to study for extremely long hours
+                                every day.
+                            </p>
+                        </div>
+
+                    </section>
+
+
+                    <!-- MISTAKES -->
+                    <section id="mistakes">
+
+                        <h2>12. Common Study Mistakes</h2>
+
+                        <ul>
+                            <li>Waiting until the last day to prepare for exams.</li>
+                            <li>Reading notes repeatedly without testing memory.</li>
+                            <li>Studying without a clear goal.</li>
+                            <li>Keeping a phone nearby with constant notifications.</li>
+                            <li>Ignoring difficult topics.</li>
+                            <li>Skipping revision.</li>
+                            <li>Trying to study every subject at the same time.</li>
+                            <li>Not taking breaks or getting enough rest.</li>
+                        </ul>
+
+                        <p>
+                            Identify which habits affect your learning
+                            and improve them gradually.
+                        </p>
+
+                    </section>
+
+
+                    <!-- CHECKLIST -->
+                    <section id="checklist">
+
+                        <h2>13. Daily Study Checklist</h2>
+
+                        <p>
+                            Use this checklist to organize your
+                            study activities.
+                        </p>
+
+                        <div class="example-card">
+
+                            <label>
+                                <input type="checkbox">
+                                I selected my main study goals.
+                            </label>
+
+                            <br><br>
+
+                            <label>
+                                <input type="checkbox">
+                                I reviewed previous topics.
+                            </label>
+
+                            <br><br>
+
+                            <label>
+                                <input type="checkbox">
+                                I completed at least one focused study session.
+                            </label>
+
+                            <br><br>
+
+                            <label>
+                                <input type="checkbox">
+                                I practiced questions or active recall.
+                            </label>
+
+                            <br><br>
+
+                            <label>
+                                <input type="checkbox">
+                                I revised difficult concepts.
+                            </label>
+
+                            <br><br>
+
+                            <label>
+                                <input type="checkbox">
+                                I took suitable breaks.
+                            </label>
+
+                            <br><br>
+
+                            <label>
+                                <input type="checkbox">
+                                I planned my next study session.
+                            </label>
+
+                        </div>
+
+                        <p>
+                            These checklist selections are temporary
+                            and will reset when the page is refreshed.
+                        </p>
+
+                    </section>
+
+
+                    <!-- FAQ -->
+                    <section id="faqs">
+
+                        <h2>14. Frequently Asked Questions</h2>
+
+                        <div class="faq-item">
+
+                            <h3>How many hours should a student study daily?</h3>
+
+                            <p>
+                                There is no single correct number.
+                                Study time depends on your subjects,
+                                workload, goals, and personal schedule.
+                                Focus on effective learning rather
+                                than hours alone.
+                            </p>
+
+                        </div>
+
+                        <div class="faq-item">
+
+                            <h3>What is the best study technique?</h3>
+
+                            <p>
+                                Active recall, spaced repetition,
+                                practice questions, and focused study
+                                sessions are useful techniques.
+                                The best combination depends on
+                                the subject and learner.
+                            </p>
+
+                        </div>
+
+                        <div class="faq-item">
+
+                            <h3>Is studying at night better?</h3>
+
+                            <p>
+                                It depends on your personal routine
+                                and concentration. Choose study times
+                                when you can focus effectively while
+                                maintaining a healthy sleep schedule.
+                            </p>
+
+                        </div>
+
+                        <div class="faq-item">
+
+                            <h3>How can I stop procrastinating?</h3>
+
+                            <p>
+                                Start with a small task, set a clear
+                                goal, remove unnecessary distractions,
+                                and use a timer to begin a focused session.
+                            </p>
+
+                        </div>
+
+                        <div class="faq-item">
+
+                            <h3>How can I remember what I study?</h3>
+
+                            <p>
+                                Test yourself, explain concepts in
+                                your own words, review information
+                                at intervals, and practice applying
+                                what you have learned.
+                            </p>
+
+                        </div>
+
+                    </section>
+
+
+                    <!-- CTA -->
+                    <section class="guide-cta">
+
+                        <h2>Make Your Study Routine More Organized</h2>
+
+                        <p>
+                            SkillNest offers free tools to help you
+                            plan study sessions, track exams, manage
+                            tasks, and stay focused.
+                        </p>
+
+                        <a
+                            href="../student-tools/index.html"
+                            class="btn btn-primary"
+                        >
+                            Explore Student Tools
+                        </a>
+
+                        <p style="margin-top:20px; margin-bottom:0;">
+                            Need help staying focused?
+                            <a href="../productivity-tools/index.html">
+                                Explore Productivity Tools
+                            </a>.
+                        </p>
+
+                    </section>
+
+
+                    <p style="font-size:12px; margin-top:30px;">
+                        <strong>Disclaimer:</strong>
+                        This guide provides general educational information.
+                        Study techniques and schedules should be adjusted
+                        to individual learning needs and circumstances.
+                    </p>
+
+                </article>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+                    <a href="../about.html">About</a>
+                    <a href="../contact.html">Contact</a>
+                    <a href="../privacy-policy.html">Privacy Policy</a>
+                    <a href="../terms-and-conditions.html">Terms</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SHARED JAVASCRIPT -->
+    <script src="../js/storage.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/main.js"></script>
+
+
+<script src="../js/sidebar.js" defer></script>
+</body>
+</html>
+
+

@@ -1,0 +1,1542 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free Online Flashcards | SkillNest</title>
+
+    <meta name="description" content="Create free online flashcards to memorize questions, answers, definitions, and study notes. Flip cards, shuffle your deck, and track your learning progress with SkillNest.">
+
+    <meta name="keywords" content="online flashcards, free flashcard maker, study flashcards, memorization tool, learning cards">
+
+    <meta name="author" content="SkillNest">
+
+    <link rel="canonical" href="https://your-domain.netlify.app/productivity-tools/flashcards.html">
+
+    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/tools.css">
+<link rel="stylesheet" href="../css/themes.css">
+    <style>
+        .flash-hero {
+            padding: 45px 20px;
+            text-align: center;
+            background: var(--bg-secondary);
+        }
+
+        .flash-hero h1 {
+            margin-bottom: 12px;
+            font-size: clamp(30px, 5vw, 42px);
+        }
+
+        .flash-hero p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .breadcrumb {
+            margin-bottom: 18px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .flash-container {
+            max-width: 950px;
+            margin: 45px auto 75px;
+            padding: 0 20px;
+        }
+
+        .flash-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+            margin-bottom: 25px;
+        }
+
+        .flash-stat {
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--card-bg);
+            text-align: center;
+        }
+
+        .flash-stat strong {
+            display: block;
+            margin-bottom: 7px;
+            color: var(--primary-color);
+            font-size: 27px;
+        }
+
+        .flash-stat span {
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .flash-card-panel {
+            padding: 28px;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            background: var(--card-bg);
+        }
+
+        .flash-panel-heading {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .flash-panel-heading h2 {
+            margin: 0;
+            font-size: 21px;
+        }
+
+        .flash-count {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .flash-progress-track {
+            width: 100%;
+            height: 8px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            border-radius: 20px;
+            background: var(--bg-secondary);
+        }
+
+        .flash-progress-bar {
+            width: 0;
+            height: 100%;
+            border-radius: 20px;
+            background: var(--primary-color);
+            transition: width 0.25s ease;
+        }
+
+        .flashcard {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            min-height: 270px;
+            padding: 35px 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            text-align: center;
+            cursor: pointer;
+            transition: transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .flashcard:hover {
+            border-color: var(--primary-color);
+        }
+
+        .flashcard:focus-visible {
+            outline: 3px solid var(--primary-color);
+            outline-offset: 4px;
+        }
+
+        .flash-side-label {
+            margin-bottom: 18px;
+            color: var(--primary-color);
+            font-size: 12px;
+            font-weight: 800;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .flash-card-text {
+            max-width: 650px;
+            font-size: clamp(20px, 4vw, 29px);
+            font-weight: 700;
+            line-height: 1.5;
+            overflow-wrap: anywhere;
+            white-space: pre-wrap;
+        }
+
+        .flash-hint {
+            margin-top: 22px;
+            color: var(--text-secondary);
+            font-size: 12px;
+        }
+
+        .flash-navigation {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 22px;
+        }
+
+        .flash-navigation button,
+        .flash-extra-actions button {
+            padding: 11px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .flash-navigation button.primary {
+            border-color: var(--primary-color);
+            background: var(--primary-color);
+            color: white;
+        }
+
+        .flash-navigation button:disabled {
+            opacity: 0.4;
+            cursor: not-allowed;
+        }
+
+        .flash-extra-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .flash-extra-actions button:hover,
+        .flash-navigation button:not(:disabled):hover {
+            border-color: var(--primary-color);
+        }
+
+        .flash-form-panel {
+            margin-top: 25px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            background: var(--card-bg);
+        }
+
+        .flash-form-panel h2 {
+            margin-bottom: 18px;
+            font-size: 21px;
+        }
+
+        .flash-form {
+            display: grid;
+            gap: 13px;
+        }
+
+        .flash-form label {
+            display: block;
+            margin-bottom: 7px;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .flash-form textarea,
+        .flash-form input {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            outline: none;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font: inherit;
+            font-size: 14px;
+        }
+
+        .flash-form textarea {
+            min-height: 100px;
+            resize: vertical;
+        }
+
+        .flash-form textarea:focus,
+        .flash-form input:focus {
+            border-color: var(--primary-color);
+        }
+
+        .flash-submit {
+            padding: 13px;
+            border: none;
+            border-radius: 8px;
+            background: var(--primary-color);
+            color: white;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .flash-cancel {
+            padding: 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: transparent;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .flash-message {
+            min-height: 20px;
+            margin-top: 12px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .flash-list-panel {
+            margin-top: 25px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 15px;
+            background: var(--card-bg);
+        }
+
+        .flash-list-panel h2 {
+            margin-bottom: 16px;
+            font-size: 21px;
+        }
+
+        .flash-list {
+            display: grid;
+            gap: 10px;
+        }
+
+        .flash-list-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            padding: 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 9px;
+            background: var(--bg-primary);
+        }
+
+        .flash-list-question {
+            flex: 1;
+            min-width: 0;
+            overflow-wrap: anywhere;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .flash-list-actions {
+            display: flex;
+            flex-shrink: 0;
+            gap: 7px;
+        }
+
+        .flash-list-actions button {
+            padding: 8px 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 7px;
+            background: var(--card-bg);
+            color: var(--text-primary);
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        .flash-list-actions button:hover {
+            border-color: var(--primary-color);
+        }
+
+        .flash-list-empty {
+            padding: 25px;
+            border: 1px dashed var(--border-color);
+            border-radius: 10px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .flash-info {
+            margin-top: 25px;
+            padding: 25px;
+            border-radius: 14px;
+            background: var(--bg-secondary);
+        }
+
+        .flash-info h2 {
+            margin-bottom: 12px;
+            font-size: 21px;
+        }
+
+        .flash-info p,
+        .flash-info li {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .flash-info ul {
+            padding-left: 22px;
+            margin-top: 10px;
+        }
+
+        @media(max-width: 600px) {
+            .flash-card-panel,
+            .flash-form-panel,
+            .flash-list-panel {
+                padding: 18px;
+            }
+
+            .flash-stats {
+                gap: 8px;
+            }
+
+            .flash-stat {
+                padding: 14px 8px;
+            }
+
+            .flash-stat strong {
+                font-size: 22px;
+            }
+
+            .flashcard {
+                min-height: 230px;
+                padding: 25px 15px;
+            }
+
+            .flash-list-item {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .flash-list-actions {
+                width: 100%;
+                justify-content: flex-end;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+<body>
+
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="../index.html" class="logo">
+                Skill<span>Nest</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+
+                <a href="../index.html">Home</a>
+
+                <a href="../student-tools/index.html">Student Tools</a>
+
+                <a href="../career-tools/index.html">Career Tools</a>
+
+                <a href="index.html" class="active">Productivity</a>
+
+                <a href="../resources/index.html">Resources</a>
+
+                <a href="../about.html">About</a>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch to light mode"
+                >
+                    â—
+                </button>
+
+            </nav>
+        </div>
+    </header>
+
+
+    <main>
+
+        <section class="flash-hero">
+            <div class="container">
+
+                <div class="breadcrumb">
+                    <a href="../index.html">Home</a>
+                    /
+                    <a href="index.html">Productivity</a>
+                    /
+                    Flashcards
+                </div>
+
+                <h1>Flashcards Learning Tool</h1>
+
+                <p>
+                    Learn smarter with digital flashcards.
+                    Create questions, reveal answers, and
+                    test your knowledge.
+                </p>
+
+            </div>
+        </section>
+
+
+        <div class="flash-container">
+
+            <!-- STATISTICS -->
+            <section class="flash-stats">
+
+                <div class="flash-stat">
+                    <strong id="totalCards">0</strong>
+                    <span>Total Cards</span>
+                </div>
+
+                <div class="flash-stat">
+                    <strong id="viewedCards">0</strong>
+                    <span>Cards Viewed</span>
+                </div>
+
+                <div class="flash-stat">
+                    <strong id="progressValue">0%</strong>
+                    <span>Deck Progress</span>
+                </div>
+
+            </section>
+
+
+            <!-- FLASHCARD VIEWER -->
+            <section class="flash-card-panel">
+
+                <div class="flash-panel-heading">
+
+                    <h2>Study Your Flashcards</h2>
+
+                    <span class="flash-count" id="cardPosition">
+                        0 / 0
+                    </span>
+
+                </div>
+
+                <div class="flash-progress-track">
+                    <div
+                        class="flash-progress-bar"
+                        id="progressBar"
+                    ></div>
+                </div>
+
+
+                <button
+                    type="button"
+                    class="flashcard"
+                    id="flashcard"
+                    aria-label="Flashcard. Press Enter or Space to reveal the answer."
+                    aria-pressed="false"
+                >
+
+                    <span
+                        class="flash-side-label"
+                        id="cardSide"
+                    >
+                        QUESTION
+                    </span>
+
+                    <span
+                        class="flash-card-text"
+                        id="cardText"
+                    >
+                        Create your first flashcard!
+                    </span>
+
+                    <span class="flash-hint" id="cardHint">
+                        Add a question and answer below to begin.
+                    </span>
+
+                </button>
+
+
+                <div class="flash-navigation">
+
+                    <button
+                        type="button"
+                        id="previousCard"
+                        disabled
+                    >
+                        â† Previous
+                    </button>
+
+                    <button
+                        type="button"
+                        class="primary"
+                        id="flipCard"
+                        disabled
+                    >
+                        Show Answer
+                    </button>
+
+                    <button
+                        type="button"
+                        id="nextCard"
+                        disabled
+                    >
+                        Next â†’
+                    </button>
+
+                </div>
+
+
+                <div class="flash-extra-actions">
+
+                    <button type="button" id="shuffleCards">
+                        <span aria-hidden="true">â‡„</span> Shuffle
+                    </button>
+
+                    <button type="button" id="resetProgress">
+                        Reset Progress
+                    </button>
+
+                </div>
+
+                <p
+                    class="flash-message"
+                    id="viewerMessage"
+                    aria-live="polite"
+                ></p>
+
+            </section>
+
+
+            <!-- CREATE / EDIT FORM -->
+            <section class="flash-form-panel">
+
+                <h2 id="formHeading">Create a Flashcard</h2>
+
+                <form class="flash-form" id="flashForm">
+
+                    <div>
+
+                        <label for="questionInput">
+                            Question
+                        </label>
+
+                        <textarea
+                            id="questionInput"
+                            placeholder="Example: What is HTML?"
+                            maxlength="1000"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="answerInput">
+                            Answer
+                        </label>
+
+                        <textarea
+                            id="answerInput"
+                            placeholder="Example: HTML is the standard markup language for web pages."
+                            maxlength="3000"
+                            required
+                        ></textarea>
+
+                    </div>
+
+
+                    <button
+                        type="submit"
+                        class="flash-submit"
+                        id="saveCardButton"
+                    >
+                        + Add Flashcard
+                    </button>
+
+                    <button
+                        type="button"
+                        class="flash-cancel"
+                        id="cancelEdit"
+                        hidden
+                    >
+                        Cancel Editing
+                    </button>
+
+                </form>
+
+                <p
+                    class="flash-message"
+                    id="formMessage"
+                    aria-live="polite"
+                ></p>
+
+            </section>
+
+
+            <!-- CARD LIST -->
+            <section class="flash-list-panel">
+
+                <h2>Manage Your Flashcards</h2>
+
+                <div class="flash-list" id="flashList"></div>
+
+            </section>
+
+
+            <!-- INFORMATION -->
+            <section class="flash-info">
+
+                <h2>How to Use Flashcards</h2>
+
+                <p>
+                    Flashcards are a simple learning method.
+                    Write a question on one side and its answer
+                    on the other. Try to answer the question
+                    before revealing the answer.
+                </p>
+
+                <ul>
+                    <li>Create short questions about important topics.</li>
+                    <li>Write clear and simple answers.</li>
+                    <li>Try to recall the answer before flipping the card.</li>
+                    <li>Shuffle your cards to practice in a different order.</li>
+                    <li>Review difficult questions more frequently.</li>
+                </ul>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+                    <a href="../about.html">About</a>
+                    <a href="../contact.html">Contact</a>
+                    <a href="../privacy-policy.html">Privacy Policy</a>
+                    <a href="../terms-and-conditions.html">Terms</a>
+                    <a href="../disclaimer.html">Disclaimer</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SHARED SCRIPTS -->
+    <script src="../js/storage.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/main.js"></script>
+
+
+    <!-- FLASHCARDS JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const STORAGE_KEY = "skillnest_flashcards_data";
+
+            const PROGRESS_KEY = "skillnest_flashcards_progress";
+
+            const flashForm = document.getElementById("flashForm");
+
+            const questionInput = document.getElementById("questionInput");
+
+            const answerInput = document.getElementById("answerInput");
+
+            const flashList = document.getElementById("flashList");
+
+            const flashcard = document.getElementById("flashcard");
+
+            const cardSide = document.getElementById("cardSide");
+
+            const cardText = document.getElementById("cardText");
+
+            const cardHint = document.getElementById("cardHint");
+
+            const flipCardButton = document.getElementById("flipCard");
+
+            const previousButton = document.getElementById("previousCard");
+
+            const nextButton = document.getElementById("nextCard");
+
+            const formHeading = document.getElementById("formHeading");
+
+            const saveCardButton = document.getElementById("saveCardButton");
+
+            const cancelEditButton = document.getElementById("cancelEdit");
+
+
+            let cards = [];
+
+            let currentIndex = 0;
+
+            let isFlipped = false;
+
+            let editingId = null;
+
+            let viewedIds = new Set();
+
+
+            function loadJSON(key, fallback) {
+
+                try {
+
+                    const value = JSON.parse(
+                        localStorage.getItem(key) || "null"
+                    );
+
+                    return value === null ? fallback : value;
+
+                } catch (error) {
+
+                    return fallback;
+
+                }
+
+            }
+
+
+            function saveData() {
+
+                try {
+
+                    localStorage.setItem(
+                        STORAGE_KEY,
+                        JSON.stringify(cards)
+                    );
+
+                    localStorage.setItem(
+                        PROGRESS_KEY,
+                        JSON.stringify(Array.from(viewedIds))
+                    );
+
+                    return true;
+
+                } catch (error) {
+
+                    document.getElementById("formMessage").textContent =
+                        "Could not save your changes. Browser storage may be full.";
+
+                    return false;
+
+                }
+
+            }
+
+
+            function createId() {
+
+                if (
+                    window.crypto &&
+                    typeof window.crypto.randomUUID === "function"
+                ) {
+
+                    return window.crypto.randomUUID();
+
+                }
+
+                return Date.now().toString(36) +
+                    Math.random().toString(36).slice(2);
+
+            }
+
+
+            function escapeText(value) {
+
+                return String(value);
+
+            }
+
+
+            function createElement(tag, className, text) {
+
+                const element = document.createElement(tag);
+
+                if (className) {
+                    element.className = className;
+                }
+
+                if (text !== undefined) {
+                    element.textContent = text;
+                }
+
+                return element;
+
+            }
+
+
+            function updateStats() {
+
+                const total = cards.length;
+
+                const viewed = cards.filter(
+                    function (card) {
+                        return viewedIds.has(card.id);
+                    }
+                ).length;
+
+                const progress = total
+                    ? Math.round((viewed / total) * 100)
+                    : 0;
+
+                document.getElementById("totalCards").textContent =
+                    total;
+
+                document.getElementById("viewedCards").textContent =
+                    viewed;
+
+                document.getElementById("progressValue").textContent =
+                    progress + "%";
+
+                document.getElementById("progressBar").style.width =
+                    progress + "%";
+
+            }
+
+
+            function renderCard() {
+
+                const total = cards.length;
+
+                const hasCards = total > 0;
+
+                if (!hasCards) {
+
+                    cardSide.textContent = "YOUR FLASHCARD";
+
+                    cardText.textContent =
+                        "Create your first flashcard!";
+
+                    cardHint.textContent =
+                        "Add a question and answer below to begin.";
+
+                    document.getElementById("cardPosition").textContent =
+                        "0 / 0";
+
+                    flashcard.disabled = true;
+
+                    flashcard.setAttribute("aria-pressed", "false");
+
+                    flipCardButton.disabled = true;
+
+                    previousButton.disabled = true;
+
+                    nextButton.disabled = true;
+
+                    updateStats();
+
+                    return;
+
+                }
+
+
+                if (currentIndex >= total) {
+                    currentIndex = total - 1;
+                }
+
+                if (currentIndex < 0) {
+                    currentIndex = 0;
+                }
+
+
+                const card = cards[currentIndex];
+
+                cardSide.textContent =
+                    isFlipped ? "ANSWER" : "QUESTION";
+
+                cardText.textContent =
+                    isFlipped ? card.answer : card.question;
+
+                cardHint.textContent =
+                    isFlipped
+                        ? "Click or press Enter to see the question."
+                        : "Click or press Enter to reveal the answer.";
+
+                document.getElementById("cardPosition").textContent =
+                    (currentIndex + 1) + " / " + total;
+
+                flashcard.disabled = false;
+
+                flashcard.setAttribute(
+                    "aria-pressed",
+                    String(isFlipped)
+                );
+
+                flashcard.setAttribute(
+                    "aria-label",
+                    (isFlipped ? "Answer: " : "Question: ") +
+                    (isFlipped ? card.answer : card.question) +
+                    ". Press Enter or Space to flip."
+                );
+
+                flipCardButton.disabled = false;
+
+                flipCardButton.textContent =
+                    isFlipped ? "Show Question" : "Show Answer";
+
+                previousButton.disabled =
+                    currentIndex === 0;
+
+                nextButton.disabled =
+                    currentIndex === total - 1;
+
+                updateStats();
+
+            }
+
+
+            function renderList() {
+
+                flashList.replaceChildren();
+
+                if (cards.length === 0) {
+
+                    flashList.appendChild(
+                        createElement(
+                            "div",
+                            "flash-list-empty",
+                            "No flashcards created yet. Add your first card above."
+                        )
+                    );
+
+                    return;
+
+                }
+
+
+                cards.forEach(function (card, index) {
+
+                    const item = createElement(
+                        "div",
+                        "flash-list-item"
+                    );
+
+                    const question = createElement(
+                        "span",
+                        "flash-list-question",
+                        (index + 1) + ". " + card.question
+                    );
+
+                    const actions = createElement(
+                        "div",
+                        "flash-list-actions"
+                    );
+
+                    const studyButton = createElement(
+                        "button",
+                        "",
+                        "Study"
+                    );
+
+                    studyButton.type = "button";
+
+                    studyButton.addEventListener(
+                        "click",
+                        function () {
+
+                            currentIndex = index;
+
+                            isFlipped = false;
+
+                            renderCard();
+
+                            document.querySelector(
+                                ".flash-card-panel"
+                            ).scrollIntoView({
+                                behavior: "smooth",
+                                block: "center"
+                            });
+
+                        }
+                    );
+
+
+                    const editButton = createElement(
+                        "button",
+                        "",
+                        "Edit"
+                    );
+
+                    editButton.type = "button";
+
+                    editButton.addEventListener(
+                        "click",
+                        function () {
+
+                            editCard(card.id);
+
+                        }
+                    );
+
+
+                    const deleteButton = createElement(
+                        "button",
+                        "",
+                        "Delete"
+                    );
+
+                    deleteButton.type = "button";
+
+                    deleteButton.addEventListener(
+                        "click",
+                        function () {
+
+                            deleteCard(card.id);
+
+                        }
+                    );
+
+
+                    actions.append(
+                        studyButton,
+                        editButton,
+                        deleteButton
+                    );
+
+                    item.append(question, actions);
+
+                    flashList.appendChild(item);
+
+                });
+
+            }
+
+
+            function renderAll() {
+
+                renderCard();
+
+                renderList();
+
+            }
+
+
+            function resetForm() {
+
+                editingId = null;
+
+                flashForm.reset();
+
+                formHeading.textContent =
+                    "Create a Flashcard";
+
+                saveCardButton.textContent =
+                    "+ Add Flashcard";
+
+                cancelEditButton.hidden = true;
+
+            }
+
+
+            flashForm.addEventListener(
+                "submit",
+                function (event) {
+
+                    event.preventDefault();
+
+                    const question = questionInput.value.trim();
+
+                    const answer = answerInput.value.trim();
+
+                    const formMessage =
+                        document.getElementById("formMessage");
+
+
+                    if (!question || !answer) {
+
+                        formMessage.textContent =
+                            "Please enter both a question and an answer.";
+
+                        return;
+
+                    }
+
+
+                    if (editingId) {
+
+                        const card = cards.find(
+                            function (item) {
+                                return item.id === editingId;
+                            }
+                        );
+
+                        if (card) {
+
+                            card.question = question;
+
+                            card.answer = answer;
+
+                        }
+
+                        formMessage.textContent =
+                            "Flashcard updated successfully.";
+
+                    } else {
+
+                        cards.push({
+
+                            id: createId(),
+
+                            question: question,
+
+                            answer: answer
+
+                        });
+
+                        currentIndex = cards.length - 1;
+
+                        isFlipped = false;
+
+                        formMessage.textContent =
+                            "Flashcard added successfully.";
+
+                    }
+
+
+                    if (!saveData()) {
+                        return;
+                    }
+
+                    resetForm();
+
+                    renderAll();
+
+                }
+            );
+
+
+            function flipCard() {
+
+                if (cards.length === 0) {
+                    return;
+                }
+
+                isFlipped = !isFlipped;
+
+                if (isFlipped) {
+
+                    viewedIds.add(cards[currentIndex].id);
+
+                    saveData();
+
+                }
+
+                renderCard();
+
+            }
+
+
+            flashcard.addEventListener(
+                "click",
+                flipCard
+            );
+
+            flashcard.addEventListener(
+                "keydown",
+                function (event) {
+
+                    if (
+                        event.key === "Enter" ||
+                        event.key === " "
+                    ) {
+
+                        event.preventDefault();
+
+                        flipCard();
+
+                    }
+
+                }
+            );
+
+
+            flipCardButton.addEventListener(
+                "click",
+                flipCard
+            );
+
+
+            previousButton.addEventListener(
+                "click",
+                function () {
+
+                    if (currentIndex > 0) {
+
+                        currentIndex--;
+
+                        isFlipped = false;
+
+                        renderCard();
+
+                    }
+
+                }
+            );
+
+
+            nextButton.addEventListener(
+                "click",
+                function () {
+
+                    if (currentIndex < cards.length - 1) {
+
+                        currentIndex++;
+
+                        isFlipped = false;
+
+                        renderCard();
+
+                    }
+
+                }
+            );
+
+
+            function editCard(id) {
+
+                const card = cards.find(
+                    function (item) {
+                        return item.id === id;
+                    }
+                );
+
+                if (!card) {
+                    return;
+                }
+
+                editingId = id;
+
+                questionInput.value = card.question;
+
+                answerInput.value = card.answer;
+
+                formHeading.textContent =
+                    "Edit Flashcard";
+
+                saveCardButton.textContent =
+                    "Save Changes";
+
+                cancelEditButton.hidden = false;
+
+                document.querySelector(
+                    ".flash-form-panel"
+                ).scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                });
+
+                questionInput.focus();
+
+            }
+
+
+            function deleteCard(id) {
+
+                if (!window.confirm(
+                    "Are you sure you want to delete this flashcard?"
+                )) {
+                    return;
+                }
+
+                const deletedIndex = cards.findIndex(
+                    function (card) {
+                        return card.id === id;
+                    }
+                );
+
+                if (deletedIndex === -1) {
+                    return;
+                }
+
+                cards.splice(deletedIndex, 1);
+
+                viewedIds.delete(id);
+
+                if (editingId === id) {
+                    resetForm();
+                }
+
+                if (deletedIndex < currentIndex) {
+
+                    currentIndex--;
+
+                } else if (currentIndex >= cards.length) {
+
+                    currentIndex = Math.max(0, cards.length - 1);
+
+                }
+
+                isFlipped = false;
+
+                saveData();
+
+                renderAll();
+
+                document.getElementById("viewerMessage").textContent =
+                    "Flashcard deleted.";
+
+            }
+
+
+            cancelEditButton.addEventListener(
+                "click",
+                function () {
+
+                    resetForm();
+
+                    document.getElementById("formMessage").textContent =
+                        "Editing cancelled.";
+
+                }
+            );
+
+
+            document.getElementById("shuffleCards")
+                .addEventListener("click", function () {
+
+                    if (cards.length < 2) {
+
+                        document.getElementById("viewerMessage").textContent =
+                            "Add at least two flashcards to shuffle.";
+
+                        return;
+
+                    }
+
+                    for (let i = cards.length - 1; i > 0; i--) {
+
+                        const j = Math.floor(
+                            Math.random() * (i + 1)
+                        );
+
+                        [cards[i], cards[j]] =
+                            [cards[j], cards[i]];
+
+                    }
+
+                    currentIndex = 0;
+
+                    isFlipped = false;
+
+                    saveData();
+
+                    renderAll();
+
+                    document.getElementById("viewerMessage").textContent =
+                        "Flashcards shuffled.";
+
+                });
+
+
+            document.getElementById("resetProgress")
+                .addEventListener("click", function () {
+
+                    if (viewedIds.size === 0) {
+
+                        document.getElementById("viewerMessage").textContent =
+                            "Your study progress is already at zero.";
+
+                        return;
+
+                    }
+
+                    if (!window.confirm(
+                        "Reset your viewed-card progress?"
+                    )) {
+                        return;
+                    }
+
+                    viewedIds.clear();
+
+                    saveData();
+
+                    renderAll();
+
+                    document.getElementById("viewerMessage").textContent =
+                        "Study progress reset.";
+
+                });
+
+
+            function loadData() {
+
+                const savedCards = loadJSON(STORAGE_KEY, []);
+
+                cards = Array.isArray(savedCards)
+                    ? savedCards.filter(function (card) {
+
+                        return card &&
+                            typeof card.id === "string" &&
+                            typeof card.question === "string" &&
+                            typeof card.answer === "string";
+
+                    })
+                    : [];
+
+
+                const savedProgress = loadJSON(PROGRESS_KEY, []);
+
+                viewedIds = new Set(
+                    Array.isArray(savedProgress)
+                        ? savedProgress.filter(function (id) {
+                            return typeof id === "string";
+                        })
+                        : []
+                );
+
+                // Remove progress entries for deleted cards.
+                const validIds = new Set(
+                    cards.map(function (card) {
+                        return card.id;
+                    })
+                );
+
+                viewedIds = new Set(
+                    Array.from(viewedIds).filter(function (id) {
+                        return validIds.has(id);
+                    })
+                );
+
+            }
+
+
+            loadData();
+
+            renderAll();
+
+        });
+
+    </script>
+
+
+<script src="../js/sidebar.js" defer></script>
+</body>
+</html>
+
+

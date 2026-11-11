@@ -1,0 +1,980 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free Exam Countdown | SkillNest</title>
+
+    <meta name="description" content="Track upcoming examination dates with the free SkillNest Exam Countdown. Add exams and see how many days remain.">
+
+    <meta name="keywords" content="exam countdown, exam date tracker, student exam planner, days until exam">
+
+    <meta name="author" content="SkillNest">
+
+    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/tools.css">
+<link rel="stylesheet" href="../css/themes.css">
+<link rel="stylesheet" href="../css/sidebar.css">
+
+    <style>
+        .countdown-icon {
+            width: 75px;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border-radius: 20px;
+            background: rgba(118, 87, 246, 0.12);
+            color: var(--primary-light);
+            font-size: 35px;
+        }
+
+        .exam-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .exam-form .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .exam-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .exam-form input,
+        .exam-form textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid var(--border-color);
+            border-radius: 9px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font: inherit;
+        }
+
+        .exam-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .exam-stat {
+            padding: 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .exam-stat strong {
+            display: block;
+            margin-top: 8px;
+            color: var(--primary-light);
+            font-size: 28px;
+        }
+
+        .exam-stat span {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .exam-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .filter-btn {
+            padding: 9px 17px;
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            background: transparent;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .filter-btn.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+        }
+
+        .exam-list {
+            display: grid;
+            gap: 15px;
+        }
+
+        .exam-card {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-secondary);
+        }
+
+        .exam-details {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .exam-details h3 {
+            margin: 0 0 8px;
+            overflow-wrap: anywhere;
+        }
+
+        .exam-details p {
+            margin: 5px 0;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .countdown-number {
+            min-width: 115px;
+            padding: 15px;
+            border-radius: 12px;
+            background: rgba(118, 87, 246, 0.12);
+            color: var(--primary-light);
+            text-align: center;
+        }
+
+        .countdown-number strong {
+            display: block;
+            font-size: 30px;
+        }
+
+        .countdown-number span {
+            font-size: 12px;
+        }
+
+        .exam-status {
+            display: inline-block;
+            margin-top: 10px;
+            padding: 5px 10px;
+            border-radius: 20px;
+            background: rgba(118, 87, 246, 0.12);
+            color: var(--primary-light);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .exam-status.today {
+            background: rgba(245, 158, 11, 0.12);
+            color: #d97706;
+        }
+
+        .exam-status.past {
+            background: rgba(107, 114, 128, 0.12);
+            color: var(--text-secondary);
+        }
+
+        .delete-exam {
+            padding: 9px 13px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .empty-state {
+            padding: 35px 15px;
+            border: 1px dashed var(--border-color);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .exam-note {
+            margin-top: 25px;
+            padding: 18px;
+            border-radius: 12px;
+            background: var(--bg-secondary);
+            line-height: 1.8;
+        }
+
+        @media (max-width: 650px) {
+            .exam-form {
+                grid-template-columns: 1fr;
+            }
+
+            .exam-form .full-width {
+                grid-column: auto;
+            }
+
+            .exam-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .exam-card {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .countdown-number {
+                width: 100%;
+            }
+
+            .delete-exam {
+                align-self: flex-end;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="../index.html" class="logo">
+                Skill<span>Nest</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="index.html">Student Tools</a>
+                <a href="../career-tools/index.html">Career Tools</a>
+                <a href="../productivity-tools/index.html">Productivity</a>
+                <a href="../resources/index.html">Resources</a>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch to light mode"
+                >
+                    â—
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <section class="tool-page">
+
+            <div class="tool-header">
+
+                <div class="tool-breadcrumb">
+                    <a href="../index.html">Home</a> /
+                    <a href="index.html">Student Tools</a> /
+                    Exam Countdown
+                </div>
+
+                <div class="countdown-icon">â³</div>
+
+                <h1>Exam Countdown</h1>
+
+                <p>
+                    Keep track of your examination dates.
+                    Add upcoming exams and see how much time
+                    you have left to prepare.
+                </p>
+
+            </div>
+
+
+            <div class="tool-container">
+
+                <!-- ADD EXAM -->
+                <h2>Add an Examination</h2>
+
+                <form id="examForm" class="exam-form">
+
+                    <div>
+
+                        <label for="examName">Exam Name</label>
+
+                        <input
+                            type="text"
+                            id="examName"
+                            placeholder="e.g. Midterm Examination"
+                            maxlength="100"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="examSubject">Subject</label>
+
+                        <input
+                            type="text"
+                            id="examSubject"
+                            placeholder="e.g. Artificial Intelligence"
+                            maxlength="60"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="examDate">Exam Date</label>
+
+                        <input
+                            type="date"
+                            id="examDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="full-width">
+
+                        <label for="examNotes">
+                            Notes (Optional)
+                        </label>
+
+                        <textarea
+                            id="examNotes"
+                            rows="3"
+                            maxlength="500"
+                            placeholder="Add preparation notes..."
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="full-width">
+
+                        <button
+                            type="submit"
+                            class="tool-btn"
+                        >
+                            + Add Examination
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <div
+                    class="tool-alert error"
+                    id="errorMessage"
+                    role="alert"
+                ></div>
+
+
+                <!-- STATISTICS -->
+                <h2 style="margin-top: 35px;">
+                    Examination Overview
+                </h2>
+
+                <div class="exam-stats">
+
+                    <div class="exam-stat">
+                        <span>Total Exams</span>
+                        <strong id="totalExams">0</strong>
+                    </div>
+
+                    <div class="exam-stat">
+                        <span>Upcoming Exams</span>
+                        <strong id="upcomingExams">0</strong>
+                    </div>
+
+                    <div class="exam-stat">
+                        <span>Completed Exams</span>
+                        <strong id="completedExams">0</strong>
+                    </div>
+
+                </div>
+
+
+                <!-- FILTERS -->
+                <h2>Your Examination Schedule</h2>
+
+                <div class="exam-filters">
+
+                    <button
+                        type="button"
+                        class="filter-btn active"
+                        data-filter="all"
+                    >
+                        All Exams
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-filter="upcoming"
+                    >
+                        Upcoming
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-filter="past"
+                    >
+                        Completed
+                    </button>
+
+                </div>
+
+
+                <!-- EXAM LIST -->
+                <div class="exam-list" id="examList"></div>
+
+
+                <!-- INFORMATION -->
+                <div class="exam-note">
+
+                    <h3>How does Exam Countdown work?</h3>
+
+                    <p>
+                        Add the name, subject, and date of your exam.
+                        SkillNest calculates the number of calendar
+                        days remaining until the examination.
+                    </p>
+
+                    <p>
+                        Exams scheduled for today will display
+                        "Today". Past examination dates will be
+                        displayed as completed.
+                    </p>
+
+                    <p>
+                        Your examination schedule is saved locally
+                        in your browser.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+                    <a href="../privacy-policy.html">Privacy Policy</a>
+                    <a href="../terms-and-conditions.html">Terms</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SHARED JAVASCRIPT -->
+    <script src="../js/storage.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/main.js"></script>
+
+
+    <!-- EXAM COUNTDOWN LOGIC -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const examForm =
+                document.getElementById("examForm");
+
+            const examList =
+                document.getElementById("examList");
+
+            const errorMessage =
+                document.getElementById("errorMessage");
+
+            const STORAGE_KEY = "exam_countdown_items";
+
+            let exams = SkillNestStorage.get(STORAGE_KEY, []);
+
+            if (!Array.isArray(exams)) {
+                exams = [];
+            }
+
+            let currentFilter = "all";
+
+
+            // Get today's date in local timezone
+            function getTodayString() {
+
+                const today = new Date();
+
+                const year = today.getFullYear();
+
+                const month = String(
+                    today.getMonth() + 1
+                ).padStart(2, "0");
+
+                const day = String(
+                    today.getDate()
+                ).padStart(2, "0");
+
+                return `${year}-${month}-${day}`;
+
+            }
+
+
+            // Date input minimum
+            document.getElementById(
+                "examDate"
+            ).min = getTodayString();
+
+
+            // Convert date into a calendar day number
+            function getDateNumber(dateString) {
+
+                const parts = dateString.split("-").map(Number);
+
+                return Math.floor(
+                    Date.UTC(parts[0], parts[1] - 1, parts[2]) /
+                    86400000
+                );
+
+            }
+
+
+            // Calculate remaining calendar days
+            function getDaysRemaining(dateString) {
+
+                const todayNumber =
+                    getDateNumber(getTodayString());
+
+                const examNumber =
+                    getDateNumber(dateString);
+
+                return examNumber - todayNumber;
+
+            }
+
+
+            // Format date
+            function formatDate(dateString) {
+
+                const parts = dateString.split("-").map(Number);
+
+                const date = new Date(
+                    parts[0],
+                    parts[1] - 1,
+                    parts[2]
+                );
+
+                return date.toLocaleDateString(undefined, {
+                    day: "numeric",
+                    month: "long",
+                    year: "numeric"
+                });
+
+            }
+
+
+            // Generate ID
+            function createId() {
+
+                return Date.now().toString(36) +
+                    Math.random().toString(36).slice(2);
+
+            }
+
+
+            // Escape user text
+            function escapeHTML(value) {
+
+                return String(value).replace(/[&<>"']/g, function (char) {
+
+                    const entities = {
+                        "&": "&amp;",
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        '"': "&quot;",
+                        "'": "&#39;"
+                    };
+
+                    return entities[char];
+
+                });
+
+            }
+
+
+            // Save exams
+            function saveExams() {
+
+                const saved = SkillNestStorage.save(
+                    STORAGE_KEY,
+                    exams
+                );
+
+                if (!saved) {
+                    showError("Unable to save exams in this browser.");
+                }
+
+            }
+
+
+            // Show error
+            function showError(message) {
+
+                errorMessage.textContent = message;
+                errorMessage.classList.add("show");
+
+            }
+
+
+            // Clear error
+            function clearError() {
+
+                errorMessage.textContent = "";
+                errorMessage.classList.remove("show");
+
+            }
+
+
+            // Update statistics
+            function updateStatistics() {
+
+                const total = exams.length;
+
+                const upcoming = exams.filter(
+                    exam => getDaysRemaining(exam.date) >= 0
+                ).length;
+
+                const completed = total - upcoming;
+
+                document.getElementById(
+                    "totalExams"
+                ).textContent = total;
+
+                document.getElementById(
+                    "upcomingExams"
+                ).textContent = upcoming;
+
+                document.getElementById(
+                    "completedExams"
+                ).textContent = completed;
+
+            }
+
+
+            // Render examinations
+            function renderExams() {
+
+                examList.innerHTML = "";
+
+                let filteredExams = [...exams];
+
+                if (currentFilter === "upcoming") {
+
+                    filteredExams = filteredExams.filter(
+                        exam => getDaysRemaining(exam.date) >= 0
+                    );
+
+                }
+
+                if (currentFilter === "past") {
+
+                    filteredExams = filteredExams.filter(
+                        exam => getDaysRemaining(exam.date) < 0
+                    );
+
+                }
+
+
+                // Sort by examination date
+                filteredExams.sort(
+                    (a, b) => a.date.localeCompare(b.date)
+                );
+
+
+                if (filteredExams.length === 0) {
+
+                    examList.innerHTML = `
+                        <div class="empty-state">
+                            <h3>No examinations found</h3>
+                            <p>Add an examination or select another filter.</p>
+                        </div>
+                    `;
+
+                } else {
+
+                    filteredExams.forEach(function (exam) {
+
+                        const days = getDaysRemaining(exam.date);
+
+                        let countdownText = "";
+                        let statusText = "";
+                        let statusClass = "";
+
+                        if (days > 0) {
+
+                            countdownText = `
+                                <strong>${days}</strong>
+                                <span>${days === 1 ? "Day Left" : "Days Left"}</span>
+                            `;
+
+                            statusText = "Upcoming";
+                            
+                        } else if (days === 0) {
+
+                            countdownText = `
+                                <strong>Today</strong>
+                                <span>Exam Day</span>
+                            `;
+
+                            statusText = "Exam Today";
+                            statusClass = "today";
+
+                        } else {
+
+                            countdownText = `
+                                <strong>${Math.abs(days)}</strong>
+                                <span>${Math.abs(days) === 1 ? "Day Ago" : "Days Ago"}</span>
+                            `;
+
+                            statusText = "Completed";
+                            statusClass = "past";
+
+                        }
+
+
+                        const card = document.createElement("div");
+
+                        card.className = "exam-card";
+
+                        card.innerHTML = `
+                            <div class="exam-details">
+
+                                <h3>${escapeHTML(exam.name)}</h3>
+
+                                <p>
+                                    Subject: ${escapeHTML(exam.subject)}
+                                </p>
+
+                                <p>
+                                    Exam Date: ${formatDate(exam.date)}
+                                </p>
+
+                                ${
+                                    exam.notes
+                                    ? `<p>${escapeHTML(exam.notes)}</p>`
+                                    : ""
+                                }
+
+                                <span class="exam-status ${statusClass}">
+                                    ${statusText}
+                                </span>
+
+                            </div>
+
+                            <div class="countdown-number">
+                                ${countdownText}
+                            </div>
+
+                            <button
+                                type="button"
+                                class="delete-exam"
+                                data-action="delete"
+                                data-id="${escapeHTML(exam.id)}"
+                            >
+                                Delete
+                            </button>
+                        `;
+
+                        examList.appendChild(card);
+
+                    });
+
+                }
+
+                updateStatistics();
+
+            }
+
+
+            // Add examination
+            examForm.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                clearError();
+
+                const name = document.getElementById(
+                    "examName"
+                ).value.trim();
+
+                const subject = document.getElementById(
+                    "examSubject"
+                ).value.trim();
+
+                const date = document.getElementById(
+                    "examDate"
+                ).value;
+
+                const notes = document.getElementById(
+                    "examNotes"
+                ).value.trim();
+
+
+                if (!name || !subject || !date) {
+
+                    showError("Please complete all required fields.");
+                    return;
+
+                }
+
+                if (date < getTodayString()) {
+
+                    showError("Please select today or a future date.");
+                    return;
+
+                }
+
+
+                const newExam = {
+
+                    id: createId(),
+
+                    name: name,
+
+                    subject: subject,
+
+                    date: date,
+
+                    notes: notes,
+
+                    createdAt: new Date().toISOString()
+
+                };
+
+
+                exams.push(newExam);
+
+                saveExams();
+
+                examForm.reset();
+
+                document.getElementById(
+                    "examDate"
+                ).min = getTodayString();
+
+                currentFilter = "all";
+
+                updateFilterButtons();
+
+                renderExams();
+
+            });
+
+
+            // Delete exam
+            examList.addEventListener("click", function (event) {
+
+                const button = event.target.closest(
+                    '[data-action="delete"]'
+                );
+
+                if (!button) return;
+
+                const id = button.dataset.id;
+
+                exams = exams.filter(
+                    exam => exam.id !== id
+                );
+
+                saveExams();
+
+                renderExams();
+
+            });
+
+
+            // Filters
+            document.querySelectorAll(".filter-btn")
+                .forEach(function (button) {
+
+                    button.addEventListener("click", function () {
+
+                        currentFilter = button.dataset.filter;
+
+                        updateFilterButtons();
+
+                        renderExams();
+
+                    });
+
+                });
+
+
+            function updateFilterButtons() {
+
+                document.querySelectorAll(".filter-btn")
+                    .forEach(function (button) {
+
+                        button.classList.toggle(
+                            "active",
+                            button.dataset.filter === currentFilter
+                        );
+
+                    });
+
+            }
+
+
+            // Initial display
+            renderExams();
+
+        });
+    </script>
+
+
+<script src="../js/sidebar.js" defer></script>
+</body>
+</html>
+
+

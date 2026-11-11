@@ -1,0 +1,1234 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free Job Application Tracker | SkillNest</title>
+    <meta name="description" content="Track job and internship applications, companies, interview dates, application statuses, and notes with the free SkillNest Job Application Tracker.">
+    <meta name="keywords" content="job application tracker, internship tracker, job search organizer, application status tracker">
+    <meta name="author" content="SkillNest">
+
+    <<link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/tools.css">
+<link rel="stylesheet" href="../css/themes.css">
+<link rel="stylesheet" href="../css/sidebar.css">
+
+    <style>
+        .tracker-hero {
+            padding: 45px 20px;
+            text-align: center;
+            background: var(--bg-secondary);
+        }
+
+        .tracker-hero h1 {
+            font-size: clamp(30px, 5vw, 42px);
+            margin-bottom: 12px;
+        }
+
+        .tracker-hero p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .tracker-container {
+            padding-top: 35px;
+            padding-bottom: 70px;
+        }
+
+        .tracker-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-bottom: 25px;
+        }
+
+        .tracker-stat {
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+            border-radius: 12px;
+        }
+
+        .tracker-stat strong {
+            display: block;
+            color: var(--primary-color);
+            font-size: 28px;
+            margin-bottom: 5px;
+        }
+
+        .tracker-stat span {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .tracker-panel {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+            padding: 24px;
+            margin-bottom: 25px;
+        }
+
+        .tracker-panel h2 {
+            font-size: 20px;
+            margin-bottom: 18px;
+        }
+
+        .tracker-form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .tracker-field label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            margin-bottom: 7px;
+        }
+
+        .tracker-field input,
+        .tracker-field select,
+        .tracker-field textarea,
+        .tracker-search {
+            width: 100%;
+            padding: 11px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font: inherit;
+        }
+
+        .tracker-field textarea {
+            min-height: 90px;
+            resize: vertical;
+        }
+
+        .tracker-field.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .tracker-form-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 18px;
+        }
+
+        .tracker-toolbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .tracker-toolbar h2 {
+            margin-bottom: 0;
+        }
+
+        .tracker-filters {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .tracker-filters select {
+            padding: 10px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+        }
+
+        .tracker-search {
+            max-width: 320px;
+        }
+
+        .application-list {
+            display: grid;
+            gap: 14px;
+        }
+
+        .application-card {
+            padding: 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 11px;
+            background: var(--bg-primary);
+        }
+
+        .application-card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .application-card h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .application-company {
+            color: var(--text-secondary);
+            font-size: 14px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            border-radius: 20px;
+            padding: 6px 11px;
+            font-size: 11px;
+            font-weight: 700;
+            background: rgba(118, 87, 246, 0.12);
+            color: var(--primary-color);
+        }
+
+        .status-interview {
+            background: rgba(37, 145, 220, 0.12);
+            color: #2994d8;
+        }
+
+        .status-offer {
+            background: rgba(25, 160, 100, 0.12);
+            color: #159b61;
+        }
+
+        .status-rejected {
+            background: rgba(220, 75, 75, 0.12);
+            color: #dc4b4b;
+        }
+
+        .application-details {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            margin: 15px 0;
+        }
+
+        .application-notes {
+            padding: 12px;
+            border-radius: 7px;
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.6;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .application-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 14px;
+        }
+
+        .application-actions button {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 7px;
+            cursor: pointer;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font: inherit;
+            font-size: 12px;
+        }
+
+        .application-actions button:hover {
+            border-color: var(--primary-color);
+        }
+
+        .empty-state {
+            padding: 35px 15px;
+            text-align: center;
+            color: var(--text-secondary);
+            border: 1px dashed var(--border-color);
+            border-radius: 10px;
+        }
+
+        .tracker-message {
+            margin-top: 12px;
+            min-height: 20px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .tracker-note {
+            margin-top: 18px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.7;
+        }
+
+        @media(max-width: 800px) {
+            .tracker-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(max-width: 550px) {
+            .tracker-form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tracker-field.full-width {
+                grid-column: auto;
+            }
+
+            .tracker-panel {
+                padding: 17px;
+            }
+
+            .tracker-toolbar {
+                align-items: stretch;
+            }
+
+            .tracker-search {
+                max-width: none;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="../index.html" class="logo">
+                Skill<span>Nest</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../student-tools/index.html">Student Tools</a>
+                <a href="index.html">Career Tools</a>
+                <a href="../productivity-tools/index.html">Productivity</a>
+                <a href="../resources/index.html">Resources</a>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch to light mode"
+                >
+                    â—
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="tracker-hero">
+            <div class="container">
+
+                <div class="tool-breadcrumb">
+                    <a href="../index.html">Home</a> /
+                    <a href="index.html">Career Tools</a> /
+                    Job Application Tracker
+                </div>
+
+                <h1>Job Application Tracker</h1>
+
+                <p>
+                    Organize your job applications, track interview progress,
+                    and manage your career opportunities.
+                </p>
+
+            </div>
+        </section>
+
+
+        <section class="container tracker-container">
+
+            <!-- STATISTICS -->
+            <div class="tracker-stats">
+
+                <div class="tracker-stat">
+                    <strong id="totalCount">0</strong>
+                    <span>Total Applications</span>
+                </div>
+
+                <div class="tracker-stat">
+                    <strong id="appliedCount">0</strong>
+                    <span>Applied</span>
+                </div>
+
+                <div class="tracker-stat">
+                    <strong id="interviewCount">0</strong>
+                    <span>Interviews</span>
+                </div>
+
+                <div class="tracker-stat">
+                    <strong id="offerCount">0</strong>
+                    <span>Offers</span>
+                </div>
+
+            </div>
+
+
+            <!-- ADD APPLICATION FORM -->
+            <div class="tracker-panel">
+
+                <h2 id="formHeading">Add New Application</h2>
+
+                <form id="applicationForm">
+
+                    <div class="tracker-form-grid">
+
+                        <div class="tracker-field">
+                            <label for="jobTitle">Job Title *</label>
+                            <input
+                                type="text"
+                                id="jobTitle"
+                                placeholder="e.g. Frontend Developer Intern"
+                                maxlength="120"
+                                required
+                            >
+                        </div>
+
+                        <div class="tracker-field">
+                            <label for="companyName">Company Name *</label>
+                            <input
+                                type="text"
+                                id="companyName"
+                                placeholder="e.g. ABC Technologies"
+                                maxlength="120"
+                                required
+                            >
+                        </div>
+
+                        <div class="tracker-field">
+                            <label for="applicationDate">
+                                Application Date *
+                            </label>
+                            <input
+                                type="date"
+                                id="applicationDate"
+                                required
+                            >
+                        </div>
+
+                        <div class="tracker-field">
+                            <label for="applicationStatus">Status *</label>
+                            <select id="applicationStatus" required>
+                                <option value="Applied">Applied</option>
+                                <option value="Interview">Interview</option>
+                                <option value="Offer">Offer</option>
+                                <option value="Rejected">Rejected</option>
+                            </select>
+                        </div>
+
+                        <div class="tracker-field">
+                            <label for="jobLocation">Job Location</label>
+                            <input
+                                type="text"
+                                id="jobLocation"
+                                placeholder="e.g. Remote / Multan"
+                                maxlength="100"
+                            >
+                        </div>
+
+                        <div class="tracker-field">
+                            <label for="jobLink">Job Posting Link</label>
+                            <input
+                                type="url"
+                                id="jobLink"
+                                placeholder="https://example.com/job"
+                                maxlength="500"
+                            >
+                        </div>
+
+                        <div class="tracker-field full-width">
+                            <label for="applicationNotes">
+                                Notes and Follow-up Details
+                            </label>
+                            <textarea
+                                id="applicationNotes"
+                                placeholder="Add interview details, contact information, follow-up dates, or other notes..."
+                                maxlength="2000"
+                            ></textarea>
+                        </div>
+
+                    </div>
+
+                    <div class="tracker-form-actions">
+
+                        <button
+                            type="submit"
+                            class="tool-btn"
+                            id="submitApplication"
+                        >
+                            Add Application
+                        </button>
+
+                        <button
+                            type="button"
+                            class="tool-btn tool-btn-secondary"
+                            id="cancelEdit"
+                            hidden
+                        >
+                            Cancel Edit
+                        </button>
+
+                    </div>
+
+                    <p
+                        class="tracker-message"
+                        id="formMessage"
+                        aria-live="polite"
+                    ></p>
+
+                </form>
+
+            </div>
+
+
+            <!-- APPLICATION LIST -->
+            <div class="tracker-panel">
+
+                <div class="tracker-toolbar">
+
+                    <h2>My Applications</h2>
+
+                    <input
+                        type="search"
+                        class="tracker-search"
+                        id="searchApplications"
+                        placeholder="Search company or job title..."
+                        aria-label="Search applications"
+                    >
+
+                </div>
+
+                <div class="tracker-filters">
+
+                    <select id="statusFilter" aria-label="Filter by status">
+                        <option value="All">All Statuses</option>
+                        <option value="Applied">Applied</option>
+                        <option value="Interview">Interview</option>
+                        <option value="Offer">Offer</option>
+                        <option value="Rejected">Rejected</option>
+                    </select>
+
+                    <select id="sortApplications" aria-label="Sort applications">
+                        <option value="newest">Newest First</option>
+                        <option value="oldest">Oldest First</option>
+                        <option value="company">Company Name</option>
+                    </select>
+
+                </div>
+
+                <div
+                    class="application-list"
+                    id="applicationList"
+                    style="margin-top:20px;"
+                ></div>
+
+            </div>
+
+
+            <p class="tracker-note">
+                Your job application information is stored locally in
+                your browser. It is not uploaded to a SkillNest server.
+                Clearing your browser data may remove saved applications.
+            </p>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+                    <a href="../about.html">About</a>
+                    <a href="../contact.html">Contact</a>
+                    <a href="../privacy-policy.html">Privacy Policy</a>
+                    <a href="../terms-and-conditions.html">Terms</a>
+                </div>
+
+            </div>
+
+        </div>
+    </footer>
+
+
+    <!-- SHARED JAVASCRIPT -->
+    <script src="../js/storage.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/main.js"></script>
+
+
+    <!-- TRACKER LOGIC -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const STORAGE_KEY = "job_application_tracker";
+
+            const form = document.getElementById("applicationForm");
+
+            const applicationList =
+                document.getElementById("applicationList");
+
+            const formMessage =
+                document.getElementById("formMessage");
+
+            const fields = [
+                "jobTitle",
+                "companyName",
+                "applicationDate",
+                "applicationStatus",
+                "jobLocation",
+                "jobLink",
+                "applicationNotes"
+            ];
+
+            let applications = [];
+
+            let editingId = null;
+
+
+            // Create unique record ID
+            function createId() {
+
+                if (window.crypto && crypto.randomUUID) {
+                    return crypto.randomUUID();
+                }
+
+                return Date.now().toString(36) +
+                    Math.random().toString(36).slice(2);
+
+            }
+
+
+            // Read field values
+            function getFormData() {
+
+                const data = {};
+
+                fields.forEach(function (id) {
+
+                    data[id] = document.getElementById(id).value.trim();
+
+                });
+
+                return data;
+
+            }
+
+
+            // Save records
+            function saveApplications() {
+
+                const saved = SkillNestStorage.save(
+                    STORAGE_KEY,
+                    applications
+                );
+
+                if (!saved) {
+
+                    formMessage.textContent =
+                        "Unable to save data. Check your browser storage.";
+
+                }
+
+                return saved;
+
+            }
+
+
+            // Load saved records
+            function loadApplications() {
+
+                const saved = SkillNestStorage.get(
+                    STORAGE_KEY,
+                    []
+                );
+
+                if (!Array.isArray(saved)) {
+                    applications = [];
+                    return;
+                }
+
+                applications = saved.filter(function (item) {
+
+                    return item &&
+                        typeof item.id === "string" &&
+                        typeof item.jobTitle === "string" &&
+                        typeof item.companyName === "string" &&
+                        typeof item.applicationDate === "string" &&
+                        ["Applied", "Interview", "Offer", "Rejected"]
+                            .includes(item.applicationStatus);
+
+                });
+
+            }
+
+
+            // Update statistics
+            function updateStats() {
+
+                document.getElementById("totalCount").textContent =
+                    applications.length;
+
+                document.getElementById("appliedCount").textContent =
+                    applications.filter(function (item) {
+                        return item.applicationStatus === "Applied";
+                    }).length;
+
+                document.getElementById("interviewCount").textContent =
+                    applications.filter(function (item) {
+                        return item.applicationStatus === "Interview";
+                    }).length;
+
+                document.getElementById("offerCount").textContent =
+                    applications.filter(function (item) {
+                        return item.applicationStatus === "Offer";
+                    }).length;
+
+            }
+
+
+            // Create a safe HTML element
+            function createElement(tag, className, text) {
+
+                const element = document.createElement(tag);
+
+                if (className) {
+                    element.className = className;
+                }
+
+                if (text !== undefined) {
+                    element.textContent = text;
+                }
+
+                return element;
+
+            }
+
+
+            // Build application card
+            function createApplicationCard(item) {
+
+                const card = createElement(
+                    "article",
+                    "application-card"
+                );
+
+                const top = createElement(
+                    "div",
+                    "application-card-top"
+                );
+
+                const heading = createElement("div");
+
+                heading.appendChild(
+                    createElement("h3", "", item.jobTitle)
+                );
+
+                heading.appendChild(
+                    createElement(
+                        "p",
+                        "application-company",
+                        item.companyName
+                    )
+                );
+
+                const badge = createElement(
+                    "span",
+                    "status-badge",
+                    item.applicationStatus
+                );
+
+                const statusClasses = {
+                    Interview: "status-interview",
+                    Offer: "status-offer",
+                    Rejected: "status-rejected"
+                };
+
+                if (statusClasses[item.applicationStatus]) {
+                    badge.classList.add(
+                        statusClasses[item.applicationStatus]
+                    );
+                }
+
+                top.appendChild(heading);
+                top.appendChild(badge);
+
+                card.appendChild(top);
+
+
+                // Details
+                const details = createElement(
+                    "div",
+                    "application-details"
+                );
+
+                details.appendChild(
+                    createElement(
+                        "span",
+                        "",
+                        "Applied: " + item.applicationDate
+                    )
+                );
+
+                if (item.jobLocation) {
+                    details.appendChild(
+                        createElement(
+                            "span",
+                            "",
+                            "Location: " + item.jobLocation
+                        )
+                    );
+                }
+
+                card.appendChild(details);
+
+
+                // Job link
+                if (item.jobLink) {
+
+                    try {
+
+                        const parsedUrl = new URL(item.jobLink);
+
+                        if (
+                            parsedUrl.protocol === "https:" ||
+                            parsedUrl.protocol === "http:"
+                        ) {
+
+                            const link = createElement(
+                                "a",
+                                "",
+                                "View Job Posting"
+                            );
+
+                            link.href = parsedUrl.href;
+                            link.target = "_blank";
+                            link.rel = "noopener noreferrer";
+
+                            link.style.display = "inline-block";
+                            link.style.marginBottom = "12px";
+                            link.style.fontSize = "13px";
+
+                            card.appendChild(link);
+
+                        }
+
+                    } catch (error) {
+                        // Ignore invalid saved URLs.
+                    }
+
+                }
+
+
+                // Notes
+                if (item.applicationNotes) {
+
+                    card.appendChild(
+                        createElement(
+                            "div",
+                            "application-notes",
+                            item.applicationNotes
+                        )
+                    );
+
+                }
+
+
+                // Actions
+                const actions = createElement(
+                    "div",
+                    "application-actions"
+                );
+
+                const editButton = createElement(
+                    "button",
+                    "",
+                    "Edit"
+                );
+
+                editButton.type = "button";
+
+                editButton.addEventListener("click", function () {
+
+                    editApplication(item.id);
+
+                });
+
+
+                const deleteButton = createElement(
+                    "button",
+                    "",
+                    "Delete"
+                );
+
+                deleteButton.type = "button";
+
+                deleteButton.addEventListener("click", function () {
+
+                    deleteApplication(item.id);
+
+                });
+
+
+                actions.appendChild(editButton);
+                actions.appendChild(deleteButton);
+
+                card.appendChild(actions);
+
+                return card;
+
+            }
+
+
+            // Display application records
+            function renderApplications() {
+
+                applicationList.replaceChildren();
+
+                const searchTerm = document.getElementById(
+                    "searchApplications"
+                ).value.trim().toLowerCase();
+
+                const status = document.getElementById(
+                    "statusFilter"
+                ).value;
+
+                const sort = document.getElementById(
+                    "sortApplications"
+                ).value;
+
+
+                let filtered = applications.filter(function (item) {
+
+                    const matchesSearch =
+                        item.companyName.toLowerCase().includes(searchTerm) ||
+                        item.jobTitle.toLowerCase().includes(searchTerm);
+
+                    const matchesStatus =
+                        status === "All" ||
+                        item.applicationStatus === status;
+
+                    return matchesSearch && matchesStatus;
+
+                });
+
+
+                filtered = [...filtered];
+
+                if (sort === "newest") {
+
+                    filtered.sort(function (a, b) {
+                        return b.applicationDate.localeCompare(a.applicationDate);
+                    });
+
+                } else if (sort === "oldest") {
+
+                    filtered.sort(function (a, b) {
+                        return a.applicationDate.localeCompare(b.applicationDate);
+                    });
+
+                } else if (sort === "company") {
+
+                    filtered.sort(function (a, b) {
+                        return a.companyName.localeCompare(b.companyName);
+                    });
+
+                }
+
+
+                if (!filtered.length) {
+
+                    const message = applications.length
+                        ? "No applications match your search or filters."
+                        : "No applications yet. Add your first job application above.";
+
+                    applicationList.appendChild(
+                        createElement("div", "empty-state", message)
+                    );
+
+                    return;
+
+                }
+
+
+                filtered.forEach(function (item) {
+
+                    applicationList.appendChild(
+                        createApplicationCard(item)
+                    );
+
+                });
+
+            }
+
+
+            // Reset form
+            function resetForm() {
+
+                form.reset();
+
+                editingId = null;
+
+                document.getElementById(
+                    "formHeading"
+                ).textContent = "Add New Application";
+
+                document.getElementById(
+                    "submitApplication"
+                ).textContent = "Add Application";
+
+                document.getElementById(
+                    "cancelEdit"
+                ).hidden = true;
+
+            }
+
+
+            // Add or update application
+            form.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                const data = getFormData();
+
+                if (!data.jobTitle || !data.companyName ||
+                    !data.applicationDate) {
+
+                    formMessage.textContent =
+                        "Please complete all required fields.";
+
+                    return;
+
+                }
+
+
+                if (data.jobLink) {
+
+                    try {
+
+                        const url = new URL(data.jobLink);
+
+                        if (
+                            url.protocol !== "https:" &&
+                            url.protocol !== "http:"
+                        ) {
+                            throw new Error("Invalid URL");
+                        }
+
+                    } catch (error) {
+
+                        formMessage.textContent =
+                            "Please enter a valid job posting URL.";
+
+                        return;
+
+                    }
+
+                }
+
+
+                if (editingId) {
+
+                    applications = applications.map(function (item) {
+
+                        return item.id === editingId
+                            ? { ...item, ...data }
+                            : item;
+
+                    });
+
+                    formMessage.textContent =
+                        "Application updated successfully.";
+
+                } else {
+
+                    applications.push({
+                        id: createId(),
+                        ...data,
+                        createdAt: new Date().toISOString()
+                    });
+
+                    formMessage.textContent =
+                        "Application added successfully.";
+
+                }
+
+
+                saveApplications();
+
+                resetForm();
+
+                updateStats();
+
+                renderApplications();
+
+            });
+
+
+            // Edit application
+            function editApplication(id) {
+
+                const item = applications.find(function (record) {
+
+                    return record.id === id;
+
+                });
+
+                if (!item) return;
+
+                fields.forEach(function (field) {
+
+                    document.getElementById(field).value =
+                        item[field] || "";
+
+                });
+
+                editingId = id;
+
+                document.getElementById(
+                    "formHeading"
+                ).textContent = "Edit Application";
+
+                document.getElementById(
+                    "submitApplication"
+                ).textContent = "Update Application";
+
+                document.getElementById(
+                    "cancelEdit"
+                ).hidden = false;
+
+                formMessage.textContent =
+                    "Editing " + item.jobTitle + " at " + item.companyName + ".";
+
+                document.getElementById("jobTitle").focus();
+
+                window.scrollTo({
+                    top: form.getBoundingClientRect().top +
+                        window.scrollY - 100,
+                    behavior: "smooth"
+                });
+
+            }
+
+
+            // Delete application
+            function deleteApplication(id) {
+
+                const item = applications.find(function (record) {
+
+                    return record.id === id;
+
+                });
+
+                if (!item) return;
+
+                if (!confirm(
+                    "Delete your application for " +
+                    item.jobTitle + " at " + item.companyName + "?"
+                )) {
+                    return;
+                }
+
+                applications = applications.filter(function (record) {
+
+                    return record.id !== id;
+
+                });
+
+                if (editingId === id) {
+                    resetForm();
+                }
+
+                saveApplications();
+
+                updateStats();
+
+                renderApplications();
+
+                formMessage.textContent =
+                    "Application deleted successfully.";
+
+            }
+
+
+            // Cancel edit
+            document.getElementById("cancelEdit")
+                .addEventListener("click", function () {
+
+                    resetForm();
+
+                    formMessage.textContent =
+                        "Editing cancelled.";
+
+                });
+
+
+            // Search and filters
+            document.getElementById("searchApplications")
+                .addEventListener("input", renderApplications);
+
+            document.getElementById("statusFilter")
+                .addEventListener("change", renderApplications);
+
+            document.getElementById("sortApplications")
+                .addEventListener("change", renderApplications);
+
+
+            // Initial setup
+            loadApplications();
+
+            updateStats();
+
+            renderApplications();
+
+        });
+
+    </script>
+
+
+<script src="../js/sidebar.js" defer></script>
+</body>
+</html>
+
+

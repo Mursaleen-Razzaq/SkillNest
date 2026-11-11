@@ -1,0 +1,726 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free Career Tools | Resume, Interview & Job Search | SkillNest</title>
+
+    <meta name="description" content="Explore free career tools from SkillNest. Build resumes, prepare cover letters, practice interviews, track job applications, and create professional emails.">
+
+    <meta name="keywords" content="career tools, free resume builder, cover letter generator, interview practice, job application tracker">
+
+    <meta name="author" content="SkillNest">
+
+    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/tools.css">
+<link rel="stylesheet" href="../css/themes.css">
+<link rel="stylesheet" href="../css/sidebar.css">
+
+    <style>
+        .career-hero {
+            padding: 75px 20px;
+            background:
+                radial-gradient(
+                    circle at 15% 20%,
+                    rgba(118, 87, 246, 0.18),
+                    transparent 35%
+                ),
+                var(--bg-secondary);
+            text-align: center;
+        }
+
+        .career-hero-content {
+            max-width: 780px;
+            margin: auto;
+        }
+
+        .career-label {
+            display: inline-block;
+            margin-bottom: 20px;
+            padding: 8px 15px;
+            border: 1px solid rgba(118, 87, 246, 0.3);
+            border-radius: 30px;
+            background: rgba(118, 87, 246, 0.1);
+            color: var(--primary-light);
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .career-hero h1 {
+            margin-bottom: 18px;
+            font-size: clamp(34px, 6vw, 54px);
+            line-height: 1.15;
+        }
+
+        .career-hero h1 span {
+            color: var(--primary-light);
+        }
+
+        .career-hero p {
+            max-width: 650px;
+            margin: 0 auto;
+            color: var(--text-secondary);
+            font-size: 17px;
+            line-height: 1.8;
+        }
+
+        .career-hero-actions {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 30px;
+        }
+
+        .career-search {
+            max-width: 650px;
+            margin: 35px auto 0;
+            display: flex;
+            gap: 10px;
+        }
+
+        .career-search input {
+            flex: 1;
+            min-width: 0;
+            padding: 15px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font: inherit;
+        }
+
+        .career-section {
+            padding: 75px 0;
+        }
+
+        .career-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px;
+            margin-top: 35px;
+        }
+
+        .career-card {
+            display: flex;
+            flex-direction: column;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            background: var(--bg-secondary);
+            transition: transform 0.25s ease, border-color 0.25s ease;
+        }
+
+        .career-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .career-card-icon {
+            width: 55px;
+            height: 55px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            border-radius: 14px;
+            background: rgba(118, 87, 246, 0.12);
+            font-size: 27px;
+        }
+
+        .career-card h3 {
+            margin-bottom: 10px;
+            font-size: 19px;
+        }
+
+        .career-card p {
+            flex: 1;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .career-card a {
+            display: inline-block;
+            margin-top: 18px;
+            color: var(--primary-light);
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .career-card a:hover {
+            text-decoration: underline;
+        }
+
+        .career-no-results {
+            display: none;
+            padding: 35px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        .career-benefits {
+            padding: 70px 20px;
+            background: var(--bg-secondary);
+        }
+
+        .benefit-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 35px;
+        }
+
+        .benefit-item {
+            padding: 22px;
+            border: 1px solid var(--border-color);
+            border-radius: 14px;
+        }
+
+        .benefit-item h3 {
+            margin-bottom: 10px;
+        }
+
+        .benefit-item p {
+            color: var(--text-secondary);
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .career-cta {
+            padding: 75px 20px;
+            text-align: center;
+        }
+
+        .career-cta-content {
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .career-cta p {
+            margin: 15px 0 25px;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        @media (max-width: 900px) {
+            .career-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .benefit-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .career-hero {
+                padding: 55px 15px;
+            }
+
+            .career-search {
+                flex-direction: column;
+            }
+
+            .career-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .career-section {
+                padding: 50px 0;
+            }
+        }
+    </style>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="../index.html" class="logo">
+                Skill<span>Nest</span>
+            </a>
+
+            <button
+    class="menu-toggle"
+    id="menuToggle"
+    type="button"
+    aria-label="Open navigation menu"
+    aria-controls="navLinks"
+    aria-expanded="false"
+>
+    ☰
+</button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="../student-tools/index.html">Student Tools</a>
+                <a href="index.html" class="active">Career Tools</a>
+                <a href="../productivity-tools/index.html">Productivity</a>
+                <a href="../resources/index.html">Resources</a>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch to light mode"
+                    title="Switch to light mode"
+                >
+                    ☀
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- HERO SECTION -->
+    <main>
+
+        <section class="career-hero">
+
+            <div class="career-hero-content">
+
+                <span class="career-label">
+                    YOUR CAREER STARTS HERE
+                </span>
+
+                <h1>
+                    Build Your Career With
+                    <span>Confidence</span>
+                </h1>
+
+                <p>
+                    Get ready for your next opportunity with free
+                    career tools. Create professional resumes,
+                    prepare for interviews, and organize your
+                    job search in one place.
+                </p>
+
+                <div class="career-hero-actions">
+
+                    <a href="#careerTools" class="btn btn-primary">
+                        Explore Career Tools
+                    </a>
+
+                    <a href="../resources/index.html" class="btn btn-secondary">
+                        Career Guides
+                    </a>
+
+                </div>
+
+
+                <!-- SEARCH -->
+                <div class="career-search">
+
+                    <input
+                        type="search"
+                        id="careerSearch"
+                        placeholder="Search career tools..."
+                        aria-label="Search career tools"
+                    >
+
+                    <button
+                        type="button"
+                        class="btn btn-primary"
+                        id="searchButton"
+                    >
+                        Search
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CAREER TOOLS -->
+        <section class="career-section" id="careerTools">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">CAREER DEVELOPMENT</span>
+
+                    <h2>Explore Career Tools</h2>
+
+                    <p>
+                        Everything you need to prepare for
+                        internships, jobs, and professional growth.
+                    </p>
+
+                </div>
+
+
+                <div class="career-grid" id="careerGrid">
+
+
+                    <!-- RESUME BUILDER -->
+                    <article
+                        class="career-card"
+                        data-search="resume cv builder create professional resume curriculum vitae"
+                    >
+
+                        <div class="career-card-icon">📄</div>
+
+                        <h3>Resume Builder</h3>
+
+                        <p>
+                            Create a professional resume by adding
+                            your education, skills, experience,
+                            and projects.
+                        </p>
+
+                        <a href="resume-builder.html">
+                            Build Your Resume â†’
+                        </a>
+
+                    </article>
+
+
+                    <!-- COVER LETTER -->
+                    <article
+                        class="career-card"
+                        data-search="cover letter generator job application letter"
+                    >
+
+                        <div class="career-card-icon">✉️</div>
+
+                        <h3>Cover Letter Generator</h3>
+
+                        <p>
+                            Prepare a professional cover letter
+                            for internships and job applications.
+                        </p>
+
+                        <a href="cover-letter-generator.html">
+                            Create Cover Letter â†’
+                        </a>
+
+                    </article>
+
+
+                    <!-- INTERVIEW PRACTICE -->
+                    <article
+                        class="career-card"
+                        data-search="interview practice questions job preparation mock interview"
+                    >
+
+                        <div class="career-card-icon">🎤</div>
+
+                        <h3>Interview Practice</h3>
+
+                        <p>
+                            Practice common interview questions
+                            and improve your confidence before
+                            meeting employers.
+                        </p>
+
+                        <a href="interview-practice.html">
+                            Practice Interview â†’
+                        </a>
+
+                    </article>
+
+
+                    <!-- JOB TRACKER -->
+                    <article
+                        class="career-card"
+                        data-search="job application tracker applications company status interview"
+                    >
+
+                        <div class="career-card-icon">📋</div>
+
+                        <h3>Job Application Tracker</h3>
+
+                        <p>
+                            Organize your job applications,
+                            companies, application dates,
+                            and application statuses.
+                        </p>
+
+                        <a href="job-application-tracker.html">
+                            Track Applications â†’
+                        </a>
+
+                    </article>
+
+
+                    <!-- PROFESSIONAL EMAIL -->
+                    <article
+                        class="career-card"
+                        data-search="professional email generator business email job internship communication"
+                    >
+
+                        <div class="career-card-icon">💼</div>
+
+                        <h3>Professional Email Generator</h3>
+
+                        <p>
+                            Prepare clear and professional emails
+                            for recruiters, employers, and
+                            internship applications.
+                        </p>
+
+                        <a href="professional-email-generator.html">
+                            Generate Email â†’
+                        </a>
+
+                    </article>
+
+
+                    <!-- CAREER GUIDES -->
+                    <article
+                        class="career-card"
+                        data-search="career guides resume writing internship interview tips"
+                    >
+
+                        <div class="career-card-icon">📚</div>
+
+                        <h3>Career Learning Guides</h3>
+
+                        <p>
+                            Learn resume writing, internship
+                            preparation, interview skills,
+                            and job search strategies.
+                        </p>
+
+                        <a href="../resources/index.html">
+                            Explore Career Guides â†’
+                        </a>
+
+                    </article>
+
+
+                </div>
+
+
+                <div
+                    class="career-no-results"
+                    id="noResults"
+                    aria-live="polite"
+                >
+                    <h3>No matching tools found</h3>
+                    <p>Try searching with another keyword.</p>
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- BENEFITS -->
+        <section class="career-benefits">
+
+            <div class="container">
+
+                <div class="section-heading">
+
+                    <span class="section-label">WHY SKILLNEST?</span>
+
+                    <h2>Prepare for Your Next Opportunity</h2>
+
+                    <p>
+                        Build useful career skills with simple
+                        and accessible tools.
+                    </p>
+
+                </div>
+
+
+                <div class="benefit-grid">
+
+                    <div class="benefit-item">
+
+                        <h3>🎯 Career Preparation</h3>
+
+                        <p>
+                            Prepare your resume, cover letters,
+                            and interview answers before applying
+                            for opportunities.
+                        </p>
+
+                    </div>
+
+
+                    <div class="benefit-item">
+
+                        <h3>âš¡ Save Time</h3>
+
+                        <p>
+                            Organize your job search and create
+                            useful professional documents
+                            without starting from scratch.
+                        </p>
+
+                    </div>
+
+
+                    <div class="benefit-item">
+
+                        <h3>🌍 Accessible Tools</h3>
+
+                        <p>
+                            Access useful career resources from
+                            your browser without installing
+                            additional software.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- CTA -->
+        <section class="career-cta">
+
+            <div class="career-cta-content">
+
+                <span class="section-label">TAKE THE NEXT STEP</span>
+
+                <h2>Your Future Career Starts With Preparation</h2>
+
+                <p>
+                    Start building your professional profile,
+                    improve your interview skills, and organize
+                    your job search with SkillNest.
+                </p>
+
+                <a
+                    href="resume-builder.html"
+                    class="btn btn-primary"
+                >
+                    Create Your Resume
+                </a>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+                    <a href="../about.html">About</a>
+                    <a href="../contact.html">Contact</a>
+                    <a href="../privacy-policy.html">Privacy Policy</a>
+                    <a href="../terms-and-conditions.html">Terms</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SHARED JAVASCRIPT -->
+    <script src="../js/storage.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/main.js"></script>
+    <script src="../js/sidebar.js" defer></script>
+
+
+    <!-- CAREER SEARCH -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const searchInput =
+                document.getElementById("careerSearch");
+
+            const searchButton =
+                document.getElementById("searchButton");
+
+            const cards = Array.from(
+                document.querySelectorAll(".career-card")
+            );
+
+            const noResults =
+                document.getElementById("noResults");
+
+
+            function searchCareerTools() {
+
+                const searchValue =
+                    searchInput.value.trim().toLowerCase();
+
+                let visibleCount = 0;
+
+                cards.forEach(function (card) {
+
+                    const searchableText = (
+                        card.dataset.search + " " +
+                        card.textContent
+                    ).toLowerCase();
+
+                    const matches =
+                        searchableText.includes(searchValue);
+
+                    card.style.display = matches ? "flex" : "none";
+
+                    if (matches) {
+                        visibleCount++;
+                    }
+
+                });
+
+
+                noResults.style.display =
+                    visibleCount === 0 ? "block" : "none";
+
+            }
+
+
+            searchButton.addEventListener(
+                "click",
+                searchCareerTools
+            );
+
+            searchInput.addEventListener(
+                "input",
+                searchCareerTools
+            );
+
+            searchInput.addEventListener(
+                "keydown",
+                function (event) {
+
+                    if (event.key === "Enter") {
+                        searchCareerTools();
+                    }
+
+                }
+            );
+
+        });
+    </script>
+
+</body>
+</html>
+
+

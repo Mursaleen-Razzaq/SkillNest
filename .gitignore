@@ -1,0 +1,22 @@
+﻿# Local backup files
+index_before_homepage_audit.html
+*_backup*
+*_Backup*
+
+# Dependencies and generated files
+node_modules/
+dist/
+coverage/
+
+# Environment and secret files
+.env
+.env.*
+!.env.example
+
+# Operating system and editor files
+.DS_Store
+Thumbs.db
+.vscode/
+
+# JavaScript backup files
+*.backup

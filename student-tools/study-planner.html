@@ -1,0 +1,1058 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free Study Planner | SkillNest</title>
+
+    <meta name="description" content="Organize your study schedule, manage assignments, set priorities, and track your learning progress with the free SkillNest Study Planner.">
+
+    <meta name="keywords" content="study planner, student planner, study schedule, study task manager">
+
+    <meta name="author" content="SkillNest">
+
+   <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/tools.css">
+<link rel="stylesheet" href="../css/themes.css">
+<link rel="stylesheet" href="../css/sidebar.css">
+
+    <style>
+        .planner-icon {
+            width: 75px;
+            height: 75px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border-radius: 20px;
+            background: rgba(118, 87, 246, 0.12);
+            color: var(--primary-light);
+            font-size: 35px;
+        }
+
+        .planner-form {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .planner-form .full-width {
+            grid-column: 1 / -1;
+        }
+
+        .planner-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .planner-form input,
+        .planner-form select,
+        .planner-form textarea {
+            width: 100%;
+            padding: 13px;
+            border: 1px solid var(--border-color);
+            border-radius: 9px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font: inherit;
+        }
+
+        .planner-form textarea {
+            min-height: 85px;
+            resize: vertical;
+        }
+
+        .planner-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .planner-stat {
+            padding: 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-secondary);
+            text-align: center;
+        }
+
+        .planner-stat strong {
+            display: block;
+            margin-top: 7px;
+            color: var(--primary-light);
+            font-size: 28px;
+        }
+
+        .planner-stat span {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .progress-container {
+            margin: 20px 0 30px;
+        }
+
+        .progress-heading {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .progress-track {
+            height: 12px;
+            overflow: hidden;
+            border-radius: 20px;
+            background: var(--border-color);
+        }
+
+        .progress-fill {
+            width: 0;
+            height: 100%;
+            border-radius: 20px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .planner-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .filter-btn {
+            padding: 9px 17px;
+            border: 1px solid var(--border-color);
+            border-radius: 25px;
+            background: transparent;
+            color: var(--text-primary);
+            cursor: pointer;
+        }
+
+        .filter-btn.active {
+            border-color: var(--primary);
+            background: var(--primary);
+            color: white;
+        }
+
+        .task-list {
+            display: grid;
+            gap: 12px;
+        }
+
+        .task-card {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-secondary);
+        }
+
+        .task-main {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .task-checkbox {
+            width: 19px;
+            height: 19px;
+            margin-top: 3px;
+            accent-color: var(--primary);
+            cursor: pointer;
+            flex-shrink: 0;
+        }
+
+        .task-content {
+            min-width: 0;
+        }
+
+        .task-content h3 {
+            margin: 0 0 7px;
+            overflow-wrap: anywhere;
+        }
+
+        .task-content p {
+            margin: 5px 0;
+            color: var(--text-secondary);
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .task-card.completed .task-content h3 {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+
+        .task-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 10px;
+        }
+
+        .task-tag {
+            padding: 5px 9px;
+            border-radius: 20px;
+            background: rgba(118, 87, 246, 0.12);
+            color: var(--primary-light);
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .priority-high {
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+        }
+
+        .priority-medium {
+            background: rgba(245, 158, 11, 0.12);
+            color: #d97706;
+        }
+
+        .priority-low {
+            background: rgba(34, 197, 94, 0.12);
+            color: #16a34a;
+        }
+
+        .delete-task {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px;
+            background: rgba(239, 68, 68, 0.12);
+            color: #ef4444;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .empty-state {
+            padding: 35px 15px;
+            border: 1px dashed var(--border-color);
+            border-radius: 12px;
+            color: var(--text-secondary);
+            text-align: center;
+        }
+
+        @media (max-width: 650px) {
+            .planner-form {
+                grid-template-columns: 1fr;
+            }
+
+            .planner-form .full-width {
+                grid-column: auto;
+            }
+
+            .planner-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .task-card {
+                flex-direction: column;
+            }
+
+            .delete-task {
+                align-self: flex-end;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+        <div class="container navbar">
+
+            <a href="../index.html" class="logo">
+                Skill<span>Nest</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+                <a href="../index.html">Home</a>
+                <a href="index.html">Student Tools</a>
+                <a href="../career-tools/index.html">Career Tools</a>
+                <a href="../productivity-tools/index.html">Productivity</a>
+                <a href="../resources/index.html">Resources</a>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch to light mode"
+                >
+                    â—
+                </button>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- MAIN CONTENT -->
+    <main>
+
+        <section class="tool-page">
+
+            <div class="tool-header">
+
+                <div class="tool-breadcrumb">
+                    <a href="../index.html">Home</a> /
+                    <a href="index.html">Student Tools</a> /
+                    Study Planner
+                </div>
+
+                <div class="planner-icon">📚</div>
+
+                <h1>Study Planner</h1>
+
+                <p>
+                    Plan your study routine, organize subjects,
+                    manage tasks, and track your learning progress.
+                </p>
+
+            </div>
+
+
+            <div class="tool-container">
+
+                <!-- ADD TASK -->
+                <h2>Create a Study Task</h2>
+
+                <form id="taskForm" class="planner-form">
+
+                    <div class="full-width">
+
+                        <label for="taskTitle">Task Title</label>
+
+                        <input
+                            type="text"
+                            id="taskTitle"
+                            placeholder="e.g. Prepare Chapter 3"
+                            maxlength="100"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="taskSubject">Subject</label>
+
+                        <input
+                            type="text"
+                            id="taskSubject"
+                            placeholder="e.g. Artificial Intelligence"
+                            maxlength="60"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="taskDate">Study Date</label>
+
+                        <input
+                            type="date"
+                            id="taskDate"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="taskPriority">Priority</label>
+
+                        <select id="taskPriority" required>
+                            <option value="High">High</option>
+                            <option value="Medium" selected>Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+
+                    </div>
+
+
+                    <div>
+
+                        <label for="taskDuration">
+                            Estimated Time (minutes)
+                        </label>
+
+                        <input
+                            type="number"
+                            id="taskDuration"
+                            placeholder="e.g. 60"
+                            min="1"
+                            max="1440"
+                            required
+                        >
+
+                    </div>
+
+
+                    <div class="full-width">
+
+                        <label for="taskDescription">
+                            Description (Optional)
+                        </label>
+
+                        <textarea
+                            id="taskDescription"
+                            placeholder="Add details about your study task..."
+                            maxlength="500"
+                        ></textarea>
+
+                    </div>
+
+
+                    <div class="full-width">
+
+                        <button
+                            type="submit"
+                            class="tool-btn"
+                        >
+                            + Add Study Task
+                        </button>
+
+                    </div>
+
+                </form>
+
+
+                <div
+                    class="tool-alert error"
+                    id="errorMessage"
+                    role="alert"
+                ></div>
+
+
+                <!-- STATISTICS -->
+                <h2 style="margin-top: 35px;">Your Study Progress</h2>
+
+                <div class="planner-stats">
+
+                    <div class="planner-stat">
+                        <span>Total Tasks</span>
+                        <strong id="totalTasks">0</strong>
+                    </div>
+
+                    <div class="planner-stat">
+                        <span>Pending Tasks</span>
+                        <strong id="pendingTasks">0</strong>
+                    </div>
+
+                    <div class="planner-stat">
+                        <span>Completed Tasks</span>
+                        <strong id="completedTasks">0</strong>
+                    </div>
+
+                </div>
+
+
+                <div class="progress-container">
+
+                    <div class="progress-heading">
+                        <span>Overall Completion</span>
+                        <span id="progressText">0%</span>
+                    </div>
+
+                    <div
+                        class="progress-track"
+                        role="progressbar"
+                        aria-label="Study task completion"
+                        aria-valuemin="0"
+                        aria-valuemax="100"
+                        aria-valuenow="0"
+                        id="progressBar"
+                    >
+                        <div
+                            class="progress-fill"
+                            id="progressFill"
+                        ></div>
+                    </div>
+
+                </div>
+
+
+                <!-- TASK FILTERS -->
+                <h2>Your Study Tasks</h2>
+
+                <div class="planner-filters">
+
+                    <button
+                        type="button"
+                        class="filter-btn active"
+                        data-filter="all"
+                    >
+                        All
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-filter="pending"
+                    >
+                        Pending
+                    </button>
+
+                    <button
+                        type="button"
+                        class="filter-btn"
+                        data-filter="completed"
+                    >
+                        Completed
+                    </button>
+
+                </div>
+
+
+                <!-- TASK LIST -->
+                <div class="task-list" id="taskList"></div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+                    <a href="../privacy-policy.html">Privacy Policy</a>
+                    <a href="../terms-and-conditions.html">Terms</a>
+                    <a href="../contact.html">Contact</a>
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SHARED JAVASCRIPT -->
+    <script src="../js/storage.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/main.js"></script>
+
+
+    <!-- STUDY PLANNER LOGIC -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const taskForm =
+                document.getElementById("taskForm");
+
+            const taskList =
+                document.getElementById("taskList");
+
+            const errorMessage =
+                document.getElementById("errorMessage");
+
+            const taskDate =
+                document.getElementById("taskDate");
+
+            const STORAGE_KEY = "study_planner_tasks";
+
+            let tasks = SkillNestStorage.get(STORAGE_KEY, []);
+
+            if (!Array.isArray(tasks)) {
+                tasks = [];
+            }
+
+            let currentFilter = "all";
+
+
+            // Set today's date as the default
+            const today = new Date();
+
+            const localToday = new Date(
+                today.getTime() - today.getTimezoneOffset() * 60000
+            ).toISOString().split("T")[0];
+
+            taskDate.value = localToday;
+
+
+            // Create a unique task ID
+            function createTaskId() {
+
+                return Date.now().toString(36) +
+                    Math.random().toString(36).slice(2);
+
+            }
+
+
+            // Save tasks
+            function saveTasks() {
+
+                const saved = SkillNestStorage.save(
+                    STORAGE_KEY,
+                    tasks
+                );
+
+                if (!saved) {
+                    showError("Unable to save tasks in this browser.");
+                }
+
+            }
+
+
+            // Show errors
+            function showError(message) {
+
+                errorMessage.textContent = message;
+                errorMessage.classList.add("show");
+
+            }
+
+
+            // Clear errors
+            function clearError() {
+
+                errorMessage.textContent = "";
+                errorMessage.classList.remove("show");
+
+            }
+
+
+            // Format date
+            function formatDate(dateString) {
+
+                const date = new Date(dateString + "T00:00:00");
+
+                return date.toLocaleDateString(undefined, {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric"
+                });
+
+            }
+
+
+            // Safe HTML escaping
+            function escapeHTML(value) {
+
+                return String(value).replace(/[&<>"']/g, function (char) {
+
+                    const entities = {
+                        "&": "&amp;",
+                        "<": "&lt;",
+                        ">": "&gt;",
+                        '"': "&quot;",
+                        "'": "&#39;"
+                    };
+
+                    return entities[char];
+
+                });
+
+            }
+
+
+            // Get priority class
+            function getPriorityClass(priority) {
+
+                if (priority === "High") return "priority-high";
+                if (priority === "Low") return "priority-low";
+
+                return "priority-medium";
+
+            }
+
+
+            // Update statistics
+            function updateStatistics() {
+
+                const total = tasks.length;
+
+                const completed = tasks.filter(
+                    task => task.completed
+                ).length;
+
+                const pending = total - completed;
+
+                const percentage = total === 0
+                    ? 0
+                    : Math.round((completed / total) * 100);
+
+                document.getElementById(
+                    "totalTasks"
+                ).textContent = total;
+
+                document.getElementById(
+                    "pendingTasks"
+                ).textContent = pending;
+
+                document.getElementById(
+                    "completedTasks"
+                ).textContent = completed;
+
+                document.getElementById(
+                    "progressText"
+                ).textContent = percentage + "%";
+
+                document.getElementById(
+                    "progressFill"
+                ).style.width = percentage + "%";
+
+                document.getElementById(
+                    "progressBar"
+                ).setAttribute("aria-valuenow", percentage);
+
+            }
+
+
+            // Render task list
+            function renderTasks() {
+
+                taskList.innerHTML = "";
+
+                let filteredTasks = tasks;
+
+                if (currentFilter === "pending") {
+
+                    filteredTasks = tasks.filter(
+                        task => !task.completed
+                    );
+
+                }
+
+                if (currentFilter === "completed") {
+
+                    filteredTasks = tasks.filter(
+                        task => task.completed
+                    );
+
+                }
+
+
+                // Sort by date
+                filteredTasks = [...filteredTasks].sort(
+                    (a, b) => a.date.localeCompare(b.date)
+                );
+
+
+                if (filteredTasks.length === 0) {
+
+                    taskList.innerHTML = `
+                        <div class="empty-state">
+                            <h3>No tasks found</h3>
+                            <p>Add a study task or choose another filter.</p>
+                        </div>
+                    `;
+
+                } else {
+
+                    filteredTasks.forEach(function (task) {
+
+                        const card = document.createElement("div");
+
+                        card.className = "task-card" +
+                            (task.completed ? " completed" : "");
+
+                        card.innerHTML = `
+                            <div class="task-main">
+
+                                <input
+                                    type="checkbox"
+                                    class="task-checkbox"
+                                    data-action="toggle"
+                                    data-id="${escapeHTML(task.id)}"
+                                    ${task.completed ? "checked" : ""}
+                                    aria-label="Mark task as completed"
+                                >
+
+                                <div class="task-content">
+
+                                    <h3>${escapeHTML(task.title)}</h3>
+
+                                    <p>
+                                        Subject: ${escapeHTML(task.subject)}
+                                    </p>
+
+                                    <p>
+                                        Study Date: ${formatDate(task.date)}
+                                    </p>
+
+                                    <p>
+                                        Estimated Time: ${Number(task.duration)} minutes
+                                    </p>
+
+                                    ${
+                                        task.description
+                                        ? `<p>${escapeHTML(task.description)}</p>`
+                                        : ""
+                                    }
+
+                                    <div class="task-meta">
+
+                                        <span class="task-tag ${getPriorityClass(task.priority)}">
+                                            ${escapeHTML(task.priority)} Priority
+                                        </span>
+
+                                        <span class="task-tag">
+                                            ${task.completed ? "Completed" : "Pending"}
+                                        </span>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <button
+                                type="button"
+                                class="delete-task"
+                                data-action="delete"
+                                data-id="${escapeHTML(task.id)}"
+                            >
+                                Delete
+                            </button>
+                        `;
+
+                        taskList.appendChild(card);
+
+                    });
+
+                }
+
+                updateStatistics();
+
+            }
+
+
+            // Add a new task
+            taskForm.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                clearError();
+
+                const title = document.getElementById(
+                    "taskTitle"
+                ).value.trim();
+
+                const subject = document.getElementById(
+                    "taskSubject"
+                ).value.trim();
+
+                const date = taskDate.value;
+
+                const priority = document.getElementById(
+                    "taskPriority"
+                ).value;
+
+                const duration = Number(
+                    document.getElementById("taskDuration").value
+                );
+
+                const description = document.getElementById(
+                    "taskDescription"
+                ).value.trim();
+
+
+                if (!title || !subject || !date) {
+
+                    showError("Please complete all required fields.");
+                    return;
+
+                }
+
+                if (
+                    !Number.isInteger(duration) ||
+                    duration < 1 ||
+                    duration > 1440
+                ) {
+
+                    showError(
+                        "Study duration must be between 1 and 1440 minutes."
+                    );
+
+                    return;
+
+                }
+
+
+                const newTask = {
+                    id: createTaskId(),
+                    title: title,
+                    subject: subject,
+                    date: date,
+                    priority: priority,
+                    duration: duration,
+                    description: description,
+                    completed: false,
+                    createdAt: new Date().toISOString()
+                };
+
+
+                tasks.push(newTask);
+
+                saveTasks();
+
+                taskForm.reset();
+
+                taskDate.value = localToday;
+
+                document.getElementById(
+                    "taskPriority"
+                ).value = "Medium";
+
+                currentFilter = "all";
+
+                updateFilterButtons();
+
+                renderTasks();
+
+            });
+
+
+            // Handle task completion and deletion
+            taskList.addEventListener("click", function (event) {
+
+                const actionElement = event.target.closest(
+                    "[data-action]"
+                );
+
+                if (!actionElement) return;
+
+                const id = actionElement.dataset.id;
+
+                const action = actionElement.dataset.action;
+
+                if (action === "delete") {
+
+                    tasks = tasks.filter(
+                        task => task.id !== id
+                    );
+
+                    saveTasks();
+
+                    renderTasks();
+
+                }
+
+            });
+
+
+            // Handle completion checkbox
+            taskList.addEventListener("change", function (event) {
+
+                if (
+                    !event.target.matches(
+                        '[data-action="toggle"]'
+                    )
+                ) {
+                    return;
+                }
+
+                const id = event.target.dataset.id;
+
+                tasks = tasks.map(function (task) {
+
+                    if (task.id === id) {
+
+                        return {
+                            ...task,
+                            completed: event.target.checked
+                        };
+
+                    }
+
+                    return task;
+
+                });
+
+                saveTasks();
+
+                renderTasks();
+
+            });
+
+
+            // Filter buttons
+            document.querySelectorAll(".filter-btn")
+                .forEach(function (button) {
+
+                    button.addEventListener("click", function () {
+
+                        currentFilter = button.dataset.filter;
+
+                        updateFilterButtons();
+
+                        renderTasks();
+
+                    });
+
+                });
+
+
+            function updateFilterButtons() {
+
+                document.querySelectorAll(".filter-btn")
+                    .forEach(function (button) {
+
+                        button.classList.toggle(
+                            "active",
+                            button.dataset.filter === currentFilter
+                        );
+
+                    });
+
+            }
+
+
+            // Initial rendering
+            renderTasks();
+
+        });
+    </script>
+
+
+<script src="../js/sidebar.js" defer></script>
+</body>
+</html>
+
+

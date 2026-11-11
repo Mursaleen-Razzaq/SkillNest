@@ -1,0 +1,872 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Free Online Word Counter | SkillNest</title>
+
+    <meta name="description" content="Count words, characters, sentences, and paragraphs instantly with the free SkillNest online word counter. Estimate reading time and analyze your writing.">
+
+    <meta name="keywords" content="online word counter, character counter, sentence counter, paragraph counter, reading time calculator">
+
+    <meta name="author" content="SkillNest">
+
+    <link rel="canonical" href="https://your-domain.netlify.app/productivity-tools/word-counter.html">
+
+    <link rel="stylesheet" href="../css/style.css">
+<link rel="stylesheet" href="../css/responsive.css">
+<link rel="stylesheet" href="../css/tools.css">
+<link rel="stylesheet" href="../css/themes.css">
+
+    <style>
+        .word-hero {
+            padding: 45px 20px;
+            text-align: center;
+            background: var(--bg-secondary);
+        }
+
+        .word-hero h1 {
+            margin-bottom: 12px;
+            font-size: clamp(30px, 5vw, 42px);
+        }
+
+        .word-hero p {
+            color: var(--text-secondary);
+            line-height: 1.8;
+        }
+
+        .breadcrumb {
+            margin-bottom: 18px;
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        .breadcrumb a {
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+
+        .word-container {
+            max-width: 1050px;
+            margin: 45px auto 75px;
+            padding: 0 20px;
+        }
+
+        .word-card {
+            padding: 28px;
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            background: var(--card-bg);
+        }
+
+        .word-card h2 {
+            margin-bottom: 10px;
+            font-size: 21px;
+        }
+
+        .word-description {
+            margin-bottom: 20px;
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.7;
+        }
+
+        .word-textarea {
+            width: 100%;
+            min-height: 330px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            outline: none;
+            resize: vertical;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: 15px;
+            line-height: 1.8;
+            transition: border-color 0.2s;
+        }
+
+        .word-textarea:focus {
+            border-color: var(--primary-color);
+        }
+
+        .word-textarea::placeholder {
+            color: var(--text-secondary);
+        }
+
+        .word-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 17px;
+        }
+
+        .word-actions-left,
+        .word-actions-right {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .word-actions button {
+            padding: 11px 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            font-size: 13px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .word-actions button:hover {
+            border-color: var(--primary-color);
+            color: var(--primary-color);
+        }
+
+        .word-actions .copy-button {
+            background: var(--primary-color);
+            border-color: var(--primary-color);
+            color: white;
+        }
+
+        .word-actions .copy-button:hover {
+            opacity: 0.9;
+            color: white;
+        }
+
+        .word-message {
+            min-height: 20px;
+            margin-top: 12px;
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .word-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .word-stat {
+            padding: 22px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--card-bg);
+            text-align: center;
+        }
+
+        .word-stat strong {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--primary-color);
+            font-size: 28px;
+            font-weight: 800;
+            overflow-wrap: anywhere;
+        }
+
+        .word-stat span {
+            color: var(--text-secondary);
+            font-size: 13px;
+        }
+
+        .word-info {
+            margin-top: 30px;
+            padding: 25px;
+            border-radius: 14px;
+            background: var(--bg-secondary);
+        }
+
+        .word-info h2 {
+            margin-bottom: 12px;
+            font-size: 21px;
+        }
+
+        .word-info p,
+        .word-info li {
+            color: var(--text-secondary);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .word-info ul {
+            padding-left: 22px;
+            margin-top: 12px;
+        }
+
+        @media(max-width: 650px) {
+            .word-card {
+                padding: 18px;
+            }
+
+            .word-textarea {
+                min-height: 260px;
+            }
+
+            .word-stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+
+            .word-stat {
+                padding: 17px 8px;
+            }
+
+            .word-stat strong {
+                font-size: 23px;
+            }
+
+            .word-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .word-actions-left,
+            .word-actions-right {
+                width: 100%;
+            }
+
+            .word-actions button {
+                flex: 1;
+            }
+        }
+    </style>
+
+<link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+</head>
+
+
+<body>
+
+    <!-- HEADER -->
+    <header class="header">
+
+        <div class="container navbar">
+
+            <a href="../index.html" class="logo">
+                Skill<span>Nest</span>
+            </a>
+
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+            >
+                ☰
+            </button>
+
+            <nav class="nav-links" id="navLinks">
+
+                <a href="../index.html">Home</a>
+
+                <a href="../student-tools/index.html">
+                    Student Tools
+                </a>
+
+                <a href="../career-tools/index.html">
+                    Career Tools
+                </a>
+
+                <a href="index.html" class="active">
+                    Productivity
+                </a>
+
+                <a href="../resources/index.html">
+                    Resources
+                </a>
+
+                <a href="../about.html">About</a>
+
+                <button
+                    class="theme-toggle"
+                    id="themeToggle"
+                    type="button"
+                    aria-label="Switch to light mode"
+                >
+                    â—
+                </button>
+
+            </nav>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+        <!-- HERO -->
+        <section class="word-hero">
+
+            <div class="container">
+
+                <div class="breadcrumb">
+                    <a href="../index.html">Home</a>
+                    /
+                    <a href="index.html">Productivity</a>
+                    /
+                    Word Counter
+                </div>
+
+                <h1>Free Online Word Counter</h1>
+
+                <p>
+                    Count words, characters, sentences,
+                    and paragraphs instantly. Analyze
+                    your writing with a simple free tool.
+                </p>
+
+            </div>
+
+        </section>
+
+
+        <!-- WORD COUNTER -->
+        <div class="word-container">
+
+            <section class="word-card">
+
+                <h2>Enter Your Text</h2>
+
+                <p class="word-description">
+                    Start typing or paste your text below.
+                    Your writing statistics will update automatically.
+                </p>
+
+
+                <textarea
+                    id="textInput"
+                    class="word-textarea"
+                    placeholder="Start typing or paste your text here..."
+                    aria-label="Enter text to count words and characters"
+                    spellcheck="true"
+                ></textarea>
+
+
+                <!-- ACTIONS -->
+                <div class="word-actions">
+
+                    <div class="word-actions-left">
+
+                        <button
+                            type="button"
+                            id="clearButton"
+                        >
+                            Clear Text
+                        </button>
+
+                        <button
+                            type="button"
+                            id="sampleButton"
+                        >
+                            Load Sample
+                        </button>
+
+                    </div>
+
+
+                    <div class="word-actions-right">
+
+                        <button
+                            type="button"
+                            class="copy-button"
+                            id="copyButton"
+                        >
+                            Copy Text
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <p
+                    class="word-message"
+                    id="wordMessage"
+                    aria-live="polite"
+                ></p>
+
+
+                <!-- STATISTICS -->
+                <div class="word-stats">
+
+                    <div class="word-stat">
+
+                        <strong id="wordCount">0</strong>
+
+                        <span>Words</span>
+
+                    </div>
+
+
+                    <div class="word-stat">
+
+                        <strong id="characterCount">0</strong>
+
+                        <span>Characters</span>
+
+                    </div>
+
+
+                    <div class="word-stat">
+
+                        <strong id="characterNoSpaces">0</strong>
+
+                        <span>Characters Without Spaces</span>
+
+                    </div>
+
+
+                    <div class="word-stat">
+
+                        <strong id="sentenceCount">0</strong>
+
+                        <span>Sentences</span>
+
+                    </div>
+
+
+                    <div class="word-stat">
+
+                        <strong id="paragraphCount">0</strong>
+
+                        <span>Paragraphs</span>
+
+                    </div>
+
+
+                    <div class="word-stat">
+
+                        <strong id="readingTime">0 min</strong>
+
+                        <span>Estimated Reading Time</span>
+
+                    </div>
+
+
+                    <div class="word-stat">
+
+                        <strong id="averageWordLength">0</strong>
+
+                        <span>Average Word Length</span>
+
+                    </div>
+
+
+                    <div class="word-stat">
+
+                        <strong id="speakingTime">0 min</strong>
+
+                        <span>Estimated Speaking Time</span>
+
+                    </div>
+
+
+                    <div class="word-stat">
+
+                        <strong id="longestWord">—</strong>
+
+                        <span>Longest Word</span>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- INFORMATION -->
+            <section class="word-info">
+
+                <h2>Why Use an Online Word Counter?</h2>
+
+                <p>
+                    A word counter helps you understand
+                    the length and structure of your writing.
+                    It is useful for assignments, essays,
+                    reports, articles, and professional documents.
+                </p>
+
+                <ul>
+
+                    <li>
+                        <strong>Words:</strong>
+                        Counts words separated by whitespace.
+                    </li>
+
+                    <li>
+                        <strong>Characters:</strong>
+                        Counts all characters, including spaces.
+                    </li>
+
+                    <li>
+                        <strong>Sentences:</strong>
+                        Estimates sentences using common punctuation.
+                    </li>
+
+                    <li>
+                        <strong>Paragraphs:</strong>
+                        Counts non-empty text blocks.
+                    </li>
+
+                    <li>
+                        <strong>Reading time:</strong>
+                        Estimates reading time using 200 words per minute.
+                    </li>
+
+                    <li>
+                        <strong>Speaking time:</strong>
+                        Estimates speaking time using 130 words per minute.
+                    </li>
+
+                </ul>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-bottom">
+
+                <p>
+                    Â© <span id="currentYear"></span> SkillNest.
+                    All rights reserved.
+                </p>
+
+                <div>
+
+                    <a href="../about.html">About</a>
+
+                    <a href="../contact.html">Contact</a>
+
+                    <a href="../privacy-policy.html">
+                        Privacy Policy
+                    </a>
+
+                    <a href="../terms-and-conditions.html">
+                        Terms
+                    </a>
+
+                    <a href="../disclaimer.html">
+                        Disclaimer
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- SHARED JAVASCRIPT -->
+    <script src="../js/storage.js"></script>
+    <script src="../js/navigation.js"></script>
+    <script src="../js/theme.js"></script>
+    <script src="../js/main.js"></script>
+
+
+    <!-- WORD COUNTER JAVASCRIPT -->
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+
+            const textInput =
+                document.getElementById("textInput");
+
+            const clearButton =
+                document.getElementById("clearButton");
+
+            const sampleButton =
+                document.getElementById("sampleButton");
+
+            const copyButton =
+                document.getElementById("copyButton");
+
+            const wordMessage =
+                document.getElementById("wordMessage");
+
+
+            const sampleText =
+                "SkillNest helps students and professionals improve their productivity.\n\n" +
+                "With simple online tools, you can organize your tasks, manage your time, " +
+                "and prepare for your academic and career goals.";
+
+
+            const elements = {
+                words: document.getElementById("wordCount"),
+                characters: document.getElementById("characterCount"),
+                noSpaces: document.getElementById("characterNoSpaces"),
+                sentences: document.getElementById("sentenceCount"),
+                paragraphs: document.getElementById("paragraphCount"),
+                reading: document.getElementById("readingTime"),
+                speaking: document.getElementById("speakingTime"),
+                average: document.getElementById("averageWordLength"),
+                longest: document.getElementById("longestWord")
+            };
+
+
+            function getWords(text) {
+
+                const trimmed = text.trim();
+
+                if (!trimmed) {
+                    return [];
+                }
+
+                return trimmed.match(/\S+/g) || [];
+
+            }
+
+
+            function countSentences(text) {
+
+                const trimmed = text.trim();
+
+                if (!trimmed) {
+                    return 0;
+                }
+
+                const matches = trimmed.match(
+                    /[^.!?]+(?:[.!?]+|$)/g
+                ) || [];
+
+                return matches.filter(function (sentence) {
+                    return sentence.trim().length > 0;
+                }).length;
+
+            }
+
+
+            function countParagraphs(text) {
+
+                const trimmed = text.trim();
+
+                if (!trimmed) {
+                    return 0;
+                }
+
+                return trimmed
+                    .split(/\n\s*\n/)
+                    .filter(function (paragraph) {
+                        return paragraph.trim().length > 0;
+                    })
+                    .length;
+
+            }
+
+
+            function formatReadingTime(words, speed) {
+
+                if (words === 0) {
+                    return "0 min";
+                }
+
+                const minutes = words / speed;
+
+                if (minutes < 1) {
+
+                    return Math.max(
+                        1,
+                        Math.ceil(minutes * 60)
+                    ) + " sec";
+
+                }
+
+                return Math.ceil(minutes) + " min";
+
+            }
+
+
+            function updateStatistics() {
+
+                const text = textInput.value;
+
+                const words = getWords(text);
+
+                const wordTotal = words.length;
+
+                const characterTotal = text.length;
+
+                const charactersWithoutSpaces =
+                    text.replace(/\s/g, "").length;
+
+                const sentences = countSentences(text);
+
+                const paragraphs = countParagraphs(text);
+
+                const averageLength = wordTotal
+                    ? (
+                        words.reduce(function (total, word) {
+                            return total + word.length;
+                        }, 0) / wordTotal
+                    ).toFixed(1)
+                    : "0";
+
+
+                const longest = words.reduce(
+                    function (longestWord, currentWord) {
+
+                        const cleanWord = currentWord.replace(
+                            /^[^\p{L}\p{N}]+|[^\p{L}\p{N}]+$/gu,
+                            ""
+                        );
+
+                        return cleanWord.length > longestWord.length
+                            ? cleanWord
+                            : longestWord;
+
+                    },
+                    ""
+                );
+
+
+                elements.words.textContent = wordTotal;
+
+                elements.characters.textContent = characterTotal;
+
+                elements.noSpaces.textContent =
+                    charactersWithoutSpaces;
+
+                elements.sentences.textContent = sentences;
+
+                elements.paragraphs.textContent = paragraphs;
+
+                elements.reading.textContent =
+                    formatReadingTime(wordTotal, 200);
+
+                elements.speaking.textContent =
+                    formatReadingTime(wordTotal, 130);
+
+                elements.average.textContent = averageLength;
+
+                elements.longest.textContent =
+                    longest || "—";
+
+            }
+
+
+            textInput.addEventListener(
+                "input",
+                updateStatistics
+            );
+
+
+            clearButton.addEventListener(
+                "click",
+                function () {
+
+                    textInput.value = "";
+
+                    updateStatistics();
+
+                    wordMessage.textContent =
+                        "Text cleared successfully.";
+
+                    textInput.focus();
+
+                }
+            );
+
+
+            sampleButton.addEventListener(
+                "click",
+                function () {
+
+                    textInput.value = sampleText;
+
+                    updateStatistics();
+
+                    wordMessage.textContent =
+                        "Sample text loaded.";
+
+                }
+            );
+
+
+            copyButton.addEventListener(
+                "click",
+                async function () {
+
+                    const text = textInput.value;
+
+                    if (!text.trim()) {
+
+                        wordMessage.textContent =
+                            "Please enter some text before copying.";
+
+                        return;
+
+                    }
+
+                    try {
+
+                        if (navigator.clipboard && window.isSecureContext) {
+
+                            await navigator.clipboard.writeText(text);
+
+                        } else {
+
+                            textInput.focus();
+
+                            textInput.select();
+
+                            const successful =
+                                document.execCommand("copy");
+
+                            if (!successful) {
+                                throw new Error("Copy failed");
+                            }
+
+                            textInput.setSelectionRange(
+                                text.length,
+                                text.length
+                            );
+
+                        }
+
+                        wordMessage.textContent =
+                            "Text copied successfully!";
+
+                    } catch (error) {
+
+                        wordMessage.textContent =
+                            "Unable to copy automatically. Please select and copy your text.";
+
+                    }
+
+                }
+            );
+
+
+            updateStatistics();
+
+        });
+
+    </script>
+
+
+<script src="../js/sidebar.js" defer></script>
+</body>
+</html>
+
+

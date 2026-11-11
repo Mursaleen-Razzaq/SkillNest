@@ -1,0 +1,310 @@
+
+/* ========================================
+   SKILLNEST - RESPONSIVE STYLESHEET
+   File: css/responsive.css
+======================================== */
+
+/* Large tablets and small laptops */
+@media (max-width: 1024px) {
+    .container {
+        width: min(100% - 40px, 960px);
+    }
+
+    .hero {
+        gap: 35px;
+    }
+
+    .hero h1 {
+        font-size: 48px;
+    }
+
+    .dashboard-card {
+        padding: 22px;
+    }
+
+    .tools-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .resources-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Tablets */
+@media (max-width: 900px) {
+    .navbar {
+        position: relative;
+    }
+
+    .menu-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 1001;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 82px;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 20px 20px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-radius: 0 0 16px 16px;
+        box-shadow: var(--shadow);
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        display: block;
+        padding: 13px 10px;
+    }
+
+    .nav-links .btn {
+        margin-top: 10px;
+        text-align: center;
+    }
+
+    .hero {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 65px;
+    }
+
+    .hero-content {
+        max-width: 720px;
+        margin: 0 auto;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
+    .hero-visual {
+        width: 100%;
+        max-width: 580px;
+        margin: 20px auto 0;
+    }
+
+    .how-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .why-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cta-section {
+        padding: 55px 30px;
+    }
+}
+
+/* Mobile devices */
+@media (max-width: 768px) {
+    .container {
+        width: min(100% - 32px, 680px);
+    }
+
+    .section {
+        padding: 65px 0;
+    }
+
+    .hero {
+        padding-top: 50px;
+        padding-bottom: 60px;
+    }
+
+    .hero h1 {
+        font-size: 40px;
+        line-height: 1.2;
+    }
+
+    .hero-description {
+        font-size: 15px;
+    }
+
+    .section-title {
+        font-size: 32px;
+    }
+
+    .section-description {
+        font-size: 15px;
+    }
+
+    .tools-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+    }
+
+    .tool-card {
+        padding: 20px;
+    }
+
+    .tool-card h3 {
+        font-size: 17px;
+    }
+
+    .resources-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .footer-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 35px;
+    }
+
+    .search-box {
+        flex-direction: column;
+    }
+
+    .search-box input,
+    .search-box button {
+        width: 100%;
+    }
+}
+
+/* Small mobile devices */
+@media (max-width: 560px) {
+    .container {
+        width: min(100% - 28px, 480px);
+    }
+
+    .navbar {
+        min-height: 72px;
+    }
+
+    .nav-links {
+        top: 72px;
+    }
+
+    .logo {
+        font-size: 21px;
+    }
+
+    .hero {
+        padding-top: 40px;
+        gap: 25px;
+    }
+
+    .hero h1 {
+        font-size: 34px;
+    }
+
+    .hero-description {
+        font-size: 14px;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .hero-buttons .btn {
+        width: 100%;
+    }
+
+    .hero-visual {
+        overflow: hidden;
+    }
+
+    .dashboard-card {
+        padding: 17px;
+    }
+
+    .dashboard-card h3 {
+        font-size: 17px;
+    }
+
+    .tools-grid,
+    .resources-grid,
+    .how-grid,
+    .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .tool-card {
+        padding: 22px;
+    }
+
+    .section {
+        padding: 55px 0;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+
+    .section-description {
+        font-size: 14px;
+    }
+
+    .cta-section {
+        padding: 40px 20px;
+        border-radius: 18px;
+    }
+
+    .cta-section h2 {
+        font-size: 27px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        text-align: center;
+        gap: 12px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 360px) {
+    .hero h1 {
+        font-size: 29px;
+    }
+
+    .section-title {
+        font-size: 25px;
+    }
+
+    .logo {
+        font-size: 19px;
+    }
+
+    .dashboard-card {
+        padding: 13px;
+    }
+
+    .tool-card {
+        padding: 17px;
+    }
+}
+
+/* Accessibility: reduce animations when requested */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
