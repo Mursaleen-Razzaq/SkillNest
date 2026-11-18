@@ -121,18 +121,55 @@
             border-color: var(--primary-color);
         }
 
-        .productivity-icon {
-            width: 55px;
-            height: 55px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            border-radius: 14px;
-            background: rgba(118, 87, 246, 0.12);
-            font-size: 27px;
-        }
+    /* Productivity Icons */
+.productivity-icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: 14px;
+    background: rgba(118, 87, 246, 0.12);
+}
 
+.productivity-icon img {
+    display: block;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+}
+
+/* Dark Mode - Purple Icons */
+:root .productivity-icon img,
+[data-theme="dark"] .productivity-icon img {
+    filter: brightness(0) saturate(100%)
+            invert(43%) sepia(71%) saturate(2500%)
+            hue-rotate(225deg) brightness(100%);
+}
+
+/* Light Mode - Black Icons */
+[data-theme="light"] .productivity-icon img {
+    filter: brightness(0);
+}
+
+/* Productivity Arrows - Purple in Both Themes */
+.productivity-arrow-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 6px;
+    vertical-align: middle;
+    object-fit: contain;
+    filter: brightness(0) saturate(100%)
+            invert(43%) sepia(71%) saturate(2500%)
+            hue-rotate(225deg) brightness(100%);
+}
+ /* Keep Flashcards PNG Original Colors */
+.productivity-icon img.flashcards-icon {
+    filter: none !important;
+    object-fit: contain;
+}
         .productivity-card h3 {
             margin-bottom: 12px;
             font-size: 20px;
@@ -208,71 +245,89 @@
 
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
+    
+<!-- HEADER -->
+<header class="header">
 
-        <div class="container navbar">
+    <div class="container navbar">
 
-            <a href="../index.html" class="logo">
-                Skill<span>Nest</span>
+        <!-- LOGO -->
+        <a href="../index.html" class="logo">
+            Skill<span>Nest</span>
+        </a>
+
+        <!-- NAVIGATION -->
+        <nav class="nav-links" id="navLinks">
+
+            <a href="../index.html">Home</a>
+
+            <a href="../student-tools/index.html">
+                Student Tools
             </a>
 
+            <a href="../career-tools/index.html">
+                Career Tools
+            </a>
+
+            <a href="index.html" class="active">
+                Productivity
+            </a>
+
+            <a href="../resources/index.html">
+                Resources
+            </a>
+
+            <a href="../about.html">
+                About
+            </a>
+
+        </nav>
+
+        <!-- HEADER ACTIONS -->
+        <div class="nav-actions">
+
+            <!-- THEME TOGGLE -->
             <button
-    class="menu-toggle"
-    id="menuToggle"
-    type="button"
-    aria-label="Open navigation menu"
-    aria-controls="navLinks"
-    aria-expanded="false"
->
-    <span
-        class="sn-svg-icon topbar-svg-icon"
-        aria-hidden="true"
-        style="-webkit-mask-image: url('../assets/icons/menu.svg'); mask-image: url('../assets/icons/menu.svg');"
-    ></span>
-</button>
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch theme"
+                title="Switch theme"
+            >
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
+            </button>
 
-            <nav class="nav-links" id="navLinks">
+            <!-- GET STARTED -->
+            <a
+                href="../student-tools/index.html"
+                class="btn btn-primary"
+            >
+                Get Started
+            </a>
 
-                <a href="../index.html">Home</a>
-
-                <a href="../student-tools/index.html">
-                    Student Tools
-                </a>
-
-                <a href="../career-tools/index.html">
-                    Career Tools
-                </a>
-
-                <a href="index.html" class="active">
-                    Productivity
-                </a>
-
-                <a href="../resources/index.html">
-                    Resources
-                </a>
-
-                <a href="../about.html">About</a>
-
-                <button
-    class="theme-toggle"
-    id="themeToggle"
-    type="button"
-    aria-label="Switch to light mode"
->
-    <span
-        class="sn-svg-icon topbar-svg-icon"
-        aria-hidden="true"
-        style="-webkit-mask-image: url('../assets/icons/sun.svg'); mask-image: url('../assets/icons/sun.svg');"
-    ></span>
-</button>
-
-            </nav>
+            <!-- MOBILE MENU -->
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-controls="navLinks"
+                aria-expanded="false"
+            >
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
+            </button>
 
         </div>
 
-    </header>
+    </div>
 
+</header>
 
     <main>
 
@@ -347,10 +402,12 @@
                         data-search="pomodoro timer focus study work time management productivity break"
                     >
 
-                        <div class="productivity-icon">
-                            🍅
-                        </div>
-
+                       <div class="productivity-icon">
+    <img src="../assets/icons/timer.svg"
+         alt=""
+         width="28"
+         height="28">
+</div>
                         <h3>Pomodoro Timer</h3>
 
                         <p>
@@ -360,9 +417,14 @@
                             time with the Pomodoro technique.
                         </p>
 
-                        <a href="pomodoro-timer.html">
-                            Open Pomodoro Timer â†’
-                        </a>
+                       <a href="pomodoro-timer.html">
+    Open Pomodoro Timer
+    <img
+    src="../assets/icons/arrow-right.svg"
+    alt=""
+    class="productivity-arrow-icon"
+>
+</a>
 
                     </article>
 
@@ -373,9 +435,12 @@
                         data-search="word counter character counter sentences paragraphs text writing"
                     >
 
-                        <div class="productivity-icon">
-                            📝
-                        </div>
+                       <div class="productivity-icon">
+    <img src="../assets/icons/file-text.svg"
+         alt=""
+         width="28"
+         height="28">
+</div>
 
                         <h3>Word Counter</h3>
 
@@ -387,8 +452,13 @@
                         </p>
 
                         <a href="word-counter.html">
-                            Open Word Counter â†’
-                        </a>
+    Open Word Counter
+    <img
+    src="../assets/icons/arrow-right.svg"
+    alt=""
+    class="productivity-arrow-icon"
+>
+</a>
 
                     </article>
 
@@ -400,8 +470,11 @@
                     >
 
                         <div class="productivity-icon">
-                            ✅
-                        </div>
+    <img src="../assets/icons/list-todo.svg"
+         alt=""
+         width="28"
+         height="28">
+</div>
 
                         <h3>To-Do List</h3>
 
@@ -413,8 +486,13 @@
                         </p>
 
                         <a href="todo-list.html">
-                            Open To-Do List â†’
-                        </a>
+    Open To-Do List
+    <img
+    src="../assets/icons/arrow-right.svg"
+    alt=""
+    class="productivity-arrow-icon"
+>
+</a>
 
                     </article>
 
@@ -424,11 +502,12 @@
                         class="productivity-card"
                         data-search="flashcards study memory learning revision questions answers education"
                     >
-
-                        <div class="productivity-icon">
-                            ðŸ§ 
-                        </div>
-
+<div class="productivity-icon">
+    <img src="../assets/icons/flashcards.svg"
+         alt=""
+         width="32"
+         height="32">
+</div>
                         <h3>Flashcards</h3>
 
                         <p>
@@ -439,8 +518,13 @@
                         </p>
 
                         <a href="flashcards.html">
-                            Open Flashcards â†’
-                        </a>
+    Open Flashcards
+    <img
+    src="../assets/icons/arrow-right.svg"
+    alt=""
+    class="productivity-arrow-icon"
+>
+</a>
 
                     </article>
 
@@ -499,7 +583,7 @@
             <div class="footer-bottom">
 
                 <p>
-                    Â© <span id="currentYear"></span> SkillNest.
+                    © <span id="currentYear"></span> SkillNest.
                     All rights reserved.
                 </p>
 

@@ -168,43 +168,73 @@
 
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container navbar">
+<!-- HEADER -->
+<header class="header">
+    <div class="container navbar">
 
-            <a href="../index.html" class="logo">
-                Skill<span>Nest</span>
+        <!-- LOGO -->
+        <a href="../index.html" class="logo">
+            Skill<span>Nest</span>
+        </a>
+
+        <!-- NAVIGATION -->
+        <nav class="nav-links" id="navLinks">
+
+            <a href="../index.html">Home</a>
+
+            <a href="../student-tools/index.html">Student Tools</a>
+
+            <a href="index.html">Career Tools</a>
+
+            <a href="../productivity-tools/index.html">Productivity</a>
+
+            <a href="../resources/index.html">Resources</a>
+
+            <a href="../about.html">About</a>
+
+        </nav>
+
+        <!-- HEADER ACTIONS -->
+        <div class="nav-actions">
+
+            <!-- THEME TOGGLE -->
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch theme"
+                title="Switch theme"
+            >
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
+            </button>
+
+            <!-- GET STARTED -->
+            <a href="../contact.html" class="btn btn-primary">
+                Get Started
             </a>
 
+            <!-- MOBILE MENU -->
             <button
                 class="menu-toggle"
                 id="menuToggle"
                 type="button"
                 aria-label="Open navigation menu"
+                aria-controls="navLinks"
                 aria-expanded="false"
             >
-                ☰
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
             </button>
 
-            <nav class="nav-links" id="navLinks">
-                <a href="../index.html">Home</a>
-                <a href="../student-tools/index.html">Student Tools</a>
-                <a href="index.html">Career Tools</a>
-                <a href="../productivity-tools/index.html">Productivity</a>
-                <a href="../resources/index.html">Resources</a>
-
-                <button
-                    class="theme-toggle"
-                    id="themeToggle"
-                    type="button"
-                    aria-label="Switch to light mode"
-                >
-                    â—
-                </button>
-            </nav>
-
         </div>
-    </header>
+
+    </div>
+</header>
 
 
     <main>
@@ -506,7 +536,7 @@
             <div class="footer-bottom">
 
                 <p>
-                    Â© <span id="currentYear"></span> SkillNest.
+                    © <span id="currentYear"></span> SkillNest.
                     All rights reserved.
                 </p>
 

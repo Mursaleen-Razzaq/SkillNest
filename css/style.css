@@ -233,6 +233,14 @@ img {
     margin-bottom: 24px;
     background: rgba(118, 87, 246, 0.1);
 }
+.hero-badge img {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+    filter: brightness(0) invert(1);
+}
 
 .hero h1 {
     font-size: clamp(38px, 5vw, 60px);
@@ -628,11 +636,6 @@ img {
     box-shadow: var(--shadow);
 }
 
-.resource-icon {
-    font-size: 30px;
-    margin-bottom: 15px;
-}
-
 .resource-card h3 {
     color: var(--navy);
     font-size: 16px;
@@ -700,19 +703,22 @@ img {
 }
 
 
-/* 14. FOOTER */
+
+/* ========================================
+   14. FOOTER
+======================================== */
 
 .footer {
     background: var(--navy);
     color: var(--white);
-    padding: 70px 0 0;
+    padding: 65px 0 0;
 }
 
 .footer-grid {
     display: grid;
     grid-template-columns: 1.5fr 1fr 1fr 1.2fr;
     gap: 45px;
-    padding-bottom: 55px;
+    padding-bottom: 50px;
 }
 
 .footer .logo {
@@ -721,25 +727,28 @@ img {
 
 .footer-about p {
     color: #B8BED1;
-    font-size: 13px;
+    font-size: 14px;
+    line-height: 1.8;
     margin-top: 18px;
-    max-width: 280px;
+    max-width: 300px;
 }
 
 .footer-links {
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 13px;
 }
 
 .footer-links h3 {
-    font-size: 15px;
-    margin-bottom: 10px;
+    color: var(--white);
+    font-size: 16px;
+    margin-bottom: 8px;
 }
 
 .footer-links a {
     color: #B8BED1;
-    font-size: 12px;
+    font-size: 14px;
+    text-decoration: none;
     transition: var(--transition);
 }
 
@@ -748,13 +757,70 @@ img {
 }
 
 .footer-bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 18px;
     border-top: 1px solid rgba(255, 255, 255, 0.12);
-    padding: 22px 0;
-    text-align: center;
-    color: #A7AEC3;
-    font-size: 12px;
+    padding: 24px 0;
+    color: #B8BED1;
+    font-size: 13px;
 }
 
+.footer-bottom p {
+    margin: 0;
+    line-height: 1.7;
+}
+
+.footer-bottom div {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.footer-bottom a {
+    color: #B8BED1;
+    font-size: 13px;
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.footer-bottom a:hover {
+    color: var(--primary-light);
+}
+
+/* FOOTER RESPONSIVE */
+@media (max-width: 900px) {
+    .footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 35px;
+    }
+}
+
+@media (max-width: 560px) {
+    .footer {
+        padding-top: 45px;
+    }
+
+    .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        padding-bottom: 35px;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 20px 0;
+    }
+
+    .footer-bottom div {
+        gap: 18px;
+    }
+}
 
 /* 15. GENERAL FOCUS AND SELECTION */
 
@@ -804,4 +870,101 @@ input:focus-visible {
 .scroll-top-button:hover {
     background: var(--primary-dark);
     transform: translateY(-4px);
+}
+
+/* Homepage SVG icon styling */
+.tool-icon img,
+.resource-icon img,
+.dashboard-icon img {
+    width: 22px;
+    height: 22px;
+    display: block;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+/* Hero Button Arrow */
+.hero-buttons .btn-primary .hero-btn-arrow {
+    width: 20px;
+    height: 20px;
+    display: block;
+    flex-shrink: 0;
+    overflow: visible;
+}
+.search-icon img {
+    width: 20px;
+    height: 20px;
+    display: block;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+[data-theme="light"] .search-icon img {
+    filter: brightness(0) saturate(100%) invert(8%) sepia(15%)
+            saturate(1800%) hue-rotate(195deg) brightness(95%);
+}
+
+.tool-link-arrow {
+    width: 14px;
+    height: 14px;
+    display: inline-block;
+    margin-left: 5px;
+    vertical-align: -2px;
+    filter: brightness(0) invert(1);
+}
+
+.why-check-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    margin-right: 8px;
+    vertical-align: -3px;
+    filter: brightness(0) saturate(100%) invert(48%) sepia(75%)
+            saturate(1200%) hue-rotate(215deg) brightness(100%);
+}
+
+.hero-check-icon {
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    margin-right: 6px;
+    vertical-align: -3px;
+    filter: brightness(0) saturate(100%) invert(38%) sepia(72%)
+            saturate(1800%) hue-rotate(225deg) brightness(100%);
+}
+
+/* Hero Arrow - Both Themes */
+[data-theme="dark"] .hero-buttons .btn-primary .hero-btn-arrow,
+[data-theme="light"] .hero-buttons .btn-primary .hero-btn-arrow {
+    display: block !important;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: none !important;
+}
+
+/* =========================================
+   STUDENT TOOLS - BUTTON ARROW VISIBILITY
+   Dark Mode + Light Mode
+========================================= */
+
+.tool-category-card .tool-btn .tool-link-arrow {
+    display: inline-block !important;
+    width: 14px !important;
+    height: 14px !important;
+    margin-left: 5px !important;
+    flex-shrink: 0;
+    object-fit: contain;
+    opacity: 1 !important;
+    visibility: visible !important;
+    filter: brightness(0) invert(1) !important;
+    vertical-align: middle;
+}
+
+/* Keep arrows white in both themes */
+[data-theme="dark"] .tool-category-card .tool-btn .tool-link-arrow,
+[data-theme="light"] .tool-category-card .tool-btn .tool-link-arrow {
+    filter: brightness(0) invert(1) !important;
 }

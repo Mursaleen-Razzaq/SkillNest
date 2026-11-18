@@ -36,6 +36,9 @@
         }
 
         .remove-subject {
+            display: flex;
+            align-items: center;
+            justify-content: center;
             height: 48px;
             width: 48px;
             border: none;
@@ -112,44 +115,66 @@
 
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container navbar">
+<!-- HEADER -->
+<header class="header">
+    <nav class="navbar container">
 
-            <a href="../index.html" class="logo">
-                Skill<span>Nest</span>
+        <!-- Logo -->
+        <a href="../index.html" class="logo">
+            Skill<span>Nest</span>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="nav-links" id="navLinks">
+            <a href="../index.html">Home</a>
+            <a href="index.html" class="active" aria-current="page">Student Tools</a>
+            <a href="../career-tools/index.html">Career Tools</a>
+            <a href="../productivity-tools/index.html">Productivity</a>
+            <a href="../resources/index.html">Resources</a>
+            <a href="../about.html">About</a>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="nav-actions">
+
+            <!-- Theme Toggle -->
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch theme"
+                title="Switch theme"
+            >
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
+            </button>
+
+            <!-- Get Started -->
+            <a href="index.html" class="btn btn-primary">
+                Get Started
             </a>
 
+            <!-- Menu Toggle -->
             <button
                 class="menu-toggle"
                 id="menuToggle"
                 type="button"
                 aria-label="Open navigation menu"
+                aria-controls="navLinks"
                 aria-expanded="false"
             >
-                ☰
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
             </button>
 
-            <nav class="nav-links" id="navLinks">
-                <a href="../index.html">Home</a>
-                <a href="index.html">Student Tools</a>
-                <a href="../career-tools/index.html">Career Tools</a>
-                <a href="../productivity-tools/index.html">Productivity</a>
-                <a href="../resources/index.html">Resources</a>
-
-                <button
-                    class="theme-toggle"
-                    id="themeToggle"
-                    type="button"
-                    aria-label="Switch to light mode"
-                >
-                     ☀
-                </button>
-            </nav>
-
         </div>
-    </header>
 
+    </nav>
+</header>
 
     <!-- MAIN CONTENT -->
     <main>
@@ -407,7 +432,7 @@
 
                 removeBtn.type = "button";
                 removeBtn.className = "remove-subject";
-                removeBtn.textContent = "Ã—";
+                removeBtn.innerHTML = "&times;";
                 removeBtn.setAttribute("aria-label", "Remove subject");
 
                 removeBtn.addEventListener("click", function () {

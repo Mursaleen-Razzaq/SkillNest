@@ -254,34 +254,72 @@
 </head>
 
 <body>
+
 <!-- HEADER -->
 <header class="header">
+
     <div class="container navbar">
 
+        <!-- LOGO -->
         <a href="index.html" class="logo">
             Skill<span>Nest</span>
         </a>
 
+        <!-- NAVIGATION -->
         <nav class="nav-links" id="navLinks">
-            <a href="index.html">Home</a>
-            <a href="student-tools/index.html">Student Tools</a>
-            <a href="career-tools/index.html">Career Tools</a>
-            <a href="productivity-tools/index.html">Productivity</a>
-            <a href="resources/index.html">Resources</a>
-            <a href="about.html">About</a>
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="student-tools/index.html">
+                Student Tools
+            </a>
+
+            <a href="career-tools/index.html">
+                Career Tools
+            </a>
+
+            <a href="productivity-tools/index.html">
+                Productivity
+            </a>
+
+            <a href="resources/index.html">
+                Resources
+            </a>
+
+            <a href="about.html">
+                About
+            </a>
+
         </nav>
 
+        <!-- HEADER ACTIONS -->
         <div class="nav-actions">
 
+            <!-- THEME TOGGLE -->
             <button
                 class="theme-toggle"
                 id="themeToggle"
                 type="button"
                 aria-label="Switch theme"
+                title="Switch theme"
             >
-                â—
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
             </button>
 
+            <!-- GET STARTED -->
+            <a
+                href="student-tools/index.html"
+                class="btn btn-primary"
+            >
+                Get Started
+            </a>
+
+            <!-- MOBILE MENU -->
             <button
                 class="menu-toggle"
                 id="menuToggle"
@@ -290,13 +328,18 @@
                 aria-controls="navLinks"
                 aria-expanded="false"
             >
-                ☰
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
             </button>
 
         </div>
 
     </div>
+
 </header>
+
     <main>
 
         <!-- HERO -->
@@ -649,7 +692,7 @@
             <div class="footer-bottom">
 
                 <p>
-                    Â© <span id="currentYear"></span> SkillNest.
+                    © <span id="currentYear"></span> SkillNest.
                     All rights reserved.
                 </p>
 

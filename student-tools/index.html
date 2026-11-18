@@ -24,16 +24,15 @@
 
 <body>
 
+
 <!-- HEADER -->
 <header class="header">
-    <div class="container navbar">
+    <nav class="navbar container">
 
-        <!-- LOGO -->
         <a href="../index.html" class="logo">
             Skill<span>Nest</span>
         </a>
 
-        <!-- NAVIGATION LINKS -->
         <nav class="nav-links" id="navLinks">
             <a href="../index.html">Home</a>
             <a href="index.html" class="active">Student Tools</a>
@@ -43,7 +42,6 @@
             <a href="../about.html">About</a>
         </nav>
 
-        <!-- HEADER ACTIONS -->
         <div class="nav-actions">
 
             <button
@@ -51,25 +49,30 @@
                 id="themeToggle"
                 type="button"
                 aria-label="Switch theme"
-            >
-                 ☀
+                title="Switch theme">
+                <span class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"></span>
             </button>
 
+            <a href="../student-tools/index.html" class="btn btn-primary">
+                Get Started
+            </a>
+
             <button
-    class="menu-toggle"
-    id="menuToggle"
-    type="button"
-    aria-label="Open navigation menu"
-    aria-controls="navLinks"
-    aria-expanded="false"
->
-    â˜°
-</button>
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-controls="navLinks"
+                aria-expanded="false">
+                <span class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"></span>
+            </button>
 
         </div>
-
-    </div>
+    </nav>
 </header>
+
 
     <!-- MAIN CONTENT -->
     <main>
@@ -130,7 +133,10 @@
                             class="tool-category-card"
                             data-search="gpa calculator grade point average semester grades"
                         >
-                            <div class="tool-icon">ðŸŽ“</div>
+                            <div class="tool-icon">
+                            <img src="../assets/icons/graduation-cap.svg" 
+                            alt="" aria-hidden="true">
+                             </div>
 
                             <h3>GPA Calculator</h3>
 
@@ -139,12 +145,13 @@
                                 course grades and credit hours.
                             </p>
 
-                            <a
-                                href="gpa-calculator.html"
-                                class="tool-btn"
-                            >
-                                Calculate GPA â†’
-                            </a>
+                            <a href="gpa-calculator.html" class="tool-btn">
+                               Calculate GPA
+                               <img src="../assets/icons/arrow-right.svg"
+                               class="tool-link-arrow"
+                                 alt=""
+                               aria-hidden="true">
+                               </a>
                         </article>
 
 
@@ -153,7 +160,10 @@
                             class="tool-category-card"
                             data-search="cgpa calculator cumulative grade point average"
                         >
-                            <div class="tool-icon">ðŸ“Š</div>
+                            <div class="tool-icon">
+                            <img src="../assets/icons/book-open.svg" 
+                             alt="" aria-hidden="true">
+                            </div>
 
                             <h3>CGPA Calculator</h3>
 
@@ -162,12 +172,13 @@
                                 multiple semesters.
                             </p>
 
-                            <a
-                                href="cgpa-calculator.html"
-                                class="tool-btn"
-                            >
-                                Calculate CGPA â†’
-                            </a>
+                            <a href="cgpa-calculator.html" class="tool-btn">
+                     Calculate CGPA
+                         <img src="../assets/icons/arrow-right.svg"
+                      class="tool-link-arrow"
+                           alt=""
+                       aria-hidden="true">
+                        </a>
                         </article>
 
 
@@ -176,21 +187,23 @@
                             class="tool-category-card"
                             data-search="percentage calculator marks percentage"
                         >
-                            <div class="tool-icon">ðŸ’¯</div>
-
+                           <div class="tool-icon">
+    <img src="../assets/icons/percent.svg"
+         alt="" aria-hidden="true">
+</div>
                             <h3>Percentage Calculator</h3>
 
                             <p>
                                 Calculate percentages quickly using
                                 obtained marks and total marks.
                             </p>
-
-                            <a
-                                href="percentage-calculator.html"
-                                class="tool-btn"
-                            >
-                                Calculate Percentage â†’
-                            </a>
+                        <a href="percentage-calculator.html" class="tool-btn">
+                        Calculate Percentage
+                       <img src="../assets/icons/arrow-right.svg"
+                           class="tool-link-arrow"
+                         alt=""
+                     aria-hidden="true">
+                       </a>
                         </article>
 
 
@@ -199,7 +212,10 @@
                             class="tool-category-card"
                             data-search="marks calculator exam marks grades result"
                         >
-                            <div class="tool-icon">ðŸ“</div>
+                           <div class="tool-icon">
+                           <img src="../assets/icons/notebook-pen.svg" 
+                           alt="" aria-hidden="true">
+                           </div>
 
                             <h3>Marks Calculator</h3>
 
@@ -208,12 +224,13 @@
                                 and academic performance.
                             </p>
 
-                            <a
-                                href="marks-calculator.html"
-                                class="tool-btn"
-                            >
-                                Calculate Marks â†’
-                            </a>
+                            <a href="marks-calculator.html" class="tool-btn">
+                            Calculate Marks
+                          <img src="../assets/icons/arrow-right.svg"
+                           class="tool-link-arrow"
+                           alt=""
+                           aria-hidden="true">
+                             </a>
                         </article>
 
 
@@ -222,7 +239,10 @@
                             class="tool-category-card"
                             data-search="study planner schedule timetable tasks study plan"
                         >
-                            <div class="tool-icon">ðŸ“š</div>
+                           <div class="tool-icon">
+                        <img src="../assets/icons/book-open.svg" 
+                        alt="" aria-hidden="true">
+                          </div>
 
                             <h3>Study Planner</h3>
 
@@ -231,12 +251,13 @@
                                 and daily academic tasks.
                             </p>
 
-                            <a
-                                href="study-planner.html"
-                                class="tool-btn"
-                            >
-                                Plan Your Study â†’
-                            </a>
+                            <a href="study-planner.html" class="tool-btn">
+                              Plan Your Study
+                              <img src="../assets/icons/arrow-right.svg"
+                              class="tool-link-arrow"
+                               alt=""
+                               aria-hidden="true">
+                               </a>
                         </article>
 
 
@@ -245,7 +266,10 @@
                             class="tool-category-card"
                             data-search="exam countdown timer exam date remaining days"
                         >
-                            <div class="tool-icon">â³</div>
+                            <div class="tool-icon">
+    <img src="../assets/icons/calendar-clock.svg"
+         alt="" aria-hidden="true">
+</div>
 
                             <h3>Exam Countdown</h3>
 
@@ -254,12 +278,13 @@
                                 exams and important academic dates.
                             </p>
 
-                            <a
-                                href="exam-countdown.html"
-                                class="tool-btn"
-                            >
-                                Start Countdown â†’
-                            </a>
+                            <a href="exam-countdown.html" class="tool-btn">
+                                 Start Countdown
+                                  <img src="../assets/icons/arrow-right.svg"
+                                 class="tool-link-arrow"
+                                    alt=""
+                                   aria-hidden="true">
+                                     </a>
                         </article>
 
                     </div>
@@ -329,29 +354,65 @@
     </main>
 
 
-    <!-- FOOTER -->
-    <footer class="footer">
+  
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
 
-        <div class="container">
+        <div class="footer-grid">
 
-            <div class="footer-bottom">
-
+            <!-- About -->
+            <div class="footer-about">
+                <a href="../index.html" class="logo">SkillNest</a>
                 <p>
-                    Â© <span id="currentYear"></span> SkillNest.
-                    All rights reserved.
+                    Your learning and career companion.
+                    Explore free tools to support your studies,
+                    productivity and professional growth.
                 </p>
+            </div>
 
-                <div>
-                    <a href="../privacy-policy.html">Privacy Policy</a>
-                    <a href="../terms-and-conditions.html">Terms</a>
-                    <a href="../contact.html">Contact</a>
-                </div>
+            <!-- Quick Links -->
+            <div class="footer-links">
+                <h3>Quick Links</h3>
+                <a href="../index.html">Home</a>
+                <a href="../about.html">About Us</a>
+                <a href="../contact.html">Contact</a>
+            </div>
 
+            <!-- Student Tools -->
+            <div class="footer-links">
+                <h3>Student Tools</h3>
+                <a href="gpa-calculator.html">GPA Calculator</a>
+                <a href="cgpa-calculator.html">CGPA Calculator</a>
+                <a href="percentage-calculator.html">Percentage Calculator</a>
+                <a href="study-planner.html">Study Planner</a>
+            </div>
+
+            <!-- Information -->
+            <div class="footer-links">
+                <h3>Information</h3>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <a href="../terms-and-conditions.html">Terms & Conditions</a>
+                <a href="../disclaimer.html">Disclaimer</a>
             </div>
 
         </div>
 
-    </footer>
+        <div class="footer-bottom">
+            <p>
+                &copy; <span id="currentYear"></span> SkillNest.
+                All rights reserved.
+            </p>
+
+            <div>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <a href="../terms-and-conditions.html">Terms</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+        </div>
+
+    </div>
+</footer>
 
 
     <!-- JAVASCRIPT -->
@@ -417,5 +478,3 @@
 
 </body>
 </html>
-
-

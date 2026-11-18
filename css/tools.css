@@ -1,13 +1,6 @@
-
-/* ========================================
-   SKILLNEST - TOOLS STYLESHEET
-   File: css/tools.css
-======================================== */
-
 /* ========================================
    TOOL PAGE LAYOUT
 ======================================== */
-
 .tool-page {
     min-height: 70vh;
     padding: 60px 0 80px;
@@ -347,34 +340,163 @@
    TOOL CARDS
 ======================================== */
 
+
+/* ========================================
+   STUDENT TOOL CARDS - PROFESSIONAL DESIGN
+======================================== */
+
 .tool-category-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
+    gap: 22px;
+    align-items: stretch;
 }
 
 .tool-category-card {
-    padding: 24px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    min-width: 0;
+    min-height: 275px;
+    padding: 26px;
+
+    background: linear-gradient(
+        145deg,
+        var(--bg-card),
+        var(--bg-secondary)
+    );
+
     border: 1px solid var(--border-color);
-    border-radius: 15px;
-    background: var(--bg-card);
-    transition: transform 0.2s ease, border-color 0.2s ease;
+    border-radius: 18px;
+
+    box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+
+    transition:
+        transform 0.25s ease,
+        border-color 0.25s ease,
+        box-shadow 0.25s ease;
 }
 
 .tool-category-card:hover {
-    transform: translateY(-5px);
+    transform: translateY(-6px);
     border-color: var(--primary);
+
+    box-shadow: 0 14px 32px rgba(118, 87, 246, 0.14);
 }
+
+/* ICON CONTAINER */
+
+.tool-category-card .tool-icon {
+    width: 58px;
+    height: 58px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 22px;
+
+    background: rgba(118, 87, 246, 0.13);
+    border: 1px solid rgba(118, 87, 246, 0.22);
+    border-radius: 16px;
+}
+
+.tool-category-card .tool-icon img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+    filter: brightness(0) invert(1);
+}
+
+/* CARD HEADING */
 
 .tool-category-card h3 {
-    margin-bottom: 10px;
+    margin: 0 0 11px;
     color: var(--text-primary);
+    font-size: 19px;
+    font-weight: 700;
+    line-height: 1.4;
 }
 
+/* CARD DESCRIPTION */
+
 .tool-category-card p {
+    flex-grow: 1;
+    margin: 0 0 22px;
+
     color: var(--text-secondary);
     font-size: 14px;
-    line-height: 1.7;
+    line-height: 1.75;
+}
+
+/* CARD ACTION BUTTON */
+
+.tool-category-card .tool-btn {
+    width: 100%;
+    min-height: 46px;
+    margin-top: auto;
+    padding: 11px 14px;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    border-radius: 11px;
+    background: var(--primary);
+    color: #FFFFFF;
+
+    font-size: 14px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.tool-category-card .tool-btn:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 14px rgba(118, 87, 246, 0.25);
+}
+
+/* BUTTON ARROW */
+
+.tool-category-card .tool-link-arrow {
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+
+    filter: brightness(0) invert(1);
+
+    transition: transform 0.2s ease;
+}
+
+.tool-category-card .tool-btn:hover .tool-link-arrow {
+    transform: translateX(4px);
+}
+
+/* LIGHT THEME */
+
+[data-theme="light"] .tool-category-card .tool-icon img {
+    filter: brightness(0) saturate(100%) invert(32%) sepia(78%)
+        saturate(2380%) hue-rotate(235deg) brightness(94%) contrast(96%);
+}
+
+/* ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    .tool-category-card,
+    .tool-category-card .tool-btn,
+    .tool-category-card .tool-link-arrow {
+        transition: none;
+    }
 }
 
 /* ========================================
@@ -588,5 +710,113 @@
 
     .contact-note-content h3 {
         font-size: 17px;
+    }
+}
+
+/* Student Tools icons - Light Mode
+[data-theme="light"] .tool-icon img,
+[data-theme="light"] .tool-link-arrow {
+    filter: brightness(0) saturate(100%) invert(32%) sepia(78%)
+            saturate(2380%) hue-rotate(235deg) brightness(94%) contrast(96%);
+} */
+
+
+/* ========================================
+   WHY USE THESE TOOLS - STUDENT SECTION
+======================================== */
+
+.section-alt {
+    padding: 75px 0;
+    background: var(--bg-secondary);
+}
+
+.section-alt .section-heading {
+    max-width: 680px;
+    margin: 0 auto 38px;
+    text-align: center;
+}
+
+.section-alt .section-title {
+    margin-bottom: 14px;
+    color: var(--text-primary);
+    font-size: clamp(26px, 4vw, 34px);
+    line-height: 1.3;
+}
+
+.section-alt .section-description {
+    color: var(--text-secondary);
+    font-size: 15px;
+    line-height: 1.8;
+}
+
+.section-alt .why-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 22px;
+}
+
+.section-alt .why-card {
+    position: relative;
+    padding: 28px 25px;
+    min-height: 175px;
+
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 16px;
+
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+
+    transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.section-alt .why-card::before {
+    content: "";
+    display: block;
+    width: 38px;
+    height: 4px;
+    margin-bottom: 22px;
+
+    background: var(--primary);
+    border-radius: 10px;
+}
+
+.section-alt .why-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary);
+}
+
+.section-alt .why-card h3 {
+    margin: 0 0 10px;
+    color: var(--text-primary);
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.section-alt .why-card p {
+    margin: 0;
+    color: var(--text-secondary);
+    font-size: 14px;
+    line-height: 1.75;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 768px) {
+    .section-alt {
+        padding: 55px 0;
+    }
+
+    .section-alt .why-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 560px) {
+    .section-alt .why-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .section-alt .why-card {
+        min-height: auto;
     }
 }

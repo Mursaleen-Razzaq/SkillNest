@@ -415,6 +415,101 @@
                 justify-content: flex-end;
             }
         }
+        .flash-btn-icon {
+    width: 16px;
+    height: 16px;
+    object-fit: contain;
+    vertical-align: middle;
+}
+
+/* Flashcard Navigation Buttons */
+#prevBtn,
+#nextBtn,
+#shuffleCards {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+
+    min-height: 48px;
+    padding: 12px 22px;
+
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+
+    background: var(--card-bg);
+    color: var(--text-primary);
+
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+
+    white-space: nowrap;
+    cursor: pointer;
+
+    transition: all 0.2s ease;
+}
+
+/* Button Icons */
+.flash-btn-icon {
+    width: 17px;
+    height: 17px;
+    display: block;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+
+/* Hover Effect */
+#prevBtn:not(:disabled):hover,
+#nextBtn:not(:disabled):hover,
+#shuffleCards:not(:disabled):hover {
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    background: rgba(118, 87, 246, 0.08);
+    transform: translateY(-2px);
+}
+
+/* Disabled Buttons */
+#prevBtn:disabled,
+#nextBtn:disabled,
+#shuffleCards:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    transform: none;
+}
+/* Show Answer Button - Always Readable */
+.flash-navigation #flipCard,
+.flash-navigation #flipCard:disabled {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 160px;
+    min-height: 48px;
+    padding: 12px 22px;
+    background: #7657F6;
+    border: 1px solid #7657F6;
+    border-radius: 10px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1;
+    opacity: 1;
+    cursor: pointer;
+}
+
+.flash-navigation #flipCard:disabled {
+    background: #E5DDFB;
+    border-color: #E5DDFB;
+    color: #493779;
+    cursor: not-allowed;
+}
+
+[data-theme="dark"] .flash-navigation #flipCard:disabled {
+    background: #393052;
+    border-color: #393052;
+    color: #D6C9FF;
+}
     </style>
 
 <link rel="stylesheet" href="../css/sidebar.css">
@@ -423,49 +518,73 @@
 
 <body>
 
-    <header class="header">
-        <div class="container navbar">
+<!-- HEADER -->
+<header class="header">
+    <div class="container navbar">
 
-            <a href="../index.html" class="logo">
-                Skill<span>Nest</span>
+        <!-- LOGO -->
+        <a href="../index.html" class="logo">
+            Skill<span>Nest</span>
+        </a>
+
+        <!-- NAVIGATION -->
+        <nav class="nav-links" id="navLinks">
+
+            <a href="../index.html">Home</a>
+
+            <a href="../student-tools/index.html">Student Tools</a>
+
+            <a href="../career-tools/index.html">Career Tools</a>
+
+            <a href="index.html">Productivity</a>
+
+            <a href="../resources/index.html">Resources</a>
+
+            <a href="../about.html">About</a>
+
+        </nav>
+
+        <!-- HEADER ACTIONS -->
+        <div class="nav-actions">
+
+            <!-- THEME TOGGLE -->
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch theme"
+                title="Switch theme"
+            >
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
+            </button>
+
+            <!-- GET STARTED -->
+            <a href="../contact.html" class="btn btn-primary">
+                Get Started
             </a>
 
+            <!-- MOBILE MENU -->
             <button
                 class="menu-toggle"
                 id="menuToggle"
                 type="button"
                 aria-label="Open navigation menu"
+                aria-controls="navLinks"
                 aria-expanded="false"
             >
-                ☰
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
             </button>
 
-            <nav class="nav-links" id="navLinks">
-
-                <a href="../index.html">Home</a>
-
-                <a href="../student-tools/index.html">Student Tools</a>
-
-                <a href="../career-tools/index.html">Career Tools</a>
-
-                <a href="index.html" class="active">Productivity</a>
-
-                <a href="../resources/index.html">Resources</a>
-
-                <a href="../about.html">About</a>
-
-                <button
-                    class="theme-toggle"
-                    id="themeToggle"
-                    type="button"
-                    aria-label="Switch to light mode"
-                >
-                    â—
-                </button>
-
-            </nav>
         </div>
-    </header>
+
+    </div>
+</header>
 
 
     <main>
@@ -568,14 +687,11 @@
 
                 <div class="flash-navigation">
 
-                    <button
-                        type="button"
-                        id="previousCard"
-                        disabled
-                    >
-                        â† Previous
+                    <button type="button" class="flash-btn" id="prevBtn">
+                    <img src="../assets/icons/arrow-left.svg" 
+                    alt="" class="flash-btn-icon">
+                     Previous
                     </button>
-
                     <button
                         type="button"
                         class="primary"
@@ -585,21 +701,20 @@
                         Show Answer
                     </button>
 
-                    <button
-                        type="button"
-                        id="nextCard"
-                        disabled
-                    >
-                        Next â†’
+                    <button type="button" class="flash-btn" id="nextBtn">
+                          Next
+                    <img src="../assets/icons/arrow-right.svg" alt="" 
+                    class="flash-btn-icon">
                     </button>
 
                 </div>
 
-
                 <div class="flash-extra-actions">
 
-                    <button type="button" id="shuffleCards">
-                        <span aria-hidden="true">â‡„</span> Shuffle
+                   <button type="button" id="shuffleCards">
+                   <img src="../assets/icons/shuffle.svg" 
+                    alt="" class="flash-btn-icon">
+                    Shuffle
                     </button>
 
                     <button type="button" id="resetProgress">
@@ -728,7 +843,7 @@
             <div class="footer-bottom">
 
                 <p>
-                    Â© <span id="currentYear"></span> SkillNest.
+                    © <span id="currentYear"></span> SkillNest.
                     All rights reserved.
                 </p>
 
@@ -779,11 +894,11 @@
 
             const cardHint = document.getElementById("cardHint");
 
-            const flipCardButton = document.getElementById("flipCard");
+           const flipCardButton = document.getElementById("flipCard");
 
-            const previousButton = document.getElementById("previousCard");
+            const previousButton = document.getElementById("prevBtn");
 
-            const nextButton = document.getElementById("nextCard");
+            const nextButton = document.getElementById("nextBtn");
 
             const formHeading = document.getElementById("formHeading");
 

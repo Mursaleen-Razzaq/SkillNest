@@ -3,7 +3,6 @@
    SKILLNEST - GLOBAL THEME SYSTEM
    File: css/themes.css
 ========================================= */
-
 /* =========================================
    1. DARK THEME (DEFAULT)
 ========================================= */
@@ -16,6 +15,12 @@
     --primary: #7657F6;
     --primary-light: #A18DFF;
     --primary-dark: #6040E8;
+
+    /* Global Icon Colors */
+    --icon-color: #C9B8FF;
+    --icon-bg: rgba(118, 87, 246, 0.16);
+    --icon-border: rgba(161, 141, 255, 0.24);
+    --icon-filter: brightness(0) saturate(100%) invert(79%) sepia(21%) saturate(1000%) hue-rotate(215deg) brightness(105%);
 
     /* Backgrounds */
     --bg-main: #0B1020;
@@ -62,6 +67,12 @@
     --primary: #6947E8;
     --primary-light: #7959EF;
     --primary-dark: #5433D0;
+
+    /* Global Icon Colors */
+    --icon-color: #6040E8;
+    --icon-bg: rgba(105, 71, 232, 0.09);
+    --icon-border: rgba(105, 71, 232, 0.16);
+    --icon-filter: brightness(0) saturate(100%) invert(32%) sepia(78%) saturate(2380%) hue-rotate(235deg) brightness(94%) contrast(96%);
 
     /* Backgrounds */
     --bg-main: #F7F8FC;
@@ -375,8 +386,8 @@ p {
 
 .tool-icon,
 .step-card > span {
-    background: rgba(118, 87, 246, 0.16);
-    color: var(--primary-light);
+    background: var(--icon-bg);
+    color: var(--icon-color);
 }
 
 
@@ -694,4 +705,393 @@ select,
     background: rgba(118, 87, 246, 0.25);
     color: #FFFFFF !important;
     border-color: #A18DFF;
+}
+
+
+/* =========================================
+   20. GLOBAL WEBSITE ICON SYSTEM
+   Dark: Soft Lavender
+   Light: Professional Purple
+========================================= */
+
+/* Standard icon containers */
+
+html body .tool-icon,
+html body .tool-category-card .tool-icon,
+html body .resource-icon,
+html body .dashboard-icon,
+html body .visual-icon,
+html body .about-card-icon,
+html body .career-card-icon,
+html body .productivity-icon,
+html body .contact-info-icon,
+html body .contact-note-icon {
+    background: var(--icon-bg) !important;
+    border-color: var(--icon-border) !important;
+    color: var(--icon-color) !important;
+}
+
+/* All website SVG image icons */
+
+html body img[class][src*="assets/icons/"],
+html body img[src*="assets/icons/"] {
+    filter: var(--icon-filter) !important;
+}
+
+/* CSS mask-based icons */
+
+.sn-svg-icon,
+.topbar-svg-icon,
+.career-arrow-icon {
+    background-color: var(--icon-color) !important;
+}
+
+/* Standard icon dimensions */
+
+.tool-icon img,
+.resource-icon img,
+.dashboard-icon img,
+.visual-icon img,
+.about-card-icon img,
+.career-card-icon img,
+.productivity-icon img,
+.contact-info-icon img,
+.contact-note-icon img {
+    filter: var(--icon-filter) !important;
+}
+
+/* Filled primary buttons keep white icons for contrast */
+
+.btn-primary img,
+.tool-btn img {
+    filter: brightness(0) invert(1) !important;
+}
+
+/* Light button icons follow the global theme color */
+
+.btn-light img {
+    filter: var(--icon-filter) !important;
+}
+
+/* =========================================
+   GLOBAL CONSISTENT HEADER
+   Same layout on every SkillNest page
+========================================= */
+
+.header {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+    background: var(--bg-main);
+    border-bottom: 1px solid var(--border-color);
+}
+
+.navbar {
+    min-height: 82px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    position: relative;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-links a {
+    display: inline-flex;
+    align-items: center;
+    white-space: nowrap;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--primary-light);
+}
+
+.nav-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 12px;
+    flex-shrink: 0;
+}
+
+.nav-actions .btn {
+    white-space: nowrap;
+}
+
+.theme-toggle,
+.menu-toggle {
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    background: var(--bg-card);
+    color: var(--icon-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle:hover,
+.menu-toggle:hover {
+    background: var(--icon-bg);
+    border-color: var(--primary);
+}
+
+.menu-toggle {
+    display: none;
+}
+
+/* Header SVG icons */
+
+.topbar-svg-icon {
+    display: block;
+    width: 20px;
+    height: 20px;
+    background-color: var(--icon-color);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
+/* Dark mode: sun icon switches to light mode */
+
+.theme-toggle .topbar-svg-icon {
+    -webkit-mask-image: url("../assets/icons/sun.svg");
+    mask-image: url("../assets/icons/sun.svg");
+}
+
+/* Light mode: moon icon switches to dark mode */
+
+[data-theme="light"] .theme-toggle .topbar-svg-icon {
+    -webkit-mask-image: url("../assets/icons/moon.svg");
+    mask-image: url("../assets/icons/moon.svg");
+}
+
+/* Menu icon */
+
+.menu-toggle .topbar-svg-icon {
+    -webkit-mask-image: url("../assets/icons/menu.svg");
+    mask-image: url("../assets/icons/menu.svg");
+}
+
+
+/* =========================================
+   RESPONSIVE HEADER
+========================================= */
+
+@media (max-width: 1050px) {
+    .nav-links {
+        gap: 16px;
+    }
+
+    .nav-links a {
+        font-size: 13px;
+    }
+
+    .navbar {
+        gap: 15px;
+    }
+}
+
+@media (max-width: 900px) {
+    .navbar {
+        min-height: 76px;
+    }
+
+    .menu-toggle {
+        display: inline-flex;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        padding: 12px 18px 18px;
+        background: var(--bg-card);
+        border: 1px solid var(--border-color);
+        border-top: none;
+        border-radius: 0 0 14px 14px;
+        box-shadow: var(--shadow);
+        z-index: 1000;
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links a {
+        display: flex;
+        width: 100%;
+        padding: 12px 10px;
+        font-size: 14px;
+    }
+
+    .nav-actions {
+        margin-left: auto;
+    }
+}
+
+@media (max-width: 560px) {
+    .navbar {
+        min-height: 70px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    .nav-actions {
+        gap: 8px;
+    }
+
+    .nav-actions .btn {
+        display: none;
+    }
+
+    .theme-toggle,
+    .menu-toggle {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+    }
+}
+
+/* ========================================
+   CONSISTENT TOP BAR SVG ICONS
+======================================== */
+
+.sn-svg-icon.topbar-svg-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+
+    background-color: var(--icon-color);
+
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+
+    -webkit-mask-position: center;
+    mask-position: center;
+
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
+/* Sun icon in dark mode */
+.theme-toggle .topbar-svg-icon {
+    -webkit-mask-image: url("../assets/icons/sun.svg");
+    mask-image: url("../assets/icons/sun.svg");
+}
+
+/* Moon icon in light mode */
+[data-theme="light"] .theme-toggle .topbar-svg-icon {
+    -webkit-mask-image: url("../assets/icons/moon.svg");
+    mask-image: url("../assets/icons/moon.svg");
+}
+
+/* Menu icon */
+.menu-toggle .topbar-svg-icon {
+    -webkit-mask-image: url("../assets/icons/menu.svg");
+    mask-image: url("../assets/icons/menu.svg");
+}
+
+/* Close icon when menu is open */
+.menu-toggle.menu-open .topbar-svg-icon {
+    -webkit-mask-image: url("../assets/icons/close.svg");
+    mask-image: url("../assets/icons/close.svg");
+}
+
+/* ========================================
+   FINAL TOP BAR ALIGNMENT
+======================================== */
+
+@media (min-width: 901px) {
+
+    .header .navbar {
+        justify-content: space-between;
+    }
+
+    .header .nav-links {
+        display: flex;
+        flex: 0 0 auto;
+        width: auto;
+        margin-left: auto;
+        justify-content: flex-start;
+        gap: 24px;
+    }
+
+    .header .nav-actions {
+        display: flex;
+        flex: 0 0 auto;
+        align-items: center;
+        margin-left: 24px;
+        gap: 14px;
+    }
+
+}
+
+/* ========================================
+   POMODORO & GLOBAL TOP BAR ICONS
+======================================== */
+
+.sn-svg-icon.topbar-svg-icon {
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+
+    background-color: var(--icon-color);
+
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+
+    -webkit-mask-position: center;
+    mask-position: center;
+
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
+/* Sun icon in dark mode */
+.theme-toggle .topbar-svg-icon {
+    -webkit-mask-image: url("../assets/icons/sun.svg");
+    mask-image: url("../assets/icons/sun.svg");
+}
+
+/* Moon icon in light mode */
+[data-theme="light"] .theme-toggle .topbar-svg-icon {
+    -webkit-mask-image: url("../assets/icons/moon.svg");
+    mask-image: url("../assets/icons/moon.svg");
+}
+
+/* Mobile menu icon */
+.menu-toggle .topbar-svg-icon {
+    -webkit-mask-image: url("../assets/icons/menu.svg");
+    mask-image: url("../assets/icons/menu.svg");
 }

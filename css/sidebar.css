@@ -226,10 +226,18 @@ body.has-sidebar {
 
 /* Keep header and footer full width */
 
-body.has-sidebar > .header,
-body.has-sidebar > .footer {
+/* Keep header full width */
+
+body.has-sidebar > .header {
     margin-left: calc(-1 * var(--sidebar-width));
     width: calc(100% + var(--sidebar-width));
+}
+
+/* Keep footer aligned with the main content */
+
+body.has-sidebar > .footer {
+    margin-left: 0;
+    width: 100%;
 }
 
 /* ========================================
@@ -328,11 +336,35 @@ body.has-sidebar > .footer {
 
 .sn-sidebar-close {
     display: none;
+    align-items: center;
+    justify-content: center;
+
+    width: 36px;
+    height: 36px;
+    padding: 0;
+
     background: transparent;
     color: var(--text-primary);
     border: 0;
-    font-size: 19px;
+    border-radius: 8px;
+
     cursor: pointer;
+}
+
+.sn-sidebar-close .sn-svg-icon {
+    width: 22px;
+    height: 22px;
+    display: inline-block;
+    flex-shrink: 0;
+    background-color: var(--text-primary);
+}
+
+.sn-sidebar-close:hover {
+    background: var(--bg-card-hover);
+}
+
+.sn-sidebar-close:hover .sn-svg-icon {
+    background-color: var(--primary-light);
 }
 
 .sn-sidebar-navigation {
@@ -356,10 +388,6 @@ body.has-sidebar > .footer {
 
     .sn-sidebar-close {
         display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        width: 36px;
-        height: 36px;
     }
 
     body.sn-sidebar-open {

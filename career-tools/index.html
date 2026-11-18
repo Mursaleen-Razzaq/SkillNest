@@ -119,17 +119,39 @@
             border-color: var(--primary);
         }
 
-        .career-card-icon {
-            width: 55px;
-            height: 55px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            border-radius: 14px;
-            background: rgba(118, 87, 246, 0.12);
-            font-size: 27px;
-        }
+
+.career-card-icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: 14px;
+    background: rgba(118, 87, 246, 0.12);
+}
+.career-card-icon .tool-icon {
+    display: block;
+    width: 19px;
+    height: 19px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
+.career-card a .sn-svg-icon {
+    width: 17px;
+    height: 17px;
+    display: inline-block;
+    background-color: currentColor;
+    vertical-align: middle;
+    margin-right: 6px;
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    -webkit-mask-position: center;
+    mask-position: center;
+    -webkit-mask-size: contain;
+    mask-size: contain;
+}
+
 
         .career-card h3 {
             margin-bottom: 10px;
@@ -151,6 +173,17 @@
             text-decoration: none;
         }
 
+      .career-arrow-icon {
+    display: inline-block;
+    width: 18px;
+    height: 18px;
+    margin-left: 6px;
+    vertical-align: middle;
+
+    background-color: var(--primary);
+    -webkit-mask: url("../assets/icons/arrow-right.svg") center / contain no-repeat;
+    mask: url("../assets/icons/arrow-right.svg") center / contain no-repeat;
+}
         .career-card a:hover {
             text-decoration: underline;
         }
@@ -205,7 +238,12 @@
             color: var(--text-secondary);
             line-height: 1.7;
         }
-
+        .feature-icon {
+    display: inline-block;
+    margin-right: 5px;
+    font-size: 18px;
+    vertical-align: middle;
+}
         @media (max-width: 900px) {
             .career-grid {
                 grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -239,45 +277,55 @@
 
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container navbar">
 
-            <a href="../index.html" class="logo">
-                Skill<span>Nest</span>
+<!-- HEADER -->
+<header class="header">
+    <nav class="navbar container">
+
+        <a href="../index.html" class="logo">
+            Skill<span>Nest</span>
+        </a>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="../index.html">Home</a>
+            <a href="../student-tools/index.html">Student Tools</a>
+            <a href="index.html" class="active">Career Tools</a>
+            <a href="../productivity-tools/index.html">Productivity</a>
+            <a href="../resources/index.html">Resources</a>
+            <a href="../about.html">About</a>
+        </nav>
+
+        <div class="nav-actions">
+
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch theme"
+                title="Switch theme">
+                <span class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"></span>
+            </button>
+
+            <a href="../student-tools/index.html" class="btn btn-primary">
+                Get Started
             </a>
 
             <button
-    class="menu-toggle"
-    id="menuToggle"
-    type="button"
-    aria-label="Open navigation menu"
-    aria-controls="navLinks"
-    aria-expanded="false"
->
-    ☰
-</button>
-
-            <nav class="nav-links" id="navLinks">
-                <a href="../index.html">Home</a>
-                <a href="../student-tools/index.html">Student Tools</a>
-                <a href="index.html" class="active">Career Tools</a>
-                <a href="../productivity-tools/index.html">Productivity</a>
-                <a href="../resources/index.html">Resources</a>
-
-                <button
-                    class="theme-toggle"
-                    id="themeToggle"
-                    type="button"
-                    aria-label="Switch to light mode"
-                    title="Switch to light mode"
-                >
-                    ☀
-                </button>
-            </nav>
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-controls="navLinks"
+                aria-expanded="false">
+                <span class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"></span>
+            </button>
 
         </div>
-    </header>
+    </nav>
+</header>
+
 
 
     <!-- HERO SECTION -->
@@ -369,8 +417,11 @@
                         data-search="resume cv builder create professional resume curriculum vitae"
                     >
 
-                        <div class="career-card-icon">📄</div>
-
+                       <div class="career-card-icon">
+                        <span class="sn-svg-icon" 
+                         style="-webkit-mask-image: url('../assets/icons/file-user.svg'); 
+                         mask-image: url('../assets/icons/file-user.svg');"></span>
+                           </div>
                         <h3>Resume Builder</h3>
 
                         <p>
@@ -379,9 +430,11 @@
                             and projects.
                         </p>
 
-                        <a href="resume-builder.html">
-                            Build Your Resume â†’
-                        </a>
+                      <a href="resume-builder.html">
+                         Build Your Resume
+                         <img src="../assets/icons/arrow-right.svg" 
+                          alt="" class="career-arrow-icon">
+                          </a>
 
                     </article>
 
@@ -391,8 +444,11 @@
                         class="career-card"
                         data-search="cover letter generator job application letter"
                     >
-
-                        <div class="career-card-icon">✉️</div>
+                        <div class="career-card-icon">
+                        <span class="sn-svg-icon" 
+                         style="-webkit-mask-image: url('../assets/icons/mail.svg'); 
+                         mask-image: url('../assets/icons/mail.svg');"></span>
+                       </div>
 
                         <h3>Cover Letter Generator</h3>
 
@@ -401,9 +457,11 @@
                             for internships and job applications.
                         </p>
 
-                        <a href="cover-letter-generator.html">
-                            Create Cover Letter â†’
-                        </a>
+                       <a href="cover-letter-generator.html">
+                         Create Cover Letter
+                         <img src="../assets/icons/arrow-right.svg" alt="" 
+                         class="career-arrow-icon">
+                         </a>
 
                     </article>
 
@@ -414,7 +472,16 @@
                         data-search="interview practice questions job preparation mock interview"
                     >
 
-                        <div class="career-card-icon">🎤</div>
+                       <div class="career-card-icon">
+    <span
+        class="sn-svg-icon"
+        style="
+            -webkit-mask-image: url('../assets/icons/user-round-check.svg');
+            mask-image: url('../assets/icons/user-round-check.svg');
+        "
+        aria-hidden="true">
+    </span>
+</div>
 
                         <h3>Interview Practice</h3>
 
@@ -425,7 +492,9 @@
                         </p>
 
                         <a href="interview-practice.html">
-                            Practice Interview â†’
+                            Practice Interview
+                            <img src="../assets/icons/arrow-right.svg" alt="" 
+                            class="career-arrow-icon">
                         </a>
 
                     </article>
@@ -437,7 +506,11 @@
                         data-search="job application tracker applications company status interview"
                     >
 
-                        <div class="career-card-icon">📋</div>
+                        <div class="career-card-icon">
+                                <span class="sn-svg-icon" 
+                                   style="-webkit-mask-image: url('../assets/icons/clipboard-list.svg'); 
+                                   mask-image: url('../assets/icons/clipboard-list.svg');"></span>
+                                    </div>
 
                         <h3>Job Application Tracker</h3>
 
@@ -448,7 +521,9 @@
                         </p>
 
                         <a href="job-application-tracker.html">
-                            Track Applications â†’
+                            Track Applications 
+                            <img src="../assets/icons/arrow-right.svg" alt="" 
+                            class="career-arrow-icon">
                         </a>
 
                     </article>
@@ -460,7 +535,11 @@
                         data-search="professional email generator business email job internship communication"
                     >
 
-                        <div class="career-card-icon">💼</div>
+                        <div class="career-card-icon">
+                              <span class="sn-svg-icon" 
+                               style="-webkit-mask-image: url('../assets/icons/mail.svg'); 
+                                mask-image: url('../assets/icons/mail.svg');"></span>
+                                </div>
 
                         <h3>Professional Email Generator</h3>
 
@@ -471,7 +550,9 @@
                         </p>
 
                         <a href="professional-email-generator.html">
-                            Generate Email â†’
+                            Generate Email 
+                            <img src="../assets/icons/arrow-right.svg" alt="" 
+                            class="career-arrow-icon">
                         </a>
 
                     </article>
@@ -483,7 +564,11 @@
                         data-search="career guides resume writing internship interview tips"
                     >
 
-                        <div class="career-card-icon">📚</div>
+                        <div class="career-card-icon">
+                        <span class="sn-svg-icon" 
+                        style="-webkit-mask-image: url('../assets/icons/book-open.svg'); 
+                         mask-image: url('../assets/icons/book-open.svg');"></span>
+                         </div>
 
                         <h3>Career Learning Guides</h3>
 
@@ -494,7 +579,9 @@
                         </p>
 
                         <a href="../resources/index.html">
-                            Explore Career Guides â†’
+                            Explore Career Guides 
+                            <img src="../assets/icons/arrow-right.svg" alt="" 
+                            class="career-arrow-icon">
                         </a>
 
                     </article>
@@ -553,7 +640,7 @@
 
                     <div class="benefit-item">
 
-                        <h3>âš¡ Save Time</h3>
+                   <span class="feature-icon">⚡</span> Save Time
 
                         <p>
                             Organize your job search and create
@@ -612,30 +699,31 @@
     </main>
 
 
-    <!-- FOOTER -->
-    <footer class="footer">
+   
+<!-- FOOTER -->
+<footer class="footer">
 
-        <div class="container">
+    <div class="container">
 
-            <div class="footer-bottom">
+        <div class="footer-bottom">
 
-                <p>
-                    Â© <span id="currentYear"></span> SkillNest.
-                    All rights reserved.
-                </p>
+            <p>
+                &copy; <span id="currentYear"></span> SkillNest.
+                All rights reserved.
+            </p>
 
-                <div>
-                    <a href="../about.html">About</a>
-                    <a href="../contact.html">Contact</a>
-                    <a href="../privacy-policy.html">Privacy Policy</a>
-                    <a href="../terms-and-conditions.html">Terms</a>
-                </div>
-
+            <div>
+                <a href="../about.html">About</a>
+                <a href="../contact.html">Contact</a>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <a href="../terms-and-conditions.html">Terms</a>
             </div>
 
         </div>
 
-    </footer>
+    </div>
+
+</footer>
 
 
     <!-- SHARED JAVASCRIPT -->

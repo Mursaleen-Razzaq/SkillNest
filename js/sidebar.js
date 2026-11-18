@@ -117,7 +117,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 type="button"
                 aria-label="Close sidebar"
             >
-                ${icon("x")}
+                ${icon("panel-right-open")}
             </button>
         </div>
 
@@ -153,7 +153,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     toggle.type = "button";
     toggle.className = "sn-sidebar-toggle";
-    toggle.innerHTML = icon("menu");
+    toggle.innerHTML = icon("panel-left-open");
     toggle.setAttribute("aria-label", "Open sidebar");
     toggle.setAttribute("aria-controls", "skillNestSidebar");
     toggle.setAttribute("aria-expanded", "false");
@@ -176,6 +176,10 @@ document.addEventListener("DOMContentLoaded", function () {
     function setSidebarState(open) {
         sidebar.classList.toggle("open", open);
         backdrop.classList.toggle("visible", open);
+
+        toggle.innerHTML = open
+            ? icon("panel-right-open")
+            : icon("panel-left-open");
 
         toggle.setAttribute("aria-expanded", String(open));
         toggle.setAttribute(

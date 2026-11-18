@@ -81,16 +81,21 @@
             color: var(--text-primary);
             font: inherit;
         }
+.resources-search button {
+    padding: 12px 22px;
+    border: none;
+    border-radius: 9px;
+    background: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    cursor: pointer;
+}
 
-        .resources-search button {
-            padding: 12px 22px;
-            border: none;
-            border-radius: 9px;
-            background: var(--primary-color);
-            color: white;
-            font-weight: 700;
-            cursor: pointer;
-        }
+/* Light Mode */
+[data-theme="light"] .resources-search button {
+    background: var(--primary);
+    color: #FFFFFF;
+}
 
         .resources-search button:hover {
             opacity: 0.9;
@@ -120,7 +125,20 @@
             border-color: var(--primary-color);
             color: white;
         }
+/* Light Mode - Filter Buttons */
 
+[data-theme="light"] .filter-button {
+    background: var(--bg-secondary);
+    color: #171B2E;
+    border-color: var(--border-color);
+}
+
+/* Active Filter */
+[data-theme="light"] .filter-button.active {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #FFFFFF;
+}
         .resources-main {
             padding-top: 35px;
             padding-bottom: 80px;
@@ -160,17 +178,55 @@
             border-color: var(--primary-color);
         }
 
-        .resource-icon {
-            width: 52px;
-            height: 52px;
-            display: grid;
-            place-items: center;
-            margin-bottom: 20px;
-            border-radius: 13px;
-            background: rgba(118, 87, 246, 0.13);
-            font-size: 25px;
-        }
+      /* Resource Icons */
 
+.resource-icon {
+    width: 55px;
+    height: 55px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    border-radius: 14px;
+    background: rgba(118, 87, 246, 0.12);
+}
+
+.resource-icon img {
+    width: 32px;
+    height: 32px;
+    display: block;
+    object-fit: contain;
+}
+
+/* Dark Mode - Purple Icons */
+
+:root .resource-icon img,
+[data-theme="dark"] .resource-icon img {
+    filter: brightness(0) saturate(100%)
+            invert(43%) sepia(71%) saturate(2500%)
+            hue-rotate(225deg) brightness(100%);
+}
+
+/* Light Mode - Black Icons */
+
+[data-theme="light"] .resource-icon img {
+    filter: brightness(0);
+}
+
+/* Resource Arrow Icons */
+
+.resource-arrow-icon {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    margin-left: 6px;
+    vertical-align: middle;
+    object-fit: contain;
+
+    filter: brightness(0) saturate(100%)
+            invert(43%) sepia(71%) saturate(2500%)
+            hue-rotate(225deg) brightness(100%);
+}
         .resource-card h3 {
             font-size: 21px;
             margin-bottom: 12px;
@@ -263,7 +319,6 @@
             .resource-card {
                 padding: 20px;
             }
-
         }
 
     </style>
@@ -272,71 +327,88 @@
 
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
+<!-- HEADER -->
+<header class="header">
 
-        <div class="container navbar">
+    <div class="container navbar">
 
-            <a href="../index.html" class="logo">
-                Skill<span>Nest</span>
+        <!-- LOGO -->
+        <a href="../index.html" class="logo">
+            Skill<span>Nest</span>
+        </a>
+
+        <!-- NAVIGATION -->
+        <nav class="nav-links" id="navLinks">
+
+            <a href="../index.html">Home</a>
+
+            <a href="../student-tools/index.html">
+                Student Tools
             </a>
 
+            <a href="../career-tools/index.html">
+                Career Tools
+            </a>
+
+            <a href="../productivity-tools/index.html">
+                Productivity
+            </a>
+
+            <a href="index.html" class="active">
+                Resources
+            </a>
+
+            <a href="../about.html">
+                About
+            </a>
+
+        </nav>
+
+        <!-- HEADER ACTIONS -->
+        <div class="nav-actions">
+
+            <!-- THEME TOGGLE -->
             <button
-    class="menu-toggle"
-    id="menuToggle"
-    type="button"
-    aria-label="Open navigation menu"
-    aria-controls="navLinks"
-    aria-expanded="false"
->
-   <span
-    class="sn-svg-icon topbar-svg-icon"
-    aria-hidden="true"
-    style="-webkit-mask-image: url('../assets/icons/menu.svg'); mask-image: url('../assets/icons/menu.svg');"
-></span>
-</button>
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch theme"
+                title="Switch theme"
+            >
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
+            </button>
 
-            <nav class="nav-links" id="navLinks">
+            <!-- GET STARTED -->
+            <a
+                href="../student-tools/index.html"
+                class="btn btn-primary"
+            >
+                Get Started
+            </a>
 
-                <a href="../index.html">Home</a>
-
-                <a href="../student-tools/index.html">
-                    Student Tools
-                </a>
-
-                <a href="../career-tools/index.html">
-                    Career Tools
-                </a>
-
-                <a href="../productivity-tools/index.html">
-                    Productivity
-                </a>
-
-                <a href="index.html" class="active">
-                    Resources
-                </a>
-
-                <a href="../about.html">About</a>
-
-                <button
-                    class="theme-toggle"
-                    id="themeToggle"
-                    type="button"
-                    aria-label="Switch to light mode"
-                >
-                    <span
-    class="sn-svg-icon topbar-svg-icon"
-    aria-hidden="true"
-    style="-webkit-mask-image: url('../assets/icons/sun.svg'); mask-image: url('../assets/icons/sun.svg');"
-></span>
-                </button>
-
-            </nav>
+            <!-- MOBILE MENU -->
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-controls="navLinks"
+                aria-expanded="false"
+            >
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
+            </button>
 
         </div>
 
-    </header>
+    </div>
 
+</header>
 
     <main>
 
@@ -454,7 +526,10 @@
                     data-search="resume cv writing guide professional resume format skills experience job application"
                 >
 
-                    <div class="resource-icon">📄</div>
+                    <div class="resource-icon">
+    <img src="../assets/icons/file-text.svg" 
+    alt="Resume">
+</div>
 
                     <h3>Resume Writing Guide</h3>
 
@@ -474,7 +549,12 @@
                         href="resume-writing-guide.html"
                         class="resource-link"
                     >
-                        Read Guide â†’
+                        Read Guide 
+                          <img
+                         src="../assets/icons/arrow-right.svg"
+                         alt=""
+                         class="resource-arrow-icon"
+                          >
                     </a>
 
                 </article>
@@ -487,8 +567,10 @@
                     data-search="internship guide apply internship student experience application email opportunities"
                 >
 
-                    <div class="resource-icon">💼</div>
-
+                    <div class="resource-icon">
+    <img src="../assets/icons/graduation-cap.svg" 
+    alt="Internship">
+</div>
                     <h3>Internship Application Guide</h3>
 
                     <p>
@@ -507,7 +589,12 @@
                         href="internship-guide.html"
                         class="resource-link"
                     >
-                        Read Guide â†’
+                        Read Guide
+                          <img
+                         src="../assets/icons/arrow-right.svg"
+                         alt=""
+                         class="resource-arrow-icon"
+                          >
                     </a>
 
                 </article>
@@ -520,7 +607,10 @@
                     data-search="interview preparation questions answers HR technical behavioral job interview"
                 >
 
-                    <div class="resource-icon">🎯</div>
+                   <div class="resource-icon">
+    <img src="../assets/icons/play.svg" 
+    alt="Interview">
+</div>
 
                     <h3>Interview Preparation Guide</h3>
 
@@ -540,7 +630,12 @@
                         href="interview-guide.html"
                         class="resource-link"
                     >
-                        Read Guide â†’
+                        Read Guide
+                          <img
+                         src="../assets/icons/arrow-right.svg"
+                         alt=""
+                         class="resource-arrow-icon"
+                          >
                     </a>
 
                 </article>
@@ -553,7 +648,10 @@
                     data-search="study tips students time management focus exam preparation productivity learning"
                 >
 
-                    <div class="resource-icon">📚</div>
+                    <div class="resource-icon">
+    <img src="../assets/icons/book-open.svg" 
+    alt="Study">
+</div>
 
                     <h3>Study Tips and Productivity</h3>
 
@@ -573,7 +671,12 @@
                         href="study-tips.html"
                         class="resource-link"
                     >
-                        Read Guide â†’
+                        Read Guide
+                          <img
+                         src="../assets/icons/arrow-right.svg"
+                         alt=""
+                         class="resource-arrow-icon"
+                          >
                     </a>
 
                 </article>
@@ -619,7 +722,7 @@
             <div class="footer-bottom">
 
                 <p>
-                    Â© <span id="currentYear"></span> SkillNest.
+                    © <span id="currentYear"></span> SkillNest.
                     All rights reserved.
                 </p>
 

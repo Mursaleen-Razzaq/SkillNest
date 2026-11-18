@@ -35,75 +35,59 @@
 </head>
 
 <body>
-
     <!-- ================= HEADER ================= -->
+<!-- HEADER -->
+<header class="header">
+    <nav class="navbar container">
 
-    <header class="header">
+        <a href="index.html" class="logo">
+            Skill<span>Nest</span>
+        </a>
 
-        <nav class="navbar container">
-
-            <!-- Logo -->
-            <a href="index.html" class="logo">
-                Skill<span>Nest</span>
-            </a>
-
-            <!-- Navigation -->
-            <ul class="nav-links" id="navLinks">
-
-                <li><a href="index.html" class="active">Home</a></li>
-
-                <li><a href="student-tools/index.html">Student Tools</a></li>
-
-                <li><a href="career-tools/index.html">Career Tools</a></li>
-
-                <li><a href="productivity-tools/index.html">Productivity</a></li>
-
-                <li><a href="resources/index.html">Resources</a></li>
-
-                <li><a href="about.html">About</a></li>
-
-            </ul>
-
-            <!-- Navigation Buttons -->
-            <div class="nav-actions">
-
-    <button
-    class="theme-toggle"
-    id="themeToggle"
-    type="button"
-    aria-label="Switch to light mode"
-    title="Switch to light mode"
->
-    <span
-        class="sn-svg-icon topbar-svg-icon"
-        aria-hidden="true"
-        style="-webkit-mask-image: url('assets/icons/sun.svg'); mask-image: url('assets/icons/sun.svg');"
-    ></span>
-</button>
-
-                <a href="student-tools/index.html" class="btn btn-primary">
-                    Get Started
-                </a>
-
-               <button
-    class="menu-toggle"
-    id="menuToggle"
-    type="button"
-    aria-label="Open navigation menu"
-    aria-controls="navLinks"
-    aria-expanded="false"
->
-    <span
-        class="sn-svg-icon topbar-svg-icon"
-        aria-hidden="true"
-        style="-webkit-mask-image: url('assets/icons/menu.svg'); mask-image: url('assets/icons/menu.svg');"
-    ></span>
-</button>
-            </div>
-
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html" class="active">Home</a>
+            <a href="student-tools/index.html">Student Tools</a>
+            <a href="career-tools/index.html">Career Tools</a>
+            <a href="productivity-tools/index.html">Productivity</a>
+            <a href="resources/index.html">Resources</a>
+            <a href="about.html">About</a>
         </nav>
 
-    </header>
+        <div class="nav-actions">
+
+    <!-- Theme Toggle -->
+    <button
+        class="theme-toggle"
+        id="themeToggle"
+        type="button"
+        aria-label="Switch theme"
+        title="Switch theme"
+    >
+        <span class="sn-svg-icon topbar-svg-icon" aria-hidden="true"></span>
+    </button>
+
+    <!-- Get Started -->
+    <a href="student-tools/index.html" class="btn btn-primary">
+        Get Started
+    </a>
+
+    <!-- Menu Toggle -->
+    <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Open navigation menu"
+        aria-controls="navLinks"
+        aria-expanded="false"
+    >
+        <span class="sn-svg-icon topbar-svg-icon" aria-hidden="true"></span>
+    </button>
+
+</div>
+        </div>
+    </nav>
+</header>
+
 
 
     <!-- ================= MAIN CONTENT ================= -->
@@ -118,8 +102,9 @@
 
                 <div class="hero-text">
 
-                    <span class="hero-badge">
-                        âœ¦ Your Learning & Career Companion
+             <span class="hero-badge">
+            <img src="assets/icons/check-circle.svg" alt="" aria-hidden="true">
+                       Your Learning & Career Companion
                     </span>
 
                     <h1>
@@ -136,10 +121,13 @@
 
                     <div class="hero-buttons">
 
-                        <a href="student-tools/index.html"
-                            class="btn btn-primary">
-                            Explore Free Tools â†’
-                        </a>
+                       <a href="student-tools/index.html" class="btn btn-primary">
+    Explore Free Tools
+    <img src="assets/icons/arrow-right.svg"
+         class="hero-btn-arrow"
+         alt=""
+         aria-hidden="true">
+</a>
 
                         <a href="career-tools/index.html"
                             class="btn btn-secondary">
@@ -148,17 +136,25 @@
 
                     </div>
 
-                    <div class="hero-features">
+                   <div class="hero-features">
 
-                        <span>âœ“ Free Tools</span>
-                        <span>âœ“ Easy to Use</span>
-                        <span>âœ“ No Account Required</span>
+    <span>
+        <img src="assets/icons/check-circle.svg" class="hero-check-icon" alt="" aria-hidden="true">
+        Free Tools
+    </span>
 
-                    </div>
+    <span>
+        <img src="assets/icons/check-circle.svg" class="hero-check-icon" alt="" aria-hidden="true">
+        Easy to Use
+    </span>
 
+    <span>
+        <img src="assets/icons/check-circle.svg" class="hero-check-icon" alt="" aria-hidden="true">
+        No Account Required
+    </span>
+
+</div>
                 </div>
-
-
                 <!-- Hero Dashboard Illustration -->
 
                 <div class="hero-visual">
@@ -172,7 +168,10 @@
                                 <h3>Welcome to SkillNest</h3>
                             </div>
 
-                            <span class="dashboard-icon">âœ¦</span>
+                        
+<span class="dashboard-icon">
+    <img src="assets/icons/graduation-cap.svg" alt="" aria-hidden="true">
+</span>
 
                         </div>
 
@@ -204,8 +203,8 @@
                         </div>
 
                         <div class="dashboard-message">
-                            âœ¦ Your future starts with one small step.
-                        </div>
+    &#10022; Your future starts with one small step.
+</div>
 
                     </div>
 
@@ -236,7 +235,10 @@
 
                 <div class="search-box">
 
-                    <span>âŒ•</span>
+                    <span class="search-icon">
+                    <img src="assets/icons/search.svg" 
+                    alt="" aria-hidden="true">
+                    </span>
 
                     <input
                         type="text"
@@ -281,25 +283,23 @@
                     <article class="tool-card"
                         data-search="gpa grade point average calculator">
 
-                        <div class="tool-icon">ðŸ“Š</div>
+                        <div class="tool-icon"><img src="assets/icons/chart-no-axes-column-increasing.svg" alt="" aria-hidden="true"></div>
 
                         <h3>GPA Calculator</h3>
 
                         <p>
                             Calculate your semester GPA using grades and credit hours.
                         </p>
-
-                        <a href="student-tools/gpa-calculator.html">
-                            Open Tool â†’
-                        </a>
-
+                    <a href="student-tools/gpa-calculator.html">
+                         Open Tool
+                   <img src="../assets/icons/arrow-right.svg" 
+                    class="tool-link-arrow" alt="" aria-hidden="true">
+                     </a>
                     </article>
-
-
                     <article class="tool-card"
                         data-search="cgpa cumulative grade point average">
 
-                        <div class="tool-icon">ðŸŽ“</div>
+                        <div class="tool-icon"><img src="assets/icons/graduation-cap.svg" alt="" aria-hidden="true"></div>
 
                         <h3>CGPA Calculator</h3>
 
@@ -307,9 +307,11 @@
                             Calculate your cumulative GPA across multiple semesters.
                         </p>
 
-                        <a href="student-tools/cgpa-calculator.html">
-                            Open Tool â†’
-                        </a>
+                       <a href="student-tools/cgpa-calculator.html">
+                       Open Tool
+                      <img src="../assets/icons/arrow-right.svg" 
+                      class="tool-link-arrow" alt="" aria-hidden="true">
+                     </a>
 
                     </article>
 
@@ -317,17 +319,18 @@
                     <article class="tool-card"
                         data-search="percentage marks calculator">
 
-                        <div class="tool-icon">ï¼…</div>
+                        <div class="tool-icon"><img src="assets/icons/percent.svg" alt="" aria-hidden="true"></div>
 
                         <h3>Percentage Calculator</h3>
 
                         <p>
                             Calculate your marks percentage quickly and easily.
                         </p>
-
                         <a href="student-tools/percentage-calculator.html">
-                            Open Tool â†’
-                        </a>
+                              Open Tool
+                            <img src="../assets/icons/arrow-right.svg" 
+                            class="tool-link-arrow" alt="" aria-hidden="true">
+                           </a>
 
                     </article>
 
@@ -335,7 +338,7 @@
                     <article class="tool-card"
                         data-search="marks result calculator">
 
-                        <div class="tool-icon">ðŸ“</div>
+                        <div class="tool-icon"><img src="assets/icons/calculator.svg" alt="" aria-hidden="true"></div>
 
                         <h3>Marks Calculator</h3>
 
@@ -344,8 +347,10 @@
                         </p>
 
                         <a href="student-tools/marks-calculator.html">
-                            Open Tool â†’
-                        </a>
+                              Open Tool
+                            <img src="../assets/icons/arrow-right.svg" 
+                            class="tool-link-arrow" alt="" aria-hidden="true">
+                           </a>
 
                     </article>
 
@@ -353,7 +358,7 @@
                     <article class="tool-card"
                         data-search="study planner schedule">
 
-                        <div class="tool-icon">ðŸ“š</div>
+                        <div class="tool-icon"><img src="assets/icons/notebook-pen.svg" alt="" aria-hidden="true"></div>
 
                         <h3>Study Planner</h3>
 
@@ -362,8 +367,10 @@
                         </p>
 
                         <a href="student-tools/study-planner.html">
-                            Open Tool â†’
-                        </a>
+                              Open Tool
+                            <img src="../assets/icons/arrow-right.svg" 
+                            class="tool-link-arrow" alt="" aria-hidden="true">
+                           </a>
 
                     </article>
 
@@ -371,7 +378,7 @@
                     <article class="tool-card"
                         data-search="exam countdown date timer">
 
-                        <div class="tool-icon">â³</div>
+                        <div class="tool-icon"><img src="assets/icons/calendar-days.svg" alt="" aria-hidden="true"></div>
 
                         <h3>Exam Countdown</h3>
 
@@ -380,8 +387,10 @@
                         </p>
 
                         <a href="student-tools/exam-countdown.html">
-                            Open Tool â†’
-                        </a>
+                              Open Tool
+                            <img src="../assets/icons/arrow-right.svg" 
+                            class="tool-link-arrow" alt="" aria-hidden="true">
+                           </a>
 
                     </article>
 
@@ -416,7 +425,7 @@
                     <article class="tool-card"
                         data-search="resume cv builder">
 
-                        <div class="tool-icon">ðŸ“„</div>
+                        <div class="tool-icon"><img src="assets/icons/file-user.svg" alt="" aria-hidden="true"></div>
 
                         <h3>Resume Builder</h3>
 
@@ -425,8 +434,10 @@
                         </p>
 
                         <a href="career-tools/resume-builder.html">
-                            Open Tool â†’
-                        </a>
+                         Open Tool
+                         <img src="../assets/icons/arrow-right.svg" 
+                         class="tool-link-arrow" alt="" aria-hidden="true">
+                            </a>
 
                     </article>
 
@@ -434,7 +445,7 @@
                     <article class="tool-card"
                         data-search="cover letter generator">
 
-                        <div class="tool-icon">âœ‰ï¸</div>
+                        <div class="tool-icon"><img src="assets/icons/file-text.svg" alt="" aria-hidden="true"></div>
 
                         <h3>Cover Letter Generator</h3>
 
@@ -443,8 +454,10 @@
                         </p>
 
                         <a href="career-tools/cover-letter-generator.html">
-                            Open Tool â†’
-                        </a>
+                              Open Tool
+                            <img src="../assets/icons/arrow-right.svg" 
+                            class="tool-link-arrow" alt="" aria-hidden="true">
+                           </a>
 
                     </article>
 
@@ -452,7 +465,7 @@
                     <article class="tool-card"
                         data-search="interview practice questions">
 
-                        <div class="tool-icon">ðŸŽ¤</div>
+                        <div class="tool-icon"><img src="assets/icons/messages-square.svg" alt="" aria-hidden="true"></div>
 
                         <h3>Interview Practice</h3>
 
@@ -461,8 +474,10 @@
                         </p>
 
                         <a href="career-tools/interview-practice.html">
-                            Open Tool â†’
-                        </a>
+                              Open Tool
+                            <img src="../assets/icons/arrow-right.svg" 
+                            class="tool-link-arrow" alt="" aria-hidden="true">
+                           </a>
 
                     </article>
 
@@ -470,7 +485,7 @@
                     <article class="tool-card"
                         data-search="job application tracker">
 
-                        <div class="tool-icon">ðŸ“‹</div>
+                        <div class="tool-icon"><img src="assets/icons/clipboard-list.svg" alt="" aria-hidden="true"></div>
 
                         <h3>Job Application Tracker</h3>
 
@@ -479,8 +494,10 @@
                         </p>
 
                         <a href="career-tools/job-application-tracker.html">
-                            Open Tool â†’
-                        </a>
+                              Open Tool
+                            <img src="../assets/icons/arrow-right.svg" 
+                            class="tool-link-arrow" alt="" aria-hidden="true">
+                           </a>
 
                     </article>
 
@@ -488,7 +505,7 @@
                     <article class="tool-card"
                         data-search="professional email generator">
 
-                        <div class="tool-icon">ðŸ’Œ</div>
+                        <div class="tool-icon"><img src="assets/icons/mail.svg" alt="" aria-hidden="true"></div>
 
                         <h3>Professional Email Generator</h3>
 
@@ -497,8 +514,10 @@
                         </p>
 
                         <a href="career-tools/professional-email-generator.html">
-                            Open Tool â†’
-                        </a>
+                              Open Tool
+                            <img src="../assets/icons/arrow-right.svg" 
+                            class="tool-link-arrow" alt="" aria-hidden="true">
+                           </a>
 
                     </article>
 
@@ -532,7 +551,7 @@
                     <article class="tool-card"
                         data-search="pomodoro focus timer">
 
-                        <div class="tool-icon">â±ï¸</div>
+                        <div class="tool-icon"><img src="assets/icons/timer.svg" alt="" aria-hidden="true"></div>
 
                         <h3>Pomodoro Timer</h3>
 
@@ -541,8 +560,10 @@
                         </p>
 
                         <a href="productivity-tools/pomodoro-timer.html">
-                            Open Tool â†’
-                        </a>
+                              Open Tool
+                            <img src="../assets/icons/arrow-right.svg" 
+                            class="tool-link-arrow" alt="" aria-hidden="true">
+                           </a>
 
                     </article>
 
@@ -550,7 +571,7 @@
                     <article class="tool-card"
                         data-search="word character counter">
 
-                        <div class="tool-icon">ðŸ”¤</div>
+                        <div class="tool-icon"><img src="assets/icons/type.svg" alt="" aria-hidden="true"></div>
 
                         <h3>Word Counter</h3>
 
@@ -558,9 +579,11 @@
                             Count words, characters and reading time instantly.
                         </p>
 
-                        <a href="productivity-tools/word-counter.html">
-                            Open Tool â†’
-                        </a>
+                       <a href="productivity-tools/word-counter.html">
+                      Open Tool
+                     <img src="../assets/icons/arrow-right.svg" 
+                     class="tool-link-arrow" alt="" aria-hidden="true">
+                         </a>
 
                     </article>
 
@@ -568,7 +591,7 @@
                     <article class="tool-card"
                         data-search="todo task list">
 
-                        <div class="tool-icon">âœ…</div>
+                        <div class="tool-icon"><img src="assets/icons/list-todo.svg" alt="" aria-hidden="true"></div>
 
                         <h3>To-Do List</h3>
 
@@ -577,8 +600,10 @@
                         </p>
 
                         <a href="productivity-tools/todo-list.html">
-                            Open Tool â†’
-                        </a>
+                              Open Tool
+                            <img src="../assets/icons/arrow-right.svg" 
+                            class="tool-link-arrow" alt="" aria-hidden="true">
+                           </a>
 
                     </article>
 
@@ -586,7 +611,7 @@
                     <article class="tool-card"
                         data-search="flashcards study learning">
 
-                        <div class="tool-icon">ðŸ§ </div>
+                        <div class="tool-icon"><img src="assets/icons/layers.svg" alt="" aria-hidden="true"></div>
 
                         <h3>Flashcards</h3>
 
@@ -595,8 +620,10 @@
                         </p>
 
                         <a href="productivity-tools/flashcards.html">
-                            Open Tool â†’
-                        </a>
+                              Open Tool
+                            <img src="../assets/icons/arrow-right.svg" 
+                            class="tool-link-arrow" alt="" aria-hidden="true">
+                           </a>
 
                     </article>
 
@@ -673,38 +700,42 @@
                 <div class="resources-grid">
 
                     <article class="resource-card">
-                        <div class="resource-icon">ðŸ“‘</div>
+                        <div class="resource-icon"><img src="assets/icons/file-text.svg" alt="" aria-hidden="true"></div>
                         <h3>Resume Writing Guide</h3>
                         <p>Learn how to create a clear and professional resume.</p>
                         <a href="resources/resume-writing-guide.html">
-                            Read Guide â†’
+                            Read Guide
+                            <img src="assets/icons/arrow-right.svg" class="tool-link-arrow" alt="" aria-hidden="true">
                         </a>
                     </article>
 
                     <article class="resource-card">
-                        <div class="resource-icon">ðŸ’¼</div>
+                        <div class="resource-icon"><img src="assets/icons/briefcase-business.svg" alt="" aria-hidden="true"></div>
                         <h3>Internship Guide</h3>
                         <p>Discover how to find and apply for internships.</p>
                         <a href="resources/internship-guide.html">
-                            Read Guide â†’
+                            Read Guide
+                            <img src="assets/icons/arrow-right.svg" class="tool-link-arrow" alt="" aria-hidden="true">
                         </a>
                     </article>
 
                     <article class="resource-card">
-                        <div class="resource-icon">ðŸŽ¯</div>
+                        <div class="resource-icon"><img src="assets/icons/messages-square.svg" alt="" aria-hidden="true"></div>
                         <h3>Interview Guide</h3>
                         <p>Prepare for interviews with practical advice.</p>
                         <a href="resources/interview-guide.html">
-                            Read Guide â†’
+                            Read Guide
+                            <img src="assets/icons/arrow-right.svg" class="tool-link-arrow" alt="" aria-hidden="true">
                         </a>
                     </article>
 
                     <article class="resource-card">
-                        <div class="resource-icon">ðŸ“–</div>
+                        <div class="resource-icon"><img src="assets/icons/book-open.svg" alt="" aria-hidden="true"></div>
                         <h3>Study Tips</h3>
                         <p>Explore better ways to organize your learning.</p>
                         <a href="resources/study-tips.html">
-                            Read Guide â†’
+                            Read Guide
+                            <img src="assets/icons/arrow-right.svg" class="tool-link-arrow" alt="" aria-hidden="true">
                         </a>
                     </article>
 
@@ -731,14 +762,14 @@
 
                 <div class="why-grid">
 
-                    <div>âœ“ Free to use</div>
-                    <div>âœ“ Simple and easy tools</div>
-                    <div>âœ“ Mobile-friendly experience</div>
-                    <div>âœ“ No mandatory account</div>
-                    <div>âœ“ Useful learning resources</div>
-                    <div>âœ“ Built for worldwide users</div>
+    <div><img src="assets/icons/check-circle.svg" class="why-check-icon" alt="" aria-hidden="true"> Free to use</div>
+    <div><img src="assets/icons/check-circle.svg" class="why-check-icon" alt="" aria-hidden="true"> Simple and easy tools</div>
+    <div><img src="assets/icons/check-circle.svg" class="why-check-icon" alt="" aria-hidden="true"> Mobile-friendly experience</div>
+    <div><img src="assets/icons/check-circle.svg" class="why-check-icon" alt="" aria-hidden="true"> No mandatory account</div>
+    <div><img src="assets/icons/check-circle.svg" class="why-check-icon" alt="" aria-hidden="true"> Useful learning resources</div>
+    <div><img src="assets/icons/check-circle.svg" class="why-check-icon" alt="" aria-hidden="true"> Built for worldwide users</div>
 
-                </div>
+</div>
 
             </div>
 
@@ -761,7 +792,8 @@
                 </p>
 
                 <a href="student-tools/index.html" class="btn btn-light">
-                    Explore All Tools â†’
+                    Explore All Tools
+                    <img src="assets/icons/arrow-right.svg" class="tool-link-arrow" alt="" aria-hidden="true">
                 </a>
 
             </div>
@@ -773,12 +805,13 @@
 
     <!-- ================= FOOTER ================= -->
 
-    <footer class="footer">
+<footer class="footer">
 
-        <div class="container footer-grid">
+    <div class="container">
+
+        <div class="footer-grid">
 
             <div class="footer-about">
-
                 <a href="index.html" class="logo">
                     Skill<span>Nest</span>
                 </a>
@@ -787,56 +820,50 @@
                     Free tools and resources for students, job seekers
                     and career builders around the world.
                 </p>
-
             </div>
 
-
             <div class="footer-links">
-
                 <h3>Quick Links</h3>
-
                 <a href="index.html">Home</a>
                 <a href="about.html">About Us</a>
                 <a href="contact.html">Contact</a>
-
             </div>
 
-
             <div class="footer-links">
-
                 <h3>Tools</h3>
-
                 <a href="student-tools/index.html">Student Tools</a>
                 <a href="career-tools/index.html">Career Tools</a>
                 <a href="productivity-tools/index.html">Productivity</a>
-
             </div>
 
-
             <div class="footer-links">
-
                 <h3>Information</h3>
-
                 <a href="resources/index.html">Resources</a>
                 <a href="privacy-policy.html">Privacy Policy</a>
                 <a href="terms-and-conditions.html">Terms & Conditions</a>
                 <a href="disclaimer.html">Disclaimer</a>
-
             </div>
 
         </div>
 
+       
+<div class="footer-bottom">
 
-        <div class="footer-bottom">
+    <p>
+        &copy; <span id="currentYear"></span> SkillNest.
+        All rights reserved.
+    </p>
 
-            <p>
-                © <span id="currentYear"></span> SkillNest.
-                All rights reserved.
-            </p>
+    <div>
+        <a href="privacy-policy.html">Privacy Policy</a>
+        <a href="terms-and-conditions.html">Terms</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</div>
+    </div>
 
-        </div>
+</footer>
 
-    </footer>
 
 
     <!-- ================= JAVASCRIPT ================= -->

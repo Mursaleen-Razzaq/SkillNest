@@ -81,11 +81,41 @@
             transition: 0.2s;
         }
 
-        .mode-button.active {
-            background: var(--primary-color);
-            border-color: var(--primary-color);
-            color: #fff;
-        }
+       /* Active Timer Mode */
+.mode-button.active {
+    background: #7657F6;
+    border: 1px solid #7657F6;
+    color: #FFFFFF;
+    font-weight: 700;
+    box-shadow: 0 3px 10px rgba(118, 87, 246, 0.25);
+}
+
+/* Dark Theme */
+[data-theme="dark"] .mode-button.active {
+    background: #7657F6;
+    border-color: #7657F6;
+    color: #FFFFFF;
+}
+
+/* Light Theme */
+[data-theme="light"] .mode-button.active {
+    background: #6947E8;
+    border-color: #6947E8;
+    color: #FFFFFF;
+}
+
+/* Hover for inactive buttons */
+.mode-button:not(.active):hover {
+    border-color: #7657F6;
+    color: var(--primary-light);
+    background: rgba(118, 87, 246, 0.08);
+}
+
+/* Keyboard accessibility */
+.mode-button:focus-visible {
+    outline: 3px solid rgba(118, 87, 246, 0.4);
+    outline-offset: 3px;
+}
 
         .timer-circle {
             width: 280px;
@@ -299,61 +329,90 @@
 
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
+<!-- HEADER -->
+<header class="header">
 
-        <div class="container navbar">
+    <div class="container navbar">
 
-            <a href="../index.html" class="logo">
-                Skill<span>Nest</span>
+        <!-- LOGO -->
+        <a href="../index.html" class="logo">
+            Skill<span>Nest</span>
+        </a>
+
+        <!-- NAVIGATION -->
+        <nav class="nav-links" id="navLinks">
+
+            <a href="../index.html">
+                Home
             </a>
 
+            <a href="../student-tools/index.html">
+                Student Tools
+            </a>
+
+            <a href="../career-tools/index.html">
+                Career Tools
+            </a>
+
+            <a href="index.html" class="active">
+                Productivity
+            </a>
+
+            <a href="../resources/index.html">
+                Resources
+            </a>
+
+            <a href="../about.html">
+                About
+            </a>
+
+        </nav>
+
+        <!-- HEADER ACTIONS -->
+        <div class="nav-actions">
+
+            <!-- THEME TOGGLE -->
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch theme"
+                title="Switch theme"
+            >
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
+            </button>
+
+            <!-- GET STARTED -->
+            <a
+                href="../student-tools/index.html"
+                class="btn btn-primary"
+            >
+                Get Started
+            </a>
+
+            <!-- MOBILE MENU -->
             <button
                 class="menu-toggle"
                 id="menuToggle"
                 type="button"
                 aria-label="Open navigation menu"
+                aria-controls="navLinks"
                 aria-expanded="false"
             >
-                ☰
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
             </button>
-
-            <nav class="nav-links" id="navLinks">
-
-                <a href="../index.html">Home</a>
-
-                <a href="../student-tools/index.html">
-                    Student Tools
-                </a>
-
-                <a href="../career-tools/index.html">
-                    Career Tools
-                </a>
-
-                <a href="index.html" class="active">
-                    Productivity
-                </a>
-
-                <a href="../resources/index.html">
-                    Resources
-                </a>
-
-                <a href="../about.html">About</a>
-
-                <button
-                    class="theme-toggle"
-                    id="themeToggle"
-                    type="button"
-                    aria-label="Switch to light mode"
-                >
-                    â—
-                </button>
-
-            </nav>
 
         </div>
 
-    </header>
+    </div>
+
+</header>
 
 
     <main>
@@ -382,7 +441,6 @@
             </div>
 
         </section>
-
 
         <!-- TIMER -->
         <div class="pomodoro-container">
@@ -632,7 +690,7 @@
             <div class="footer-bottom">
 
                 <p>
-                    Â© <span id="currentYear"></span> SkillNest.
+                    © <span id="currentYear"></span> SkillNest.
                     All rights reserved.
                 </p>
 

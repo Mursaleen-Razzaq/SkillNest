@@ -32,6 +32,11 @@
         }
 
         .remove-semester {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            line-height: 1;
             height: 48px;
             width: 48px;
             border: none;
@@ -96,51 +101,114 @@
                 grid-template-columns: 1fr;
             }
         }
+        /* ========================================
+   CGPA CALCULATOR RESPONSIVE IMPROVEMENTS
+======================================== */
+
+.semester-row {
+    min-width: 0;
+}
+
+.semester-row .form-group {
+    min-width: 0;
+}
+
+.semester-row input {
+    width: 100%;
+    min-width: 0;
+    box-sizing: border-box;
+}
+
+@media (max-width: 650px) {
+    .semester-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+    }
+
+    .semester-row .form-group:first-child {
+        grid-column: 1 / -1;
+    }
+
+    .remove-semester {
+        grid-column: 1 / -1;
+        height: 42px;
+    }
+}
     </style>
 
-<link rel="stylesheet" href="../css/sidebar.css">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container navbar">
+   
+<!-- HEADER -->
+<header class="header">
+    <div class="container navbar">
 
-            <a href="../index.html" class="logo">
-                Skill<span>Nest</span>
+        <!-- LOGO -->
+        <a href="../index.html" class="logo">
+            Skill<span>Nest</span>
+        </a>
+
+        <!-- NAVIGATION LINKS -->
+        <nav class="nav-links" id="navLinks">
+
+            <a href="../index.html">Home</a>
+
+            <a href="index.html">Student Tools</a>
+
+            <a href="../career-tools/index.html">Career Tools</a>
+
+            <a href="../productivity-tools/index.html">Productivity</a>
+
+            <a href="../resources/index.html">Resources</a>
+
+            <a href="../about.html">About</a>
+
+        </nav>
+
+        <!-- HEADER ACTIONS -->
+        <div class="nav-actions">
+
+            <!-- THEME TOGGLE -->
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch theme"
+                title="Switch theme"
+            >
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
+            </button>
+
+            <!-- GET STARTED -->
+            <a href="../contact.html" class="btn btn-primary">
+                Get Started
             </a>
 
+            <!-- MOBILE MENU -->
             <button
                 class="menu-toggle"
                 id="menuToggle"
                 type="button"
                 aria-label="Open navigation menu"
+                aria-controls="navLinks"
                 aria-expanded="false"
             >
-                ☰
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
             </button>
 
-            <nav class="nav-links" id="navLinks">
-                <a href="../index.html">Home</a>
-                <a href="index.html">Student Tools</a>
-                <a href="../career-tools/index.html">Career Tools</a>
-                <a href="../productivity-tools/index.html">Productivity</a>
-                <a href="../resources/index.html">Resources</a>
-
-                <button
-                    class="theme-toggle"
-                    id="themeToggle"
-                    type="button"
-                    aria-label="Switch to light mode"
-                >
-                    â—
-                </button>
-            </nav>
-
         </div>
-    </header>
+
+    </div>
+</header>
 
 
     <!-- MAIN CONTENT -->
@@ -252,8 +320,7 @@
                     <strong>CGPA Formula:</strong>
 
                     <p>
-                        CGPA = Total Grade Points Earned Ã·
-                        Total Credit Hours
+                         CGPA = Total Grade Points Earned / Total Credit Hours
                     </p>
 
                     <p>
@@ -281,7 +348,7 @@
             <div class="footer-bottom">
 
                 <p>
-                    Â© <span id="currentYear"></span> SkillNest.
+                    &copy; <span id="currentYear"></span> SkillNest.
                     All rights reserved.
                 </p>
 
@@ -395,7 +462,7 @@
 
                 removeBtn.type = "button";
                 removeBtn.className = "remove-semester";
-                removeBtn.textContent = "Ã—";
+                removeBtn.textContent = "\u00D7";
                 removeBtn.setAttribute(
                     "aria-label",
                     "Remove semester"

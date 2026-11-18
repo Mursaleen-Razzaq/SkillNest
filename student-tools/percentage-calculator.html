@@ -90,49 +90,80 @@
         }
     </style>
 
-<link rel="stylesheet" href="../css/sidebar.css">
+<!-- <link rel="stylesheet" href="../css/sidebar.css"> -->
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 </head>
 
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container navbar">
+  
+<!-- HEADER -->
+<header class="header">
+    <div class="container navbar">
 
-            <a href="../index.html" class="logo">
-                Skill<span>Nest</span>
+        <!-- LOGO -->
+        <a href="../index.html" class="logo">
+            Skill<span>Nest</span>
+        </a>
+
+        <!-- NAVIGATION LINKS -->
+        <nav class="nav-links" id="navLinks">
+
+            <a href="../index.html">Home</a>
+
+            <a href="index.html">Student Tools</a>
+
+            <a href="../career-tools/index.html">Career Tools</a>
+
+            <a href="../productivity-tools/index.html">Productivity</a>
+
+            <a href="../resources/index.html">Resources</a>
+
+            <a href="../about.html">About</a>
+
+        </nav>
+
+        <!-- HEADER ACTIONS -->
+        <div class="nav-actions">
+
+            <!-- THEME TOGGLE -->
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch theme"
+                title="Switch theme"
+            >
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
+            </button>
+
+            <!-- GET STARTED -->
+            <a href="../contact.html" class="btn btn-primary">
+                Get Started
             </a>
 
+            <!-- MOBILE MENU -->
             <button
                 class="menu-toggle"
                 id="menuToggle"
                 type="button"
                 aria-label="Open navigation menu"
+                aria-controls="navLinks"
                 aria-expanded="false"
             >
-                ☰
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
             </button>
 
-            <nav class="nav-links" id="navLinks">
-                <a href="../index.html">Home</a>
-                <a href="index.html">Student Tools</a>
-                <a href="../career-tools/index.html">Career Tools</a>
-                <a href="../productivity-tools/index.html">Productivity</a>
-                <a href="../resources/index.html">Resources</a>
-
-                <button
-                    class="theme-toggle"
-                    id="themeToggle"
-                    type="button"
-                    aria-label="Switch to light mode"
-                >
-                    â—
-                </button>
-            </nav>
-
         </div>
-    </header>
+
+    </div>
+</header>
 
 
     <!-- MAIN CONTENT -->
@@ -148,7 +179,7 @@
                     Percentage Calculator
                 </div>
 
-                <div class="percentage-icon">%</div>
+                <!-- <div class="percentage-icon">%</div> -->
 
                 <h1>Percentage Calculator</h1>
 
@@ -310,7 +341,7 @@
                         <br>
                         Total Marks = 1100
                         <br>
-                        Percentage = (850 Ã· 1100) Ã— 100
+                        Percentage = (850 / 1100) × 100             
                         <br>
                         Result = 77.27%
                     </p>
@@ -337,7 +368,7 @@
             <div class="footer-bottom">
 
                 <p>
-                    Â© <span id="currentYear"></span> SkillNest.
+                    &copy; <span id="currentYear"></span> SkillNest.
                     All rights reserved.
                 </p>
 

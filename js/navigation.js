@@ -38,7 +38,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 : "Open navigation menu"
         );
 
-        menuToggle.textContent = isOpen ? "✕" : "☰";
+        // Keep the existing SVG icon element.
+        // CSS handles the menu icon appearance.
+
+        menuToggle.classList.toggle("menu-open", isOpen);
     }
 
     // Close menu and optionally restore keyboard focus.

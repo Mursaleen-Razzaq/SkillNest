@@ -129,14 +129,17 @@
             font-size: 13px;
         }
 
-        .visual-icon {
-            width: 35px;
-            height: 35px;
-            display: grid;
-            place-items: center;
-            border-radius: 9px;
-            background: rgba(118, 87, 246, 0.13);
-        }
+       /* Growth Toolkit Icons */
+.visual-icon {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: rgba(118, 87, 246, 0.18);
+    border: 1px solid rgba(118, 87, 246, 0.20);
+}
 
         .about-cards {
             display: grid;
@@ -255,6 +258,172 @@
                 padding: 50px 0;
             }
         }
+
+        /* ========================================
+   WHAT YOU CAN FIND - CARD DESIGN
+======================================== */
+
+.about-offer-section .about-cards {
+    align-items: stretch;
+    gap: 20px;
+}
+
+.about-offer-section .about-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    min-height: 270px;
+    box-sizing: border-box;
+    padding: 25px;
+    transition: transform 0.25s ease,
+                border-color 0.25s ease,
+                box-shadow 0.25s ease;
+}
+
+/* Card hover */
+.about-offer-section .about-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--primary-color);
+    box-shadow: 0 10px 25px rgba(118, 87, 246, 0.08);
+}
+
+/* Consistent icon position */
+.about-offer-section .about-card-icon {
+    width: 48px;
+    height: 48px;
+    flex-shrink: 0;
+    margin-bottom: 18px;
+}
+
+/* Card heading */
+.about-offer-section .about-card h3 {
+    margin-bottom: 12px;
+    line-height: 1.4;
+    min-height: 25px;
+}
+
+/* Card description */
+.about-offer-section .about-card p {
+    flex-grow: 1;
+    margin-bottom: 20px;
+    line-height: 1.8;
+}
+
+/* Professional card links */
+.about-offer-section .about-card a {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 9px;
+    width: fit-content;
+    margin-top: auto;
+    color: var(--primary-color);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.5;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+/* Arrow */
+.about-offer-section .about-arrow-icon {
+    display: block;
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+    margin: 0;
+    object-fit: contain;
+
+    filter: brightness(0) saturate(100%)
+            invert(43%) sepia(71%) saturate(2500%)
+            hue-rotate(225deg) brightness(100%);
+
+    transition: transform 0.2s ease;
+}
+
+/* Link hover */
+.about-offer-section .about-card a:hover {
+    color: var(--primary-dark);
+}
+
+.about-offer-section .about-card a:hover .about-arrow-icon {
+    transform: translateX(4px);
+}
+
+/* Keyboard accessibility */
+.about-offer-section .about-card a:focus-visible {
+    outline: 2px solid var(--primary-color);
+    outline-offset: 4px;
+    border-radius: 3px;
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+    .about-offer-section .about-card {
+        min-height: 260px;
+    }
+}
+
+@media (max-width: 550px) {
+    .about-offer-section .about-card {
+        min-height: 245px;
+    }
+}
+
+/* ========================================
+   ABOUT PAGE - UNIFIED ICON THEME
+======================================== */
+
+/* Icon backgrounds */
+.visual-icon,
+.about-card-icon {
+    background: rgba(118, 87, 246, 0.18);
+    border: 1px solid rgba(118, 87, 246, 0.20);
+}
+
+/* All About Page SVG Icons - Dark Mode */
+.visual-icon img,
+.about-card-icon img,
+.about-arrow-icon {
+    filter: brightness(0) saturate(100%)
+            invert(79%) sepia(21%) saturate(1000%)
+            hue-rotate(215deg) brightness(105%);
+}
+
+/* Growth Toolkit Icons */
+.visual-icon img {
+    width: 21px;
+    height: 21px;
+    object-fit: contain;
+}
+
+/* About Card Icons */
+.about-card-icon img {
+    width: 26px;
+    height: 26px;
+    object-fit: contain;
+}
+
+/* Arrow Icons */
+.about-arrow-icon {
+    width: 17px;
+    height: 17px;
+    object-fit: contain;
+}
+
+/* Light Mode - Black Icons */
+[data-theme="light"] .visual-icon img,
+[data-theme="light"] .about-card-icon img,
+[data-theme="light"] .about-arrow-icon {
+    filter: brightness(0);
+}
+
+/* Light Mode - Soft Purple Background */
+[data-theme="light"] .visual-icon,
+[data-theme="light"] .about-card-icon {
+    background: rgba(118, 87, 246, 0.13);
+    border-color: rgba(118, 87, 246, 0.15);
+}
     </style>
 
 <link rel="stylesheet" href="css/sidebar.css">
@@ -263,54 +432,70 @@
 
 <body>
 
-    <!-- HEADER -->
-    <header class="header">
-        <div class="container navbar">
+   
+<!-- HEADER -->
+<header class="header">
+    <nav class="navbar container">
 
-            <a href="index.html" class="logo">
-                Skill<span>Nest</span>
+        <!-- Logo -->
+        <a href="index.html" class="logo">
+            Skill<span>Nest</span>
+        </a>
+
+        <!-- Navigation Links -->
+        <nav class="nav-links" id="navLinks">
+            <a href="index.html">Home</a>
+            <a href="student-tools/index.html">Student Tools</a>
+            <a href="career-tools/index.html">Career Tools</a>
+            <a href="productivity-tools/index.html">Productivity</a>
+            <a href="resources/index.html">Resources</a>
+            <a href="about.html" class="active" aria-current="page">About</a>
+        </nav>
+
+        <!-- Header Actions -->
+        <div class="nav-actions">
+
+            <!-- Theme Toggle -->
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch theme"
+                title="Switch theme"
+            >
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
+            </button>
+
+            <!-- Get Started -->
+            <a href="student-tools/index.html" class="btn btn-primary">
+                Get Started
             </a>
 
+            <!-- Menu Toggle -->
             <button
                 class="menu-toggle"
                 id="menuToggle"
                 type="button"
                 aria-label="Open navigation menu"
+                aria-controls="navLinks"
                 aria-expanded="false"
             >
-<span
-    class="sn-svg-icon topbar-svg-icon"
-    aria-hidden="true"
-    style="-webkit-mask-image: url('assets/icons/menu.svg'); mask-image: url('assets/icons/menu.svg');"
-></span>            </button>
-
-            <nav class="nav-links" id="navLinks">
-                <a href="index.html">Home</a>
-                <a href="student-tools/index.html">Student Tools</a>
-                <a href="career-tools/index.html">Career Tools</a>
-                <a href="productivity-tools/index.html">Productivity</a>
-                <a href="resources/index.html">Resources</a>
-                <a href="about.html" aria-current="page">About</a>
-
-                <button
-                    class="theme-toggle"
-                    id="themeToggle"
-                    type="button"
-                    aria-label="Switch to light mode"
-                >
-<span
-    class="sn-svg-icon topbar-svg-icon"
-    aria-hidden="true"
-    style="-webkit-mask-image: url('assets/icons/sun.svg'); mask-image: url('assets/icons/sun.svg');"
-></span>                </button>
-            </nav>
+                <span
+                    class="sn-svg-icon topbar-svg-icon"
+                    aria-hidden="true"
+                ></span>
+            </button>
 
         </div>
-    </header>
+
+    </nav>
+</header>
 
 
     <main>
-
         <!-- HERO -->
         <section class="about-hero">
 
@@ -379,31 +564,38 @@
                     <div class="about-visual-content">
 
                         <div class="visual-heading">
-                            Your Growth Toolkit
-                        </div>
+    Your Growth Toolkit
+</div>
 
-                        <div class="visual-item">
-                            <span class="visual-icon">🎓</span>
-                            <span>Student Learning Tools</span>
-                        </div>
+<div class="visual-item">
+    <span class="visual-icon">
+        <img src="assets/icons/graduation-cap.svg" alt="">
+    </span>
+    <span>Student Learning Tools</span>
+</div>
 
-                        <div class="visual-item">
-                            <span class="visual-icon">💼</span>
-                            <span>Career Development</span>
-                        </div>
+<div class="visual-item">
+    <span class="visual-icon">
+        <img src="assets/icons/briefcase-business.svg" alt="">
+    </span>
+    <span>Career Development</span>
+</div>
 
-                        <div class="visual-item">
-                            <span class="visual-icon">âš¡</span>
-                            <span>Productivity Tools</span>
-                        </div>
+<div class="visual-item">
+    <span class="visual-icon">
+        <img src="assets/icons/zap.svg" alt="">
+    </span>
+    <span>Productivity Tools</span>
+</div>
 
-                        <div class="visual-item">
-                            <span class="visual-icon">📚</span>
-                            <span>Educational Resources</span>
-                        </div>
+<div class="visual-item">
+    <span class="visual-icon">
+        <img src="assets/icons/book-open.svg" alt="">
+    </span>
+    <span>Educational Resources</span>
+</div>
 
-                    </div>
-
+</div>
                 </div>
 
             </div>
@@ -411,78 +603,83 @@
         </section>
 
 
-        <!-- MISSION AND VISION -->
-        <section class="about-section" style="background:var(--bg-secondary);">
+      <!-- MISSION AND VISION -->
+<section class="about-section" style="background:var(--bg-secondary);">
 
-            <div class="container">
+    <div class="container">
 
-                <div class="about-section-heading">
-                    <span class="about-label">OUR DIRECTION</span>
+        <div class="about-section-heading">
+            <span class="about-label">OUR DIRECTION</span>
 
-                    <h2>Mission and Vision</h2>
+            <h2>Mission and Vision</h2>
 
-                    <p>
-                        We want to make useful digital resources
-                        accessible and easier to use.
-                    </p>
+            <p>
+                We want to make useful digital resources
+                accessible and easier to use.
+            </p>
+        </div>
+
+        <div class="about-cards">
+
+            <!-- OUR MISSION -->
+            <div class="about-card">
+
+                <div class="about-card-icon">
+                    <img src="assets/icons/target-mission.svg" alt="">
                 </div>
 
+                <h3>Our Mission</h3>
 
-                <div class="about-cards">
-
-                    <div class="about-card">
-
-                        <div class="about-card-icon">🎯</div>
-
-                        <h3>Our Mission</h3>
-
-                        <p>
-                            To provide practical and accessible
-                            tools that support students, job seekers,
-                            and professionals in their daily work
-                            and learning activities.
-                        </p>
-
-                    </div>
-
-
-                    <div class="about-card">
-
-                        <div class="about-card-icon">🌍</div>
-
-                        <h3>Our Vision</h3>
-
-                        <p>
-                            To build a useful digital destination
-                            where people can find resources to
-                            support learning, productivity,
-                            and career development.
-                        </p>
-
-                    </div>
-
-
-                    <div class="about-card">
-
-                        <div class="about-card-icon">💡</div>
-
-                        <h3>Our Approach</h3>
-
-                        <p>
-                            Keep tools simple, make information
-                            understandable, and focus on solving
-                            everyday problems through practical
-                            digital experiences.
-                        </p>
-
-                    </div>
-
-                </div>
+                <p>
+                    To provide practical and accessible
+                    tools that support students, job seekers,
+                    and professionals in their daily work
+                    and learning activities.
+                </p>
 
             </div>
 
-        </section>
+            <!-- OUR VISION -->
+            <div class="about-card">
 
+                <div class="about-card-icon">
+                    <img src="assets/icons/globe.svg" alt="">
+                </div>
+
+                <h3>Our Vision</h3>
+
+                <p>
+                    To build a useful digital destination
+                    where people can find resources to
+                    support learning, productivity,
+                    and career development.
+                </p>
+
+            </div>
+
+            <!-- OUR APPROACH -->
+            <div class="about-card">
+
+                <div class="about-card-icon">
+                    <img src="assets/icons/lightbulb-approach.svg" alt="">
+                </div>
+
+                <h3>Our Approach</h3>
+
+                <p>
+                    Keep tools simple, make information
+                    understandable, and focus on solving
+                    everyday problems through practical
+                    digital experiences.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
         <!-- WHO WE HELP -->
         <section class="about-section">
@@ -507,7 +704,10 @@
 
                     <div class="about-card">
 
-                        <div class="about-card-icon">🎓</div>
+                        <div class="about-card-icon">
+    <img src="assets/icons/graduation-cap.svg" 
+    alt="">
+</div>
 
                         <h3>Students</h3>
 
@@ -522,7 +722,10 @@
 
                     <div class="about-card">
 
-                        <div class="about-card-icon">🔍</div>
+                        <div class="about-card-icon">
+    <img src="assets/icons/search.svg" 
+    alt="">
+</div>
 
                         <h3>Job Seekers</h3>
 
@@ -537,7 +740,11 @@
 
                     <div class="about-card">
 
-                        <div class="about-card-icon">🚀</div>
+                        <div class="about-card-icon">
+    <img src="assets/icons/professionals.svg" 
+    alt="">
+
+                        </div>
 
                         <h3>Professionals</h3>
 
@@ -557,7 +764,8 @@
 
 
         <!-- WHAT WE OFFER -->
-        <section class="about-section" style="background:var(--bg-secondary);">
+      <section class="about-section about-offer-section"
+    style="background:var(--bg-secondary);">
 
             <div class="container">
 
@@ -580,7 +788,10 @@
 
                     <div class="about-card">
 
-                        <div class="about-card-icon">📊</div>
+                        <div class="about-card-icon">
+    <img src="assets/icons/chart-no-axes-column-increasing.svg" 
+    alt="">
+</div>
 
                         <h3>Student Tools</h3>
 
@@ -590,15 +801,19 @@
                         </p>
 
                         <a href="student-tools/index.html">
-                            Explore Student Tools â†’
-                        </a>
-
+                        Explore Student Tools
+                        <img src="assets/icons/arrow-right.svg" alt=""  
+                        class="about-arrow-icon">
+                     </a>
                     </div>
 
 
                     <div class="about-card">
 
-                        <div class="about-card-icon">💼</div>
+                        <div class="about-card-icon">
+    <img src="assets/icons/briefcase-business.svg" 
+    alt="">
+</div>
 
                         <h3>Career Tools</h3>
 
@@ -608,16 +823,19 @@
                             job application tracking.
                         </p>
 
-                        <a href="career-tools/index.html">
-                            Explore Career Tools â†’
-                        </a>
+                       <a href="career-tools/index.html">
+                       Explore Career Tools
+                       <img src="assets/icons/arrow-right.svg" alt="" 
+                       class="about-arrow-icon">
+                      </a>
 
                     </div>
 
-
                     <div class="about-card">
 
-                        <div class="about-card-icon">âš¡</div>
+                        <div class="about-card-icon">
+    <img src="assets/icons/zap.svg" alt="">
+</div>
 
                         <h3>Productivity Tools</h3>
 
@@ -627,15 +845,18 @@
                         </p>
 
                         <a href="productivity-tools/index.html">
-                            Explore Productivity â†’
-                        </a>
+                       Explore Productivity
+                       <img src="assets/icons/arrow-right.svg" 
+                       alt="" class="about-arrow-icon">
+                      </a>
 
                     </div>
 
-
                     <div class="about-card">
 
-                        <div class="about-card-icon">📚</div>
+                        <div class="about-card-icon">
+    <img src="assets/icons/book-open.svg" alt="">
+</div>
 
                         <h3>Learning Resources</h3>
 
@@ -645,15 +866,19 @@
                         </p>
 
                         <a href="resources/index.html">
-                            Explore Resources â†’
-                        </a>
+                       Explore Resources
+                      <img src="assets/icons/arrow-right.svg" 
+                      alt="" class="about-arrow-icon">
+                      </a>
 
                     </div>
 
 
                     <div class="about-card">
 
-                        <div class="about-card-icon">📱</div>
+                        <div class="about-card-icon">
+    <img src="assets/icons/smartphone.svg" alt="">
+</div>
 
                         <h3>Responsive Experience</h3>
 
@@ -662,12 +887,20 @@
                             tablet, or mobile devices.
                         </p>
 
+                        <a href="index.html">
+    Explore SkillNest
+    <img src="assets/icons/arrow-right.svg"
+         alt=""
+         class="about-arrow-icon">
+</a>
                     </div>
 
 
                     <div class="about-card">
 
-                        <div class="about-card-icon">🔒</div>
+                        <div class="about-card-icon">
+    <img src="assets/icons/shield-check.svg" alt="">
+</div>
 
                         <h3>Simple and Transparent</h3>
 
@@ -678,8 +911,10 @@
                         </p>
 
                         <a href="privacy-policy.html">
-                            Privacy Policy â†’
-                        </a>
+    Privacy Policy
+    <img src="assets/icons/arrow-right.svg" 
+    alt="" class="about-arrow-icon">
+</a>
 
                     </div>
 
@@ -818,7 +1053,7 @@
             <div class="footer-bottom">
 
                 <p>
-                    Â© <span id="currentYear"></span> SkillNest.
+                    © <span id="currentYear"></span> SkillNest.
                     All rights reserved.
                 </p>
 
