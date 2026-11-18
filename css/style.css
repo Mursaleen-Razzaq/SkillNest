@@ -968,3 +968,19 @@ input:focus-visible {
 [data-theme="light"] .tool-category-card .tool-btn .tool-link-arrow {
     filter: brightness(0) invert(1) !important;
 }
+/* ========================================
+   SKILLNEST HEADER LOGO
+======================================== */
+
+.logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo-icon {
+    width: 42px;
+    height: 42px;
+    object-fit: contain;
+    flex-shrink: 0;
+}
