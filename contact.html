@@ -13,12 +13,12 @@
 
     <meta name="author" content="SkillNest">
 
-    <link rel="canonical" href="https://your-domain.netlify.app/contact.html">
+    <link rel="canonical" href="https://skillnest-tools.netlify.app/contact">
 
-<link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/responsive.css">
-<link rel="stylesheet" href="css/tools.css">
-<link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/tools.css">
+    <link rel="stylesheet" href="css/themes.css">
     <style>
         .contact-hero {
             padding: 70px 20px;
@@ -164,15 +164,21 @@
         }
 
         .contact-info-icon {
-            width: 42px;
-            height: 42px;
-            flex-shrink: 0;
-            display: grid;
-            place-items: center;
-            border-radius: 10px;
-            background: rgba(118, 87, 246, 0.12);
-            font-size: 20px;
-        }
+    width: 42px;
+    height: 42px;
+    flex-shrink: 0;
+    display: grid;
+    place-items: center;
+    border-radius: 10px;
+    background: rgba(118, 87, 246, 0.12);
+    color: var(--primary-color);
+}
+
+.contact-info-icon img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
 
         .contact-info-item h3 {
             margin-bottom: 5px;
@@ -262,7 +268,14 @@
 
         <!-- LOGO -->
         <a href="index.html" class="logo">
-            Skill<span>Nest</span>
+            <img
+                src="assets/logo/skillnest-logo-icon.webp"
+                alt="SkillNest"
+                class="logo-icon"
+                width="42"
+                height="42"
+            >
+            <span class="logo-text">Skill<span>Nest</span></span>
         </a>
 
         <!-- NAVIGATION -->
@@ -491,7 +504,7 @@
                                 type="submit"
                                 class="btn btn-primary contact-submit"
                             >
-                                Prepare Email Message â†’
+                                Prepare Email Message &rarr;
                             </button>
 
                             <div
@@ -519,7 +532,10 @@
 
                         <div class="contact-info-item">
 
-                            <div class="contact-info-icon">✉️</div>
+                            <div class="contact-info-icon">
+                            <img src="assets/icons/mail.svg" 
+                             alt="" aria-hidden="true">
+                            </div>
 
                             <div>
                                 <h3>Email Us</h3>
@@ -536,7 +552,10 @@
 
                         <div class="contact-info-item">
 
-                            <div class="contact-info-icon">💬</div>
+                           <div class="contact-info-icon">
+                           <img src="assets/icons/messages-square.svg" 
+                            alt="" aria-hidden="true">
+                            </div>
 
                             <div>
                                 <h3>Feedback</h3>
@@ -552,7 +571,10 @@
 
                         <div class="contact-info-item">
 
-                            <div class="contact-info-icon">ðŸ› ï¸</div>
+                            <div class="contact-info-icon">
+                            <img src="assets/icons/wrench.svg" 
+                             alt="" aria-hidden="true">
+                            </div>
 
                             <div>
                                 <h3>Technical Support</h3>
@@ -568,7 +590,10 @@
 
                         <div class="contact-info-item">
 
-                            <div class="contact-info-icon">🌍</div>
+                            <div class="contact-info-icon">
+                            <img src="assets/icons/globe.svg" 
+                            alt="" aria-hidden="true">
+                            </div>
 
                             <div>
                                 <h3>Our Platform</h3>

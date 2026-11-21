@@ -1,4 +1,3 @@
-
 # SkillNest - Search Engine Crawler Instructions
 
 User-agent: *
@@ -6,9 +5,9 @@ User-agent: *
 # Allow search engines to crawl the public website
 Allow: /
 
-# Block private or unnecessary paths if added in the future
+# Block private or unnecessary paths
 Disallow: /admin/
 Disallow: /private/
 
 # Sitemap location
-Sitemap: https://your-domain.netlify.app/sitemap.xml
+Sitemap: https://skillnest-tools.netlify.app/sitemap.xml

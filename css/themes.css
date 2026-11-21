@@ -53,6 +53,31 @@
     --text-dark: #F5F6FF;
     --text-light: #B0B8D0;
     --border: #29334D;
+
+
+        /* Hero theme */
+    --hero-bg:
+        radial-gradient(circle at 85% 25%, rgba(118, 87, 246, 0.19), transparent 32%),
+        linear-gradient(120deg, #10152B, #171E3B);
+    --hero-text: #FFFFFF;
+    --hero-muted: #C3C7D8;
+    --hero-accent: #A18DFF;
+    --hero-card-bg: rgba(255, 255, 255, 0.08);
+    --hero-card-border: rgba(255, 255, 255, 0.15);
+    --hero-stat-bg: rgba(255, 255, 255, 0.09);
+    --hero-progress-bg: rgba(255, 255, 255, 0.15);
+    --hero-message-bg: rgba(118, 87, 246, 0.18);
+    --hero-message-text: #E2DCFF;
+
+    /* Sidebar theme */
+    --sidebar-active-bg: rgba(118, 87, 246, 0.13);
+    --sidebar-active-border: rgba(118, 87, 246, 0.25);
+
+    /* Footer theme */
+    --footer-bg: #10152B;
+    --footer-text: #FFFFFF;
+    --footer-muted: #B8BED1;
+    --footer-border: rgba(255, 255, 255, 0.12);
 }
 
 
@@ -105,6 +130,31 @@
     --text-dark: #171B2E;
     --text-light: #505A70;
     --border: #DFE3EE;
+
+
+        /* Hero theme */
+    --hero-bg:
+        radial-gradient(circle at 85% 25%, rgba(105, 71, 232, 0.12), transparent 32%),
+        linear-gradient(120deg, #F7F8FC, #EEF0F8);
+    --hero-text: #171B2E;
+    --hero-muted: #505A70;
+    --hero-accent: #6947E8;
+    --hero-card-bg: rgba(255, 255, 255, 0.88);
+    --hero-card-border: #DFE3EE;
+    --hero-stat-bg: #F3F0FF;
+    --hero-progress-bg: #DFE3EE;
+    --hero-message-bg: #EEE9FF;
+    --hero-message-text: #4930A8;
+
+    /* Sidebar theme */
+    --sidebar-active-bg: rgba(105, 71, 232, 0.09);
+    --sidebar-active-border: rgba(105, 71, 232, 0.20);
+
+    /* Footer theme */
+    --footer-bg: #EEF0F8;
+    --footer-text: #171B2E;
+    --footer-muted: #505A70;
+    --footer-border: #DFE3EE;
 }
 
 
@@ -225,84 +275,100 @@ p {
    6. HERO SECTION
    Intentionally dark in both themes.
 ========================================= */
+/* =========================================
+   6. HERO SECTION - BOTH THEMES
+========================================= */
 
 .hero {
-    background:
-        radial-gradient(
-            circle at 85% 25%,
-            rgba(118, 87, 246, 0.19),
-            transparent 32%
-        ),
-        linear-gradient(
-            120deg,
-            #10152B,
-            #171E3B
-        );
-
-    color: #FFFFFF;
+    background: var(--hero-bg);
+    color: var(--hero-text);
+    transition: background 0.3s ease, color 0.3s ease;
 }
 
 .hero h1,
 .hero h2,
 .hero h3 {
-    color: #FFFFFF;
+    color: var(--hero-text);
 }
 
 .hero-text > p,
 .hero-features {
-    color: #C3C7D8;
+    color: var(--hero-muted);
 }
 
 .hero h1 span {
-    color: #A18DFF;
+    color: var(--hero-accent);
 }
 
 .hero-badge {
-    color: #D2C8FF;
+    color: var(--hero-accent);
+    border-color: var(--icon-border);
+    background: var(--icon-bg);
+}
+
+/* Hero secondary button */
+
+.hero .btn-secondary,
+.hero .btn-outline,
+.hero a.btn-secondary,
+.hero a.btn-outline {
+    background: var(--hero-card-bg);
+    color: var(--hero-text) !important;
+    border: 1px solid var(--hero-card-border);
+    opacity: 1;
+    text-decoration: none;
+}
+
+.hero .btn-secondary:hover,
+.hero .btn-outline:hover,
+.hero a.btn-secondary:hover,
+.hero a.btn-outline:hover {
+    background: var(--icon-bg);
+    color: var(--primary) !important;
+    border-color: var(--primary);
 }
 
 
 /* =========================================
-   7. HERO DASHBOARD
+   7. HERO DASHBOARD - BOTH THEMES
 ========================================= */
 
 .hero .dashboard-card {
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: #FFFFFF;
+    background: var(--hero-card-bg);
+    border: 1px solid var(--hero-card-border);
+    color: var(--hero-text);
 }
 
-.dashboard-header h3,
-.stat-box strong {
-    color: #FFFFFF;
+.hero .dashboard-header h3,
+.hero .stat-box strong {
+    color: var(--hero-text);
 }
 
-.dashboard-header small,
-.progress-heading strong {
-    color: #C6B9FF;
+.hero .dashboard-header small,
+.hero .progress-heading strong {
+    color: var(--hero-accent);
 }
 
-.stat-box {
-    background: rgba(255, 255, 255, 0.09);
+.hero .stat-box {
+    background: var(--hero-stat-bg);
 }
 
-.stat-box span {
-    color: #D3D7E7;
+.hero .stat-box span {
+    color: var(--hero-muted);
 }
 
-.progress-heading {
-    color: #D3D5E3;
+.hero .progress-heading {
+    color: var(--hero-muted);
 }
 
-.progress-bar {
-    background: rgba(255, 255, 255, 0.15);
+.hero .progress-bar {
+    background: var(--hero-progress-bg);
 }
 
-.dashboard-message {
-    background: rgba(118, 87, 246, 0.18);
-    color: #E2DCFF;
+.hero .dashboard-message {
+    background: var(--hero-message-bg);
+    color: var(--hero-message-text);
 }
-
 
 /* =========================================
    8. SECTIONS AND HEADINGS
@@ -549,35 +615,40 @@ tr:hover td {
     background: var(--bg-card-hover);
 }
 
-
 /* =========================================
-   14. FOOTER
-   Intentionally dark in both themes.
+   14. FOOTER - BOTH THEMES
 ========================================= */
 
 .footer {
-    background: #10152B;
-    color: #FFFFFF;
-    border-top: 1px solid rgba(255, 255, 255, 0.10);
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    border-top: 1px solid var(--footer-border);
 }
 
 .footer .logo,
-.footer h3 {
-    color: #FFFFFF;
+.footer h3,
+.footer .footer-logo-text {
+    color: var(--footer-text);
 }
 
 .footer-about p,
-.footer-links a {
-    color: #B8BED1;
+.footer-links a,
+.footer-bottom,
+.footer-bottom a {
+    color: var(--footer-muted);
 }
 
-.footer-links a:hover {
-    color: #B09FFF;
+.footer-links a:hover,
+.footer-bottom a:hover {
+    color: var(--primary-light);
 }
 
 .footer-bottom {
-    color: #A7AEC3;
-    border-top: 1px solid rgba(255, 255, 255, 0.12);
+    border-top: 1px solid var(--footer-border);
+}
+
+.footer-logo-text span {
+    color: var(--primary-light);
 }
 
 
@@ -1095,3 +1166,160 @@ html body img[src*="assets/icons/"] {
     -webkit-mask-image: url("../assets/icons/menu.svg");
     mask-image: url("../assets/icons/menu.svg");
 }
+
+/* =========================================
+   HEADER LOGO IMAGE - FINAL STYLING
+========================================= */
+
+.header .navbar > .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    flex-shrink: 0;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.header .navbar > .logo .logo-icon {
+    display: block;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    object-fit: contain;
+    flex-shrink: 0;
+    border: none;
+    box-shadow: none;
+}
+/* =========================================
+   SKILLNEST - PROFESSIONAL HEADER LOGO
+========================================= */
+
+.header .navbar > .logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 9px;
+    flex-shrink: 0;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+/* Logo Icon */
+
+.header .navbar > .logo > .logo-icon {
+    display: block;
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 9px;
+    flex-shrink: 0;
+    box-shadow: 0 2px 8px rgba(90, 55, 220, 0.15);
+}
+
+/* Logo Text */
+
+.header .navbar > .logo .logo-text {
+    display: inline-flex;
+    align-items: center;
+    font-size: 27px;
+    font-weight: 750;
+    letter-spacing: -1.2px;
+    line-height: 1;
+    color: var(--text-primary);
+}
+
+.header .navbar > .logo .logo-text span {
+    color: var(--primary-light);
+    margin-left: 0;
+}
+
+/* Mobile */
+
+@media (max-width: 560px) {
+    .header .navbar > .logo > .logo-icon {
+        width: 42px;
+        height: 42px;
+        min-width: 42px;
+    }
+
+    .header .navbar > .logo .logo-text {
+        font-size: 23px;
+    }
+
+    .header .navbar > .logo {
+        gap: 7px;
+    }
+}
+/* =========================================
+   SKILLNEST - FOOTER BRAND LOGO
+========================================= */
+
+.footer-logo {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 9px;
+    text-decoration: none;
+    white-space: nowrap;
+    margin-bottom: 16px;
+    line-height: 1;
+}
+
+/* Footer Logo Icon */
+
+.footer-logo-icon {
+    display: block;
+    width: 42px;
+    height: 42px;
+    min-width: 42px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 7px;
+    padding: 0;
+    margin: 0;
+    flex-shrink: 0;
+}
+
+/* Footer Brand Name */
+
+.footer-logo-text {
+    display: inline-flex;
+    align-items: center;
+    font-size: 25px;
+    font-weight: 750;
+    letter-spacing: -1px;
+    line-height: 1;
+    color: #FFFFFF;
+}
+
+.footer-logo-text span {
+    color: #927CFF;
+    margin: 0;
+    padding: 0;
+}
+
+/* Mobile Footer */
+
+@media (max-width: 560px) {
+    .footer-logo-icon {
+        width: 38px;
+        height: 38px;
+        min-width: 38px;
+    }
+
+    .footer-logo-text {
+        font-size: 23px;
+    }
+}
+/* SkillNest Logo - Purple Brand Background
+
+.header .navbar > a.logo .logo-icon,
+.footer-logo .footer-logo-icon {
+    background: linear-gradient(135deg, #7657F6, #6040E8);
+    border-radius: 10px;
+    padding: 5px;
+    object-fit: contain;
+    box-shadow: 0 4px 12px rgba(105, 71, 232, 0.22);
+} */

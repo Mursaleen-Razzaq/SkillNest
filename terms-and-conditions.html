@@ -11,12 +11,15 @@
 
     <meta name="author" content="SkillNest">
 
-    <link rel="canonical" href="https://your-domain.netlify.app/terms-and-conditions.html">
+    <link rel="canonical" href="https://skillnest-tools.netlify.app/terms-and-conditions">
 
     <link rel="stylesheet" href="css/style.css">
-<link rel="stylesheet" href="css/responsive.css">
-<link rel="stylesheet" href="css/tools.css">
-<link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/responsive.css">
+    <link rel="stylesheet" href="css/tools.css">
+    <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <style>
         .legal-hero {
@@ -115,9 +118,6 @@
             }
         }
     </style>
-
-<link rel="stylesheet" href="css/sidebar.css">
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 </head>
 
 <body>
@@ -126,10 +126,19 @@
     <header class="header">
         <div class="container navbar">
 
+            <!-- LOGO -->
             <a href="index.html" class="logo">
-                Skill<span>Nest</span>
+                <img
+                    src="assets/logo/skillnest-logo-icon.webp"
+                    alt="SkillNest"
+                    class="logo-icon"
+                    width="42"
+                    height="42"
+                >
+                <span class="logo-text">Skill<span>Nest</span></span>
             </a>
 
+            <!-- MOBILE MENU -->
             <button
                 class="menu-toggle"
                 id="menuToggle"
@@ -140,6 +149,7 @@
                 ☰
             </button>
 
+            <!-- NAVIGATION -->
             <nav class="nav-links" id="navLinks">
                 <a href="index.html">Home</a>
                 <a href="student-tools/index.html">Student Tools</a>
@@ -148,13 +158,17 @@
                 <a href="resources/index.html">Resources</a>
                 <a href="about.html">About</a>
 
+                <!-- THEME TOGGLE -->
                 <button
                     class="theme-toggle"
                     id="themeToggle"
                     type="button"
                     aria-label="Switch to light mode"
                 >
-                    â—
+                    <span
+                        class="sn-svg-icon topbar-svg-icon"
+                        aria-hidden="true"
+                    ></span>
                 </button>
             </nav>
 
@@ -166,7 +180,6 @@
 
         <!-- HERO -->
         <section class="legal-hero">
-
             <div class="container">
 
                 <h1>Terms and Conditions</h1>
@@ -177,7 +190,6 @@
                 </p>
 
             </div>
-
         </section>
 
 
@@ -189,7 +201,6 @@
             </span>
 
             <article class="legal-content">
-
 
                 <section>
                     <h2>1. Introduction</h2>
@@ -339,9 +350,7 @@
                         learning and career preparation.
                     </p>
 
-                    <p>
-                        We do not guarantee:
-                    </p>
+                    <p>We do not guarantee:</p>
 
                     <ul>
                         <li>Employment or internship opportunities.</li>
@@ -630,13 +639,12 @@
 
     <!-- FOOTER -->
     <footer class="footer">
-
         <div class="container">
 
             <div class="footer-bottom">
 
                 <p>
-                    Â© <span id="currentYear"></span> SkillNest.
+                    &copy; <span id="currentYear"></span> SkillNest.
                     All rights reserved.
                 </p>
 
@@ -651,7 +659,6 @@
             </div>
 
         </div>
-
     </footer>
 
 
@@ -661,9 +668,7 @@
     <script src="js/theme.js"></script>
     <script src="js/main.js"></script>
 
+    <script src="js/sidebar.js" defer></script>
 
-<script src="js/sidebar.js" defer></script>
 </body>
 </html>
-
-

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -10,12 +9,14 @@
     <title>SkillNest | Free Tools for Students & Career Builders</title>
 
     <meta name="description"
-        content="Explore free student calculators, career tools, resume builders and productivity resources with SkillNest. Learn smarter and build your career.">
+    content="Use free online student and career tools at SkillNest. Calculate GPA and CGPA, build professional resumes, prepare for interviews, and improve your productivity.">
 
     <meta name="keywords"
         content="student tools, GPA calculator, CGPA calculator, resume builder, career tools, productivity tools">
 
     <meta name="author" content="SkillNest">
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://skillnest-tools.netlify.app/">
     <meta name="theme-color" content="#10152B">
 
     <!-- Google Fonts -->
@@ -35,15 +36,20 @@
 </head>
 
 <body>
-    <!-- ================= HEADER ================= -->
-<!-- HEADER -->
+  
 <header class="header">
-    <nav class="navbar container">
+    <div class="navbar container">
 
+        <!-- SkillNest Logo -->
         <a href="index.html" class="logo">
-            Skill<span>Nest</span>
-        </a>
-
+    <img
+        src="assets/logo/skillnest-logo-icon.webp"
+        alt="SkillNest"
+        class="logo-icon"
+    >
+    <span class="logo-text">Skill<span>Nest</span></span>
+</a>
+        <!-- Navigation Links -->
         <nav class="nav-links" id="navLinks">
             <a href="index.html" class="active">Home</a>
             <a href="student-tools/index.html">Student Tools</a>
@@ -53,38 +59,36 @@
             <a href="about.html">About</a>
         </nav>
 
+        <!-- Navigation Actions -->
         <div class="nav-actions">
 
-    <!-- Theme Toggle -->
-    <button
-        class="theme-toggle"
-        id="themeToggle"
-        type="button"
-        aria-label="Switch theme"
-        title="Switch theme"
-    >
-        <span class="sn-svg-icon topbar-svg-icon" aria-hidden="true"></span>
-    </button>
+            <button
+                class="theme-toggle"
+                id="themeToggle"
+                type="button"
+                aria-label="Switch theme"
+                title="Switch theme"
+            >
+                <span class="sn-svg-icon topbar-svg-icon" aria-hidden="true"></span>
+            </button>
 
-    <!-- Get Started -->
-    <a href="student-tools/index.html" class="btn btn-primary">
-        Get Started
-    </a>
+            <a href="student-tools/index.html" class="btn btn-primary">
+                Get Started
+            </a>
 
-    <!-- Menu Toggle -->
-    <button
-        class="menu-toggle"
-        id="menuToggle"
-        type="button"
-        aria-label="Open navigation menu"
-        aria-controls="navLinks"
-        aria-expanded="false"
-    >
-        <span class="sn-svg-icon topbar-svg-icon" aria-hidden="true"></span>
-    </button>
+            <button
+                class="menu-toggle"
+                id="menuToggle"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-controls="navLinks"
+                aria-expanded="false"
+            >
+                <span class="sn-svg-icon topbar-svg-icon" aria-hidden="true"></span>
+            </button>
 
-</div>
         </div>
+
     </nav>
 </header>
 
@@ -812,13 +816,13 @@
         <div class="footer-grid">
 
             <div class="footer-about">
-               <a href="index.html" class="logo">
+               <a href="index.html" class="footer-logo">
     <img
-        src="/assets/logo/skillnest-logo-icon.png"
+        src="assets/logo/skillnest-logo-icon.webp"
         alt="SkillNest Logo"
-        class="logo-icon"
+        class="footer-logo-icon"
     >
-    Skill<span>Nest</span>
+    <span class="footer-logo-text">Skill<span>Nest</span></span>
 </a>
 
                 <p>

@@ -14,6 +14,8 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="stylesheet" href="css/themes.css">
+    <link rel="stylesheet" href="css/sidebar.css">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
 
     <style>
         .error-page {
@@ -126,9 +128,6 @@
             text-decoration: underline;
         }
     </style>
-
-<link rel="stylesheet" href="css/sidebar.css">
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 </head>
 
 <body>
@@ -137,8 +136,16 @@
     <header class="header">
         <div class="container navbar">
 
+            <!-- SKILLNEST LOGO -->
             <a href="index.html" class="logo">
-                Skill<span>Nest</span>
+                <img
+                    src="assets/logo/skillnest-logo-icon.webp"
+                    alt="SkillNest"
+                    class="logo-icon"
+                    width="42"
+                    height="42"
+                >
+                <span class="logo-text">Skill<span>Nest</span></span>
             </a>
 
             <button
@@ -146,6 +153,7 @@
                 id="menuToggle"
                 type="button"
                 aria-label="Open navigation menu"
+                aria-controls="navLinks"
                 aria-expanded="false"
             >
                 ☰
@@ -164,9 +172,13 @@
                     class="theme-toggle"
                     id="themeToggle"
                     type="button"
-                    aria-label="Switch to light mode"
+                    aria-label="Switch theme"
+                    title="Switch theme"
                 >
-                    â—
+                    <span
+                        class="sn-svg-icon topbar-svg-icon"
+                        aria-hidden="true"
+                    ></span>
                 </button>
 
             </nav>
@@ -202,7 +214,7 @@
                 <div class="error-actions">
 
                     <a href="index.html" class="error-home">
-                        â† Back to Home
+                        &larr; Back to Home
                     </a>
 
                     <a href="student-tools/index.html" class="error-tools">
@@ -244,7 +256,7 @@
             <div class="footer-bottom">
 
                 <p>
-                    Â© <span id="currentYear"></span> SkillNest.
+                    &copy; <span id="currentYear"></span> SkillNest.
                     All rights reserved.
                 </p>
 
@@ -268,10 +280,7 @@
     <script src="js/navigation.js"></script>
     <script src="js/theme.js"></script>
     <script src="js/main.js"></script>
+    <script src="js/sidebar.js" defer></script>
 
-
-<script src="js/sidebar.js" defer></script>
 </body>
 </html>
-
-

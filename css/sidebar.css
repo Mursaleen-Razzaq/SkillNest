@@ -30,6 +30,7 @@
 
     background: var(--bg-card);
     border-right: 1px solid var(--border-color);
+    color: var(--text-primary);
 
     overflow-y: auto;
     z-index: 1000;
@@ -88,9 +89,9 @@
 }
 
 .sn-sidebar-link.active {
-    color: var(--primary-light);
-    background: rgba(118, 87, 246, 0.13);
-    border-color: rgba(118, 87, 246, 0.25);
+    color: var(--primary);
+    background: var(--sidebar-active-bg);
+    border-color: var(--sidebar-active-border);
     font-weight: 700;
 }
 
@@ -322,6 +323,10 @@ body.has-sidebar > .footer {
     margin-bottom: 28px;
 }
 
+/* ========================================
+   SIDEBAR BRAND
+======================================== */
+
 .sn-sidebar-logo {
     color: var(--text-primary);
     font-size: 25px;
@@ -331,7 +336,7 @@ body.has-sidebar > .footer {
 }
 
 .sn-sidebar-logo span {
-    color: var(--primary-light);
+    color: var(--primary);
 }
 
 .sn-sidebar-close {

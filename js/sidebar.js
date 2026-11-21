@@ -149,27 +149,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     document.body.classList.add("has-sidebar");
 
-    const toggle = document.createElement("button");
-
-    toggle.type = "button";
-    toggle.className = "sn-sidebar-toggle";
-    toggle.innerHTML = icon("panel-left-open");
-    toggle.setAttribute("aria-label", "Open sidebar");
-    toggle.setAttribute("aria-controls", "skillNestSidebar");
-    toggle.setAttribute("aria-expanded", "false");
-
-    const navActions = document.querySelector(".nav-actions");
-
-    if (navActions) {
-        navActions.insertBefore(toggle, navActions.firstChild);
-    } else {
-        const navbar = document.querySelector(".navbar");
-
-        if (navbar) {
-            navbar.appendChild(toggle);
-        }
-    }
-
     const closeButton = sidebar.querySelector(".sn-sidebar-close");
     const mobileScreen = window.matchMedia("(max-width: 900px)");
 

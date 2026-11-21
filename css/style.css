@@ -968,8 +968,9 @@ input:focus-visible {
 [data-theme="light"] .tool-category-card .tool-btn .tool-link-arrow {
     filter: brightness(0) invert(1) !important;
 }
+
 /* ========================================
-   SKILLNEST HEADER LOGO
+   SKILLNEST LOGO ICON
 ======================================== */
 
 .logo {
