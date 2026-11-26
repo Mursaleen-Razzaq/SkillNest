@@ -256,25 +256,19 @@ p {
 .btn-secondary {
     background: var(--bg-card);
     color: var(--text-primary);
-    border-color: var(--border-color);
+    border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover {
     background: var(--bg-card-hover);
     border-color: var(--primary);
-    color: var(--primary-light);
+    color: var(--primary);
 }
 
 .btn-light {
     background: #FFFFFF;
     color: #6040E8;
 }
-
-
-/* =========================================
-   6. HERO SECTION
-   Intentionally dark in both themes.
-========================================= */
 /* =========================================
    6. HERO SECTION - BOTH THEMES
 ========================================= */
@@ -752,19 +746,17 @@ select,
         animation-iteration-count: 1 !important;
     }
 }
-
-
-/* ========================================
+/* =========================================
    FIX: HERO SECONDARY BUTTON VISIBILITY
-======================================== */
-
+   Supports both dark and light themes
+========================================= */
 .hero .btn-secondary,
 .hero .btn-outline,
 .hero a.btn-secondary,
 .hero a.btn-outline {
-    background: rgba(255, 255, 255, 0.06);
-    color: #FFFFFF !important;
-    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: var(--hero-card-bg);
+    color: var(--hero-text) !important;
+    border: 1px solid var(--hero-card-border);
     opacity: 1;
     text-decoration: none;
 }
@@ -773,11 +765,10 @@ select,
 .hero .btn-outline:hover,
 .hero a.btn-secondary:hover,
 .hero a.btn-outline:hover {
-    background: rgba(118, 87, 246, 0.25);
-    color: #FFFFFF !important;
-    border-color: #A18DFF;
+    background: var(--icon-bg);
+    color: var(--primary) !important;
+    border-color: var(--primary);
 }
-
 
 /* =========================================
    20. GLOBAL WEBSITE ICON SYSTEM
@@ -1293,9 +1284,8 @@ html body img[src*="assets/icons/"] {
     line-height: 1;
     color: #FFFFFF;
 }
-
 .footer-logo-text span {
-    color: #927CFF;
+    color: var(--primary-light);
     margin: 0;
     padding: 0;
 }
@@ -1313,13 +1303,3 @@ html body img[src*="assets/icons/"] {
         font-size: 23px;
     }
 }
-/* SkillNest Logo - Purple Brand Background
-
-.header .navbar > a.logo .logo-icon,
-.footer-logo .footer-logo-icon {
-    background: linear-gradient(135deg, #7657F6, #6040E8);
-    border-radius: 10px;
-    padding: 5px;
-    object-fit: contain;
-    box-shadow: 0 4px 12px rgba(105, 71, 232, 0.22);
-} */

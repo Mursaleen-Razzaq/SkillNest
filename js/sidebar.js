@@ -150,7 +150,17 @@ document.addEventListener("DOMContentLoaded", function () {
     document.body.classList.add("has-sidebar");
 
     const closeButton = sidebar.querySelector(".sn-sidebar-close");
-    const mobileScreen = window.matchMedia("(max-width: 900px)");
+
+const toggle = document.getElementById("menuToggle");
+
+const mobileScreen = window.matchMedia("(max-width: 900px)");
+
+if (!toggle) {
+    console.error(
+        "SkillNest Sidebar: Menu toggle button (#menuToggle) not found."
+    );
+    return;
+}
 
     function setSidebarState(open) {
         sidebar.classList.toggle("open", open);

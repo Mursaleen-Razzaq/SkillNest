@@ -7,19 +7,20 @@
 
     <title>Free GPA Calculator | SkillNest</title>
 
-    <meta name="description" content="Calculate your semester GPA easily with the free SkillNest GPA calculator. Add subjects, credit hours and grades to get your GPA instantly.">
+    <meta name="description" content="Calculate your semester GPA with the free SkillNest GPA calculator. Choose an example 4.0 grading scale or enter your university's custom grade points.">
 
     <meta name="keywords" content="GPA calculator, semester GPA calculator, grade point average, free GPA calculator">
 
     <meta name="author" content="SkillNest">
 
     <link rel="canonical" href="https://skillnest-tools.netlify.app/student-tools/gpa-calculator">
-    
+
     <link rel="stylesheet" href="../css/style.css">
-<link rel="stylesheet" href="../css/responsive.css">
-<link rel="stylesheet" href="../css/tools.css">
-<link rel="stylesheet" href="../css/themes.css">
-<link rel="stylesheet" href="../css/sidebar.css">
+    <link rel="stylesheet" href="../css/responsive.css">
+    <link rel="stylesheet" href="../css/tools.css">
+    <link rel="stylesheet" href="../css/themes.css">
+    <link rel="stylesheet" href="../css/sidebar.css">
+
     <style>
         .subject-row {
             display: grid;
@@ -92,6 +93,69 @@
             line-height: 1.7;
         }
 
+        .grading-scale-section {
+            margin: 22px 0;
+        }
+
+        .grading-scale-section select {
+            width: 100%;
+        }
+
+        .custom-scale-editor {
+            margin-top: 18px;
+            padding: 18px;
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            background: var(--bg-secondary);
+        }
+
+        .custom-scale-editor h3 {
+            margin-bottom: 8px;
+        }
+
+        .custom-scale-description {
+            margin-bottom: 16px;
+            color: var(--text-secondary);
+            font-size: 13px;
+            line-height: 1.6;
+        }
+
+        .custom-grade-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr auto;
+            gap: 12px;
+            align-items: end;
+            margin-bottom: 12px;
+        }
+
+        .custom-grade-row .form-group {
+            min-width: 0;
+        }
+
+        .custom-grade-row input {
+            width: 100%;
+        }
+
+        .custom-grade-row .remove-subject {
+            width: 42px;
+            height: 42px;
+        }
+
+        .skip-link {
+            position: absolute;
+            top: -100px;
+            left: 12px;
+            z-index: 9999;
+            padding: 12px 18px;
+            background: var(--primary);
+            color: #fff;
+            border-radius: 8px;
+        }
+
+        .skip-link:focus {
+            top: 12px;
+        }
+
         @media (max-width: 650px) {
             .subject-row {
                 grid-template-columns: 1fr 1fr;
@@ -108,20 +172,32 @@
             .gpa-summary {
                 grid-template-columns: 1fr;
             }
+
+            .custom-grade-row {
+                grid-template-columns: 1fr 1fr auto;
+                gap: 8px;
+            }
+
+            .custom-scale-editor {
+                padding: 12px;
+            }
         }
     </style>
 
-<link rel="stylesheet" href="../css/sidebar.css">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 </head>
 
 <body>
 
+<!-- SKIP LINK -->
+<a href="#mainContent" class="skip-link">
+    Skip to main content
+</a>
+
 <!-- HEADER -->
 <header class="header">
     <nav class="navbar container">
 
-         <!-- SKILLNEST LOGO -->
         <a href="../index.html" class="logo">
             <img
                 src="../assets/logo/skillnest-logo-icon.webp"
@@ -132,7 +208,7 @@
             >
             <span class="logo-text">Skill<span>Nest</span></span>
         </a>
-        <!-- Navigation Links -->
+
         <nav class="nav-links" id="navLinks">
             <a href="../index.html">Home</a>
             <a href="index.html" class="active" aria-current="page">Student Tools</a>
@@ -142,10 +218,8 @@
             <a href="../about.html">About</a>
         </nav>
 
-        <!-- Header Actions -->
         <div class="nav-actions">
 
-            <!-- Theme Toggle -->
             <button
                 class="theme-toggle"
                 id="themeToggle"
@@ -159,12 +233,10 @@
                 ></span>
             </button>
 
-            <!-- Get Started -->
             <a href="index.html" class="btn btn-primary">
                 Get Started
             </a>
 
-            <!-- Menu Toggle -->
             <button
                 class="menu-toggle"
                 id="menuToggle"
@@ -184,441 +256,832 @@
     </nav>
 </header>
 
-    <!-- MAIN CONTENT -->
-    <main>
+<!-- MAIN CONTENT -->
+<main id="mainContent">
 
-        <section class="tool-page">
+    <section class="tool-page">
 
-            <div class="tool-header">
+        <div class="tool-header">
 
-                <div class="tool-breadcrumb">
-                    <a href="../index.html">Home</a> /
-                    <a href="index.html">Student Tools</a> /
-                    GPA Calculator
-                </div>
-
-                <h1>GPA Calculator</h1>
-
-                <p>
-                    Calculate your semester Grade Point Average (GPA)
-                    using subject grades and credit hours.
-                    Add your subjects and get your result instantly.
-                </p>
-
+            <div class="tool-breadcrumb">
+                <a href="../index.html">Home</a> /
+                <a href="index.html">Student Tools</a> /
+                GPA Calculator
             </div>
 
+            <h1>GPA Calculator</h1>
 
-            <!-- GPA CALCULATOR -->
-            <div class="tool-container">
+            <p>
+                Calculate your semester Grade Point Average (GPA)
+                using subject grades and credit hours.
+                Add your subjects and get your result instantly.
+            </p>
 
-                <h2>Enter Your Subjects</h2>
+        </div>
 
-                <p class="result-description">
-                    Enter the name, credit hours and grade for each subject.
-                </p>
+        <!-- GPA CALCULATOR -->
+        <div class="tool-container">
 
-                <div id="subjectsContainer">
+            <h2>Enter Your Subjects</h2>
 
-                    <!-- Subject rows are added through JavaScript -->
+            <p class="result-description">
+                Enter the name, credit hours and grade for each subject.
+                Subject names are optional.
+            </p>
 
+            <!-- GRADING SCALE -->
+            <div class="grading-scale-section">
+
+                <div class="form-group">
+                    <label for="gradingScale">Select Grading Scale</label>
+
+                    <select id="gradingScale">
+                        <option value="example">
+                            Example 4.0 Scale
+                        </option>
+
+                        <option value="custom">
+                            Custom University Scale
+                        </option>
+                    </select>
                 </div>
 
-
-                <button
-                    type="button"
-                    class="tool-btn tool-btn-secondary"
-                    id="addSubjectBtn"
+                <!-- CUSTOM SCALE EDITOR -->
+                <div
+                    class="custom-scale-editor"
+                    id="customScaleEditor"
+                    hidden
                 >
-                    + Add Subject
-                </button>
 
+                    <h3>Custom Grade Points</h3>
 
-                <div class="tool-alert error" id="errorMessage" role="alert">
-                </div>
-
-
-                <button
-                    type="button"
-                    class="tool-btn"
-                    id="calculateGpaBtn"
-                    style="width: 100%; margin-top: 22px;"
-                >
-                    Calculate GPA
-                </button>
-
-
-                <!-- RESULT -->
-                <div class="result-box" id="resultBox" aria-live="polite">
-
-                    <h3>Your GPA Result</h3>
-
-                    <div class="gpa-summary">
-
-                        <div class="summary-item">
-                            <span>Semester GPA</span>
-                            <strong id="gpaResult">0.00</strong>
-                        </div>
-
-                        <div class="summary-item">
-                            <span>Total Credit Hours</span>
-                            <strong id="totalCredits">0</strong>
-                        </div>
-
-                        <div class="summary-item">
-                            <span>Total Grade Points</span>
-                            <strong id="totalGradePoints">0.00</strong>
-                        </div>
-
-                    </div>
-
-                    <p class="result-description" id="resultDescription">
+                    <p class="custom-scale-description">
+                        Enter the grade names and their corresponding
+                        grade points according to your university's
+                        official grading policy. You can add, edit
+                        or remove grades.
                     </p>
+
+                    <div id="customScaleRows"></div>
 
                     <button
                         type="button"
                         class="tool-btn tool-btn-secondary"
-                        id="saveResultBtn"
-                        style="margin-top: 18px;"
+                        id="addCustomGradeBtn"
                     >
-                        Save Result
+                        + Add Grade
                     </button>
 
                 </div>
 
+            </div>
 
-                <div class="grade-note">
-                    <strong>Grading scale:</strong>
-                    A = 4.00, A- = 3.70, B+ = 3.30,
-                    B = 3.00, B- = 2.70, C+ = 2.30,
-                    C = 2.00, D = 1.00, F = 0.00.
+            <div id="subjectsContainer">
+                <!-- Subject rows are added through JavaScript -->
+            </div>
 
-                    <br><br>
+            <button
+                type="button"
+                class="tool-btn tool-btn-secondary"
+                id="addSubjectBtn"
+            >
+                + Add Subject
+            </button>
 
-                    This is a common example of a 4.0 grading scale.
-                    Actual grade points can differ between universities.
-                    Always check your university's official grading policy.
+            <div class="tool-alert error" id="errorMessage" role="alert">
+            </div>
+
+            <button
+                type="button"
+                class="tool-btn"
+                id="calculateGpaBtn"
+                style="width: 100%; margin-top: 22px;"
+            >
+                Calculate GPA
+            </button>
+
+            <!-- RESULT -->
+            <div class="result-box" id="resultBox" aria-live="polite">
+
+                <h3>Your GPA Result</h3>
+
+                <div class="gpa-summary">
+
+                    <div class="summary-item">
+                        <span>Semester GPA</span>
+                        <strong id="gpaResult">0.00</strong>
+                    </div>
+
+                    <div class="summary-item">
+                        <span>Total Credit Hours</span>
+                        <strong id="totalCredits">0</strong>
+                    </div>
+
+                    <div class="summary-item">
+                        <span>Total Grade Points</span>
+                        <strong id="totalGradePoints">0.00</strong>
+                    </div>
+
                 </div>
+
+                <p class="result-description" id="resultDescription"></p>
+
+                <button
+                    type="button"
+                    class="tool-btn tool-btn-secondary"
+                    id="saveResultBtn"
+                    style="margin-top: 18px;"
+                >
+                    Save Result
+                </button>
 
             </div>
 
-        </section>
+            <!-- SAVE STATUS -->
+            <p
+                class="result-description"
+                id="saveStatus"
+                role="status"
+                aria-live="polite"
+            ></p>
 
-    </main>
+            <div class="grade-note">
+                <strong>About grading scales:</strong>
 
+                <br><br>
 
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="container">
+                The Example 4.0 Scale is provided as a general example
+                and is not an official university grading policy.
 
-            <div class="footer-bottom">
+                <br><br>
 
-                <p>
-                    © <span id="currentYear"></span> SkillNest.
-                    All rights reserved.
-                </p>
-
-                <div>
-                    <a href="../privacy-policy.html">Privacy Policy</a>
-                    <a href="../terms-and-conditions.html">Terms</a>
-                    <a href="../contact.html">Contact</a>
-                </div>
-
+                Select Custom University Scale to enter your own
+                grade names and grade points. Always use the official
+                grading policy provided by your institution.
             </div>
 
         </div>
-    </footer>
+
+    </section>
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="container">
+
+        <div class="footer-bottom">
+
+            <p>
+                © <span id="currentYear"></span> SkillNest.
+                All rights reserved.
+            </p>
+
+            <div>
+                <a href="../privacy-policy.html">Privacy Policy</a>
+                <a href="../terms-and-conditions.html">Terms</a>
+                <a href="../contact.html">Contact</a>
+            </div>
+
+        </div>
+
+    </div>
+</footer>
+
+<!-- JAVASCRIPT -->
+<script src="../js/storage.js"></script>
+<script src="../js/navigation.js"></script>
+<script src="../js/theme.js"></script>
+<script src="../js/main.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const subjectsContainer =
+        document.getElementById("subjectsContainer");
+
+    const addSubjectBtn =
+        document.getElementById("addSubjectBtn");
+
+    const calculateBtn =
+        document.getElementById("calculateGpaBtn");
+
+    const errorMessage =
+        document.getElementById("errorMessage");
+
+    const resultBox =
+        document.getElementById("resultBox");
+
+    const saveStatus =
+        document.getElementById("saveStatus");
+
+    const gradingScale =
+        document.getElementById("gradingScale");
+
+    const customScaleEditor =
+        document.getElementById("customScaleEditor");
+
+    const customScaleRows =
+        document.getElementById("customScaleRows");
+
+    const addCustomGradeBtn =
+        document.getElementById("addCustomGradeBtn");
+
+    // Existing example grading scale
+    const exampleGradePoints = {
+        "A": 4.00,
+        "A-": 3.70,
+        "B+": 3.30,
+        "B": 3.00,
+        "B-": 2.70,
+        "C+": 2.30,
+        "C": 2.00,
+        "D": 1.00,
+        "F": 0.00
+    };
+
+    let lastResult = null;
 
 
-    <!-- JAVASCRIPT -->
-    <script src="../js/storage.js"></script>
-    <script src="../js/navigation.js"></script>
-    <script src="../js/theme.js"></script>
-    <script src="../js/main.js"></script>
+    // Get the currently selected grading scale
+    function getActiveGradePoints() {
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
+        if (gradingScale.value === "example") {
+            return exampleGradePoints;
+        }
 
-            const subjectsContainer =
-                document.getElementById("subjectsContainer");
+        const mapping = {};
 
-            const addSubjectBtn =
-                document.getElementById("addSubjectBtn");
+        customScaleRows
+            .querySelectorAll(".custom-grade-row")
+            .forEach(function (row) {
 
-            const calculateBtn =
-                document.getElementById("calculateGpaBtn");
+                const gradeName = row
+                    .querySelector(".custom-grade-name")
+                    .value.trim();
 
-            const errorMessage =
-                document.getElementById("errorMessage");
+                const pointInput = row
+                    .querySelector(".custom-grade-point")
+                    .value.trim();
 
-            const resultBox =
-                document.getElementById("resultBox");
+                const gradePoint = Number(pointInput);
 
-            const gradePoints = {
-                "A": 4.00,
-                "A-": 3.70,
-                "B+": 3.30,
-                "B": 3.00,
-                "B-": 2.70,
-                "C+": 2.30,
-                "C": 2.00,
-                "D": 1.00,
-                "F": 0.00
-            };
+                if (
+                    gradeName &&
+                    pointInput !== "" &&
+                    Number.isFinite(gradePoint)
+                ) {
+                    mapping[gradeName] = gradePoint;
+                }
 
-            let lastResult = null;
+            });
 
-            // Create a subject row
-            function createSubjectRow(name = "", credits = "3", grade = "A") {
-
-                const row = document.createElement("div");
-
-                row.className = "subject-row";
-
-                const nameGroup = document.createElement("div");
-                nameGroup.className = "form-group subject-name";
-
-                const nameLabel = document.createElement("label");
-                nameLabel.textContent = "Subject Name";
-
-                const nameInput = document.createElement("input");
-                nameInput.type = "text";
-                nameInput.className = "subject-name-input";
-                nameInput.placeholder = "e.g. Mathematics";
-                nameInput.value = name;
-
-                nameGroup.append(nameLabel, nameInput);
+        return mapping;
+    }
 
 
-                const creditGroup = document.createElement("div");
-                creditGroup.className = "form-group";
+    // Hide old result and clear previous messages
+    function hideResult() {
 
-                const creditLabel = document.createElement("label");
-                creditLabel.textContent = "Credit Hours";
+        resultBox.classList.remove("show");
 
-                const creditInput = document.createElement("input");
-                creditInput.type = "number";
-                creditInput.className = "credit-input";
-                creditInput.min = "0.5";
-                creditInput.max = "10";
-                creditInput.step = "0.5";
-                creditInput.value = credits;
-                creditInput.placeholder = "3";
+        errorMessage.textContent = "";
+        errorMessage.classList.remove("show");
 
-                creditGroup.append(creditLabel, creditInput);
+        saveStatus.textContent = "";
+
+        lastResult = null;
+
+    }
 
 
-                const gradeGroup = document.createElement("div");
-                gradeGroup.className = "form-group";
+    // Display validation errors
+    function showError(message) {
 
-                const gradeLabel = document.createElement("label");
-                gradeLabel.textContent = "Grade";
+        errorMessage.textContent = message;
+        errorMessage.classList.add("show");
 
-                const gradeSelect = document.createElement("select");
-                gradeSelect.className = "grade-select";
+    }
+
+
+    // Get and validate custom grading scale
+    function validateCustomScale() {
+
+        const rows = customScaleRows.querySelectorAll(
+            ".custom-grade-row"
+        );
+
+        if (rows.length === 0) {
+            showError(
+                "Please add at least one grade to your custom scale."
+            );
+            return false;
+        }
+
+        const usedNames = new Set();
+
+        for (const row of rows) {
+
+            const gradeName = row
+                .querySelector(".custom-grade-name")
+                .value.trim();
+
+            const pointInput = row
+                .querySelector(".custom-grade-point")
+                .value.trim();
+
+            const gradePoint = Number(pointInput);
+
+            if (!gradeName || pointInput === "") {
+                showError(
+                    "Please enter both a grade name and its grade points."
+                );
+                return false;
+            }
+
+            if (
+                !Number.isFinite(gradePoint) ||
+                gradePoint < 0 ||
+                gradePoint > 10
+            ) {
+                showError(
+                    "Grade points must be between 0 and 10."
+                );
+                return false;
+            }
+
+            const normalizedName = gradeName.toLowerCase();
+
+            if (usedNames.has(normalizedName)) {
+                showError("Each grade name must be unique.");
+                return false;
+            }
+
+            usedNames.add(normalizedName);
+
+        }
+
+        return true;
+    }
+
+
+    // Update all subject grade dropdowns
+    function updateGradeDropdowns() {
+
+        const gradePoints = getActiveGradePoints();
+
+        subjectsContainer
+            .querySelectorAll(".grade-select")
+            .forEach(function (select) {
+
+                const previousGrade = select.value;
+
+                select.innerHTML = "";
 
                 Object.keys(gradePoints).forEach(function (gradeName) {
 
                     const option = document.createElement("option");
 
                     option.value = gradeName;
+
                     option.textContent =
                         gradeName + " (" +
                         gradePoints[gradeName].toFixed(2) + ")";
 
-                    if (gradeName === grade) {
-                        option.selected = true;
-                    }
-
-                    gradeSelect.appendChild(option);
+                    select.appendChild(option);
 
                 });
 
-                gradeGroup.append(gradeLabel, gradeSelect);
-
-
-                const removeBtn = document.createElement("button");
-
-                removeBtn.type = "button";
-                removeBtn.className = "remove-subject";
-                removeBtn.innerHTML = "&times;";
-                removeBtn.setAttribute("aria-label", "Remove subject");
-
-                removeBtn.addEventListener("click", function () {
-                    row.remove();
-                    hideResult();
-                });
-
-                row.append(
-                    nameGroup,
-                    creditGroup,
-                    gradeGroup,
-                    removeBtn
-                );
-
-                subjectsContainer.appendChild(row);
-
-            }
-
-
-            // Add a new subject
-            addSubjectBtn.addEventListener("click", function () {
-
-                createSubjectRow("", "3", "A");
-                hideResult();
+                if (Object.prototype.hasOwnProperty.call(
+                    gradePoints,
+                    previousGrade
+                )) {
+                    select.value = previousGrade;
+                }
 
             });
 
-
-            // Hide old result when inputs change
-            function hideResult() {
-
-                resultBox.classList.remove("show");
-                errorMessage.classList.remove("show");
-                lastResult = null;
-
-            }
+    }
 
 
-            subjectsContainer.addEventListener("input", hideResult);
-            subjectsContainer.addEventListener("change", hideResult);
+    // Create a custom grade row
+    function createCustomGradeRow(gradeName = "", points = "") {
+
+        const row = document.createElement("div");
+        row.className = "custom-grade-row";
+
+        const nameGroup = document.createElement("div");
+        nameGroup.className = "form-group";
+
+        const nameLabel = document.createElement("label");
+        nameLabel.textContent = "Grade Name";
+
+        const nameInput = document.createElement("input");
+        nameInput.type = "text";
+        nameInput.className = "custom-grade-name";
+        nameInput.placeholder = "e.g. A+";
+        nameInput.value = gradeName;
+        nameInput.maxLength = 10;
+
+        nameGroup.append(nameLabel, nameInput);
 
 
-            // Calculate GPA
-            calculateBtn.addEventListener("click", function () {
+        const pointGroup = document.createElement("div");
+        pointGroup.className = "form-group";
 
-                const rows = subjectsContainer.querySelectorAll(".subject-row");
+        const pointLabel = document.createElement("label");
+        pointLabel.textContent = "Grade Points";
 
-                let totalCredits = 0;
-                let totalPoints = 0;
-                let valid = true;
+        const pointInput = document.createElement("input");
+        pointInput.type = "number";
+        pointInput.className = "custom-grade-point";
+        pointInput.placeholder = "e.g. 4.00";
+        pointInput.min = "0";
+        pointInput.max = "10";
+        pointInput.step = "0.01";
+        pointInput.value = points;
 
-                errorMessage.classList.remove("show");
-
-                if (rows.length === 0) {
-                    showError("Please add at least one subject.");
-                    return;
-                }
-
-                rows.forEach(function (row) {
-
-                    const subjectName =
-                        row.querySelector(".subject-name-input").value.trim();
-
-                    const creditHours =
-                        Number(row.querySelector(".credit-input").value);
-
-                    const selectedGrade =
-                        row.querySelector(".grade-select").value;
-
-                    if (!subjectName) {
-                        valid = false;
-                        showError("Please enter a name for every subject.");
-                        return;
-                    }
-
-                    if (
-                        !Number.isFinite(creditHours) ||
-                        creditHours < 0.5 ||
-                        creditHours > 10
-                    ) {
-                        valid = false;
-                        showError("Credit hours must be between 0.5 and 10.");
-                        return;
-                    }
-
-                    const points = gradePoints[selectedGrade];
-
-                    totalCredits += creditHours;
-                    totalPoints += creditHours * points;
-
-                });
-
-                if (!valid || totalCredits <= 0) {
-                    return;
-                }
-
-                const gpa = totalPoints / totalCredits;
-
-                lastResult = {
-                    gpa: Number(gpa.toFixed(2)),
-                    totalCredits: Number(totalCredits.toFixed(2)),
-                    totalPoints: Number(totalPoints.toFixed(2)),
-                    calculatedAt: new Date().toISOString()
-                };
-
-                document.getElementById("gpaResult").textContent =
-                    lastResult.gpa.toFixed(2);
-
-                document.getElementById("totalCredits").textContent =
-                    lastResult.totalCredits;
-
-                document.getElementById("totalGradePoints").textContent =
-                    lastResult.totalPoints.toFixed(2);
-
-                document.getElementById("resultDescription").textContent =
-                    "Your semester GPA is " +
-                    lastResult.gpa.toFixed(2) +
-                    " out of 4.00.";
-
-                resultBox.classList.add("show");
-
-            });
+        pointGroup.append(pointLabel, pointInput);
 
 
-            // Display validation errors
-            function showError(message) {
+        const removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.className = "remove-subject";
+        removeBtn.innerHTML = "&times;";
+        removeBtn.setAttribute("aria-label", "Remove grade");
 
-                errorMessage.textContent = message;
-                errorMessage.classList.add("show");
+        removeBtn.addEventListener("click", function () {
 
-            }
+            row.remove();
 
-
-            // Save calculation
-            document.getElementById("saveResultBtn")
-                .addEventListener("click", function () {
-
-                    if (!lastResult) {
-                        showError("Calculate your GPA before saving.");
-                        return;
-                    }
-
-                    const saved = SkillNestStorage.save(
-                        "last_gpa_result",
-                        lastResult
-                    );
-
-                    if (saved) {
-                        alert("Your GPA result has been saved in this browser.");
-                    } else {
-                        alert("Unable to save your result. Please try again.");
-                    }
-
-                });
-
-
-            // Restore the previous calculation
-            const savedResult = SkillNestStorage.get(
-                "last_gpa_result",
-                null
-            );
-
-            if (savedResult) {
-                console.log("Previous GPA result:", savedResult);
-            }
-
-
-            // Start with three subject rows
-            createSubjectRow("Mathematics", "3", "A");
-            createSubjectRow("Programming", "3", "B+");
-            createSubjectRow("Database Systems", "3", "A-");
+            updateGradeDropdowns();
+            hideResult();
 
         });
-    </script>
 
+        row.append(nameGroup, pointGroup, removeBtn);
+
+        customScaleRows.appendChild(row);
+
+    }
+
+
+    // Add a custom grade
+    addCustomGradeBtn.addEventListener("click", function () {
+
+        createCustomGradeRow();
+
+        updateGradeDropdowns();
+        hideResult();
+
+    });
+
+
+    // Update dropdowns when custom grade values change
+    customScaleRows.addEventListener("input", function () {
+
+        updateGradeDropdowns();
+        hideResult();
+
+    });
+
+    customScaleRows.addEventListener("change", function () {
+
+        updateGradeDropdowns();
+        hideResult();
+
+    });
+
+
+    // Switch between grading scales
+    gradingScale.addEventListener("change", function () {
+
+        const isCustom = gradingScale.value === "custom";
+
+        customScaleEditor.hidden = !isCustom;
+
+        updateGradeDropdowns();
+        hideResult();
+
+    });
+
+
+    // Create a subject row
+    function createSubjectRow(name = "", credits = "3", grade = "A") {
+
+        const row = document.createElement("div");
+        row.className = "subject-row";
+
+        const nameGroup = document.createElement("div");
+        nameGroup.className = "form-group subject-name";
+
+        const nameLabel = document.createElement("label");
+        nameLabel.textContent = "Subject Name";
+
+        const nameInput = document.createElement("input");
+        nameInput.type = "text";
+        nameInput.className = "subject-name-input";
+        nameInput.placeholder =
+            "e.g. Subject " +
+            (subjectsContainer.querySelectorAll(".subject-row").length + 1);
+        nameInput.value = name;
+
+        nameGroup.append(nameLabel, nameInput);
+
+
+        const creditGroup = document.createElement("div");
+        creditGroup.className = "form-group";
+
+        const creditLabel = document.createElement("label");
+        creditLabel.textContent = "Credit Hours";
+
+        const creditInput = document.createElement("input");
+        creditInput.type = "number";
+        creditInput.className = "credit-input";
+        creditInput.min = "0.5";
+        creditInput.max = "10";
+        creditInput.step = "0.5";
+        creditInput.value = credits;
+        creditInput.placeholder = "3";
+
+        creditGroup.append(creditLabel, creditInput);
+
+
+        const gradeGroup = document.createElement("div");
+        gradeGroup.className = "form-group";
+
+        const gradeLabel = document.createElement("label");
+        gradeLabel.textContent = "Grade";
+
+        const gradeSelect = document.createElement("select");
+        gradeSelect.className = "grade-select";
+
+        gradeGroup.append(gradeLabel, gradeSelect);
+
+
+        const removeBtn = document.createElement("button");
+        removeBtn.type = "button";
+        removeBtn.className = "remove-subject";
+        removeBtn.innerHTML = "&times;";
+        removeBtn.setAttribute("aria-label", "Remove subject");
+
+        removeBtn.addEventListener("click", function () {
+
+            row.remove();
+            hideResult();
+
+        });
+
+        row.append(
+            nameGroup,
+            creditGroup,
+            gradeGroup,
+            removeBtn
+        );
+
+        subjectsContainer.appendChild(row);
+
+        updateGradeDropdowns();
+
+        if (
+            grade &&
+            Array.from(gradeSelect.options).some(function (option) {
+                return option.value === grade;
+            })
+        ) {
+            gradeSelect.value = grade;
+        }
+
+    }
+
+
+    // Add a new subject
+    addSubjectBtn.addEventListener("click", function () {
+
+        const gradePoints = getActiveGradePoints();
+        const firstGrade = Object.keys(gradePoints)[0] || "";
+
+        createSubjectRow("", "3", firstGrade);
+
+        hideResult();
+
+    });
+
+
+    // Hide old result when subject inputs change
+    subjectsContainer.addEventListener("input", hideResult);
+    subjectsContainer.addEventListener("change", hideResult);
+
+
+    // Calculate GPA
+    calculateBtn.addEventListener("click", function () {
+
+        // Always invalidate the previous result before a new calculation
+        hideResult();
+
+        const gradeScaleIsValid =
+            gradingScale.value !== "custom" ||
+            validateCustomScale();
+
+        if (!gradeScaleIsValid) {
+            return;
+        }
+
+        const gradePoints = getActiveGradePoints();
+
+        if (Object.keys(gradePoints).length === 0) {
+            showError(
+                "Please add at least one valid grade to your grading scale."
+            );
+            return;
+        }
+
+        const maximumGradePoint = Math.max(
+            ...Object.values(gradePoints)
+        );
+
+        if (maximumGradePoint <= 0) {
+            showError(
+                "Your grading scale must contain a grade point greater than zero."
+            );
+            return;
+        }
+
+        const rows = subjectsContainer.querySelectorAll(".subject-row");
+
+        let totalCredits = 0;
+        let totalPoints = 0;
+        let valid = true;
+
+        const calculatedSubjects = [];
+
+        if (rows.length === 0) {
+            showError("Please add at least one subject.");
+            return;
+        }
+
+        rows.forEach(function (row, index) {
+
+            if (!valid) {
+                return;
+            }
+
+            const enteredName =
+                row.querySelector(".subject-name-input").value.trim();
+
+            const subjectName =
+                enteredName || "Subject " + (index + 1);
+
+            const creditInput =
+                row.querySelector(".credit-input").value;
+
+            const creditHours = Number(creditInput);
+
+            const selectedGrade =
+                row.querySelector(".grade-select").value;
+
+            if (
+                creditInput.trim() === "" ||
+                !Number.isFinite(creditHours) ||
+                creditHours < 0.5 ||
+                creditHours > 10
+            ) {
+                valid = false;
+
+                showError(
+                    "Credit hours must be between 0.5 and 10."
+                );
+
+                return;
+            }
+
+            if (!Object.prototype.hasOwnProperty.call(
+                gradePoints,
+                selectedGrade
+            )) {
+                valid = false;
+
+                showError(
+                    "Please select a valid grade for every subject."
+                );
+
+                return;
+            }
+
+            const points = gradePoints[selectedGrade];
+
+            totalCredits += creditHours;
+            totalPoints += creditHours * points;
+
+            calculatedSubjects.push({
+                subjectName: subjectName,
+                creditHours: creditHours,
+                grade: selectedGrade,
+                gradePoints: points
+            });
+
+        });
+
+        if (!valid || totalCredits <= 0) {
+            return;
+        }
+
+        const gpa = totalPoints / totalCredits;
+
+        const selectedScaleName =
+            gradingScale.value === "example"
+                ? "Example 4.0 Scale"
+                : "Custom University Scale";
+
+        lastResult = {
+            gpa: Number(gpa.toFixed(2)),
+            maximumGradePoint: Number(maximumGradePoint.toFixed(2)),
+            totalCredits: Number(totalCredits.toFixed(2)),
+            totalPoints: Number(totalPoints.toFixed(2)),
+            gradingScale: selectedScaleName,
+            gradePoints: { ...gradePoints },
+            subjects: calculatedSubjects,
+            calculatedAt: new Date().toISOString()
+        };
+
+        document.getElementById("gpaResult").textContent =
+            lastResult.gpa.toFixed(2);
+
+        document.getElementById("totalCredits").textContent =
+            lastResult.totalCredits;
+
+        document.getElementById("totalGradePoints").textContent =
+            lastResult.totalPoints.toFixed(2);
+
+        document.getElementById("resultDescription").textContent =
+            "Your semester GPA is " +
+            lastResult.gpa.toFixed(2) +
+            " out of " +
+            lastResult.maximumGradePoint.toFixed(2) +
+            " using the " +
+            lastResult.gradingScale +
+            ".";
+
+        // Show the new valid result
+        resultBox.classList.add("show");
+
+    });
+
+
+    // Save calculation
+    document.getElementById("saveResultBtn")
+        .addEventListener("click", function () {
+
+            saveStatus.textContent = "";
+
+            if (!lastResult || !resultBox.classList.contains("show")) {
+
+                saveStatus.textContent =
+                    "Please calculate a valid GPA before saving.";
+
+                return;
+            }
+
+            const saved = SkillNestStorage.save(
+                "last_gpa_result",
+                lastResult
+            );
+
+            if (saved) {
+
+                saveStatus.textContent =
+                    "Your GPA result has been saved successfully.";
+
+            } else {
+
+                saveStatus.textContent =
+                    "Unable to save your result. Please try again.";
+
+            }
+
+        });
+
+
+    // Restore the previous calculation
+    const savedResult = SkillNestStorage.get(
+        "last_gpa_result",
+        null
+    );
+
+    if (savedResult) {
+        console.log("Previous GPA result:", savedResult);
+    }
+
+
+    // Start with three subject rows
+    createSubjectRow("Mathematics", "3", "A");
+    createSubjectRow("Programming", "3", "B+");
+    createSubjectRow("Database Systems", "3", "A-");
+
+});
+</script>
 
 <script src="../js/sidebar.js" defer></script>
+
 </body>
 </html>
-
-

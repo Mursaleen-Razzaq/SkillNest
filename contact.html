@@ -163,7 +163,7 @@
             border-bottom: none;
         }
 
-        .contact-info-icon {
+       .contact-info-icon {
     width: 42px;
     height: 42px;
     flex-shrink: 0;
@@ -177,6 +177,7 @@
 .contact-info-icon img {
     width: 22px;
     height: 22px;
+    display: block;
     object-fit: contain;
 }
 
@@ -253,6 +254,21 @@
                 padding: 45px 0;
             }
         }
+        .contact-note-icon {
+    width: 22px;
+    height: 22px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.contact-note-icon img {
+    width: 22px;
+    height: 22px;
+    display: block;
+    object-fit: contain;
+}
     </style>
 
 <link rel="stylesheet" href="css/sidebar.css">
@@ -541,9 +557,9 @@
                                 <h3>Email Us</h3>
 
                                 <p>
-                                    <a href="mailto:mursaleenrazzaq101@gmail.com">
-                                             mursaleenrazzaq101@gmail.com
-                                         </a>
+                                    <a href="mailto:skillnest.tools.help@gmail.com">
+                                        skillnest.tools.help@gmail.com
+                                    </a>
                                 </p>
                             </div>
 
@@ -610,8 +626,8 @@
 <div class="contact-note">
 
     <div class="contact-note-icon" aria-hidden="true">
-        ✉
-    </div>
+    <img src="assets/icons/mail.svg" alt="">
+</div>
 
     <div class="contact-note-content">
         <h3>We're here to help!</h3>
@@ -622,11 +638,11 @@
         </p>
 
         <a
-            href="mailto:mursaleenrazzaq101@gmail.com"
+            href="mailto:skillnest.tools.help@gmail.com"
             class="contact-email"
         >
-            <span>mursaleenrazzaq101@gmail.com</span>
-            <span aria-hidden="true">â†—</span>
+            <span>skillnest.tools.help@gmail.com</span>
+            <span aria-hidden="true">&rarr;</span>
         </a>
 
         <p class="contact-note-small">
@@ -749,7 +765,7 @@
         const formMessage = document.getElementById("formMessage");
 
         // Replace this with your real contact email before publishing.
-        const contactEmailAddress = "mursaleenrazzaq101@gmail.com";
+        const contactEmailAddress = "skillnest.tools.help@gmail.com";
 
         contactForm.addEventListener("submit", function(event) {
             event.preventDefault();

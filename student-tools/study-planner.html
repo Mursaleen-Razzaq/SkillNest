@@ -270,8 +270,6 @@
             }
         }
     </style>
-
-<link rel="stylesheet" href="../css/sidebar.css">
     <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 </head>
 
@@ -328,9 +326,9 @@
             </button>
 
             <!-- GET STARTED -->
-            <a href="../contact.html" class="btn btn-primary">
-                Get Started
-            </a>
+           <a href="index.html" class="btn btn-primary">
+    Get Started
+</a>
 
             <!-- MOBILE MENU -->
             <button
@@ -593,7 +591,7 @@
             <div class="footer-bottom">
 
                 <p>
-                    Â© <span id="currentYear"></span> SkillNest.
+                    &copy; <span id="currentYear"></span> SkillNest.
                     All rights reserved.
                 </p>
 
@@ -663,20 +661,17 @@
             }
 
 
-            // Save tasks
-            function saveTasks() {
-
-                const saved = SkillNestStorage.save(
-                    STORAGE_KEY,
-                    tasks
-                );
-
-                if (!saved) {
-                    showError("Unable to save tasks in this browser.");
-                }
-
-            }
-
+           function saveTasks() {
+    const saved = SkillNestStorage.save(
+        STORAGE_KEY,
+        tasks
+    );
+    if (!saved) {
+        showError("Unable to save tasks in this browser.");
+        return false;
+    }
+    return true;
+}
 
             // Show errors
             function showError(message) {
@@ -685,7 +680,6 @@
                 errorMessage.classList.add("show");
 
             }
-
 
             // Clear errors
             function clearError() {
@@ -967,26 +961,29 @@
                 };
 
 
-                tasks.push(newTask);
+               tasks.push(newTask);
 
-                saveTasks();
+if (!saveTasks()) {
 
-                taskForm.reset();
+    tasks.pop();
+    return;
 
-                taskDate.value = localToday;
+}
 
-                document.getElementById(
-                    "taskPriority"
-                ).value = "Medium";
+taskForm.reset();
 
-                currentFilter = "all";
+taskDate.value = localToday;
 
-                updateFilterButtons();
+document.getElementById(
+    "taskPriority"
+).value = "Medium";
 
-                renderTasks();
+currentFilter = "all";
 
-            });
+updateFilterButtons();
 
+renderTasks();
+});
 
             // Handle task completion and deletion
             taskList.addEventListener("click", function (event) {

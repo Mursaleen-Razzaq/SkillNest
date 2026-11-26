@@ -1,0 +1,24 @@
+{
+  "name": "skillnest",
+  "version": "1.0.0",
+  "description": "SkillNest is a free web-based toolkit designed to help students and job seekers manage academic tasks, prepare for careers, and improve everyday productivity.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Mursaleen-Razzaq/SkillNest.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/Mursaleen-Razzaq/SkillNest/issues"
+  },
+  "homepage": "https://github.com/Mursaleen-Razzaq/SkillNest#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.65.1"
+  }
+}

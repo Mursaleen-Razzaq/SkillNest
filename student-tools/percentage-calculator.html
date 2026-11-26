@@ -148,10 +148,10 @@
                 ></span>
             </button>
 
-            <!-- GET STARTED -->
-            <a href="../contact.html" class="btn btn-primary">
-                Get Started
-            </a>
+           <!-- GET STARTED -->
+           <a href="index.html" class="btn btn-primary">
+             Get Started
+               </a>
 
             <!-- MOBILE MENU -->
             <button
@@ -280,15 +280,11 @@
                             ></div>
                         </div>
 
-                        <span
-                            class="performance-label"
-                            id="performanceLabel"
-                        >
-                            Result
-                        </span>
+                       <span class="performance-label">
+                         Based on your entered marks
+                        </span> 
 
                     </div>
-
 
                     <div class="gpa-summary">
 
@@ -303,12 +299,12 @@
                         </div>
 
                         <div class="summary-item">
-                            <span>Remaining Marks</span>
-                            <strong id="remainingMarks">0</strong>
-                        </div>
+                         <span>Marks Not Obtained</span>
+                         <strong id="remainingMarks">0</strong>
+                         <small>Total marks minus obtained marks.</small>
+                         </div>
 
                     </div>
-
 
                     <div class="percentage-actions">
 
@@ -424,32 +420,32 @@
             let lastResult = null;
 
 
-            // Get performance classification
-            function getPerformance(percentage) {
+            // // Get performance classification
+            // function getPerformance(percentage) {
 
-                if (percentage >= 90) {
-                    return "Excellent";
-                }
+            //     if (percentage >= 90) {
+            //         return "Excellent";
+            //     }
 
-                if (percentage >= 80) {
-                    return "Very Good";
-                }
+            //     if (percentage >= 80) {
+            //         return "Very Good";
+            //     }
 
-                if (percentage >= 70) {
-                    return "Good";
-                }
+            //     if (percentage >= 70) {
+            //         return "Good";
+            //     }
 
-                if (percentage >= 60) {
-                    return "Above Average";
-                }
+            //     if (percentage >= 60) {
+            //         return "Above Average";
+            //     }
 
-                if (percentage >= 50) {
-                    return "Average";
-                }
+            //     if (percentage >= 50) {
+            //         return "Average";
+            //     }
 
-                return "Needs Improvement";
+            //     return "Needs Improvement";
 
-            }
+            // }
 
 
             // Display error
@@ -505,7 +501,7 @@
 
                 const remaining = total - obtained;
 
-                const performance = getPerformance(percentage);
+                // const performance = getPerformance(percentage);
 
 
                 lastResult = {
@@ -513,7 +509,7 @@
                     totalMarks: total,
                     percentage: Number(percentage.toFixed(2)),
                     remainingMarks: Number(remaining.toFixed(2)),
-                    performance: performance,
+                    // performance: performance,
                     calculatedAt: new Date().toISOString()
                 };
 
@@ -535,9 +531,9 @@
                     "remainingMarks"
                 ).textContent = remaining;
 
-                document.getElementById(
-                    "performanceLabel"
-                ).textContent = performance;
+                // document.getElementById(
+                //     "performanceLabel"
+                // ).textContent = performance;
 
                 document.getElementById(
                     "progressFill"

@@ -154,14 +154,14 @@
             font-family: Arial, sans-serif;
         }
 
-        .resume-paper h1 {
-            margin: 0 0 7px;
-            color: #192344;
-            font-size: 29px;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
+      .resume-paper .resume-name {
+    margin: 0 0 7px;
+    color: #192344;
+    font-size: 29px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
         .resume-paper .resume-role {
             margin-bottom: 12px;
             color: #7657f6;
@@ -273,9 +273,9 @@
                 padding: 22px;
             }
 
-            .resume-paper h1 {
-                font-size: 23px;
-            }
+           .resume-paper .resume-name {
+    font-size: 23px;
+}
 
             .preview-heading {
                 align-items: flex-start;
@@ -283,42 +283,87 @@
             }
         }
 
-        @media print {
+      
+@media print {
 
-            @page {
-                size: A4;
-                margin: 12mm;
-            }
+    @page {
+        size: A4;
+        margin: 12mm;
+    }
 
-            body {
-                background: white !important;
-            }
+    html,
+    body {
+        width: 100%;
+        height: auto;
+        margin: 0;
+        padding: 0;
+        background: #ffffff !important;
+    }
 
-            body * {
-                visibility: hidden !important;
-            }
+    body * {
+        visibility: hidden !important;
+    }
 
-            #resumePreview,
-            #resumePreview * {
-                visibility: visible !important;
-            }
+    #resumePreview,
+    #resumePreview * {
+        visibility: visible !important;
+    }
 
-            #resumePreview {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                min-height: 0;
-                padding: 0;
-                border-radius: 0;
-                box-shadow: none;
-            }
+    #resumePreview {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        min-height: 0;
+        margin: 0;
+        padding: 0;
+        border: none;
+        border-radius: 0;
+        box-shadow: none;
+        background: #ffffff !important;
+        color: #202434 !important;
+        overflow: visible;
+    }
 
-            .resume-section,
-            .resume-item {
-                break-inside: avoid;
-            }
-        }
+    #resumePreview .resume-name {
+        color: #192344 !important;
+    }
+
+    #resumePreview .resume-role,
+    #resumePreview .item-meta {
+        color: #7657f6 !important;
+    }
+
+    #resumePreview .resume-section h2 {
+        color: #192344 !important;
+    }
+
+    #resumePreview .resume-section p,
+    #resumePreview .resume-item h3 {
+        color: #41485a !important;
+    }
+
+    #resumePreview .resume-skill {
+        background: #f0edff !important;
+        color: #5037b6 !important;
+    }
+
+    #resumePreview .resume-section,
+    #resumePreview .resume-item {
+        break-inside: avoid;
+        page-break-inside: avoid;
+    }
+
+    #resumePreview .resume-contact {
+        border-bottom-color: #7657f6 !important;
+    }
+
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+}
+
     </style>
 
 <link rel="stylesheet" href="../css/sidebar.css">
@@ -645,7 +690,7 @@
 
                     <header>
 
-                        <h1 id="previewName">Your Name</h1>
+                        <div id="previewName" class="resume-name">Your Name</div>
 
                         <div
                             class="resume-role"
