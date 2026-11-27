@@ -74,10 +74,13 @@ img {
     }
 
     .nav-links {
-        position: absolute;
+        position: fixed;
         top: 82px;
         left: 0;
         right: 0;
+        width: auto;
+        max-width: 100%;
+        box-sizing: border-box;
         display: none;
         flex-direction: column;
         align-items: stretch;
@@ -102,6 +105,11 @@ img {
     .nav-links .btn {
         margin-top: 10px;
         text-align: center;
+    }
+
+    body.has-topbar-navigation .sn-sidebar,
+    body.has-topbar-navigation .sn-sidebar-backdrop {
+        display: none;
     }
 
     /* IMPORTANT: The grid is .hero-content, not .hero */

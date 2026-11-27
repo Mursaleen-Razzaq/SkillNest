@@ -152,6 +152,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const closeButton = sidebar.querySelector(".sn-sidebar-close");
 
 const toggle = document.getElementById("menuToggle");
+const navLinks = document.getElementById("navLinks");
 
 const mobileScreen = window.matchMedia("(max-width: 900px)");
 
@@ -161,6 +162,11 @@ if (!toggle) {
     );
     return;
 }
+
+    if (navLinks) {
+        document.body.classList.add("has-topbar-navigation");
+        return;
+    }
 
     function setSidebarState(open) {
         sidebar.classList.toggle("open", open);
