@@ -1086,10 +1086,9 @@ html body img[src*="assets/icons/"] {
 
 /* Close icon when menu is open */
 .menu-toggle.menu-open .topbar-svg-icon {
-    -webkit-mask-image: url("../assets/icons/close.svg");
-    mask-image: url("../assets/icons/close.svg");
+    -webkit-mask-image: url("../assets/icons/x.svg");
+    mask-image: url("../assets/icons/x.svg");
 }
-
 /* ========================================
    FINAL TOP BAR ALIGNMENT
 ======================================== */

@@ -220,25 +220,22 @@
 /* ========================================
    DESKTOP CONTENT LAYOUT
 ======================================== */
+@media (min-width: 901px) {
 
-body.has-sidebar {
-    padding-left: var(--sidebar-width);
-}
+    body.has-sidebar {
+        padding-left: var(--sidebar-width);
+    }
 
-/* Keep header and footer full width */
+    body.has-sidebar > .header {
+        margin-left: calc(-1 * var(--sidebar-width));
+        width: calc(100% + var(--sidebar-width));
+    }
 
-/* Keep header full width */
+    body.has-sidebar > .footer {
+        margin-left: 0;
+        width: 100%;
+    }
 
-body.has-sidebar > .header {
-    margin-left: calc(-1 * var(--sidebar-width));
-    width: calc(100% + var(--sidebar-width));
-}
-
-/* Keep footer aligned with the main content */
-
-body.has-sidebar > .footer {
-    margin-left: 0;
-    width: 100%;
 }
 
 /* ========================================
